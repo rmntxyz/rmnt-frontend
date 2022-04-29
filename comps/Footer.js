@@ -3,49 +3,51 @@ import {
   faTwitter,
   faDiscord,
 } from "@fortawesome/free-brands-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
+
+// "next.link" must have only one child. (e.g. <a>)
+// so, can't use a <Link> component here.
+const OutLinkWithIcon = ({ href, icon }) => {
+  return (
+    <a href={href}>
+      <FontAwesomeIcon icon={icon} size="2x" />
+    </a>
+  );
+};
+
+const OutLinks = [
+  { href: "/", icon: faInstagram },
+  { href: "/", icon: faTwitter },
+  { href: "/", icon: faDiscord },
+  { href: "/", icon: faEnvelope },
+].map((info) => <OutLinkWithIcon {...info} />);
+
+const InLinks = [
+  { href: "/", text: "FAQ" },
+  { href: "/", text: "terms of services" },
+  { href: "/", text: "privacy policy" },
+].map(({ href, text }) => <Link href={href}>{text}</Link>);
 
 export default function () {
   return (
-    <div className={styles.footerBox}>
-      <footer className={styles.footer}>
-        <div className={styles.footerItem}>
-          <div className={styles.icon}>
-            <Link href="/">
-              <FontAwesomeIcon icon={faInstagram} size="2x"></FontAwesomeIcon>
-            </Link>
-          </div>
-          <div className={styles.icon}>
-            <Link href="/">
-              <FontAwesomeIcon icon={faTwitter} size="2x"></FontAwesomeIcon>
-            </Link>
-          </div>
-          <div className={styles.icon}>
-            <Link href="/">
-              <FontAwesomeIcon icon={faDiscord} size="2x"></FontAwesomeIcon>
-            </Link>
-          </div>
-          <div className={styles.icon}>
-            <Link href="/">
-              <FontAwesomeIcon icon={faEnvelope} size="2x"></FontAwesomeIcon>
-            </Link>
-          </div>
-        </div>
-        <div className={styles.footerItem}>
-          <div className={styles.icon}>
-            <Link href="/">FAQ</Link>
-          </div>
-          <div className={styles.icon}>
-            <Link href="/">terms of service</Link>
-          </div>
-          <div className={styles.icon}>
-            <Link href="/">privacy policy</Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+    <footer className="h-40 px-8 bg-neutral-900 text-neutral-400 flex justify-between items-center">
+      <ul className="flex">
+        {OutLinks.map((link, idx) => (
+          <li key={idx} className="m-2.5 cursor-pointer hover:text-neutral-100">
+            {link}
+          </li>
+        ))}
+      </ul>
+      <ul className="flex">
+        {InLinks.map((link, idx) => (
+          <li key={idx} className="m-2.5 cursor-pointer hover:text-neutral-100">
+            {link}
+          </li>
+        ))}
+      </ul>
+    </footer>
   );
 }

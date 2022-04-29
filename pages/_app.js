@@ -1,6 +1,5 @@
-import Layout from "../comps/Layout";
 import "../styles/globals.css";
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import Layout from "../comps/Layout";
 
 function MyApp({ Component, pageProps }) {
   return (
