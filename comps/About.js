@@ -1,3 +1,4 @@
+
 const aboutData = [
   {
     title: "Merge with webtoon",
@@ -15,33 +16,33 @@ const aboutData = [
 
 export default function About() {
   return (
-    <div className="py-20 px-14 bg-lightBeige flex items-center justify-center md:py-36">
-      <div className="container">
-        <div className="flex flex-col md:flex-row">
-          <div className="pb-6 text-darkBeige text-2xl font-extrabold md:w-1/2 md:text-6xl md:pr-8">
+    <div className="py-20 px-8 bg-lightBeige flex items-center justify-center sm:py-36">
+      <div className="container sm:px-6">
+        <div className="flex flex-col lg:flex-row">
+          <div className="pb-6 text-darkBeige text-2xl font-extrabold sm:text-6xl sm:pb-16 lg:pr-8  lg:w-1/2">
             What is RMNT?
           </div>
-          <div className="md:w-1/2">
+          <div className="lg:w-1/2">
             {aboutData.map((item, index) => (
               <div>
-                <div key={index} className="pb-6 md:pb-14">
-                  <div className="font-bold text-base md:text-2xl">
+                <div key={index} className="pb-11 sm:pb-14">
+                  <div className="font-bold text-base text-darkBeige sm:text-2xl">
                     {item.title}
                   </div>
-                  <div className="text-sm md:text-lg">{item.desc}</div>
+                  <div className="text-sm text-ourBlack sm:text-lg">{item.desc}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
         <div className="w-full h-px bg-darkBeige"></div>
-        <div className="flex pt-3 md:pt-12">
-          <div className="md:w-1/2"></div>
-          <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between md:w-1/2">
-            <div className="my-2 text-xl font-extrabold text-darkBeige md:text-3xl">
+        <div className="flex pt-6 sm:pt-12">
+          <div className="lg:w-1/2"></div>
+          <div className="w-full flex flex-col items-start sm:flex-row sm:items-center sm:justify-between lg:w-1/2">
+            <div className="my-2 text-xl font-extrabold text-ourBlack sm:text-3xl">
               Wanna join the team?
             </div>
-            <button className="inline-block px-6 py-2 my-2 text-sm font-bold bg-darkBeige text-white leading-tight rounded-3xl transition duration-150 ease-in-out md:text-base hover:drop-shadow-rmnt">
+            <button className="inline-block px-6 py-2 my-2 text-sm font-bold border-2 border-ourBlack text-ourBlack leading-tight rounded-3xl transition duration-150 ease-in-out sm:text-base hover:bg-ourBlack hover:text-white">
               Apply!
             </button>
           </div>

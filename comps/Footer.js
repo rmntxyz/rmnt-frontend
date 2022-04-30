@@ -33,13 +33,13 @@ const InLinks = [
 
 export default function Footer() {
   return (
-    <footer className="h-40 px-8 bg-neutral-900 flex items-center justify-center">
+    <footer className="h-40 px-8 bg-ourBlack flex items-center justify-center">
       <div className="container text-lightGray flex flex-col items-center justify-center sm:flex-row sm:justify-between">
         <ul className="flex">
           {OutLinks.map((link, idx) => (
             <li
               key={idx}
-              className="m-2.5 cursor-pointer hover:text-neutral-100"
+              className="m-2.5 cursor-pointer hover:text-white"
             >
               {link}
             </li>
@@ -49,7 +49,7 @@ export default function Footer() {
           {InLinks.map((link, idx) => (
             <li
               key={idx}
-              className="m-2.5 cursor-pointer text-center hover:text-neutral-100"
+              className="m-2.5 cursor-pointer text-center hover:text-white"
             >
               {link}
             </li>

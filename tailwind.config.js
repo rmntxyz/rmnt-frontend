@@ -5,10 +5,14 @@ module.exports = {
       fontFamily: {
         sen: ["'Sen', sans-serif"],
       },
+      screens: {
+
+      },
       colors: {
         'lightBeige': '#F4EADC',
-        'darkBeige': '#998161',
-        'lightGray': '#B6B6B6' 
+        'darkBeige': '#998161', 
+        'lightGray': '#B6B6B6',
+        'ourBlack': '#0C0C0C'  
       },
       dropShadow: {
         'rmnt': '0px 6px 12px rgba(0, 0, 0, 0.2)'
