@@ -31,23 +31,31 @@ const InLinks = [
   { href: "/", text: "privacy policy" },
 ].map(({ href, text }) => <Link href={href}>{text}</Link>);
 
-export default function () {
+export default function Footer() {
   return (
-    <footer className="h-40 px-8 bg-neutral-900 text-neutral-400 flex justify-between items-center">
-      <ul className="flex">
-        {OutLinks.map((link, idx) => (
-          <li key={idx} className="m-2.5 cursor-pointer hover:text-neutral-100">
-            {link}
-          </li>
-        ))}
-      </ul>
-      <ul className="flex">
-        {InLinks.map((link, idx) => (
-          <li key={idx} className="m-2.5 cursor-pointer hover:text-neutral-100">
-            {link}
-          </li>
-        ))}
-      </ul>
+    <footer className="h-40 px-8 bg-neutral-900 flex items-center justify-center">
+      <div className="container text-lightGray flex flex-col items-center justify-center sm:flex-row sm:justify-between">
+        <ul className="flex">
+          {OutLinks.map((link, idx) => (
+            <li
+              key={idx}
+              className="m-2.5 cursor-pointer hover:text-neutral-100"
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
+        <ul className="flex items-center">
+          {InLinks.map((link, idx) => (
+            <li
+              key={idx}
+              className="m-2.5 cursor-pointer text-center hover:text-neutral-100"
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
+      </div>
     </footer>
   );
 }
