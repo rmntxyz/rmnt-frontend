@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Timer from "./Timer";
 
-export default function Featured(props) {
-  const {data} = props
+export default function Featured({data}) {
   return (
     <div className="container mx-auto">
       <div className="m-9 flex flex-col md:my-12 lg:my-20 lg:grid lg:grid-flow-col lg:items-center">

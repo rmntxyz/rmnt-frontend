@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Timer(props) {
-  const {targetTime} = props;
+export default function Timer({targetTime}) {
   const calculateTimeLeft = () => {
     const difference = new Date(targetTime).getTime() - new Date().getTime();
     let timeLeft = [];
