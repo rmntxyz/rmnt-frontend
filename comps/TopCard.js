@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Available from "./Available";
 import Timer from "./Timer";
 
-export default function Featured({data}) {
+export default function TopCard({data}) {
   return (
     <div className="container mx-auto">
       <div className="m-9 flex flex-col md:my-12 lg:my-20 lg:grid lg:grid-flow-col lg:items-center">
@@ -37,10 +38,7 @@ export default function Featured({data}) {
         </div>
         <div className="mt-8 flex flex-col md:mt-12 md:flex-row md:justify-between lg:flex-col lg:order-3">
           <div className="mb-8 pl-6 border-l border-mediumBeige text-sm md:text-lg md:mb-12 md:pl-8">
-            <div>
-              <div>Available NFT</div>
-              <div className="text-base font-bold md:text-xl">{data.available}/5</div>
-            </div>
+            <Available available={data.available} />
             <Timer targetTime={data.targetTime} />
           </div>
           <div>

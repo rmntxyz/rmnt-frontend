@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Timer({targetTime}) {
+export default function Timer({ targetTime }) {
   const calculateTimeLeft = () => {
     const difference = new Date(targetTime).getTime() - new Date().getTime();
     let timeLeft = [];
@@ -40,32 +40,36 @@ export default function Timer({targetTime}) {
 
   return (
     <div className="flex flex-col justify-start mt-6 text-sm md:text-lg md:mt-8">
-      <div>Drop begins in </div>
       {timeLeft ? (
-        <div className="flex items-center font-bold text-xl md:text-3xl">
-          {timeLeft.map(({ unit, shortUnit, number }) => (
-            <div key={unit} className="relative flex flex-row">
-              <div className="relative flex flex-col items-center my-1 mr-3 md:mr-4 md:my-1.5">
-                <div className="w-12 h-14 flex items-center justify-center bg-lightBeige rounded md:w-16 md:h-20">
-                  <div suppressHydrationWarning={true}>{number}</div>
+        <div>
+          <div>Drop begins in </div>
+          <div className="flex items-center font-bold text-xl md:text-3xl">
+            {timeLeft.map(({ unit, shortUnit, number }) => (
+              <div key={unit} className="relative flex flex-row">
+                <div className="relative flex flex-col items-center my-1 mr-3 md:mr-4 md:my-1.5">
+                  <div className="w-12 h-14 flex items-center justify-center bg-lightBeige rounded md:w-16 md:h-20">
+                    <div suppressHydrationWarning={true}>{number}</div>
+                  </div>
+                  <div className="invisible font-normal text-neutral-500 text-sm md:visible">
+                    {unit}
+                  </div>
+                  <div className="absolute inset-x-auto bottom-0 text-xs font-normal text-neutral-500 md:invisible">
+                    {shortUnit}
+                  </div>
                 </div>
-                <div className="invisible font-normal text-neutral-500 text-sm md:visible">
-                  {unit}
-                </div>
-                <div className="absolute inset-x-auto bottom-0 text-xs font-normal text-neutral-500 md:invisible">
-                  {shortUnit}
+                <div
+                  className={`absolute inset-y-4 right-0.5 md:inset-y-6 md:right-1 ${
+                    (unit === "Days") | (unit === "Seconds") &&
+                    "text-transparent"
+                  }`}
+                >
+                  :
                 </div>
               </div>
-              <div className={`absolute inset-y-4 right-0.5 md:inset-y-6 md:right-1 ${unit==="Days" | unit==="Seconds" && "text-transparent" }`}>:</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      ) : (
-        <div>
-          <div>Raised so far</div>
-          <div>ETH</div>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 }
