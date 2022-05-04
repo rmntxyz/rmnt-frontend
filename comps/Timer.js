@@ -57,7 +57,7 @@ export default function Timer() {
                   {shortUnit}
                 </div>
               </div>
-              <div className={`absolute inset-y-6 right-1 ${unit==="Days" | unit==="Seconds" && "text-transparent" }`}>:</div>
+              <div className={`absolute inset-y-4 right-0.5 md:inset-y-6 md:right-1 ${unit==="Days" | unit==="Seconds" && "text-transparent" }`}>:</div>
             </div>
           ))}
         </div>
