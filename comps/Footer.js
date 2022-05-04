@@ -34,7 +34,7 @@ const InLinks = [
 export default function Footer() {
   return (
     <footer className="h-40 px-8 bg-ourBlack flex items-center justify-center">
-      <div className="container text-lightGray flex flex-col items-center justify-center sm:flex-row sm:justify-between">
+      <div className="container text-lightGray flex flex-col items-center justify-center md:flex-row md:justify-between">
         <ul className="flex">
           {OutLinks.map((link, idx) => (
             <li
