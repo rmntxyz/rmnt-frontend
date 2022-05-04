@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import About from '../comps/About'
-import TopCard from '../comps/TopCard'
+import Featured from '../comps/Featured'
+import { featuredData } from '../comps/Homedata'
 
 export default function Home() {
+
   return (
     <div>
       <Head>
@@ -13,7 +14,7 @@ export default function Home() {
       </Head>
 
       <main >
-        <TopCard />
+        <Featured data={featuredData}/>
         <About />
       </main>
       

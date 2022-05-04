@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sen: ["'Sen', sans-serif"],
+        sen: ["Sen", "sans-serif"],
       },
       screens: {
 
