@@ -18,7 +18,7 @@ export default function TopCard({ data }) {
             </div>
             <div className="text-sm ml-1 md:text-xl md:ml-1.5">{data.name}</div>
           </a>
-          <div className="flex mt-1.5 items-center md:mt-3 lg:max-w-2xl lg:flex-wrap">
+          <div className="flex mt-1.5 items-center md:mt-3 lg:flex-wrap">
             <div className="truncate text-2xl font-extrabold uppercase md:text-6xl">
               {data.title}
             </div>
