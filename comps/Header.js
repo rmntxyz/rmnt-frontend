@@ -21,16 +21,22 @@ export default function Header() {
           <Image src="/logo_black/logo_360.png" width={165} height={80} />
         </a>
       </div>
-      <button className="invisible inline-block px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white transition duration-150 ease-in-out md:visible ">
+      <a
+        href="/"
+        className="invisible inline-block px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white transition duration-150 ease-in-out md:visible "
+      >
         Connect Wallet
-      </button>
-      <button className="absolute right-8 inline-block p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white transition duration-150 ease-in-out md:invisible">
+      </a>
+      <a
+        href="/"
+        className="absolute right-8 inline-block p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white transition duration-150 ease-in-out md:invisible"
+      >
         <FontAwesomeIcon
           icon={faWallet}
           width="20px"
           height="32px"
         ></FontAwesomeIcon>
-      </button>
+      </a>
     </nav>
     //Black header
     // <nav className="h-20 px-8 text-2xl font-bold bg-ourBlack text-white flex justify-between items-center">

@@ -41,9 +41,9 @@ export default function About() {
             <div className="my-2 text-xl font-extrabold text-ourBlack md:text-3xl">
               Wanna join the team?
             </div>
-            <button className="inline-block px-6 py-2 my-2 text-sm font-bold border-2 border-ourBlack text-ourBlack leading-tight rounded-3xl transition duration-150 ease-in-out md:text-base hover:bg-ourBlack hover:text-white">
+            <a href="/" className="inline-block px-6 py-2 my-2 text-sm font-bold border-2 border-ourBlack text-ourBlack leading-tight rounded-3xl transition duration-150 ease-in-out md:text-base hover:bg-ourBlack hover:text-white">
               Apply!
-            </button>
+            </a>
           </div>
         </div>
       </div>
