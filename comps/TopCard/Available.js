@@ -1,7 +1,7 @@
 export default function Available({ available }) {
   return (
     <div>
-      <div>Available NFT</div>
+      <div className="whitespace-nowrap">Available NFT</div>
       {available ? (
         <div className="text-base font-bold md:text-xl">{available}/5</div>
       ) : (

@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Header() {
   return (
     //White header (current)
-    <nav className="h-20 px-8 text-2xl font-bold bg-white text-ourBlack flex justify-between items-center drop-shadow-rmnt">
+    <nav className="h-20 px-8 text-2xl font-bold bg-white text-ourBlack flex justify-between items-center drop-shadow-large">
       <div className="invisible mt-3 cursor-pointer lg:visible ">
         <a href="/">
           <Image src="/logo_black/logo_1440.png" width={165} height={80} />

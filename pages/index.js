@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import About from '../comps/About'
-import { topData } from '../comps/Homedata'
-import TopCard from '../comps/TopCard'
+import { listData, topData } from '../comps/Homedata'
+import List from '../comps/List/List'
+import TopCard from '../comps/TopCard/TopCard'
 
 export default function Home() {
 
@@ -15,6 +16,7 @@ export default function Home() {
 
       <main >
         <TopCard data={topData}/>
+        <List data={listData} />
         <About />
       </main>
       

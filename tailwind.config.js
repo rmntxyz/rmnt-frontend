@@ -5,9 +5,7 @@ module.exports = {
       fontFamily: {
         sen: ["Sen", "sans-serif"],
       },
-      screens: {
-
-      },
+      display: ["group-hover"],
       colors: {
         'lightBeige': '#F4EADC',
         'mediumBeige': '#DAB88B',
@@ -17,7 +15,9 @@ module.exports = {
         'ourBlack': '#0C0C0C',
       },
       dropShadow: {
-        'rmnt': '0px 6px 12px rgba(0, 0, 0, 0.2)'
+        'small': '0px 5px 10px rgba(0, 0, 0, 0.14)',
+        'large': '0px 6px 12px rgba(0, 0, 0, 0.2)',
+
       }
     },
   },
