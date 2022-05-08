@@ -25,7 +25,7 @@ export default function List({ data }) {
   };
 
   return (
-    <div className="ml-8 my-20 mx-auto md:mr-8">
+    <div className="ml-8 my-36 mx-auto md:mr-8">
       <div className="relative mx-3 flex items-center justify-between">
         <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
           Featured Series

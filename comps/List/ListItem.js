@@ -3,7 +3,7 @@ import ListAvailable from "./ListAvailable";
 
 export default function ListItem({item}) {
   return (
-    <div className="min-w-[80%] m-4">
+    <div className="min-w-[80%] mx-4 my-7">
       <div className="p-4 border border-darkGray rounded-sm">
         <a href={item.profileLink} className="flex items-center mb-3 md:mb-4">
           <img
