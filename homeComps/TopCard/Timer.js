@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-export default function Timer({ targetTime }) {
+export default function Timer({ nft }) {
+  const unminted = nft.filter((item) => item.minted === false);
+  const lastUnminted = unminted[unminted.length - 1];
+  const targetTime = lastUnminted.targetTime;
+
   const calculateTimeLeft = () => {
     const difference = new Date(targetTime).getTime() - new Date().getTime();
     let timeLeft = [];

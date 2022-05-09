@@ -25,14 +25,15 @@ export default function List({ data }) {
   };
 
   return (
-    <div className="ml-8 my-36 mx-auto md:mr-8">
-      <div className="relative mx-3 flex items-center justify-between">
+    <div className="container mx-auto">
+    <div className="my-36">
+      <div className="relative mx-3 flex items-center justify-between ">
         <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
           Featured Series
         </div>
         <div className="flex items-center lg:absolute lg:right-0">
           <a
-            href="/"
+            href="/webtoons"
             className="inline-block whitespace-nowrap px-6 py-2 my-2 text-sm font-normal bg-white text-ourBlack leading-tight rounded-3xl transition duration-150 ease-in-out md:text-base hover:drop-shadow-lg md:hover:underline md:hover:drop-shadow-none"
           >
             View all
@@ -60,6 +61,7 @@ export default function List({ data }) {
           <ListItem key={item.id} item={item} />
         ))}
       </div>
+    </div>
     </div>
   );
 }

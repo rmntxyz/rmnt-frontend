@@ -3,8 +3,8 @@ import ListAvailable from "./ListAvailable";
 
 export default function ListItem({item}) {
   return (
-    <div className="min-w-[80%] mx-4 my-7">
-      <div className="p-4 border border-darkGray rounded-sm">
+    <div className="min-w-[80%] mx-4 my-7 drop-shadow-medium">
+      <div className="p-4 border border-darkGray bg-white rounded-sm ">
         <a href={item.profileLink} className="flex items-center mb-3 md:mb-4">
           <img
             src={item.profile}
@@ -13,7 +13,7 @@ export default function ListItem({item}) {
           <div className="text-sm ml-1 md:text-base">{item.author}</div>
         </a>
         <div className="relative group">
-          <a href={item.detailLink}>
+          <a href={"/webtoons/" + item.id}>
             <Image
               src={item.cover}
               width={268}
@@ -21,7 +21,7 @@ export default function ListItem({item}) {
               layout="responsive"
               className="hover:scale-125"
             />
-            <button className="hidden absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-md leading-tight font-extrabold whitespace-nowrap rounded-full transition duration-150 ease-in-out group-hover:block hover:drop-shadow-rmnt">
+            <button className="hidden absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-md leading-tight font-extrabold whitespace-nowrap rounded-full transition duration-150 ease-in-out group-hover:block">
               View webtoon
             </button>
           </a>
@@ -42,9 +42,7 @@ export default function ListItem({item}) {
         <div className="min-w-[33.3%] h-full"></div>
       </div>
       <ListAvailable
-        available={item.available}
-        targetTime={item.targetTime}
-        minted={item.minted}
+        nft={item.nft}
       />
     </div>
   );
