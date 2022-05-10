@@ -41,7 +41,7 @@ export default function WebtoonItem() {
               />
               <div>
                 <div>{item.author}</div>
-                <a href={item.authorWalletLink} target="_blank">
+                <a href={item.authorWalletLink} rel="noreferrer" target="_blank">
                   <button className=" border-ourBlack bg-lightGray text-white text-md leading-tight whitespace-nowrap rounded-full transition duration-150 ease-in-out">
                     {item.authorWallet}
                   </button>
