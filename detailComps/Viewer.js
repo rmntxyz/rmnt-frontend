@@ -45,7 +45,7 @@ export default function Viewer({ data }) {
               width={590}
               height={590}
               src={item}
-              className="max-w-[236px] sm:max-w-[520px] xl:max-w-[590px]"
+              className="max-w-[236px] md:max-w-[520px] xl:max-w-[590px]"
             />
           </div>
         ))}
