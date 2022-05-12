@@ -27,35 +27,30 @@ export default function Viewer({ data }) {
 
   return (
     <div className="container mx-auto">
-      <div className="flex items-center justify-center gap-1.5 md:gap-4 lg:gap-8">
+      <div className="min-w-[50%] flex items-center justify-center">
         <button
           onClick={handlePrevbtn}
           disabled={currentPage == pages[0] ? true : false}
-          className="m-2.5 w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
+          className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack disabled:bg-neutral-200"
         >
-          <FontAwesomeIcon icon={faArrowLeft} className="text-base md:text-2xl"  />
+          <FontAwesomeIcon icon={faArrowLeft} />
         </button>
 
         {currentItems?.map((item, idx) => (
           <div
             key={idx}
-            className="p-5 border border-darkGray rounded-sm bg-white drop-shadow-medium"
+            className="p-3 border border-darkGray rounded-sm bg-white drop-shadow-medium"
           >
-            <img
-              width={590}
-              height={590}
-              src={item}
-              className="max-w-[236px] sm:max-w-[520px] xl:max-w-[590px]"
-            />
+            <Image width={268} height={268} src={item} />
           </div>
         ))}
 
         <button
           onClick={handleNextbtn}
           disabled={currentPage == pages[pages.length - 1] ? true : false}
-          className="m-2.5 w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
+          className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack disabled:bg-neutral-200"
         >
-          <FontAwesomeIcon icon={faArrowRight} className="text-base md:text-2xl" />
+          <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </div>
       <ProgressBar currentPage={currentPage} totalPages={pages.length} />
