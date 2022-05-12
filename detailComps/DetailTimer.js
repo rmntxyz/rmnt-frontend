@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ListTimer({ targetTime }) {
+export default function DetailTimer({ targetTime }) {
   const calculateTimeLeft = () => {
     const difference = new Date(targetTime).getTime() - new Date().getTime();
     let timeLeft = [];
@@ -37,17 +37,18 @@ export default function ListTimer({ targetTime }) {
   return (
     <div>
       {timeLeft ? (
-        <div>
-          <div className="flex font-bold">
+        <div className="flex flex-col  gap-1.5 md:flex-row md:gap-4">
+          <div className="text-[19px] md:text-[32px]">Drop begins in</div>
+          <div className="flex font-bold text-sm md:text-xl">
             {timeLeft.map(({ unit, number }) => (
               <div key={unit} className="relative flex flex-row">
                 <div className={`flex flex-col mr-2 md:mr-3 ${(unit==="s") && "mr-0 md:mr-0"}` }>
-                  <div className="w-9 h-5 flex justify-center items-center bg-lightBeige rounded md:h-6">
+                  <div className="w-9 h-7 flex justify-center items-center bg-white rounded md:h-12 md:w-16">
                     <div suppressHydrationWarning={true}>{number}{unit}</div>
                   </div>
                 </div>
                 <div
-                  className={`absolute -top-0.5 right-0.5 md:right-1 ${
+                  className={`absolute top-1 right-0.5 md:right-0.5 md:top-2 ${
                     (unit === "d") | (unit === "s") &&
                     "text-transparent"
                   }`}

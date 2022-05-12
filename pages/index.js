@@ -1,11 +1,10 @@
-import Head from 'next/head'
-import About from '../homeComps/About'
-import { listData, topData } from '../homeComps/Homedata'
-import List from '../homeComps/List/List'
-import TopCard from '../homeComps/TopCard/TopCard'
+import Head from "next/head";
+import About from "../homeComps/About";
+import { listData, topData } from "../homeComps/Homedata";
+import List from "../homeComps/List/List";
+import TopCard from "../homeComps/TopCard/TopCard";
 
 export default function Home() {
-
   return (
     <div>
       <Head>
@@ -14,11 +13,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <TopCard data={topData}/>
+        <TopCard data={topData} />
         <List data={listData} />
         <About />
       </main>
-      
     </div>
-  )
+  );
 }

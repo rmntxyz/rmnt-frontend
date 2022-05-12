@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./homeComps/**/*.{js,ts,jsx,tsx}", "./detailPageComps/**/*.{js,ts,jsx,tsx}," ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./homeComps/**/*.{js,ts,jsx,tsx}", "./detailComps/**/*.{js,ts,jsx,tsx}" ],
   theme: {
     extend: {
       fontFamily: {
@@ -12,7 +12,6 @@ module.exports = {
         'darkBeige': '#998161', 
         'mediumGray': '#DBDBDB',
         'lightGray': '#B6B6B6',
-        'lighterGray': '#F3F3F3',
         'darkGray': '#242424',
         'ourBlack': '#0C0C0C',
       },
@@ -31,6 +30,14 @@ module.exports = {
           '2xl': '1376px',
         }
       },
+
+      screens: {
+        '3xl': '1920px',
+      },
+
+      backgroundImage: {
+        'hero': "url('../public/background/background img@3x.png')"
+      }
     },
   },
   plugins: [],

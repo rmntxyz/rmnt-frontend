@@ -8,16 +8,10 @@ const webtoonData = [
     title: "First",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2022-07-01T16:00:00Z",
-    minted: false,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkang ddkangddkangddkang ddkangddkang. ddkangddkangddkangdd kangddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -34,7 +28,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -44,11 +38,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 2,
@@ -58,16 +51,10 @@ const webtoonData = [
     title: "Second",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 0,
-    targetTime: "2021-07-01T16:00:00Z",
-    minted: true,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangdd kangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -84,7 +71,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -94,7 +81,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -104,11 +91,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 3,
@@ -118,16 +104,10 @@ const webtoonData = [
     title: "Third",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2022-07-01T16:00:00Z",
-    minted: false,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -144,7 +124,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
       {
@@ -154,7 +134,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -164,11 +144,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 4,
@@ -178,16 +157,10 @@ const webtoonData = [
     title: "Fourth",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 4,
-    targetTime: "2021-07-01T16:00:00Z",
-    minted: true,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -204,7 +177,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -214,30 +187,23 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 5,
     profile: "/img_420_420.png",
     author: "author",
     profileLink: "/",
-    title: "Fifth",
+    title: "daddy's twenty-forty-two",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2021-07-01T16:00:00Z",
-    minted: true,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -254,7 +220,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -264,7 +230,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -274,11 +240,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 6,
@@ -288,16 +253,10 @@ const webtoonData = [
     title: "Sixth",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 0,
-    targetTime: "2021-07-01T16:00:00Z",
-    minted: true,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -314,7 +273,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -324,7 +283,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -334,11 +293,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 7,
@@ -348,16 +306,10 @@ const webtoonData = [
     title: "Tango",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 0,
-    targetTime: "2021-07-01T16:00:00Z",
-    minted: true,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -374,7 +326,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -384,7 +336,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -394,11 +346,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 8,
@@ -408,16 +359,10 @@ const webtoonData = [
     title: "Daddy's Twenty-Forty-Five",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2020-07-01T16:00:00Z",
-    minted: true,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -434,7 +379,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -444,7 +389,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -454,11 +399,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 9,
@@ -468,16 +412,10 @@ const webtoonData = [
     title: "Daddy's Twenty-Forty-Five",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2021-07-01T16:00:00Z",
-    minted: true,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -494,7 +432,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -504,7 +442,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -514,11 +452,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 10,
@@ -528,23 +465,15 @@ const webtoonData = [
     title: "Daddy's Twenty-Forty-Five",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2022-07-01T16:00:00Z",
-    minted: false,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkangddkang ddkangddkangddkang. ddkangddkangddkang ddkangddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
-      { id: 1, profile: "/img_420_420.png" },
-      { id: 2, profile: "/img_420_420.png" },
     ],
     nft: [
       {
@@ -554,7 +483,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -564,7 +493,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -574,11 +503,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 11,
@@ -588,23 +516,15 @@ const webtoonData = [
     title: "Eleventh",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2022-07-01T16:00:00Z",
-    minted: false,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
-      { id: 1, profile: "/img_420_420.png" },
-      { id: 2, profile: "/img_420_420.png" },
     ],
     nft: [
       {
@@ -614,7 +534,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -624,7 +544,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -634,11 +554,10 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
     ],
->>>>>>> Stashed changes
   },
   {
     id: 12,
@@ -648,16 +567,10 @@ const webtoonData = [
     title: "Twelfth",
     vol: 1,
     cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-    detailLink: "/",
-    available: 5,
-    targetTime: "2022-07-01T16:00:00Z",
-    minted: false,
-=======
     pages: ["/img_420_420.png", "/img_288_288.png"],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
-      "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
@@ -665,6 +578,9 @@ const webtoonData = [
     collectors: [
       { id: 1, profile: "/img_420_420.png" },
       { id: 2, profile: "/img_420_420.png" },
+      { id: 3, profile: "/img_420_420.png" },
+      { id: 4, profile: "/img_420_420.png" },
+      { id: 5, profile: "/img_420_420.png" },
     ],
     nft: [
       {
@@ -674,7 +590,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        minted: false,
+        dropped: false,
         sold: false,
       },
       {
@@ -684,7 +600,7 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: true,
       },
       {
@@ -694,11 +610,30 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        minted: true,
+        dropped: true,
         sold: false,
       },
+      {
+        id: 4,
+        name: "Journey 4",
+        file: "/img_288_288.png",
+        price: 0.0263,
+        edition: 4,
+        targetTime: "2021-07-01T16:00:00Z",
+        dropped: true,
+        sold: true,
+      },
+      {
+        id: 5,
+        name: "Journey 5",
+        file: "/img_288_288.png",
+        price: 0.0263,
+        edition: 5,
+        targetTime: "2021-07-01T16:00:00Z",
+        dropped: true,
+        sold: true,
+      },
     ],
->>>>>>> Stashed changes
   },
 ];
 
@@ -707,19 +642,13 @@ const topData = {
   profile: "/img_420_420.png",
   author: "author",
   profileLink: "/",
-  title: "Fifth",
+  title: "daddy's twenty-forty-two",
   vol: 1,
   cover: "/img_420_420.png",
-<<<<<<< Updated upstream
-  detailLink: "/",
-  available: 5,
-  targetTime: "2022-07-01T16:00:00Z",
-  minted: false,
-=======
   pages: ["/img_420_420.png", "/img_288_288.png"],
   desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
   authorDesc:
-    "ddkangddkangddkangddkangddkangddkangddkang.ddkangddkangddkangddkangddkangddkangddkang",
+    "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
   authorEmail: "d_d_kang@gmail.com",
   authorInstagram: "@d_d_kang",
   authorWallet: "12345",
@@ -736,7 +665,7 @@ const topData = {
       price: 0.0263,
       edition: 1,
       targetTime: "2022-07-01T16:00:00Z",
-      minted: false,
+      dropped: false,
       sold: false,
     },
     {
@@ -746,7 +675,7 @@ const topData = {
       price: 0.0263,
       edition: 2,
       targetTime: "2021-07-01T16:00:00Z",
-      minted: true,
+      dropped: true,
       sold: true,
     },
     {
@@ -756,17 +685,16 @@ const topData = {
       price: 0.0263,
       edition: 3,
       targetTime: "2021-07-01T16:00:00Z",
-      minted: true,
+      dropped: true,
       sold: false,
     },
   ],
->>>>>>> Stashed changes
 };
 
-// show latest & unminted first and remove topCard item
+// show latest & undropped first and remove topCard item
 const listData = webtoonData
-  .reverse()
-  .sort((a, b) => a.minted - b.minted)
+  .sort((a, b) => b.id - a.id)
+  .sort((a, b) => a.dropped - b.dropped)
   .filter((item) => item.id !== topData.id);
 
-export { topData, listData };
+export { topData, listData, webtoonData };
