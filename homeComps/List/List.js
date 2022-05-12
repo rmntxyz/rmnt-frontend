@@ -25,40 +25,42 @@ export default function List({ data }) {
   };
 
   return (
-    <div className="ml-8 my-20 mx-auto md:mr-8">
-      <div className="relative mx-3 flex items-center justify-between">
-        <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
-          Featured Series
-        </div>
-        <div className="flex items-center lg:absolute lg:right-0">
-          <a
-            href="/"
-            className="inline-block whitespace-nowrap px-6 py-2 my-2 text-sm font-normal bg-white text-ourBlack leading-tight rounded-3xl transition duration-150 ease-in-out md:text-base hover:drop-shadow-lg md:hover:underline md:hover:drop-shadow-none"
-          >
-            View all
-          </a>
-          <div className="hidden md:flex">
-            <button
-              onClick={handlePrevbtn}
-              disabled={currentPage == pages[0] ? true : false}
-              className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack disabled:bg-neutral-200"
+    <div className="container mx-auto">
+      <div className="my-36">
+        <div className="relative mx-3 flex items-center justify-between ">
+          <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
+            Featured Series
+          </div>
+          <div className="flex items-center lg:absolute lg:right-0">
+            <a
+              href="/webtoons"
+              className="inline-block whitespace-nowrap px-6 py-2 my-2 text-sm font-normal bg-white text-ourBlack leading-tight rounded-3xl transition duration-150 ease-in-out md:text-base hover:drop-shadow-lg md:hover:underline md:hover:drop-shadow-none"
             >
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
-            <button
-              onClick={handleNextbtn}
-              disabled={currentPage == pages[pages.length - 1] ? true : false}
-              className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack disabled:bg-neutral-200"
-            >
-             <FontAwesomeIcon icon={faArrowRight}/>
-            </button>
+              View all
+            </a>
+            <div className="hidden md:flex">
+              <button
+                onClick={handlePrevbtn}
+                disabled={currentPage == pages[0] ? true : false}
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack disabled:bg-neutral-200"
+              >
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </button>
+              <button
+                onClick={handleNextbtn}
+                disabled={currentPage == pages[pages.length - 1] ? true : false}
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack disabled:bg-neutral-200"
+              >
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="overflow-x-auto flex my-5 md:grid md:grid-cols-2 md:my-10 xl:grid-cols-4">
-        {currentItems?.map((item) => (
-          <ListItem key={item.id} item={item} />
-        ))}
+        <div className="overflow-x-auto flex my-5 md:grid md:grid-cols-2 md:my-10 xl:grid-cols-4">
+          {currentItems?.map((item) => (
+            <ListItem key={item.id} item={item} />
+          ))}
+        </div>
       </div>
     </div>
   );

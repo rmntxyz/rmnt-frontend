@@ -9,3 +9,26 @@
     font-family: Sen;
   }
 }
+
+.swiper-wrapper {
+  max-width: 700px; 
+  width: fit-content;
+}
+
+
+.swiper-button-next {
+  background: url(/svg/circle-arrow-right-solid.svg) no-repeat;
+
+
+}
+
+.swiper-button-prev {
+  background: url(/svg/circle-arrow-left-solid.svg) no-repeat;
+
+} 
+
+/* .swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+} */
+

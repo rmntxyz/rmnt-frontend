@@ -14,7 +14,7 @@ export default function Collectors({ collectors }) {
       </div>
       <div
         className={`${
-          collectors && collectors.length && "grid grid-cols-3 md:grid-cols-5"
+          collectors && collectors.length && "flex flex-wrap"
         }`}
       >
         {collectors && collectors.length ? (
