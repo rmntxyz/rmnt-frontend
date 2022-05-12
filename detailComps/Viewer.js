@@ -1,6 +1,5 @@
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import { useState } from "react";
 import ProgressBar from "./ProgressBar";
 
@@ -27,11 +26,11 @@ export default function Viewer({ data }) {
 
   return (
     <div className="container mx-auto">
-      <div className="flex items-center justify-center gap-1.5 md:gap-4 lg:gap-8">
+      <div className="flex items-center justify-center gap-1.5 md:gap-4 md:mx-8 lg:gap-8">
         <button
           onClick={handlePrevbtn}
           disabled={currentPage == pages[0] ? true : false}
-          className="m-2.5 w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
+          className="w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
         >
           <FontAwesomeIcon icon={faArrowLeft} className="text-base md:text-2xl"  />
         </button>
@@ -39,13 +38,13 @@ export default function Viewer({ data }) {
         {currentItems?.map((item, idx) => (
           <div
             key={idx}
-            className="p-5 border border-darkGray rounded-sm bg-white drop-shadow-medium"
+            className="max-w-[70%] p-3.5 border border-darkGray rounded-sm bg-white drop-shadow-medium md:p-5"
           >
             <img
               width={590}
               height={590}
               src={item}
-              className="max-w-[236px] sm:max-w-[520px] xl:max-w-[590px]"
+              className="xl:max-w-[590px]"
             />
           </div>
         ))}
@@ -53,7 +52,7 @@ export default function Viewer({ data }) {
         <button
           onClick={handleNextbtn}
           disabled={currentPage == pages[pages.length - 1] ? true : false}
-          className="m-2.5 w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
+          className="w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
         >
           <FontAwesomeIcon icon={faArrowRight} className="text-base md:text-2xl" />
         </button>

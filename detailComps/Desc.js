@@ -6,7 +6,7 @@ import Collectors from "./Collectors";
 export default function Desc({ item }) {
   return (
     <div className="container mx-auto my-20 md:my-36">
-      <div className="max-w-[85%] mx-auto flex flex-col xl:max-w-[93%] xl:gap-24 xl:grid xl:grid-cols-2">
+      <div className="max-w-[85%] mx-auto flex flex-col lg:max-w-[93%] lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24">
         <div className="mb-12 md:mb-20">
           <div className="flex mt-3.5 items-center md:mt-4">
             <div className="text-2xl font-extrabold uppercase md:text-5xl">

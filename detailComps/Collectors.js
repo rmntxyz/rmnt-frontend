@@ -14,7 +14,7 @@ export default function Collectors({ collectors }) {
       </div>
       <div
         className={`${
-          collectors && collectors.length && "flex flex-wrap"
+          collectors && collectors.length && "grid grid-cols-3 gap-x-5 gap-y-3 sm:grid-cols-5"
         }`}
       >
         {collectors && collectors.length ? (
@@ -22,7 +22,7 @@ export default function Collectors({ collectors }) {
             <img
               key={idx}
               src={collector.profile}
-              className="rounded-full w-20 h-20 m-1 md:w-24 md:h-24"
+              className="rounded-full col-span-1"
             />
           ))
         ) : (

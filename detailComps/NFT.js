@@ -43,7 +43,7 @@ export default function NFT({ nft }) {
                       src={item.file}
                       width={304}
                       height={304}
-                      className="max-w-[268px] md:max-w-[304px] lg:max-w-[288px]"
+                      className="max-w-[220px] md:max-w-[304px] lg:max-w-[288px]"
                     />
                     <div className="font-bold text-lg md:text-xl">
                       {item.id.toString().length < 2 ? (
