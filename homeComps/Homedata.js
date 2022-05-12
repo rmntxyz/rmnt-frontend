@@ -197,7 +197,7 @@ const webtoonData = [
     profile: "/img_420_420.png",
     author: "author",
     profileLink: "/",
-    title: "Fifth",
+    title: "daddy's twenty-forty-two",
     vol: 1,
     cover: "/img_420_420.png",
     pages: ["/img_420_420.png", "/img_288_288.png"],
@@ -525,7 +525,6 @@ const webtoonData = [
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
-
     ],
     nft: [
       {
@@ -643,7 +642,7 @@ const topData = {
   profile: "/img_420_420.png",
   author: "author",
   profileLink: "/",
-  title: "Fifth",
+  title: "daddy's twenty-forty-two",
   vol: 1,
   cover: "/img_420_420.png",
   pages: ["/img_420_420.png", "/img_288_288.png"],

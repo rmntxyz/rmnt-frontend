@@ -17,7 +17,7 @@ export default function About() {
   return (
     <div className="py-20 px-8 bg-lightBeige flex items-center justify-center md:py-36">
       <div className="container md:px-6">
-        <div className="flex flex-col lg:flex-row">
+        <div className="max-w-[90%] mx-auto flex flex-col lg:flex-row">
           <div className="pb-6 text-darkBeige text-2xl font-extrabold md:text-6xl md:pb-16 lg:pr-8  lg:w-1/2">
             What is RMNT?
           </div>
