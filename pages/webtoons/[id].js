@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import Desc from "../../detailPageComps/Desc";
-import NFT from "../../detailPageComps/NFT";
-import Viewer from "../../detailPageComps/Viewer";
+import Desc from "../../detailComps/Desc";
+import NFT from "../../detailComps/NFT";
+import Viewer from "../../detailComps/Viewer";
 import { webtoonData } from "../../homeComps/Homedata";
 
 export default function WebtoonItem() {
@@ -12,10 +12,10 @@ export default function WebtoonItem() {
     return <h4>Loading...</h4>;
   } else
     return (
-      <div className="mt-20">
-        <Viewer data={item.pages} />
+      <div className="mt-20 overflow-x-hidden ">
+        <Viewer data={item.pages}  />
         <Desc item={item} />
-        <NFT nft={item.nft} />
+        <NFT nft={item.nft}  />
       </div>
     );
 }
