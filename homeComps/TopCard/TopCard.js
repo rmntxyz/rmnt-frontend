@@ -7,7 +7,7 @@ export default function TopCard({ data }) {
     <div className="bg-hero bg-cover bg-top pt-4">
       <div className="container mx-auto ">
         {data.title ? (
-          <div className="m-9 flex flex-col md:my-12 lg:m-24 lg:grid lg:grid-flow-col lg:grid-cols-2 lg:items-center">
+          <div className="m-9 flex flex-col md:my-12 lg:m-20 lg:grid lg:grid-flow-col lg:grid-cols-2 lg:items-center">
             <div className="lg:order-2">
               <a href={data.profileLink} className="flex items-center">
                 <div className="w-8 h-8 md:w-10 md:h-10">

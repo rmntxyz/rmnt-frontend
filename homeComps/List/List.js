@@ -26,7 +26,7 @@ export default function List({ data }) {
 
   return (
     <div className="container mx-auto overflow-hidden">
-      <div className="ml-8 mt-20 mb-20 md:max-w-[704px] md:mt-32 md:mx-auto md:mb-32 xl:mx-8 xl:max-w-full">
+      <div className="ml-8 mt-10 mb-20 md:max-w-[704px] md:mx-auto md:mb-32 lg:mt-16 xl:mx-8 xl:max-w-full">
         <div className="relative flex items-center justify-between mb-8 md:mb-14 ">
           <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
             Featured Series

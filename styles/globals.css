@@ -15,3 +15,8 @@
   margin: -32px;
   padding: 32px;
 }
+
+.scroll::after{
+  content:'';
+  padding-right: 8px;
+}
