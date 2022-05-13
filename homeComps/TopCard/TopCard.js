@@ -5,7 +5,7 @@ import Timer from "./Timer";
 export default function TopCard({ data }) {
   return (
     <div className="bg-hero bg-cover bg-top pt-4">
-      <div className="container mx-auto">
+      <div className="container max-w-[85%] mx-auto">
         {data.title ? (
           <div className="m-9 flex flex-col md:my-12 lg:my-20 lg:grid lg:grid-flow-col lg:grid-cols-2 lg:items-center">
             <div className="lg:order-2">

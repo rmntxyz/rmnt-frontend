@@ -12,7 +12,7 @@ export default function Desc({ item }) {
             <div className="text-2xl font-extrabold uppercase md:text-5xl">
               {item.title}
             </div>
-            <div className="w-1 aspect-square m-2 bg-lightGray rounded-full md:m-3"></div>
+            <div className="w-1 aspect-square m-2 bg-lightGray rounded-full md:w-1.5 md:m-3"></div>
             <div className="whitespace-nowrap text-lg font-extrabold md:text-3xl">
               vol {item.vol}
             </div>
