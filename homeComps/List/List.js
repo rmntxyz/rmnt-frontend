@@ -25,9 +25,9 @@ export default function List({ data }) {
   };
 
   return (
-    <div className="container mx-auto">
-      <div className="ml-8 my-36 md:mx-8">
-        <div className="relative mx-3 flex items-center justify-between ">
+    <div className="container mx-auto overflow-hidden">
+      <div className="ml-8 mt-20 mb-20 md:max-w-[704px] md:mt-32 md:mx-auto md:mb-32 xl:mx-8 xl:max-w-full">
+        <div className="relative flex items-center justify-between mb-8 md:mb-14 ">
           <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
             Featured Series
           </div>
@@ -56,7 +56,7 @@ export default function List({ data }) {
             </div>
           </div>
         </div>
-        <div className="scroll overflow-x-auto flex my-5 md:grid md:grid-cols-2 md:my-10 xl:grid-cols-4">
+        <div className="scroll overflow-x-auto flex gap-x-5 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-14 xl:max-w-none xl:grid-cols-4">
           {currentItems?.map((item) => (
             <ListItem key={item.id} item={item} />
           ))}

@@ -3,7 +3,7 @@ import ListAvailable from "./ListAvailable";
 
 export default function ListItem({item}) {
   return (
-    <div className="min-w-[80%] mx-4 my-7 drop-shadow-medium">
+    <div className="min-w-[296px] drop-shadow-medium ">
       <div className="p-4 border border-darkGray bg-white rounded-sm ">
         <a href={item.profileLink} className="flex items-center mb-3 md:mb-4">
           <img
@@ -16,8 +16,8 @@ export default function ListItem({item}) {
           <a href={"/webtoons/" + item.id}>
             <Image
               src={item.cover}
-              width={268}
-              height={268}
+              width={304}
+              height={304}
               layout="responsive"
               className="hover:scale-125"
             />
