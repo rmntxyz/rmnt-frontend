@@ -56,7 +56,7 @@ export default function List({ data }) {
             </div>
           </div>
         </div>
-        <div className="overflow-x-auto flex my-5 md:grid md:grid-cols-2 md:my-10 xl:grid-cols-4">
+        <div className="scroll overflow-x-auto flex my-5 md:grid md:grid-cols-2 md:my-10 xl:grid-cols-4">
           {currentItems?.map((item) => (
             <ListItem key={item.id} item={item} />
           ))}
