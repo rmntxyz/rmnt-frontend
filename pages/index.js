@@ -1,8 +1,9 @@
 import Head from "next/head";
-import About from "../homeComps/About";
-import { listData, topData } from "../homeComps/Homedata";
-import List from "../homeComps/List/List";
-import TopCard from "../homeComps/TopCard/TopCard";
+import About from "../comps/home/About";
+import { listData } from "../comps/home/Homedata";
+import { topData } from "../comps/home/Homedata";
+import List from "../comps/home/List/List";
+import TopCard from "../comps/home/TopCard/TopCard";
 
 export default function Home() {
   return (

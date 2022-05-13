@@ -1,5 +1,5 @@
-import { webtoonData } from "../../homeComps/Homedata";
-import ListItem from "../../homeComps/List/ListItem";
+import { webtoonData } from "../../comps/home/Homedata";
+import ListItem from "../../comps/home/List/ListItem";
 
 export default function Webtoons() {
   return (

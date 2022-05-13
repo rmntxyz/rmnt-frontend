@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
-import Desc from "../../detailComps/Desc";
-import NFT from "../../detailComps/NFT";
-import Viewer from "../../detailComps/Viewer";
-import { webtoonData } from "../../homeComps/Homedata";
+import Viewer from "../../comps/webtoon/Viewer";
+import Desc from "../../comps/webtoon/Desc";
+import NFT from "../../comps/webtoon/NFT";
+import { webtoonData } from "../../comps/home/Homedata";
+
 
 export default function WebtoonItem() {
   const router = useRouter();
