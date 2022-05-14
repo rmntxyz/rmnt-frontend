@@ -1,4 +1,4 @@
-import { webtoonData } from "../../comps/home/Homedata";
+import { webtoonData } from "../../comps/Homedata";
 import ListItem from "../../comps/home/List/ListItem";
 
 export default function Webtoons() {
