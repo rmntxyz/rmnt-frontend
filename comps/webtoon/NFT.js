@@ -2,7 +2,7 @@ import { faCheckCircle, faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DetailTimer from "./DetailTimer";
 
-export default function NFT({ nft }) {
+export default function NFT({ nft, exchangeRate}) {
   const editions = nft.length;
   const undropped = nft.filter((item) => item.dropped === false);
   const lastUndropped =
@@ -38,25 +38,27 @@ export default function NFT({ nft }) {
                 )}
                 <div className="bg-white ">
                   <div className=" p-3.5 flex flex-col gap-3.5 md:p-4 ">
-                    <img
-                      src={item.file}
-                      width={304}
-                      height={304}
-                      className="max-w-[220px] md:max-w-[304px] lg:max-w-[288px]"
-                    />
+                    <a href={"/NFT/" + item.id}>
+                      <img
+                        src={item.file}
+                        width={304}
+                        height={304}
+                        className="max-w-[220px] md:max-w-[304px] lg:max-w-[288px]"
+                      />
+                    </a>
                     <div className="font-bold text-lg md:text-xl">
                       {item.id.toString().length < 2 ? (
                         <span>
                           #{"0" + item.id}. {item.name}
                         </span>
                       ) : (
-                        <span>{item.id}</span>
+                        <span>#{item.id}. {item.name}</span>
                       )}
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-1">
                         <div className="text-[#858585] text-base md:text-lg">
-                          (≈ USD)
+                          (≈ {(exchangeRate * item.price).toFixed(4)} USD)
                         </div>
                         <div className="font-bold text-lg md:text-xl">
                           {item.price} ETH

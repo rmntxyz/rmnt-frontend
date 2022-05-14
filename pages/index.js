@@ -1,7 +1,7 @@
 import Head from "next/head";
 import About from "../comps/home/About";
-import { listData } from "../comps/home/Homedata";
-import { topData } from "../comps/home/Homedata";
+import { listData } from "../comps/Homedata";
+import { topData } from "../comps/Homedata";
 import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
 
