@@ -2,9 +2,8 @@ import { NFTsUrl } from "../../comps/URLs";
 import { getExchangeRate } from "../api/USD_ETH";
 
 export async function getServerSideProps(context) {
-  const ethData = await getExchangeRate();
-  const exchangeRate = ethData[0].current_price;
-  const id = context.params.id;
+  const exchangeRate = await getExchangeRate();
+  const { id } = context.query;
   const NFTRes = await fetch(NFTsUrl + id);
   const NFT = await NFTRes.json();
   return { props: { exchangeRate: exchangeRate, NFT: NFT } };

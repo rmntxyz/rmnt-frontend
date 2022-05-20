@@ -5,9 +5,8 @@ import { getExchangeRate } from "../api/USD_ETH";
 import { webtoonsUrl } from "../../comps/URLs";
 
 export async function getServerSideProps(context) {
-  const ethData = await getExchangeRate();
-  const exchangeRate = ethData[0].current_price;
-  const id = context.params.id;
+  const exchangeRate = await getExchangeRate();
+  const { id } = context.query;
   const webtoonRes = await fetch(webtoonsUrl + id);
   const webtoon = await webtoonRes.json();
   return { props: { exchangeRate: exchangeRate, webtoon: webtoon } };

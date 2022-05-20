@@ -32,7 +32,10 @@ export default function Viewer({ data }) {
           disabled={currentPage == pages[0] ? true : false}
           className="w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
         >
-          <FontAwesomeIcon icon={faArrowLeft} className="text-base md:text-2xl"  />
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            className="text-base md:text-2xl"
+          />
         </button>
 
         {currentItems?.map((item, idx) => (
@@ -54,7 +57,10 @@ export default function Viewer({ data }) {
           disabled={currentPage == pages[pages.length - 1] ? true : false}
           className="w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14"
         >
-          <FontAwesomeIcon icon={faArrowRight} className="text-base md:text-2xl" />
+          <FontAwesomeIcon
+            icon={faArrowRight}
+            className="text-base md:text-2xl"
+          />
         </button>
       </div>
       <ProgressBar currentPage={currentPage} totalPages={pages.length} />
