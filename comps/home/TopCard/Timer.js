@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
+import { timeUrl } from "../../URLs";
 
-export default function Timer({ nft }) {
-  const undropped = nft.filter((item) => item.dropped === false);
+export default function Timer({ undropped }) {
   const lastUndropped = undropped[undropped.length - 1];
   const targetTime = lastUndropped.targetTime;
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const getCurrentTime = async () => {
+    const res = await fetch(timeUrl);
+    const data = await res.json();
+    setCurrentTime(data.utc_datetime);
+  };
 
   const calculateTimeLeft = () => {
-    const difference = new Date(targetTime).getTime() - new Date().getTime();
+    const difference =
+      new Date(targetTime).getTime() - new Date(currentTime).getTime();
     let timeLeft = [];
     if (difference > 0) {
       return (timeLeft = [
@@ -37,6 +44,7 @@ export default function Timer({ nft }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   useEffect(() => {
     const timer = setTimeout(() => {
+      setCurrentTime(getCurrentTime());
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearTimeout(timer);

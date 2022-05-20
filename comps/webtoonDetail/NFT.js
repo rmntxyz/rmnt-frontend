@@ -2,9 +2,8 @@ import { faCheckCircle, faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DetailTimer from "./DetailTimer";
 
-export default function NFT({ nft, exchangeRate}) {
+export default function NFT({ nft, undropped, exchangeRate }) {
   const editions = nft.length;
-  const undropped = nft.filter((item) => item.dropped === false);
   const lastUndropped =
     undropped.length > 0 ? undropped[undropped.length - 1] : null;
 
@@ -52,7 +51,9 @@ export default function NFT({ nft, exchangeRate}) {
                           #{"0" + item.id}. {item.name}
                         </span>
                       ) : (
-                        <span>#{item.id}. {item.name}</span>
+                        <span>
+                          #{item.id}. {item.name}
+                        </span>
                       )}
                     </div>
                     <div className="flex items-center justify-between">

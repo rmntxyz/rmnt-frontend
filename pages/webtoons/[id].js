@@ -1,32 +1,28 @@
-import { useRouter } from "next/router";
-import Viewer from "../../comps/webtoon/Viewer";
-import Desc from "../../comps/webtoon/Desc";
-import NFT from "../../comps/webtoon/NFT";
-import { webtoonData } from "../../comps/Homedata";
+import Viewer from "../../comps/webtoonDetail/Viewer";
+import Desc from "../../comps/webtoonDetail/Desc";
+import NFT from "../../comps/webtoonDetail/NFT";
+import { getExchangeRate } from "../api/USD_ETH";
+import { webtoonsUrl } from "../../comps/URLs";
 
-//fetch USD-ETH exchage rate... to be changed later
-export async function getServerSideProps() {
-  const res = await fetch(
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum"
-  );
-  const data = await res.json();
-  const exchangeRate = data[0].current_price;
-  return { props: { exchangeRate } };
+export async function getServerSideProps(context) {
+  const ethData = await getExchangeRate();
+  const exchangeRate = ethData[0].current_price;
+  const id = context.params.id;
+  const webtoonRes = await fetch(webtoonsUrl + id);
+  const webtoon = await webtoonRes.json();
+  return { props: { exchangeRate: exchangeRate, webtoon: webtoon } };
 }
 
-
-export default function WebtoonPage({exchangeRate}) {
-  const router = useRouter();
-  const { id } = router.query;
-  const item = webtoonData.find((item) => item.id === parseInt(id));
-  if (!router.isReady) {
-    return <h4>Loading...</h4>;
-  } else
-    return (
-      <div className="mt-20 overflow-x-hidden ">
-        <Viewer data={item.pages} />
-        <Desc item={item} />
-        <NFT nft={item.nft} exchangeRate={exchangeRate}  />
-      </div>
-    );
+export default function WebtoonPage({ exchangeRate, webtoon }) {
+  return (
+    <div className="mt-20 overflow-x-hidden ">
+      <Viewer data={webtoon.pages} />
+      <Desc item={webtoon} />
+      <NFT
+        nft={webtoon.nft}
+        undropped={webtoon.undropped}
+        exchangeRate={exchangeRate}
+      />
+    </div>
+  );
 }

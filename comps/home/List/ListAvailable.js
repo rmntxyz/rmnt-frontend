@@ -1,11 +1,9 @@
 import ListTimer from "./ListTimer";
 
-export default function ListAvailable({ nft }) {
+export default function ListAvailable({ nft, undropped }) {
   const available = nft.filter((item) => item.sold === false);
-  const undropped = nft.filter((item) => item.dropped === false);
   const lastUndropped =
     undropped.length > 0 ? undropped[undropped.length - 1] : null;
-
   return (
     <div
       className={`flex flex-col items-center p-4 drop-shadow-md ${

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ListAvailable from "./ListAvailable";
 
-export default function ListItem({item}) {
+export default function ListItem({ item }) {
   return (
     <div className="min-w-[296px] drop-shadow-medium ">
       <div className="p-4 border border-darkGray bg-white rounded-sm ">
@@ -41,9 +41,7 @@ export default function ListItem({item}) {
         <div className="min-w-[33.3%] h-full border-r border-darkGray"></div>
         <div className="min-w-[33.3%] h-full"></div>
       </div>
-      <ListAvailable
-        nft={item.nft}
-      />
+      <ListAvailable nft={item.nft} undropped={item.undropped} />
     </div>
   );
 }

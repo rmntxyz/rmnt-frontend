@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
+import { timeUrl } from "../../URLs";
 
 export default function ListTimer({ targetTime }) {
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const getCurrentTime = async () => {
+    const res = await fetch(timeUrl);
+    const data = await res.json();
+    setCurrentTime(data.utc_datetime);
+  };
   const calculateTimeLeft = () => {
-    const difference = new Date(targetTime).getTime() - new Date().getTime();
+    const difference =
+      new Date(targetTime).getTime() - new Date(currentTime).getTime();
     let timeLeft = [];
     if (difference > 0) {
       return (timeLeft = [
@@ -29,6 +37,7 @@ export default function ListTimer({ targetTime }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   useEffect(() => {
     const timer = setTimeout(() => {
+      setCurrentTime(getCurrentTime());
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearTimeout(timer);
@@ -41,15 +50,21 @@ export default function ListTimer({ targetTime }) {
           <div className="flex font-bold">
             {timeLeft.map(({ unit, number }) => (
               <div key={unit} className="relative flex flex-row">
-                <div className={`flex flex-col mr-2 md:mr-3 ${(unit==="s") && "mr-0 md:mr-0"}` }>
+                <div
+                  className={`flex flex-col mr-2 md:mr-3 ${
+                    unit === "s" && "mr-0 md:mr-0"
+                  }`}
+                >
                   <div className="w-9 h-5 flex justify-center items-center bg-lightBeige rounded md:h-6">
-                    <div suppressHydrationWarning={true}>{number}{unit}</div>
+                    <div suppressHydrationWarning={true}>
+                      {number}
+                      {unit}
+                    </div>
                   </div>
                 </div>
                 <div
                   className={`absolute -top-0.5 right-0.5 md:right-1 ${
-                    (unit === "d") | (unit === "s") &&
-                    "text-transparent"
+                    (unit === "d") | (unit === "s") && "text-transparent"
                   }`}
                 >
                   :

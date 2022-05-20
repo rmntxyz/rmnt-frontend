@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./comps/home/**/*.{js,ts,jsx,tsx}", "./comps/webtoon/**/*.{js,ts,jsx,tsx}" ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./comps/**/*.{js,ts,jsx,tsx}" ],
   theme: {
     extend: {
       fontFamily: {

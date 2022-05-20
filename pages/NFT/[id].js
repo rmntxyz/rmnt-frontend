@@ -1,15 +1,15 @@
-import { useRouter } from "next/router";
-import { webtoonData } from "../../comps/Homedata";
+import { NFTsUrl } from "../../comps/URLs";
+import { getExchangeRate } from "../api/USD_ETH";
 
-export default function NFTPage() {
-  const router = useRouter();
-  const { id } = router.query;
-  let AllNFTs = []
-  webtoonData.map((item) => item.nft.forEach(item => AllNFTs.push(item)));
-  const NFT = AllNFTs.find((item) => item.id === parseInt(id))
-  const webtoonNFTs = AllNFTs.filter((item) => item.webtoonId === NFT?.webtoonId)
+export async function getServerSideProps(context) {
+  const ethData = await getExchangeRate();
+  const exchangeRate = ethData[0].current_price;
+  const id = context.params.id;
+  const NFTRes = await fetch(NFTsUrl + id);
+  const NFT = await NFTRes.json();
+  return { props: { exchangeRate: exchangeRate, NFT: NFT } };
+}
 
-  if (!router.isReady) {
-    return <h4>Loading...</h4>;
-  } else return <div>{id}</div>;
+export default function NFTPage({ exchangeRate, NFT }) {
+  return <div>{NFT.id}</div>;
 }

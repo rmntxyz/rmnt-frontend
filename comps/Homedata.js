@@ -30,7 +30,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -42,7 +41,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
     ],
@@ -77,7 +75,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -89,7 +86,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -101,7 +97,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
     ],
@@ -136,7 +131,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
       {
@@ -148,7 +142,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -160,7 +153,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -188,26 +180,24 @@ const webtoonData = [
     nft: [
       {
         id: 9,
-        webtoonId:4,
+        webtoonId: 4,
         name: "Journey 2",
         file: "/img_288_288.png",
         desc: "Description Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT.",
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
         id: 10,
-        webtoonId:4,
+        webtoonId: 4,
         name: "Journey 3",
         file: "/img_288_288.png",
         desc: "Description Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT.",
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -242,7 +232,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
         sold: false,
       },
       {
@@ -254,7 +243,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -266,7 +254,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -301,7 +288,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
         sold: false,
       },
       {
@@ -313,7 +299,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -325,7 +310,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -360,7 +344,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
         sold: false,
       },
       {
@@ -372,7 +355,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -384,7 +366,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -419,7 +400,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
         sold: false,
       },
       {
@@ -431,7 +411,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -443,7 +422,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -478,7 +456,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
         sold: false,
       },
       {
@@ -490,7 +467,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -502,7 +478,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -512,7 +487,7 @@ const webtoonData = [
     profile: "/img_420_420.png",
     author: "author",
     profileLink: "/",
-    title: "Daddy's Twenty-Forty-Five",
+    title: "Tenth",
     vol: 1,
     cover: "/img_420_420.png",
     pages: ["/img_420_420.png", "/img_288_288.png"],
@@ -523,8 +498,7 @@ const webtoonData = [
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
-    collectors: [
-    ],
+    collectors: [],
     nft: [
       {
         id: 26,
@@ -534,9 +508,8 @@ const webtoonData = [
         desc: "Description Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT.",
         price: 0.0263,
         edition: 1,
-        targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
-        sold: false,
+        targetTime: "2021-07-01T16:00:00Z",
+        sold: true,
       },
       {
         id: 27,
@@ -547,7 +520,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -559,7 +531,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -580,8 +551,7 @@ const webtoonData = [
     authorInstagram: "@d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
-    collectors: [
-    ],
+    collectors: [],
     nft: [
       {
         id: 29,
@@ -592,7 +562,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
         sold: false,
       },
       {
@@ -604,7 +573,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -616,7 +584,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
     ],
@@ -654,7 +621,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 1,
         targetTime: "2022-07-01T16:00:00Z",
-        dropped: false,
         sold: false,
       },
       {
@@ -666,7 +632,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 2,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -678,7 +643,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 3,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: false,
       },
       {
@@ -690,7 +654,6 @@ const webtoonData = [
         price: 0.0263,
         edition: 4,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
       {
@@ -702,14 +665,13 @@ const webtoonData = [
         price: 0.0263,
         edition: 5,
         targetTime: "2021-07-01T16:00:00Z",
-        dropped: true,
         sold: true,
       },
     ],
   },
 ];
 
-const topData =   {
+const topData = {
   id: 5,
   profile: "/img_420_420.png",
   author: "author",
@@ -739,7 +701,6 @@ const topData =   {
       price: 0.0263,
       edition: 1,
       targetTime: "2022-07-01T16:00:00Z",
-      dropped: false,
       sold: false,
     },
     {
@@ -751,7 +712,6 @@ const topData =   {
       price: 0.0263,
       edition: 2,
       targetTime: "2021-07-01T16:00:00Z",
-      dropped: true,
       sold: true,
     },
     {
@@ -763,7 +723,6 @@ const topData =   {
       price: 0.0263,
       edition: 3,
       targetTime: "2021-07-01T16:00:00Z",
-      dropped: true,
       sold: false,
     },
   ],
