@@ -1,7 +1,7 @@
 import ListItem from "../../comps/home/List/ListItem";
 import { webtoonsUrl } from "../../comps/URLs";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const webtoonsRes = await fetch(webtoonsUrl);
   const webtoonsData = await webtoonsRes.json();
   return { props: { webtoonsData } };

@@ -1,5 +1,4 @@
-const url =
-  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum";
+const url = "https://api.coingate.com/v2/rates/merchant/ETH/USD";
 
 export async function getExchangeRate() {
   const res = await fetch(url);
