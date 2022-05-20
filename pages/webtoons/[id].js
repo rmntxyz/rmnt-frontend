@@ -4,7 +4,7 @@ import NFT from "../../comps/webtoonDetail/NFT";
 import { getExchangeRate } from "../api/USD_ETH";
 import { webtoonsUrl } from "../../comps/URLs";
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const ethData = await getExchangeRate();
   const exchangeRate = ethData[0].current_price;
   const id = context.params.id;

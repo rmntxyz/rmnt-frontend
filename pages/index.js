@@ -4,7 +4,7 @@ import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
 import { listUrl, topUrl } from "../comps/URLs";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const topRes = await fetch(topUrl);
   const topData = await topRes.json();
   const listRes = await fetch(listUrl);
