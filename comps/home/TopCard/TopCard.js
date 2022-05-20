@@ -48,7 +48,7 @@ export default function TopCard({ data }) {
             <div className="mt-8 flex flex-col md:mt-12 md:flex-row md:justify-between lg:flex-col lg:order-3">
               <div className="mb-8 pl-6 border-l border-mediumBeige text-sm md:text-lg md:mb-12 md:pl-8">
                 <Available nft={data.nft} />
-                <Timer undropped={data.undropped} />
+                <Timer targetTime={data.targetTime} />
               </div>
               <div className="mx-auto md:mx-0">
                 <a

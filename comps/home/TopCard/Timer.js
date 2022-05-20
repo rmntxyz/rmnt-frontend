@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { timeUrl } from "../../URLs";
 
-export default function Timer({ undropped }) {
-  const lastUndropped = undropped[undropped.length - 1];
-  const targetTime = lastUndropped.targetTime;
+export default function Timer({ targetTime }) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const getCurrentTime = async () => {
     const res = await fetch(timeUrl);

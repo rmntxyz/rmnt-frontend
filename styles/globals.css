@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +8,6 @@
   html {
     font-family: Sen;
     @apply text-ourBlack;
-
   }
 }
 
@@ -15,7 +16,7 @@
   padding: 32px;
 }
 
-.scroll::after{
-  content:'';
+.scroll::after {
+  content: "";
   padding-right: 8px;
 }

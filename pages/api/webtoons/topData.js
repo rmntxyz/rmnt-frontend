@@ -7,7 +7,20 @@ async function getTopData() {
   return topWebtoon;
 }
 
+function getTimeRemaining(targetTime) {
+  const timeRemaining = new Date(targetTime).getTime() - new Date().getTime();
+  return timeRemaining;
+}
+
 export default async function handler(req, res) {
   const topWebtoon = await getTopData();
-  res.status(200).json(topWebtoon);
+  const targetTime = topWebtoon.undropped[0].targetTime;
+  const timeRemaining = getTimeRemaining(targetTime);
+  res
+    .status(200)
+    .json({
+      ...topWebtoon,
+      targetTime: targetTime,
+      timeRemaining: timeRemaining,
+    });
 }
