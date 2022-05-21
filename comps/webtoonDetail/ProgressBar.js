@@ -4,12 +4,9 @@ export default function ProgressBar({ currentPage, totalPages }) {
   return (
     <div className="container mt-5 md:mt-8">
       <div className="mx-auto max-w-[70%] md:max-w-[65%] lg:max-w-[63%] xl:max-w-[47%]">
-        <div
-          
-          className="mx-auto border border-ourBlack h-2.5 rounded-xl"
-        >
+        <div className="mx-auto border border-ourBlack h-2.5 rounded-xl">
           <div
-          id="progressBar"
+            id="progressBar"
             style={{ width: `${progressPercentage}%` }}
             className="h-full bg-ourBlack"
           ></div>
