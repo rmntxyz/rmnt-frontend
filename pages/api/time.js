@@ -8,8 +8,6 @@ export default function handler(req, res) {
   const { method } = req;
   const currentTime = getCurrentTime();
   res.status(200).json({ utc_datetime: currentTime });
-  res.setHeader("Access-Control-Allow-Headers");
-  res.status(405).end(`Method ${method} Not Allowed`);
 }
 
 // export async function getTimeWithApi() {

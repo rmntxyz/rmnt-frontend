@@ -4,7 +4,12 @@ import { timeUrl } from "../../URLs";
 export default function Timer({ targetTime }) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const getCurrentTime = async () => {
-    const res = await fetch(timeUrl);
+    const res = await fetch(timeUrl, {
+      headers: {
+        "Access-Control-Allow-Headers":
+          "x-access-token, Origin, Content-Type, Accept",
+      },
+    });
     const data = await res.json();
     setCurrentTime(data.utc_datetime);
   };
