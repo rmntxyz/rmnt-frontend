@@ -17,7 +17,9 @@ export default function Desc({ item }) {
               vol {item.vol}
             </div>
           </div>
-          <div className="text-justify my-3.5 md:my-4 md:text-xl">{item.desc}</div>
+          <div className="text-justify my-3.5 md:my-4 md:text-xl">
+            {item.desc}
+          </div>
           <a>
             <div className="text-[#CEA671] md:text-xl">
               View all series <FontAwesomeIcon icon={faArrowRight} />
@@ -33,11 +35,9 @@ export default function Desc({ item }) {
               />
               <div className="flex flex-col gap-1.5">
                 <div className="font-bold md:text-2xl">{item.author}</div>
-                <a href={item.authorWalletLink} target="_blank">
-                  <button className="px-3 py-1 bg-lightGray text-white text-xs rounded-full md:text-base">
-                    {item.authorWallet}
-                  </button>
-                </a>
+                <button className="px-3 py-1 bg-lightGray text-white text-xs rounded-full md:text-base">
+                  {item.authorWallet}
+                </button>
               </div>
             </div>
             <div className="text-sm md:text-lg mx-5 md:mx-8">
