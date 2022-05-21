@@ -1,6 +1,6 @@
 const baseUrl = "https://rmnt-frontend-git-feature-detail-rmnt.vercel.app/";
 // const baseUrl = "http://localhost:3000/"
-const timeUrl = `api/time/`;
+const timeUrl = `/api/time`;
 const webtoonsUrl = `${baseUrl}api/webtoons/`;
 const topUrl = `${baseUrl}api/webtoons/topData/`;
 const listUrl = `${baseUrl}api/webtoons/listData/`;
