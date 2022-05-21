@@ -41,7 +41,7 @@ export default function Viewer({ data }) {
         {currentItems?.map((item, idx) => (
           <div
             key={idx}
-            className="max-w-[70%] p-3.5 border border-darkGray rounded-sm bg-white drop-shadow-medium md:p-5"
+            className="max-w-[70%] overflow-x-scroll p-3.5 border border-darkGray rounded-sm bg-white drop-shadow-medium md:p-5"
           >
             <img
               width={590}
@@ -67,3 +67,4 @@ export default function Viewer({ data }) {
     </div>
   );
 }
+
