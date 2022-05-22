@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   render() {
@@ -8,8 +8,8 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=block"
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=block"
           />
         </Head>
         <body>
@@ -17,8 +17,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument 
+export default MyDocument
