@@ -23,28 +23,31 @@
   align-items: center;
 }
 
-.swiper-pagination-bullet{
+.swiper-pagination-bullet {
   opacity: 1 !important;
   background-color: transparent !important;
   border-color: transparent !important;
-  border-radius: 5px !important;
   width: 100% !important;
-  height: 10px !important;
   margin: 0 !important;
   height: 100% !important;
 }
-.swiper-pagination-bullet.swiper-pagination-bullet-active{
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: transparent !important;
 }
-.swiper-pagination-bullet em {
+.swiper-pagination-bullet span {
   font-size: 15px;
-  color: black!important;
+  color: #555555;
   position: absolute;
-  top:20px;
-  font-style: normal;
+  top: 10px;
   visibility: hidden;
 }
 
-.swiper-pagination-bullet:hover em {
+.swiper-pagination-bullet:hover span {
   visibility: visible;
+}
+
+@media (max-width: 700px) {
+  .swiper-pagination-bullet:hover span {
+    visibility: hidden;
+  }
 }

@@ -210,7 +210,12 @@ const webtoonData = [
     title: "daddy's twenty-forty-two",
     vol: 1,
     cover: "/img_420_420.png",
-    pages: ["/img_420_420.png", "/img_288_288.png", "/logo_black/logo_360.png", "/logo_black/logo_768.png"],
+    pages: [
+      "/img_420_420.png",
+      "/img_288_288.png",
+      "/logo_black/logo_360.png",
+      "/logo_black/logo_768.png",
+    ],
     desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",

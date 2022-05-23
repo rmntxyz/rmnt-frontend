@@ -34,11 +34,11 @@ export default function Viewer({ data }) {
                 nextEl: ".swiper-button-toNext",
                 prevEl: ".swiper-button-previous",
               }}
-              scrollbar={{
-                draggable: true,
-                hide: false,
-                el: ".swiper-scrollbar",
-              }}
+              // scrollbar={{
+              //   draggable: true,
+              //   hide: false,
+              //   el: ".swiper-scrollbar",
+              // }}
               pagination={{
                 type: "bullets",
                 el: ".swiper-pagination",
@@ -49,12 +49,12 @@ export default function Viewer({ data }) {
                     pageNumber = "0" + (index + 1);
                   } else pageNumber = index + 1;
                   return (
-                    '<span  class="' +
+                    '<span class="' +
                     className +
                     '">' +
-                    "<em >" +
+                    "<span>" +
                     pageNumber +
-                    "</em>" +
+                    "</span>" +
                     "</span>"
                   );
                 },
@@ -80,10 +80,10 @@ export default function Viewer({ data }) {
             </button>
           </div>
           <div className="container relative mx-auto mt-5 max-w-[78%] md:mt-8  lg:max-w-[75%] xl:max-w-[73%]">
-            <div className="absolute swiper-scrollbar z-20 top-2.5 h-2.5 rounded-xl border border-ourBlack !bg-transparent !overflow-hidden">
+            {/* <div className="absolute swiper-scrollbar z-20 top-2.5 h-2.5 rounded-xl border border-ourBlack !bg-transparent !overflow-hidden">
               <div className="swiper-scrollbar-drag  !bg-ourBlack "></div>
-            </div>
-            <div className="absolute inset-y-0  h-10 flex items-center justify-center swiper-pagination"></div>
+            </div> */}
+            <div className="absolute inset-y-0 h-5 flex items-center justify-center swiper-pagination"></div>
             <ProgressBar
               currentPage={currentPage}
               totalPages={data.length}
