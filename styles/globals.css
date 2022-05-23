@@ -18,3 +18,33 @@
   content: "";
   padding-right: 8px;
 }
+
+.swiper-wrapper {
+  align-items: center;
+}
+
+.swiper-pagination-bullet{
+  opacity: 1 !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border-radius: 5px !important;
+  width: 100% !important;
+  height: 10px !important;
+  margin: 0 !important;
+  height: 100% !important;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background-color: transparent !important;
+}
+.swiper-pagination-bullet em {
+  font-size: 15px;
+  color: black!important;
+  position: absolute;
+  top:10px;
+  font-style: normal;
+  visibility: hidden;
+}
+
+.swiper-pagination-bullet:hover em {
+  visibility: visible;
+}

@@ -3,13 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 // import required modules
-import { Navigation, Scrollbar } from "swiper";
+import { Navigation, Scrollbar, Pagination } from "swiper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import ProgressBar from "./ProgressBar";
 
 export default function Viewer({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,18 +25,39 @@ export default function Viewer({ data }) {
               <FontAwesomeIcon icon={faArrowLeft} className="md:text-2xl" />
             </button>
             <Swiper
-              modules={[Navigation, Scrollbar]}
+              modules={[Navigation, Scrollbar, Pagination]}
               grabCursor={true}
               centeredSlides={true}
               slidesPerView={1}
+              freeMode={true}
               navigation={{
                 nextEl: ".swiper-button-toNext",
                 prevEl: ".swiper-button-previous",
               }}
-              scrollbar={{
-                draggable: true,
-                hide: false,
-                el: ".swiper-scrollbar",
+              // scrollbar={{
+              //   draggable: true,
+              //   hide: false,
+              //   el: ".swiper-scrollbar",
+              // }}
+              pagination={{
+                type: "bullets",
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                  let pageNumber = {};
+                  if ((index + 1).toString().length < 2) {
+                    pageNumber = "0" + (index + 1);
+                  } else pageNumber = index + 1;
+                  return (
+                    '<span  class="' +
+                    className +
+                    '">' +
+                    "<em >" +
+                    pageNumber +
+                    "</em>" +
+                    "</span>"
+                  );
+                },
               }}
               onSlideChange={(swiper) => setCurrentPage(swiper.realIndex + 1)}
               observer={true}
@@ -56,28 +79,16 @@ export default function Viewer({ data }) {
               <FontAwesomeIcon icon={faArrowRight} className="md:text-2xl" />
             </button>
           </div>
-          <div className="container mx-auto mt-5 max-w-[78%] md:mt-8  lg:max-w-[75%] xl:max-w-[73%]">
-            <div className="swiper-scrollbar border border-ourBlack h-2.5 rounded-xl !overflow-hidden  !bg-white">
+          <div className="container relative mx-auto mt-5 max-w-[78%] md:mt-8  lg:max-w-[75%] xl:max-w-[73%]">
+            {/* <div className="absolute swiper-scrollbar z-20 top-2.5 h-2.5 rounded-xl border border-ourBlack !bg-transparent !overflow-hidden">
               <div className="swiper-scrollbar-drag  !bg-ourBlack "></div>
-            </div>
-            <div className="relative w-full">
-              <div className="absolute inset-y-0 right-0 font-bold text-sm m-2 md:m-4 md:text-2xl xl:-right-24 xl:-top-10">
-                <span className="text-[#CEA671]">
-                  {currentPage.toString().length < 2 ? (
-                    <span>{"0" + currentPage}</span>
-                  ) : (
-                    <span>{currentPage}</span>
-                  )}
-                </span>
-                <span>
-                  {data.length.toString().length < 2 ? (
-                    <span>/{"0" + data.length}</span>
-                  ) : (
-                    <span>/{data.length}</span>
-                  )}
-                </span>
-              </div>
-            </div>
+            </div> */}
+            <div className="absolute inset-y-0  h-10 flex items-center justify-center swiper-pagination"></div>
+            <ProgressBar
+              currentPage={currentPage}
+              totalPages={data.length}
+              className="absolute inset-y-0"
+            />
           </div>
         </div>
       ) : (
