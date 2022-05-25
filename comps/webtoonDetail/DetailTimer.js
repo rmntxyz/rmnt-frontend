@@ -37,7 +37,7 @@ export default function DetailTimer({ targetTime }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentTime(getCurrentTime());
+      getCurrentTime();
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearTimeout(timer);

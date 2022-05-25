@@ -6,7 +6,7 @@ export default function Timer({ targetTime }) {
   const getCurrentTime = async () => {
     const res = await fetch(timeUrl);
     const data = await res.json();
-    setCurrentTime(data.utc_datetime);
+    setCurrentTime(data.utc_datetime)
   };
 
   const calculateTimeLeft = () => {
@@ -42,7 +42,7 @@ export default function Timer({ targetTime }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentTime(getCurrentTime());
+      getCurrentTime()
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearTimeout(timer);
