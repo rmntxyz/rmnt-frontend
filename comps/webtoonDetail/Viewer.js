@@ -83,7 +83,7 @@ export default function Viewer({ data }) {
             <div className="absolute swiper-scrollbar top-2.5 h-2.5 rounded-xl border border-ourBlack !bg-transparent !overflow-hidden">
               <div className="swiper-scrollbar-drag z-20 !bg-ourBlack "></div>
             </div>
-            <div className="absolute inset-y-0 h-5 flex items-center justify-center swiper-pagination"></div>
+            <div className="absolute inset-y-0 h-10 flex items-center justify-center swiper-pagination"></div>
             <ProgressBar
               currentPage={currentPage}
               totalPages={data.length}

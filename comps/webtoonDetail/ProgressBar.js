@@ -6,7 +6,7 @@ export default function ProgressBar({ currentPage, totalPages }) {
       <div className="mx-auto border border-ourBlack h-2.5 rounded-xl">
         <div
           style={{ width: `${progressPercentage}%` }}
-          className="h-full bg-ourBlack rounded-xl ease-in duration-300"
+          className="h-full bg-ourBlack rounded-xl duration-200"
         ></div>
       </div>
       <div className="relative w-full">
