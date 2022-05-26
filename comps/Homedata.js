@@ -13,7 +13,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkang ddkangddkangddkang ddkangddkang. ddkangddkangddkangdd kangddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -58,7 +58,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangdd kangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -114,7 +114,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -170,7 +170,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -220,7 +220,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -236,7 +236,7 @@ const webtoonData = [
         desc: "Description Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT.",
         price: 0.0263,
         edition: 1,
-        targetTime: "2022-07-01T16:00:00Z",
+        targetTime: "2022-07-26T09:15:00Z",
         sold: false,
       },
       {
@@ -276,7 +276,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -332,7 +332,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -388,7 +388,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -444,7 +444,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkangddkang ddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -500,7 +500,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkangddkang ddkangddkangddkang. ddkangddkangddkang ddkangddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [],
@@ -553,7 +553,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [],
@@ -566,7 +566,7 @@ const webtoonData = [
         desc: "Description Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT.",
         price: 0.0263,
         edition: 1,
-        targetTime: "2022-07-01T16:00:00Z",
+        targetTime: "2022-07-26T09:15:00Z",
         sold: false,
       },
       {
@@ -606,7 +606,7 @@ const webtoonData = [
     authorDesc:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     authorEmail: "d_d_kang@gmail.com",
-    authorInstagram: "@d_d_kang",
+    authorInstagram: "d_d_kang",
     authorWallet: "0xd05...cDb80",
     authorWalletLink: "/",
     collectors: [
@@ -625,7 +625,7 @@ const webtoonData = [
         desc: "Description Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT.",
         price: 0.0263,
         edition: 1,
-        targetTime: "2022-07-01T16:00:00Z",
+        targetTime: "2022-07-26T09:15:00Z",
         sold: false,
       },
       {
@@ -685,11 +685,11 @@ const topData = {
   vol: 1,
   cover: "/img_420_420.png",
   pages: ["/img_420_420.png", "/img_288_288.png"],
-  desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO.",
+  desc: "Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO Description of TANGO. Description of TANGO Description of TANGO Description of TANGO Description Description of TANGO Description of TANGO. ",
   authorDesc:
     "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkangddkang ddkangddkang",
   authorEmail: "d_d_kang@gmail.com",
-  authorInstagram: "@d_d_kang",
+  authorInstagram: "d_d_kang",
   authorWallet: "0xd05...cDb80",
   authorWalletLink: "/",
   collectors: [
@@ -705,7 +705,7 @@ const topData = {
       desc: "Description Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT Description of NFT.",
       price: 0.0263,
       edition: 1,
-      targetTime: "2022-07-01T16:00:00Z",
+      targetTime: "2022-07-26T09:15:00Z",
       sold: false,
     },
     {

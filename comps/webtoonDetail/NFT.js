@@ -1,11 +1,19 @@
-import { faCheckCircle, faCircleDot } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import DetailTimer from "./DetailTimer";
 
 export default function NFT({ nft, undropped, exchangeRate }) {
   const editions = nft.length;
   const lastUndropped =
     undropped.length > 0 ? undropped[undropped.length - 1] : null;
+  const [isHovered, setIsHovered] = useState(false);
+  const handleMouseOver = () => {
+    setIsHovered(true);
+  };
+  const handleMouseOut = () => {
+    setIsHovered(false);
+  };
 
   return (
     <div className="bg-lightBeige py-12 md:py-20">
@@ -26,23 +34,29 @@ export default function NFT({ nft, undropped, exchangeRate }) {
               <div key={item.id} className="drop-shadow-medium rounded-sm ">
                 {item.sold ? (
                   <div className="flex gap-1.5 items-center bg-ourBlack text-white text-sm md:text-base py-3.5 px-4">
-                    <FontAwesomeIcon icon={faCheckCircle} />
+                    <FontAwesomeIcon
+                      icon={faCheckCircle}
+                      className="text-base md:text-lg"
+                    />
                     <span>Soldout</span>
                   </div>
                 ) : (
-                  <div className="flex gap-1.5 items-center bg-mediumBeige text-ourBlack text-sm md:text-base py-3.5 px-4">
-                    <FontAwesomeIcon icon={faCircleDot} />
+                  <div className="flex gap-1 items-center bg-mediumBeige text-ourBlack text-sm md:text-base py-3.5 px-4">
+                    <img
+                      src="/nft_available_1440_768@2x.png"
+                      className="w-4 md:w-5"
+                    />
                     <span>Available</span>
                   </div>
                 )}
                 <div className="bg-white ">
                   <div className=" p-3.5 flex flex-col gap-3.5 md:p-4 ">
-                    <a href={"/NFT/" + item.id}>
+                    <a href={"/NFT/" + item.id} className="overflow-hidden">
                       <img
                         src={item.file}
                         width={304}
                         height={304}
-                        className="max-w-[220px] md:max-w-[304px] lg:max-w-[288px]"
+                        className="max-w-[220px] duration-200 hover:scale-125 md:max-w-[304px] lg:max-w-[288px]"
                       />
                     </a>
                     <div className="font-bold text-lg md:text-xl">
@@ -66,9 +80,21 @@ export default function NFT({ nft, undropped, exchangeRate }) {
                         </div>
                       </div>
                       {item.sold ? (
-                        <div className="bg-ourBlack rounded-full w-11 h-11 p-2">
-                          <img src="/openSea.png" />
-                        </div>
+                        <a
+                          href="https://opensea.io/"
+                          target="_blank"
+                          onMouseOver={handleMouseOver}
+                          onMouseOut={handleMouseOut}
+                          className="bg-ourBlack rounded-full border border-ourBlack w-11 h-11 p-2 duration-200 hover:bg-white "
+                        >
+                          <img
+                            src={`${
+                              !isHovered
+                                ? "/openSea/openSea_white.png"
+                                : "/openSea/openSea_black.png"
+                            }`}
+                          />
+                        </a>
                       ) : null}
                     </div>
                   </div>

@@ -14,21 +14,29 @@ export default function Collectors({ collectors }) {
       </div>
       <div
         className={`${
-          collectors && collectors.length && "grid grid-cols-3 gap-x-5 gap-y-3 sm:grid-cols-5"
+          collectors &&
+          collectors.length &&
+          "grid grid-cols-3 gap-x-5 gap-y-3 sm:grid-cols-5"
         }`}
       >
         {collectors && collectors.length ? (
           collectors.map((collector, idx) => (
-            <img
-              key={idx}
-              src={collector.profile}
-              className="rounded-full col-span-1"
-            />
+            <div key={idx} className="group relative hover:cursor-pointer">
+              <img
+                src={collector.profile}
+                className="rounded-full col-span-1"
+              />
+              <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
+                id: {collector.id}
+              </div>
+            </div>
           ))
         ) : (
           <div>
             <div className="h-px w-full bg-[#3A3A3A]"></div>
-          <div className="mt-6 font-bold md:text-xl md:mt-8">:) Be the special backer!</div>
+            <div className="mt-6 font-bold md:text-xl md:mt-8">
+              :) Be the special backer!
+            </div>
           </div>
         )}
       </div>

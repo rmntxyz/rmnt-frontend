@@ -21,7 +21,7 @@ export default function Viewer({ data }) {
       {data && data.length ? (
         <div className="flex flex-col items-center justify-center ">
           <div className="w-[95%] flex items-center justify-center md:gap-4 lg:gap-8 ">
-            <button className="swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14">
+            <button className="swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none md:w-14">
               <FontAwesomeIcon icon={faArrowLeft} className="md:text-2xl" />
             </button>
             <Swiper
@@ -75,7 +75,7 @@ export default function Viewer({ data }) {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <button className="swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack disabled:bg-neutral-200 md:w-14">
+            <button className="swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none md:w-14">
               <FontAwesomeIcon icon={faArrowRight} className="md:text-2xl" />
             </button>
           </div>

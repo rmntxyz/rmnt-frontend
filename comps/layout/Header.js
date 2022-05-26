@@ -23,13 +23,13 @@ export default function Header() {
       </div>
       <a
         href="/"
-        className="invisible inline-block px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white transition duration-150 ease-in-out md:visible "
+        className="invisible px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white duration-200 md:visible "
       >
         Connect Wallet
       </a>
       <a
         href="/"
-        className="absolute right-8 inline-block p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white transition duration-150 ease-in-out md:invisible"
+        className="absolute right-8 p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white duration-200 md:invisible"
       >
         <FontAwesomeIcon
           icon={faWallet}

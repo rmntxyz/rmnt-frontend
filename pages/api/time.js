@@ -5,7 +5,6 @@ export function getCurrentTime() {
 }
 
 export default function handler(req, res) {
-  const { method } = req;
   const currentTime = getCurrentTime();
   res.status(200).json({ utc_datetime: currentTime });
 }

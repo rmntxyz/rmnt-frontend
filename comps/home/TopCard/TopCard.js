@@ -40,7 +40,7 @@ export default function TopCard({ data }) {
                     width={664}
                     height={664}
                     layout="responsive"
-                    className="hover:scale-125"
+                    className="duration-200 hover:scale-125"
                   />
                 </a>
               </div>
@@ -53,7 +53,7 @@ export default function TopCard({ data }) {
               <div className="mx-auto md:mx-0">
                 <a
                   href={"/webtoons/" + data.id}
-                  className="inline-block px-12 py-3.5 border-2 border-ourBlack bg-ourBlack text-white text-lg leading-tight font-extrabold rounded-full transition duration-150 ease-in-out hover:drop-shadow-large md:px-14 md:py-4 md:text-2xl"
+                  className="inline-block px-12 py-3.5 border-2 border-ourBlack bg-ourBlack text-white text-lg leading-tight font-extrabold rounded-full duration-200 hover:drop-shadow-large md:px-14 md:py-4 md:text-2xl"
                 >
                   View webtoon
                 </a>
