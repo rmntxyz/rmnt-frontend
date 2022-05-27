@@ -5,8 +5,6 @@ import DetailTimer from "./DetailTimer";
 
 export default function NFT({ nft, undropped, exchangeRate }) {
   const editions = nft.length;
-  const lastUndropped =
-    undropped.length > 0 ? undropped[undropped.length - 1] : null;
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseOver = () => {
     setIsHovered(true);
@@ -21,9 +19,9 @@ export default function NFT({ nft, undropped, exchangeRate }) {
         <div className="flex flex-col gap-8 md:gap-14">
           <div className="flex items-start gap-4 md:gap-7 md:items-center">
             <div className="font-bold text-[22px] md:text-[40px]">NFT</div>
-            {lastUndropped ? (
+            {undropped.timeRemaining ? (
               <DetailTimer
-                targetTime={lastUndropped.targetTime}
+                timeRemaining={undropped.timeRemaining}
                 className="bg-white text-black"
               />
             ) : null}

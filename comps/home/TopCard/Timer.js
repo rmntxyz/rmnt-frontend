@@ -2,15 +2,10 @@ import { useEffect, useState } from "react";
 
 export default function Timer({ timeRemaining }) {
   const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
-  const [remaining, setRemaining] = useState(timeRemaining);
-
-  const getRemaining = () => {
-    const currentTime = new Date().getTime();
-    return endTime - currentTime;
-  };
 
   const calculateTimeLeft = () => {
     let timeLeft = [];
+    let remaining = endTime - new Date().getTime();
     if (remaining > 0) {
       return (timeLeft = [
         {
@@ -39,12 +34,9 @@ export default function Timer({ timeRemaining }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   useEffect(() => {
     const timer = setTimeout(() => {
-      setRemaining(getRemaining());
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-    if (remaining === 0) {
-      clearTimeout(timer);
-    }
+    return () => clearTimeout(timer);
   });
 
   return (

@@ -4,7 +4,13 @@ function getUndropped(webtoon) {
   const undropped = webtoon.nft.filter(
     (item) => new Date(item.targetTime).getTime() > new Date().getTime()
   );
-  return undropped;
+  return {
+    array: undropped,
+    timeRemaining:
+      undropped.length > 0
+        ? new Date(undropped[0].targetTime).getTime() - new Date().getTime()
+        : null,
+  };
 }
 
 export default function handler(req, res) {

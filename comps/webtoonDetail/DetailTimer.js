@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react";
-import { timeUrl } from "../URLs";
 
-export default function DetailTimer({ targetTime }) {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const getCurrentTime = async () => {
-    const res = await fetch(timeUrl);
-    const data = await res.json();
-    setCurrentTime(data.utc_datetime);
-  };
+export default function DetailTimer({ timeRemaining }) {
+  const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
+
   const calculateTimeLeft = () => {
-    const difference =
-      new Date(targetTime).getTime() - new Date(currentTime).getTime();
     let timeLeft = [];
-    if (difference > 0) {
+    let remaining = endTime - new Date().getTime();
+    if (remaining > 0) {
       return (timeLeft = [
         {
           unit: "d",
-          number: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          number: Math.floor(remaining / (1000 * 60 * 60 * 24)),
         },
         {
           unit: "h",
-          number: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          number: Math.floor((remaining / (1000 * 60 * 60)) % 24),
         },
         {
           unit: "m",
-          number: Math.floor((difference / 1000 / 60) % 60),
+          number: Math.floor((remaining / 1000 / 60) % 60),
         },
         {
           unit: "s",
-          number: Math.floor((difference / 1000) % 60),
+          number: Math.floor((remaining / 1000) % 60),
         },
       ]);
     } else return null;
@@ -37,7 +31,6 @@ export default function DetailTimer({ targetTime }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   useEffect(() => {
     const timer = setTimeout(() => {
-      getCurrentTime();
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearTimeout(timer);

@@ -2,17 +2,15 @@ import ListTimer from "./ListTimer";
 
 export default function ListAvailable({ nft, undropped }) {
   const available = nft.filter((item) => item.sold === false);
-  const lastUndropped =
-    undropped.length > 0 ? undropped[undropped.length - 1] : null;
   return (
     <div
       className={`flex flex-col items-center p-4 drop-shadow-md ${
-        undropped.length > 0 && "text-ourBlack bg-mediumBeige"
-      } ${undropped.length === 0 && "text-white bg-ourBlack"}`}
+        undropped.array.length > 0 && "text-ourBlack bg-mediumBeige"
+      } ${undropped.array.length === 0 && "text-white bg-ourBlack"}`}
     >
       <div className="w-full flex justify-between">
         <div className="whitespace-nowrap">Available NFT</div>
-        {undropped.length ? (
+        {undropped.array.length ? (
           <div className="whitespace-nowrap">Drop begins in</div>
         ) : null}
       </div>
@@ -28,8 +26,8 @@ export default function ListAvailable({ nft, undropped }) {
             </div>
           )}
         </div>
-        {undropped.length ? (
-          <ListTimer targetTime={lastUndropped.targetTime} />
+        {undropped.array.length ? (
+          <ListTimer timeRemaining={undropped.timeRemaining} />
         ) : null}
       </div>
     </div>

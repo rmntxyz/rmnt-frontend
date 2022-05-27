@@ -7,20 +7,14 @@ async function getTopData() {
   return topWebtoon;
 }
 
-function getTimeRemaining(targetTime) {
-  const timeRemaining = new Date(targetTime).getTime() - new Date().getTime();
-  return timeRemaining;
-}
-
 export default async function handler(req, res) {
-  const topWebtoon = await getTopData();
-  const targetTime = topWebtoon.undropped[0].targetTime;
-  const timeRemaining = getTimeRemaining(targetTime);
-  res
-    .status(200)
-    .json({
-      ...topWebtoon,
-      targetTime: targetTime,
-      timeRemaining: timeRemaining,
-    });
+  try {
+    const topWebtoon = await getTopData();
+    if (!topWebtoon) {
+      return res.status(404).json({ status: 404, message: "Not found" });
+    }
+    res.status(200).json(topWebtoon);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load" });
+  }
 }
