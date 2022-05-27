@@ -1,51 +1,50 @@
 import { useEffect, useState } from "react";
-import { timeUrl } from "../../URLs";
 
-export default function Timer({ targetTime }) {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const getCurrentTime = async () => {
-    const res = await fetch(timeUrl);
-    const data = await res.json();
-    setCurrentTime(data.utc_datetime);
+export default function Timer({ timeRemaining }) {
+  const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
+  const [remaining, setRemaining] = useState(timeRemaining);
+
+  const getRemaining = () => {
+    const currentTime = new Date().getTime();
+    return endTime - currentTime;
   };
 
   const calculateTimeLeft = () => {
-    const difference =
-      new Date(targetTime).getTime() - new Date(currentTime).getTime();
     let timeLeft = [];
-    if (difference > 0) {
+    if (remaining > 0) {
       return (timeLeft = [
         {
           unit: "Days",
           shortUnit: "Days",
-          number: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          number: Math.floor(remaining / (1000 * 60 * 60 * 24)),
         },
         {
           unit: "Hours",
           shortUnit: "Hr",
-          number: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          number: Math.floor((remaining / (1000 * 60 * 60)) % 24),
         },
         {
           unit: "Minutes",
           shortUnit: "Min",
-          number: Math.floor((difference / 1000 / 60) % 60),
+          number: Math.floor((remaining / 1000 / 60) % 60),
         },
         {
           unit: "Seconds",
           shortUnit: "Sec",
-          number: Math.floor((difference / 1000) % 60),
+          number: Math.floor((remaining / 1000) % 60),
         },
       ]);
     } else return null;
   };
-
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   useEffect(() => {
     const timer = setTimeout(() => {
-      getCurrentTime();
+      setRemaining(getRemaining());
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-    return () => clearTimeout(timer);
+    if (remaining === 0) {
+      clearTimeout(timer);
+    }
   });
 
   return (
