@@ -5,17 +5,20 @@ export default function ListItem({ item }) {
   return (
     <div className="min-w-[296px] drop-shadow-medium ">
       <div className="p-4 border border-darkGray bg-white rounded-sm ">
-        <a href={item.profileLink} className="flex items-center mb-3 md:mb-4">
+        <a
+          href={"/artists/" + item.artist.name}
+          className="flex items-center mb-3 md:mb-4"
+        >
           <img
-            src={item.profile}
+            src={item.artist.profile_picture}
             className="rounded-full w-8 h-8 md:w-10 md:h-10"
           />
-          <div className="text-sm ml-1 md:text-base">{item.author}</div>
+          <div className="text-sm ml-1 md:text-base">{item.artist.name}</div>
         </a>
         <div className="relative group">
           <a href={"/webtoons/" + item.id}>
             <Image
-              src={item.cover}
+              src={item.pages[0]}
               width={304}
               height={304}
               layout="responsive"
@@ -32,7 +35,7 @@ export default function ListItem({ item }) {
           </div>
           <div className="w-1 aspect-square m-2 bg-lightGray rounded-full md:m-4"></div>
           <div className="whitespace-nowrap text-base font-extrabold">
-            vol {item.vol}
+            vol {item.volume}
           </div>
         </div>
       </div>
@@ -41,7 +44,7 @@ export default function ListItem({ item }) {
         <div className="min-w-[33.3%] h-full border-r border-darkGray"></div>
         <div className="min-w-[33.3%] h-full"></div>
       </div>
-      <ListAvailable nft={item.nft} undropped={item.undropped} />
+      <ListAvailable NFTs={item.NFTs} timeRemaining={item.timeRemaining} />
     </div>
   );
 }

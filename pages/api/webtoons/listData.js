@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     const topData = await getTopData();
     const listData = webtoonData
       .sort((a, b) => b.id - a.id)
-      .sort((a, b) => b.undropped.array.length - a.undropped.array.length)
+      .sort((a, b) => b.timeRemaining - a.timeRemaining)
       .filter((item) => item.id !== topData.id);
     res.status(200).json(listData);
   } catch (err) {

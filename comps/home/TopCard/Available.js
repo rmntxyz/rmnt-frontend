@@ -1,5 +1,5 @@
-export default function Available({ nft }) {
-  const available = nft.filter((item) => item.sold === false);
+export default function Available({ NFTs }) {
+  const available = NFTs.filter((item) => item.sold === false);
   return (
     <div>
       <div className="whitespace-nowrap">Available NFT</div>

@@ -1,4 +1,5 @@
 import ListItem from "../../comps/home/List/ListItem";
+import Seo from "../../comps/SEO";
 import { webtoonsUrl } from "../../comps/URLs";
 
 export async function getServerSideProps() {
@@ -10,10 +11,11 @@ export async function getServerSideProps() {
 export default function Webtoons({ webtoonsData }) {
   return (
     <div className="container mx-auto">
+      <Seo title="Webtoons | Rarement" />
       <div className="grid mx-8 my-10 gap-x-5 gap-y-10 sm:grid-cols-2 sm:my-20 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 xl:grid-cols-4">
         {webtoonsData
           .sort((a, b) => b.id - a.id)
-          .sort((a, b) => b.undropped.array.length - a.undropped.array.length)
+          .sort((a, b) => b.timeRemaining - a.timeRemaining)
           .map((item) => (
             <ListItem key={item.id} item={item} />
           ))}

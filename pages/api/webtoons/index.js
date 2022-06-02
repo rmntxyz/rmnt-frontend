@@ -1,25 +1,28 @@
 import { webtoonData } from "../../../comps/Homedata";
+import { artistsUrl, NFTsUrl } from "../../../comps/URLs";
 
-function getUndropped(webtoon) {
-  const undropped = webtoon.nft.filter(
-    (item) => new Date(item.targetTime).getTime() > new Date().getTime()
-  );
-  return {
-    array: undropped,
-    timeRemaining:
-      undropped.length > 0
-        ? new Date(undropped[0].targetTime).getTime() - new Date().getTime()
-        : null,
-  };
-}
-
-export default function handler(req, res) {
+export default async function handler(req, res) {
   try {
-    const webtoonDataWithUndropped = webtoonData.map((webtoon) => ({
+    const artistsRes = await fetch(artistsUrl);
+    const artists = await artistsRes.json();
+    const allNFTsRes = await fetch(NFTsUrl);
+    const allNFTs = await allNFTsRes.json();
+    const webtoons = webtoonData.map((webtoon) => ({
       ...webtoon,
-      undropped: getUndropped(webtoon),
+      artist: artists.find((item) => item.id === webtoon.artist_id),
+      NFTs: allNFTs.filter((item) => item.webtoon_id === webtoon.id),
+      timeRemaining:
+        allNFTs
+          .filter((item) => item.webtoon_id === webtoon.id)
+          .filter((item) => item.sold === false).length > 0
+          ? new Date(
+              allNFTs
+                .filter((item) => item.webtoon_id === webtoon.id)
+                .filter((item) => item.sold === false)[0].drop_timestamp
+            ).getTime() - new Date().getTime()
+          : null,
     }));
-    res.status(200).json(webtoonDataWithUndropped);
+    res.status(200).json(webtoons);
   } catch (err) {
     res.status(500).json({ error: "Failed to load" });
   }

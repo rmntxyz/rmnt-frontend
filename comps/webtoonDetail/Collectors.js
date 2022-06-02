@@ -1,4 +1,4 @@
-export default function Collectors({ collectors }) {
+export default function Collectors({ collectors, users }) {
   return (
     <div
       className={`${
@@ -23,11 +23,13 @@ export default function Collectors({ collectors }) {
           collectors.map((collector, idx) => (
             <div key={idx} className="group relative hover:cursor-pointer">
               <img
-                src={collector.profile}
+                src={
+                  users.find((user) => user.id === collector).profile_picture
+                }
                 className="rounded-full col-span-1"
               />
               <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
-                id: {collector.id}
+                id: {users.find((user) => user.id === collector).id}
               </div>
             </div>
           ))

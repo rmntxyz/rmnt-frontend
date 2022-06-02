@@ -1,26 +1,19 @@
-import { getWebtoons } from "../webtoons/listData";
+import { NFTData } from "../../../comps/Homedata";
 
-export async function getAllNFTs() {
-  let AllNFTs = [];
-  const webtoonData = await getWebtoons();
-  webtoonData.map((item) => item.nft.forEach((item) => AllNFTs.push(item)));
-  return AllNFTs;
-}
+// function getDropped(NFT) {
+//   if (new Date(NFT.drop_timestamp).getTime() > new Date().getTime()) {
+//     return false;
+//   } else return true;
+// }
 
-function getDropped(NFT) {
-  if (new Date(NFT.targetTime).getTime() > new Date().getTime()) {
-    return false;
-  } else return true;
-}
-
-export default async function handler(req, res) {
+export default function handler(req, res) {
   try {
-    const AllNFTs = await getAllNFTs();
-    const AllNFTsWithDropped = AllNFTs.map((NFT) => ({
-      ...NFT,
-      dropped: getDropped(NFT),
-    }));
-    res.status(200).json(AllNFTsWithDropped);
+    const NFTs = NFTData;
+    // const NFTsWithDropped = NFTs.map((NFT) => ({
+    //   ...NFT,
+    //   dropped: getDropped(NFT),
+    // }));
+    res.status(200).json(NFTs);
   } catch (err) {
     res.status(500).json({ error: "Failed to load" });
   }

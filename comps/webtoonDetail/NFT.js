@@ -1,17 +1,9 @@
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import DetailTimer from "./DetailTimer";
 
-export default function NFT({ nft, undropped, exchangeRate }) {
-  const editions = nft.length;
-  const [isHovered, setIsHovered] = useState(false);
-  const handleMouseOver = () => {
-    setIsHovered(true);
-  };
-  const handleMouseOut = () => {
-    setIsHovered(false);
-  };
+export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
+  const editions = NFTs.length;
 
   return (
     <div className="bg-lightBeige py-12 md:py-20">
@@ -19,16 +11,16 @@ export default function NFT({ nft, undropped, exchangeRate }) {
         <div className="flex flex-col gap-8 md:gap-14">
           <div className="flex items-start gap-4 md:gap-7 md:items-center">
             <div className="font-bold text-[22px] md:text-[40px]">NFT</div>
-            {undropped.timeRemaining ? (
+            {timeRemaining ? (
               <DetailTimer
-                timeRemaining={undropped.timeRemaining}
+                timeRemaining={timeRemaining}
                 className="bg-white text-black"
               />
             ) : null}
           </div>
 
           <div className="scroll overflow-x-auto flex gap-8">
-            {nft.map((item) => (
+            {NFTs.map((item) => (
               <div key={item.id} className="drop-shadow-medium rounded-sm ">
                 {item.sold ? (
                   <div className="flex gap-1.5 items-center bg-ourBlack text-white text-sm md:text-base py-3.5 px-4">
@@ -51,7 +43,7 @@ export default function NFT({ nft, undropped, exchangeRate }) {
                   <div className=" p-3.5 flex flex-col gap-3.5 md:p-4 ">
                     <a href={"/NFT/" + item.id} className="overflow-hidden">
                       <img
-                        src={item.file}
+                        src={item.image_address}
                         width={304}
                         height={304}
                         className="max-w-[220px] duration-200 hover:scale-125 md:max-w-[304px] lg:max-w-[288px]"
@@ -79,18 +71,17 @@ export default function NFT({ nft, undropped, exchangeRate }) {
                       </div>
                       {item.sold ? (
                         <a
-                          href="https://opensea.io/"
+                          href={item.opensea}
                           target="_blank"
-                          onMouseOver={handleMouseOver}
-                          onMouseOut={handleMouseOut}
-                          className="bg-ourBlack rounded-full border border-ourBlack w-11 h-11 p-2 duration-200 hover:bg-white "
+                          className="relative group bg-ourBlack rounded-full border border-ourBlack w-11 h-11 p-2 duration-200 hover:bg-white "
                         >
                           <img
-                            src={`${
-                              !isHovered
-                                ? "/openSea/openSea_white.png"
-                                : "/openSea/openSea_black.png"
-                            }`}
+                            src="/openSea/openSea_white.png"
+                            className="group-hover:opacity-0"
+                          />
+                          <img
+                            src="/openSea/openSea_black.png"
+                            className="absolute opacity-0 top-1.5 left-2 group-hover:opacity-100"
                           />
                         </a>
                       ) : null}
