@@ -20,7 +20,7 @@ export default function ListAvailable({ NFTs, timeRemaining }) {
         <div>
           {available.length ? (
             <div className="text-base font-bold md:text-lg">
-              {available.length}/5
+              {available.length}/{NFTs.length}
             </div>
           ) : (
             <div className="text-lightGray text-base font-bold md:text-lg">

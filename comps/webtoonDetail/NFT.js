@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DetailTimer from "./DetailTimer";
 
 export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
-  const editions = NFTs.length;
 
   return (
     <div className="bg-lightBeige py-12 md:py-20">
@@ -89,7 +88,7 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                   </div>
                   <div className="border-t flex justify-end p-3.5 md:p-4">
                     <div className="text-[#CEA671] text-base font-bold md:text-lg">
-                      Edition {item.edition} of {editions}
+                      Edition {item.edition} of {item.total_editions}
                     </div>
                   </div>
                 </div>
