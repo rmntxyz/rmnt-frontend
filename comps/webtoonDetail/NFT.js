@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DetailTimer from "./DetailTimer";
 
 export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
-
   return (
     <div className="bg-lightBeige py-12 md:py-20">
       <div className="ml-8 md:ml-20 lg:ml-24 2xl:ml-52 3xl:ml-80">

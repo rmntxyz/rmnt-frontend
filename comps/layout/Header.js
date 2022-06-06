@@ -1,5 +1,6 @@
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 
 export default function Header() {
@@ -21,22 +22,95 @@ export default function Header() {
           <Image src="/logo_black/logo_360.png" width={165} height={80} />
         </a>
       </div>
-      <a
-        href="/"
-        className="invisible px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white duration-200 md:visible "
-      >
-        Connect Wallet
-      </a>
-      <a
-        href="/"
-        className="absolute right-8 p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white duration-200 md:invisible"
-      >
-        <FontAwesomeIcon
-          icon={faWallet}
-          width="20px"
-          height="32px"
-        ></FontAwesomeIcon>
-      </a>
+      <ConnectButton.Custom>
+        {({
+          account,
+          chain,
+          openAccountModal,
+          openChainModal,
+          openConnectModal,
+          mounted,
+        }) => {
+          return (
+            <div
+              {...(!mounted && {
+                "aria-hidden": true,
+                style: {
+                  opacity: 0,
+                  pointerEvents: "none",
+                  userSelect: "none",
+                },
+              })}
+            >
+              {(() => {
+                if (!mounted || !account || !chain) {
+                  return (
+                    <button onClick={openConnectModal} type="button">
+                      <span className="invisible px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white duration-200 md:visible ">
+                        Connect Wallet
+                      </span>
+                      <span className="absolute right-8 p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white duration-200 md:invisible">
+                        <FontAwesomeIcon
+                          icon={faWallet}
+                          width="20px"
+                          height="32px"
+                        ></FontAwesomeIcon>
+                      </span>
+                    </button>
+                  );
+                }
+
+                if (chain.unsupported) {
+                  return (
+                    <button onClick={openChainModal} type="button">
+                      Wrong network
+                    </button>
+                  );
+                }
+
+                return (
+                  <div style={{ display: "flex", gap: 12 }}>
+                    <button
+                      onClick={openChainModal}
+                      style={{ display: "flex", alignItems: "center" }}
+                      type="button"
+                    >
+                      {chain.hasIcon && (
+                        <div
+                          style={{
+                            background: chain.iconBackground,
+                            width: 12,
+                            height: 12,
+                            borderRadius: 999,
+                            overflow: "hidden",
+                            marginRight: 4,
+                          }}
+                        >
+                          {chain.iconUrl && (
+                            <img
+                              alt={chain.name ?? "Chain icon"}
+                              src={chain.iconUrl}
+                              style={{ width: 12, height: 12 }}
+                            />
+                          )}
+                        </div>
+                      )}
+                      {chain.name}
+                    </button>
+
+                    <button onClick={openAccountModal} type="button">
+                      {account.displayName}
+                      {account.displayBalance
+                        ? ` (${account.displayBalance})`
+                        : ""}
+                    </button>
+                  </div>
+                );
+              })()}
+            </div>
+          );
+        }}
+      </ConnectButton.Custom>
     </nav>
     //Black header
     // <nav className="h-20 px-8 text-2xl font-bold bg-ourBlack text-white flex justify-between items-center">
