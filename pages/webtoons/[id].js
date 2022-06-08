@@ -1,21 +1,41 @@
-import { useRouter } from "next/router";
-import Desc from "../../detailPageComps/Desc";
-import NFT from "../../detailPageComps/NFT";
-import Viewer from "../../detailPageComps/Viewer";
-import { webtoonData } from "../../homeComps/Homedata";
+import Viewer from "../../comps/webtoonDetail/Viewer";
+import Desc from "../../comps/webtoonDetail/Desc";
+import NFT from "../../comps/webtoonDetail/NFT";
+import { getExchangeRate } from "../api/USD_ETH";
+import { webtoonsUrl } from "../../comps/URLs";
+import Seo from "../../comps/SEO";
+import { userData } from "../../comps/Homedata";
 
-export default function WebtoonItem() {
-  const router = useRouter();
-  const { id } = router.query;
-  const item = webtoonData.find((item) => item.id === parseInt(id));
-  if (!router.isReady) {
-    return <h4>Loading...</h4>;
-  } else
-    return (
-      <div className="mt-20">
-        <Viewer data={item.pages} />
-        <Desc item={item} />
-        <NFT nft={item.nft} />
-      </div>
-    );
+export async function getServerSideProps(context) {
+  const exchangeRate = await getExchangeRate();
+  const { id } = context.query;
+  const webtoonRes = await fetch(webtoonsUrl + id);
+  const webtoon = await webtoonRes.json();
+  let collectors = [];
+  webtoon.NFTs.forEach((item) => collectors.push(item.owned_by));
+  const uniqueCollectors = collectors.filter(
+    (item, index) => collectors.indexOf(item) === index
+  );
+  return {
+    props: {
+      exchangeRate: exchangeRate,
+      webtoon: webtoon,
+      collectors: uniqueCollectors,
+    },
+  };
+}
+
+export default function WebtoonPage({ exchangeRate, webtoon, collectors }) {
+  return (
+    <div className="mt-20 overflow-x-hidden">
+      <Seo title={`${webtoon.artist.name} - ${webtoon.title}`} />
+      <Viewer data={webtoon.pages} />
+      <Desc item={webtoon} collectors={collectors} users={userData} />
+      <NFT
+        NFTs={webtoon.NFTs}
+        timeRemaining={webtoon.timeRemaining}
+        exchangeRate={exchangeRate}
+      />
+    </div>
+  );
 }

@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,28 +5,53 @@
 @layer base {
   html {
     font-family: Sen;
+    @apply text-ourBlack;
   }
 }
 
+.scroll {
+  margin: -32px;
+  padding: 32px;
+}
+
+.scroll::after {
+  content: "";
+  padding-right: 8px;
+}
+
 .swiper-wrapper {
-  max-width: 700px; 
-  width: fit-content;
+  align-items: center;
 }
 
-
-.swiper-button-next {
-  background: url(/svg/circle-arrow-right-solid.svg) no-repeat;
-
-
+.swiper-pagination-bullet {
+  opacity: 1 !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  width: 100% !important;
+  margin: 0 !important;
+  height: 100% !important;
+  border-radius: none !important;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: transparent !important;
+}
+.swiper-pagination-bullet span {
+  font-size: 15px;
+  color: #555555;
+  position: absolute;
+  top: 20px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.1s linear;
 }
 
-.swiper-button-prev {
-  background: url(/svg/circle-arrow-left-solid.svg) no-repeat;
+.swiper-pagination-bullet:hover span {
+  visibility: visible;
+  opacity: 1;
+}
 
-} 
-
-/* .swiper-button-next::after,
-.swiper-button-prev::after {
-  display: none;
-} */
-
+@media (max-width: 700px) {
+  .swiper-pagination-bullet:hover span {
+    visibility: hidden;
+  }
+}
