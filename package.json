@@ -15,7 +15,6 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@rainbow-me/rainbowkit": "^0.2.3",
     "ethers": "^5.6.8",
-    "lodash.merge": "^4.6.2",
     "next": "12.1.5",
     "react": "18.1.0",
     "react-dom": "18.1.0",

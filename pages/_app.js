@@ -12,7 +12,6 @@ import {
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { merge } from "lodash";
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
@@ -27,15 +26,6 @@ const wagmiClient = createClient({
   connectors,
   provider,
 });
-
-const rmntTheme = merge(lightTheme(), {
-  colors: {
-    accentColor:  "#0C0C0C",
-  },
-  fonts: {
-    body: 'Sen'
-  }
-})
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -54,7 +44,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
-        theme={rmntTheme}
+        theme={lightTheme({ accentColor: "#0C0C0C" })}
         chains={chains}
       >
         <Layout>{loading ? <Loading /> : <Component {...pageProps} />}</Layout>
