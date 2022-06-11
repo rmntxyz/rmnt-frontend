@@ -49,7 +49,7 @@ export default function Header() {
                       <span className="invisible px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white duration-200 md:visible ">
                         Connect Wallet
                       </span>
-                      <span className="absolute right-8 p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white duration-200 md:invisible">
+                      <span className="absolute top-6 right-8 p-2 border-2 border-ourBlack text-ourBlack text-base leading-tight rounded-full hover:bg-ourBlack hover:text-white duration-200 md:invisible">
                         <FontAwesomeIcon
                           icon={faWallet}
                           width="20px"
