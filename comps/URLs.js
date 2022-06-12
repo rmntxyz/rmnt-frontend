@@ -1,4 +1,4 @@
-const baseUrl = "https://rmnt-frontend-git-feature-artistprofile-rmnt.vercel.app";
+const baseUrl = "https://rmnt-frontend-git-develop-rmnt.vercel.app";
 // const baseUrl = "http://localhost:3000";
 const timeUrl = `/api/time`;
 const webtoonsUrl = `${baseUrl}/api/webtoons/`;
