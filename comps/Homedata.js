@@ -320,7 +320,7 @@ const NFTData = [
   {
     id: 25,
     webtoon_id: 9,
-    name: "Journey 3",
+    name: "Daddy's Twenty-Forty-Five",
     created_by: "Puroon",
     owned_by: 4,
     image_address: "/img_288_288.png",
@@ -671,11 +671,13 @@ const artistData = [
     description:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     profile_picture: "/img_420_420.png",
-    background_picture: ["/IMG_1246 1.png", "/IMG_1247 1.png"],
+    background_picture: "/Frame_4592_1.png",
     email: "d_d_kang@gmail.com",
     instagram: "d_d_kang",
+    twitter: "d_d_kang",
     wallet_address: "0xd05...cDb80",
     opensea: "https://opensea.io/",
+    collection: [],
   },
   {
     id: 2,
@@ -683,11 +685,13 @@ const artistData = [
     description:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     profile_picture: "/img_420_420.png",
-    background_picture: ["/IMG_1246 1.png", "/IMG_1247 1.png"],
+    background_picture: "/Frame_4592_1.png",
     email: "d_d_kang@gmail.com",
     instagram: "d_d_kang",
+    twitter: "d_d_kang",
     wallet_address: "0xd05...cDb80",
     opensea: "https://opensea.io/",
+    collection: [],
   },
   {
     id: 3,
@@ -695,11 +699,27 @@ const artistData = [
     description:
       "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
     profile_picture: "/img_420_420.png",
-    background_picture: ["/IMG_1246 1.png", "/IMG_1247 1.png"],
+    background_picture: "/Frame_4592_1.png",
     email: "d_d_kang@gmail.com",
     instagram: "d_d_kang",
+    twitter: "d_d_kang",
     wallet_address: "0xd05...cDb80",
     opensea: "https://opensea.io/",
+    collection: [],
+  },
+  {
+    id: 4,
+    name: "abc",
+    description:
+      "ddkangddkangddkang ddkangddkangddkangddkang. ddkangddkang ddkangddkang ddkangddkangddkang",
+    profile_picture: "/img_420_420.png",
+    background_picture: "/Frame_4592_1.png",
+    email: "d_d_kang@gmail.com",
+    instagram: "d_d_kang",
+    twitter: "d_d_kang",
+    wallet_address: "0xd05...cDb80",
+    opensea: "https://opensea.io/",
+    collection: [],
   },
 ];
 

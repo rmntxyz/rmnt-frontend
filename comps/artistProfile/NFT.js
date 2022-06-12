@@ -2,7 +2,7 @@ import { useState } from "react";
 import Collection from "./Collection";
 import Creation from "./Creation";
 
-export default function NFT({ NFTs, users, webtoons }) {
+export default function NFT({ NFTs, users, webtoons, artist }) {
   const [openTab, setOpenTab] = useState(1);
   function groupBy(arr, property) {
     return arr.reduce(function (memo, x) {
@@ -27,7 +27,7 @@ export default function NFT({ NFTs, users, webtoons }) {
   return (
     <div className="bg-lightBeige py-12 md:py-20">
       <div className="container mx-auto">
-        <div className="max-w-[85%] mx-auto md:max-w-[90%]">
+        <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
           <ul
             role="tablist"
             className="relative flex gap-4 mb-5 md:gap-6 md:mb-8"
@@ -58,7 +58,7 @@ export default function NFT({ NFTs, users, webtoons }) {
                 }}
                 role="tab"
               >
-                Collection
+                Collection {artist.collection.length}
               </button>
               <div
                 className={`w-full h-[3px] bg-ourBlack rounded-sm  ${
@@ -69,15 +69,27 @@ export default function NFT({ NFTs, users, webtoons }) {
             <div className="absolute bottom-0 w-full h-px bg-ourBlack opacity-[15%]"></div>
           </ul>
           <div>
-            <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-              <Creation
-                creations={finalGroups}
-                users={users}
-                webtoons={webtoons}
-              />
+            <div className={openTab === 1 ? "block" : "hidden"}>
+              {NFTs.length > 0 ? (
+                <Creation
+                  creations={finalGroups}
+                  users={users}
+                  webtoons={webtoons}
+                />
+              ) : (
+                <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
+                  {artist.name} has not created any RMNT NFT.
+                </div>
+              )}
             </div>
-            <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-              <Collection />
+            <div className={openTab === 2 ? "block" : "hidden"}>
+              {artist.collection > 0 ? (
+                <Collection />
+              ) : (
+                <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
+                  {artist.name} does not own any RMNT collection.
+                </div>
+              )}
             </div>
           </div>
         </div>

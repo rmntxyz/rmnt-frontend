@@ -33,8 +33,8 @@ export default function Artist({ artist, webtoons, NFTs, users }) {
     <div className="overflow-x-hidden">
       <Seo title={artist.name} />
       <Desc artist={artist} />
-      <Webtoons webtoons={webtoons} users={users} />
-      <NFT NFTs={NFTs} users={users} webtoons={webtoons} />
+      <Webtoons webtoons={webtoons} users={users} artist={artist.name} />
+      <NFT NFTs={NFTs} users={users} webtoons={webtoons} artist={artist} />
     </div>
   );
 }

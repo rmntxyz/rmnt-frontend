@@ -1,4 +1,5 @@
-import { faCopy, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
@@ -27,21 +28,16 @@ export default function Desc({ artist }) {
   };
   return (
     <div>
-      <div className="relative">
-        <div className="flex w-full">
-          {artist.background_picture.map((item, idx) => (
-            <img
-              key={idx}
-              src={item}
-              className="flex-1 object-cover h-56 md:h-[300px] 2xl:object-fill"
-            />
-          ))}
-        </div>
+      <div>
+        <div
+          className="h-[224px] md:h-[320px] bg-center bg-cover bg-no-repeat "
+          style={{ backgroundImage: "url(" + artist.background_picture + ")" }}
+        ></div>
         <div className="relative container mx-auto">
-          <div className="max-w-[85%] mx-auto md:max-w-[90%]">
+          <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
             <img
               src={artist.profile_picture}
-              className="absolute -top-24 border-8 border-white rounded-full w-32 aspect-square drop-shadow-medium md:w-44 md:-top-32"
+              className="absolute -top-24 border-8 border-white rounded-full w-32 aspect-square drop-shadow-small md:w-44 md:-top-36"
             />
             <div className="flex flex-col gap-5 md:gap-8">
               <div className="flex justify-between mt-12 md:mt-20">
@@ -59,7 +55,7 @@ export default function Desc({ artist }) {
                     onClick={handleCopyClick}
                     className="group flex items-center"
                   >
-                    <button className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-xs rounded-full md:text-base">
+                    <button className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-xs rounded-full hover:underline md:text-base">
                       {artist.wallet_address}
                     </button>
                     <button className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100">
@@ -99,15 +95,26 @@ export default function Desc({ artist }) {
                     src="/instagram/artist_instagram_1440_768@2x.png"
                     className="w-5 md:w-6"
                   />
-                  <span>@{artist.instagram}</span>
+                  <span className="hidden md:inline-block">@{artist.instagram}</span>
+                </a>
+                <a
+                  href={`https://www.twitter.com/${artist.twitter}`}
+                  target="_blank"
+                  className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
+                >
+                  <FontAwesomeIcon icon={faTwitter} />
+                  <span className="hidden md:inline-block">@{artist.twitter}</span>
                 </a>
                 <a
                   href={`mailto:${artist.email}`}
                   target="_blank"
                   className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
                 >
-                  <FontAwesomeIcon icon={faEnvelope} />
-                  {artist.email}
+                  <img
+                    src="/profile_website_1440_768@2x.png"
+                    className="w-5 md:w-6"
+                  />
+                  <span className="hidden md:inline-block">{artist.email}</span>
                 </a>
               </div>
             </div>

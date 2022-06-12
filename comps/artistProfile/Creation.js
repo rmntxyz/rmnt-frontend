@@ -8,9 +8,9 @@ export default function Creation({ creations, users, webtoons }) {
         {creations.map((item) => (
           <div
             key={item.categoryName}
-            className="rounded-sm p-3.5 drop-shadow-medium bg-white md:p-4 "
+            className="rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
           >
-            <a href={"/NFTs/" + item.id}>
+            <a href={"/NFT/" + item.children[0].id}>
               <Image
                 src={item.children[0].image_address}
                 width={256}
@@ -19,8 +19,8 @@ export default function Creation({ creations, users, webtoons }) {
                 className="duration-200 hover:scale-125"
               />
             </a>
-            <div className="flex mt-3.5 items-center md:mt-4">
-              <div className="truncate text-base font-extrabold uppercase md:text-lg">
+            <div className="flex w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">
+              <div className="truncate text-sm font-extrabold uppercase">
                 {
                   webtoons.find(
                     (webtoon) => webtoon.id === item.children[0].webtoon_id
@@ -28,7 +28,7 @@ export default function Creation({ creations, users, webtoons }) {
                 }
               </div>
               <div className="w-1 aspect-square m-1 bg-lightGray rounded-full"></div>
-              <div className="whitespace-nowrap text-sm font-extrabold md:text-base">
+              <div className="whitespace-nowrap text-sm font-extrabold">
                 vol{" "}
                 {
                   webtoons.find(
@@ -37,7 +37,7 @@ export default function Creation({ creations, users, webtoons }) {
                 }
               </div>
             </div>
-            <div className="font-bold text-lg md:text-xl">
+            <div className="truncate font-bold text-base md:text-lg">
               {item.children[0].id.toString().length < 2 ? (
                 <span>
                   #{"0" + item.children[0].id}. {item.children[0].name}
