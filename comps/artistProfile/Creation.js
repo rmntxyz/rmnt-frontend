@@ -19,7 +19,7 @@ export default function Creation({ creations, users, webtoons }) {
                 className="duration-200 hover:scale-125"
               />
             </a>
-            <div className="flex w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">
+            <div className="flex max-w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">
               <div className="truncate text-sm font-extrabold uppercase">
                 {
                   webtoons.find(
