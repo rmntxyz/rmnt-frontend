@@ -5,7 +5,7 @@ export default function Available({ NFTs }) {
       <div className="whitespace-nowrap">Available NFT</div>
       {available.length ? (
         <div className="text-base font-bold md:text-xl">
-          {available.length}/5
+          {available.length}/{NFTs.length}
         </div>
       ) : (
         <div className="text-lightGray text-base font-bold md:text-xl">

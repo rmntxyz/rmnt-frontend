@@ -35,20 +35,14 @@ const InLinks = [
 
 export default function Footer() {
   const [isHovered, setIsHovered] = useState(false);
-  const handleMouseOver = () => {
-    setIsHovered(true);
-  };
-  const handleMouseOut = () => {
-    setIsHovered(false);
-  };
 
   return (
     <footer className="h-40 px-8 bg-ourBlack flex items-center justify-center">
       <div className="container text-lightGray flex flex-col items-center justify-center md:flex-row md:justify-between">
         <ul className="flex items-center">
           <a
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
+            onMouseOver={(e) => setIsHovered(true)}
+            onMouseOut={(e) => setIsHovered(false)}
             href="/"
             className="ml-2.5 mr-1.5 pt-1"
           >

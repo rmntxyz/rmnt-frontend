@@ -24,7 +24,7 @@ export default function ListItem({ item }) {
               layout="responsive"
               className="duration-200 hover:scale-125"
             />
-            <button className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-md leading-tight font-bold whitespace-nowrap rounded-full group-hover:opacity-100">
+            <button className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-base leading-tight font-bold whitespace-nowrap rounded-full group-hover:opacity-100">
               View webtoon
             </button>
           </a>

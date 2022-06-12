@@ -7,10 +7,14 @@ export default async function handler(req, res) {
     const artists = await artistsRes.json();
     const allNFTsRes = await fetch(NFTsUrl);
     const allNFTs = await allNFTsRes.json();
+
     const webtoons = webtoonData.map((webtoon) => ({
       ...webtoon,
       artist: artists.find((item) => item.id === webtoon.artist_id),
       NFTs: allNFTs.filter((item) => item.webtoon_id === webtoon.id),
+      collectors: allNFTs
+        .filter((item) => item.webtoon_id === webtoon.id)
+        .map((item) => item.owned_by),
       timeRemaining:
         allNFTs
           .filter((item) => item.webtoon_id === webtoon.id)

@@ -31,7 +31,7 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                 ) : (
                   <div className="flex gap-1 items-center bg-mediumBeige text-ourBlack text-sm md:text-base py-3.5 px-4">
                     <img
-                      src="/nft_available_1440_768@2x.png"
+                      src="/icons/nft_available_1440_768@2x.png"
                       className="w-4 md:w-5"
                     />
                     <span>Available</span>
