@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
 import Desc from "../../comps/profile/Desc";
-import UserNFT from "../../comps/profile/userNFT";
+import UserNFT from "../../comps/profile/UserNFT";
 import Seo from "../../comps/SEO";
 // import { NFTsUrl, usersUrl, webtoonsUrl } from "../../comps/URLs";
 
