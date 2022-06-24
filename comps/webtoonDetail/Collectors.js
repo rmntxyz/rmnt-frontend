@@ -22,12 +22,24 @@ export default function Collectors({ collectors, users }) {
         {collectors && collectors.length ? (
           collectors.map((collector, idx) => (
             <div key={idx} className="group relative hover:cursor-pointer">
-              <img
-                src={
-                  users.find((user) => user.id === collector).profile_picture
-                }
-                className="rounded-full col-span-1"
-              />
+              {users.find((user) => user.id === collector).profile_picture !==
+                null &&
+              users.find((user) => user.id === collector).profile_picture !==
+                undefined &&
+              users.find((user) => user.id === collector).profile_picture !==
+                "" ? (
+                <img
+                  src={
+                    users.find((user) => user.id === collector).profile_picture
+                  }
+                  className="rounded-full col-span-1"
+                />
+              ) : (
+                <img
+                  src="/profile/profile_1440_768@2x.png"
+                  className="rounded-full col-span-1"
+                />
+              )}
               <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
                 id: {users.find((user) => user.id === collector).id}
               </div>

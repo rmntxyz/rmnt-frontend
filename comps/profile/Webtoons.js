@@ -73,7 +73,7 @@ export default function Webtoons({ webtoons, users, artist }) {
           </div>
         ) : (
           <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
-            {artist} has not published any RMNT webtoon.
+            {artist} has not listed any webtoon.
           </div>
         )}
       </div>

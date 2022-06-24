@@ -28,10 +28,19 @@ export default function Collectors({ collectors, users }) {
                         key={user.id}
                         className="group relative hover:cursor-pointer"
                       >
-                        <img
-                          src={user.profile_picture}
-                          className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
-                        ></img>
+                        {user.profile_picture !== null &&
+                        user.profile_picture !== undefined &&
+                        user.profile_picture !== "" ? (
+                          <img
+                            src={user.profile_picture}
+                            className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
+                          ></img>
+                        ) : (
+                          <img
+                            src="/profile/profile_1440_768@2x.png"
+                            className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
+                          />
+                        )}
                         <div className="opacity-0 w-8 transition-opacity absolute text-[#555555] group-hover:opacity-100">
                           id: {user.id}
                         </div>
@@ -50,10 +59,19 @@ export default function Collectors({ collectors, users }) {
                         key={user.id}
                         className="group relative hover:cursor-pointer"
                       >
-                        <img
-                          src={user.profile_picture}
-                          className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
-                        ></img>
+                        {user.profile_picture !== null &&
+                        user.profile_picture !== undefined &&
+                        user.profile_picture !== "" ? (
+                          <img
+                            src={user.profile_picture}
+                            className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
+                          ></img>
+                        ) : (
+                          <img
+                            src="/profile/profile_1440_768@2x.png"
+                            className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
+                          />
+                        )}
                         <div className="opacity-0 w-8 transition-opacity absolute text-[#555555] group-hover:opacity-100">
                           id: {user.id}
                         </div>
@@ -95,11 +113,19 @@ export default function Collectors({ collectors, users }) {
             )
             .map((user) => (
               <div key={user.id} className="flex">
-                <img
-                  key={user.id}
-                  src={user.profile_picture}
-                  className="rounded-full border-2 border-white w-8 "
-                ></img>
+                {user.profile_picture !== null &&
+                user.profile_picture !== undefined &&
+                user.profile_picture !== "" ? (
+                  <img
+                    src={user.profile_picture}
+                    className="rounded-full border-2 border-white w-8 "
+                  ></img>
+                ) : (
+                  <img
+                    src="/profile/profile_1440_768@2x.png"
+                    className="rounded-full border-2 border-white w-8 "
+                  />
+                )}
                 <div className="transition-opacity text-[#555555]">
                   id: {user.id}
                 </div>
