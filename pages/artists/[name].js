@@ -63,6 +63,8 @@ export async function getServerSideProps(context) {
             user {
               id
               profile_picture
+              wallet_address
+              name
             }
           }
         }
