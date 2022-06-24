@@ -13,7 +13,7 @@ export default function Webtoons({ webtoons, users, artist }) {
     } else return webtoons;
   };
   return (
-    <div className="container mx-auto mb-6 md:mb-8">
+    <div id="webtoons" className="container mx-auto mb-6 md:mb-8">
       <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
         <div className="relative  mb-5 md:mb-8">
           <div className="flex justify-between">

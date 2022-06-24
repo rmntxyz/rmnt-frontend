@@ -24,7 +24,8 @@ export default function Collectors({ collectors, users }) {
                       users.find((user) => user.id === uniqueCollector)
                     )
                     .map((user) => (
-                      <div
+                      <a
+                        href={"/users/" + user.id}
                         key={user.id}
                         className="group relative hover:cursor-pointer"
                       >
@@ -42,9 +43,12 @@ export default function Collectors({ collectors, users }) {
                           />
                         )}
                         <div className="opacity-0 w-8 transition-opacity absolute text-[#555555] group-hover:opacity-100">
-                          id: {user.id}
+                          <div>{user.name}</div>
+                          <div className="px-3 py-1 min-w-fit bg-lightGray text-white text-xs rounded-full">
+                            {user.wallet_address}
+                          </div>
                         </div>
-                      </div>
+                      </a>
                     ))
                 : collectors
                     .filter(
@@ -55,7 +59,8 @@ export default function Collectors({ collectors, users }) {
                       users.find((user) => user.id === uniqueCollector)
                     )
                     .map((user) => (
-                      <div
+                      <a
+                        href={"/users/" + user.id}
                         key={user.id}
                         className="group relative hover:cursor-pointer"
                       >
@@ -72,10 +77,13 @@ export default function Collectors({ collectors, users }) {
                             className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
                           />
                         )}
-                        <div className="opacity-0 w-8 transition-opacity absolute text-[#555555] group-hover:opacity-100">
-                          id: {user.id}
+                        <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
+                          <div>{user.name}</div>
+                          <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
+                            {user.wallet_address}
+                          </div>
                         </div>
-                      </div>
+                      </a>
                     ))}
             </div>
             {collectors.filter(
@@ -112,24 +120,27 @@ export default function Collectors({ collectors, users }) {
               users.find((user) => user.id === uniqueCollector)
             )
             .map((user) => (
-              <div key={user.id} className="flex">
+              <a href={"/users/" + user.id} key={user.id} className="flex">
                 {user.profile_picture !== null &&
                 user.profile_picture !== undefined &&
                 user.profile_picture !== "" ? (
                   <img
                     src={user.profile_picture}
-                    className="rounded-full border-2 border-white w-8 "
+                    className="rounded-full border-2 border-white w-8 h-8"
                   ></img>
                 ) : (
                   <img
                     src="/profile/profile_1440_768@2x.png"
-                    className="rounded-full border-2 border-white w-8 "
+                    className="rounded-full border-2 border-white w-8 h-8"
                   />
                 )}
                 <div className="transition-opacity text-[#555555]">
-                  id: {user.id}
+                  <div>{user.name}</div>
+                  <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
+                    {user.wallet_address}
+                  </div>
                 </div>
-              </div>
+              </a>
             ))}
         </div>
       ) : null}

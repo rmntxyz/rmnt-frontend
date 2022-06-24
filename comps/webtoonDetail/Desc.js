@@ -48,7 +48,7 @@ export default function Desc({ item, collectors, users }) {
             {item.description}
           </div>
           <a
-            href="/"
+            href={"/artists/" + item.artist.name + "/#webtoons"}
             className="text-[#CEA671] flex items-center gap-1.5 hover:underline md:text-xl"
           >
             <span>View all series</span>
