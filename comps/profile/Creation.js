@@ -38,7 +38,7 @@ export default function Creation({ creations, users, webtoons }) {
               </div>
             </div>
             <div className="truncate font-bold text-base md:text-lg">
-              {item.children[0].id.toString().length < 2 ? (
+              {/* {item.children[0].id.toString().length < 2 ? (
                 <span>
                   #{"0" + item.children[0].id}. {item.children[0].name}
                 </span>
@@ -46,7 +46,8 @@ export default function Creation({ creations, users, webtoons }) {
                 <span>
                   #{item.children[0].id}. {item.children[0].name}
                 </span>
-              )}
+              )} */}
+              {item.children[0].name}
             </div>
             <Collectors collectors={item.collectors} users={users} />
           </div>

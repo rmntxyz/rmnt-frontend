@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 export default function Timer({ timeRemaining }) {
   const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
-
   const calculateTimeLeft = () => {
     let timeLeft = [];
     let remaining = endTime - new Date().getTime();

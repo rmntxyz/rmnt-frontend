@@ -1,11 +1,41 @@
+import { gql } from "@apollo/client";
+import client from "../../apollo";
 import ListItem from "../../comps/home/List/ListItem";
 import Seo from "../../comps/SEO";
-import { webtoonsUrl } from "../../comps/URLs";
+// import { webtoonsUrl } from "../../comps/URLs";
+
+// export async function getServerSideProps() {
+//   const webtoonsRes = await fetch(webtoonsUrl);
+//   const webtoonsData = await webtoonsRes.json();
+//   return { props: { webtoonsData } };
+// }
 
 export async function getServerSideProps() {
-  const webtoonsRes = await fetch(webtoonsUrl);
-  const webtoonsData = await webtoonsRes.json();
-  return { props: { webtoonsData } };
+  const { data } = await client.query({
+    query: gql`
+      query Webtoons_data {
+        allWebtoons {
+          id
+          artist {
+            name
+            profile_picture
+          }
+          title
+          volume
+          pages
+          NFTs {
+            sold
+          }
+          timeRemaining
+        }
+      }
+    `,
+  });
+  return {
+    props: {
+      webtoonsData: data.allWebtoons.slice(),
+    },
+  };
 }
 
 export default function Webtoons({ webtoonsData }) {

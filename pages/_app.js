@@ -12,6 +12,8 @@ import {
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { ApolloProvider } from "@apollo/client";
+import client from "../apollo";
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
@@ -42,14 +44,18 @@ function MyApp({ Component, pageProps }) {
     router.events.on("routeChangeError", handleComplete);
   }, [router]);
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        theme={lightTheme({ accentColor: "#0C0C0C" })}
-        chains={chains}
-      >
-        <Layout>{loading ? <Loading /> : <Component {...pageProps} />}</Layout>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ApolloProvider client={client}>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider
+          theme={lightTheme({ accentColor: "#0C0C0C" })}
+          chains={chains}
+        >
+          <Layout>
+            {loading ? <Loading /> : <Component {...pageProps} />}
+          </Layout>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ApolloProvider>
   );
 }
 

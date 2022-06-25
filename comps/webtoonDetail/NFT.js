@@ -48,7 +48,7 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                       />
                     </a>
                     <div className="font-bold text-lg md:text-xl">
-                      {item.id.toString().length < 2 ? (
+                      {/* {item.id.toString().length < 2 ? (
                         <span>
                           #{"0" + item.id}. {item.name}
                         </span>
@@ -56,7 +56,8 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                         <span>
                           #{item.id}. {item.name}
                         </span>
-                      )}
+                      )} */}
+                      {item.name}
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-1">

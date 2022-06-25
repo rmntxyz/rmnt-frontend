@@ -2,7 +2,7 @@ import { useState } from "react";
 import Collection from "./Collection";
 import Creation from "./Creation";
 
-export default function NFT({ NFTs, users, webtoons, artist }) {
+export default function NFT({ users, artist }) {
   const [openTab, setOpenTab] = useState(1);
   function groupBy(arr, property) {
     return arr.reduce(function (memo, x) {
@@ -13,7 +13,7 @@ export default function NFT({ NFTs, users, webtoons, artist }) {
       return memo;
     }, {});
   }
-  const groups = groupBy(NFTs, "editions_title");
+  const groups = groupBy(artist.NFTs, "editions_title");
   const finalGroups = [];
 
   for (const key in groups) {
@@ -70,15 +70,15 @@ export default function NFT({ NFTs, users, webtoons, artist }) {
           </ul>
           <div>
             <div className={openTab === 1 ? "block" : "hidden"}>
-              {NFTs.length > 0 ? (
+              {artist.NFTs.length > 0 ? (
                 <Creation
                   creations={finalGroups}
                   users={users}
-                  webtoons={webtoons}
+                  webtoons={artist.webtoons}
                 />
               ) : (
                 <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
-                  {artist.name} has not created any RMNT NFT.
+                  {artist.name} has not created any NFT yet.
                 </div>
               )}
             </div>
@@ -87,7 +87,7 @@ export default function NFT({ NFTs, users, webtoons, artist }) {
                 <Collection />
               ) : (
                 <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
-                  {artist.name} does not own any RMNT collection.
+                  {artist.name} does not own any RMNT NFT.
                 </div>
               )}
             </div>

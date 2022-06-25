@@ -13,7 +13,7 @@ export default function Webtoons({ webtoons, users, artist }) {
     } else return webtoons;
   };
   return (
-    <div className="container mx-auto mb-6 md:mb-8">
+    <div id="webtoons" className="container mx-auto mb-6 md:mb-8">
       <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
         <div className="relative  mb-5 md:mb-8">
           <div className="flex justify-between">
@@ -73,7 +73,7 @@ export default function Webtoons({ webtoons, users, artist }) {
           </div>
         ) : (
           <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
-            {artist} has not published any RMNT webtoon.
+            {artist} has not listed any webtoon.
           </div>
         )}
       </div>
