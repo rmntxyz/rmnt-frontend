@@ -7,7 +7,7 @@ export default function Desc({ currentNFT, loading, exchangeRate }) {
   return (
     <div
       className={`${
-        loading ? "opacity-10" : "opacity-100"
+        loading ? "opacity-20" : "opacity-100"
       } container mx-auto my-16 md:my-32`}
     >
       <div className="max-w-[85%] mx-auto flex flex-col lg:max-w-[93%] lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24">

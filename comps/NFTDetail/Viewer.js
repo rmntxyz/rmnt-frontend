@@ -45,7 +45,7 @@ export default function Viewer({
           </button>
         ))}
       </div>
-      <div className="hidden relative mx-auto w-[560px] md:block xl:w-[630px]">
+      <div className="hidden relative mx-auto w-[600px] md:block xl:w-[630px]">
         <div className="flex flex-col scroll">
           <div
             className={`mx-auto mb-14 border bg-white rounded-sm drop-shadow-medium p-5`}
@@ -57,6 +57,7 @@ export default function Viewer({
               placeholder="blur"
               blurDataURL={currentNFT.image_address}
               // onLoadingComplete={handleLoading}
+              layout="responsive"
               className={`${loading ? "opacity-10" : "opacity-100"}`}
             />
             <div className="flex items-center w-[560px] xl:w-[590px]">
@@ -70,7 +71,7 @@ export default function Viewer({
             </div>
           </div>
           {NFT.webtoon.NFTs.length > 1 ? (
-            <div className="mx-auto max-w-[540px] xl:max-w-[610px]">
+            <div className="mx-auto max-w-[570px] xl:max-w-[610px]">
               <div className="flex overflow-x-auto gap-x-5 pb-3">
                 {NFT.webtoon.NFTs.map((item, idx) => (
                   <button
@@ -100,7 +101,7 @@ export default function Viewer({
                   </button>
                 ))}
               </div>
-              <div className="absolute bottom-8 -right-1 h-36 w-10 bg-gradient-to-l from-white"></div>
+              <div className="absolute bottom-8 -right-1 h-36 w-24 bg-gradient-to-l from-white xl:w-10"></div>
             </div>
           ) : null}
         </div>
