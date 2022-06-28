@@ -18,7 +18,7 @@ export default function ListItem({ item }) {
         <div className="relative group">
           <a href={"/webtoons/" + item.id}>
             <Image
-              src={item.pages[0]}
+              src={item.cover_image}
               width={304}
               height={304}
               layout="responsive"

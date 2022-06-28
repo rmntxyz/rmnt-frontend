@@ -39,10 +39,12 @@ export default function TopCard({ data }) {
               <div className="border border-darkGray bg-white rounded-sm p-3.5 drop-shadow-medium md:p-5">
                 <a href={"/webtoons/" + data.id}>
                   <Image
-                    src={data.pages[0]}
+                    src={data.cover_image}
                     width={664}
                     height={664}
                     priority={true}
+                    placeholder="blur"
+                    blurDataURL={data.cover_image}
                     layout="responsive"
                     className="duration-200 hover:scale-125"
                   />

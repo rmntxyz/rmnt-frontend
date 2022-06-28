@@ -50,7 +50,7 @@ export async function getServerSideProps(context) {
             id
             title
             volume
-            pages
+            cover_image
             collectors
           }
           NFTs {

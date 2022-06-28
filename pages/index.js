@@ -27,6 +27,7 @@ export async function getServerSideProps() {
           title
           volume
           pages
+          cover_image
           NFTs {
             sold
           }
@@ -41,6 +42,7 @@ export async function getServerSideProps() {
           title
           volume
           pages
+          cover_image
           NFTs {
             sold
           }

@@ -35,6 +35,7 @@ export async function getServerSideProps(context) {
           name
           wallet_address
           NFTs {
+            id
             name
             editions_title
             image_address
@@ -47,6 +48,7 @@ export async function getServerSideProps(context) {
           volume
         }
         allNFTs {
+          id
           editions_title
           owned_by
         }

@@ -47,7 +47,7 @@ export default function Webtoons({ webtoons, users, artist }) {
                 >
                   <a href={"/webtoons/" + item.id} className="relative group">
                     <Image
-                      src={item.pages[0]}
+                      src={item.cover_image}
                       width={256}
                       height={256}
                       layout="responsive"

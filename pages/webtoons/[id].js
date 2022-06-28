@@ -45,12 +45,14 @@ export async function getServerSideProps(context) {
           title
           volume
           pages
+          cover_image
           description
           collectors
           timeRemaining
           NFTs {
             id
             name
+            sold
             edition
             image_address
             price
