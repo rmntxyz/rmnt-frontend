@@ -112,6 +112,9 @@ export default function Viewer({ NFT, currentNFT, router }) {
                       height={96}
                       src={item.image_address}
                       layout="fixed"
+                      className={`${
+                        item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
+                      } transition-opacity`}
                     />
                     <div className="truncate">{item.name}</div>
                   </button>
