@@ -33,7 +33,10 @@ export default function Viewer({
               src={item.image_address}
               layout="fixed"
             />
-            <div className="flex items-center w-[236px]">
+            <a
+              href={"/webtoons/" + NFT.webtoon.id}
+              className="flex items-center w-[236px]"
+            >
               <div className="truncate text-sm font-extrabold uppercase">
                 {NFT.webtoon.title}
               </div>
@@ -41,7 +44,7 @@ export default function Viewer({
               <div className="whitespace-nowrap text-xs font-extrabold">
                 vol {NFT.webtoon.volume}
               </div>
-            </div>
+            </a>
           </button>
         ))}
       </div>
@@ -58,9 +61,14 @@ export default function Viewer({
               blurDataURL={currentNFT.image_address}
               // onLoadingComplete={handleLoading}
               layout="responsive"
-              className={`${loading ? "opacity-10" : "opacity-100"}`}
+              className={`${
+                loading ? "opacity-0" : "opacity-100"
+              } transition-opacity`}
             />
-            <div className="flex items-center w-[560px] xl:w-[590px]">
+            <a
+              href={"/webtoons/" + NFT.webtoon.id}
+              className="flex items-center mt-3 w-[560px] xl:w-[590px]"
+            >
               <div className="truncate text-2xl font-extrabold uppercase">
                 {NFT.webtoon.title}
               </div>
@@ -68,25 +76,27 @@ export default function Viewer({
               <div className="whitespace-nowrap text-lg font-extrabold">
                 vol {NFT.webtoon.volume}
               </div>
-            </div>
+            </a>
           </div>
           {NFT.webtoon.NFTs.length > 1 ? (
-            <div className="mx-auto max-w-[570px] xl:max-w-[610px]">
+            <div className="mx-auto max-w-[600px] xl:max-w-[610px]">
               <div className="flex overflow-x-auto gap-x-5 pb-3">
                 {NFT.webtoon.NFTs.map((item, idx) => (
                   <button
                     onClick={(e) => {
                       handleLoading();
-                      router.push(
-                        {
-                          query: { id: item.id },
-                        },
-                        undefined,
-                        {
-                          shallow: true,
-                          scroll: false,
-                        }
-                      );
+                      setTimeout(() => {
+                        router.push(
+                          {
+                            query: { id: item.id },
+                          },
+                          undefined,
+                          {
+                            shallow: true,
+                            scroll: false,
+                          }
+                        );
+                      }, 100);
                     }}
                     key={idx}
                     className="w-[96px]"
@@ -101,7 +111,7 @@ export default function Viewer({
                   </button>
                 ))}
               </div>
-              <div className="absolute bottom-8 -right-1 h-36 w-24 bg-gradient-to-l from-white xl:w-10"></div>
+              <div className="absolute bottom-8 -right-1 h-36 w-10 bg-gradient-to-l from-white"></div>
             </div>
           ) : null}
         </div>

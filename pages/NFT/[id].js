@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
         NFT(id: $nftId) {
           id
           webtoon {
+            id
             title
             volume
             NFTs {
@@ -69,7 +70,7 @@ export default function NFTPage({ exchangeRate, NFT }) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 300);
+    }, 150);
   };
   const currentNFT = NFT.webtoon.NFTs.find(
     (item) => item.id === parseInt(router.query.id)
@@ -83,12 +84,8 @@ export default function NFTPage({ exchangeRate, NFT }) {
         loading={loading}
         handleLoading={handleLoading}
       />
-      <Desc
-        currentNFT={currentNFT}
-        loading={loading}
-        exchangeRate={exchangeRate}
-      />
-      <Specs currentNFT={currentNFT} loading={loading} />
+      <Desc currentNFT={currentNFT} exchangeRate={exchangeRate} />
+      <Specs currentNFT={currentNFT} />
     </div>
   );
 }
