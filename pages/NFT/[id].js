@@ -65,25 +65,12 @@ export async function getServerSideProps(context) {
 
 export default function NFTPage({ exchangeRate, NFT }) {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const handleLoading = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 150);
-  };
   const currentNFT = NFT.webtoon.NFTs.find(
     (item) => item.id === parseInt(router.query.id)
   );
   return (
     <div className="overflow-hidden">
-      <Viewer
-        NFT={NFT}
-        currentNFT={currentNFT}
-        router={router}
-        loading={loading}
-        handleLoading={handleLoading}
-      />
+      <Viewer NFT={NFT} currentNFT={currentNFT} router={router} />
       <Desc currentNFT={currentNFT} exchangeRate={exchangeRate} />
       <Specs currentNFT={currentNFT} />
     </div>

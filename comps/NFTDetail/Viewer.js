@@ -1,18 +1,21 @@
 import Image from "next/image";
+import { useState } from "react";
 
-export default function Viewer({
-  NFT,
-  currentNFT,
-  router,
-  loading,
-  handleLoading,
-}) {
+export default function Viewer({ NFT, currentNFT, router }) {
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 200);
+  };
   return (
     <div className="container mx-auto mt-12 max-w-[85%] md:mt-20">
       <div className="flex gap-5 scroll overflow-x-auto md:hidden">
         {NFT.webtoon.NFTs.map((item, idx) => (
           <button
             onClick={(e) => {
+              // handleLoading();
               router.push(
                 {
                   query: { id: item.id },
@@ -32,6 +35,9 @@ export default function Viewer({
               height={236}
               src={item.image_address}
               layout="fixed"
+              className={`${
+                item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
+              } transition-opacity`}
             />
             <a
               href={"/webtoons/" + NFT.webtoon.id}
