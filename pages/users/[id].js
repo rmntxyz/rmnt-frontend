@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
   const { data } = await client.query({
     query: gql`
-      query User($userId: Int!) {
+      query User($userId: String!) {
         user(id: $userId) {
           id
           profile_picture
@@ -61,7 +61,7 @@ export async function getServerSideProps(context) {
       }
     `,
     variables: {
-      userId: parseInt(id),
+      userId: id,
     },
   });
   return {

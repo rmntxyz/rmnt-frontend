@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
   const { data } = await client.query({
     query: gql`
-      query Webtoon($webtoonId: Int!) {
+      query Webtoon($webtoonId: String!) {
         webtoon(id: $webtoonId) {
           artist {
             name
@@ -68,7 +68,7 @@ export async function getServerSideProps(context) {
       }
     `,
     variables: {
-      webtoonId: parseInt(id),
+      webtoonId: id,
     },
   });
   return {

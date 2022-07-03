@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
   const { data } = await client.query({
     query: gql`
-      query NFT($nftId: Int!) {
+      query NFT($nftId: String!) {
         NFT(id: $nftId) {
           id
           webtoon {
@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
       }
     `,
     variables: {
-      nftId: parseInt(id),
+      nftId: id,
     },
   });
   return {
@@ -66,7 +66,7 @@ export async function getServerSideProps(context) {
 export default function NFTPage({ exchangeRate, NFT }) {
   const router = useRouter();
   const currentNFT = NFT.webtoon.NFTs.find(
-    (item) => item.id === parseInt(router.query.id)
+    (item) => item.id === router.query.id
   );
   return (
     <div className="overflow-hidden">
