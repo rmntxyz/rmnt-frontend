@@ -12,7 +12,7 @@ export default function ListAvailable({ NFTs, timeRemaining }) {
     >
       <div className="w-full flex justify-between">
         <div className="whitespace-nowrap">Available NFT</div>
-        {available.length ? (
+        {timeRemaining > 0 ? (
           <div className="whitespace-nowrap">Drop begins in</div>
         ) : null}
       </div>
