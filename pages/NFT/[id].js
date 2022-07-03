@@ -5,6 +5,7 @@ import client from "../../apollo";
 import Desc from "../../comps/NFTDetail/Desc";
 import Specs from "../../comps/NFTDetail/Specs";
 import Viewer from "../../comps/NFTDetail/Viewer";
+import Seo from "../../comps/SEO";
 // import { NFTsUrl } from "../../comps/URLs";
 import { getExchangeRate } from "../api/USD_ETH";
 
@@ -70,6 +71,15 @@ export default function NFTPage({ exchangeRate, NFT }) {
   );
   return (
     <div className="overflow-hidden">
+      <Seo
+        title={
+          currentNFT.name +
+          " - " +
+          NFT.webtoon.title +
+          " by " +
+          currentNFT.created_by
+        }
+      />
       <Viewer NFT={NFT} currentNFT={currentNFT} router={router} />
       <Desc currentNFT={currentNFT} exchangeRate={exchangeRate} />
       <Specs currentNFT={currentNFT} />
