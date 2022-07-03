@@ -57,20 +57,23 @@ export default function Viewer({ NFT, currentNFT, router }) {
       <div className="hidden relative mx-auto w-[600px] md:block xl:w-[630px]">
         <div className="flex flex-col scroll">
           <div
-            className={`mx-auto mb-14 border bg-white rounded-sm drop-shadow-medium p-5`}
+            className={`mx-auto mb-14 border bg-white rounded-sm drop-shadow-medium p-5 `}
           >
-            <Image
-              width={590}
-              height={590}
-              src={currentNFT.image_address}
-              placeholder="blur"
-              blurDataURL={currentNFT.image_address}
-              // onLoadingComplete={handleLoading}
-              layout="responsive"
+            <div
               className={`${
                 loading ? "opacity-0" : "opacity-100"
-              } transition-opacity`}
-            />
+              } relative transition-opacity h-[560px] xl:h-[590px]`}
+            >
+              <Image
+                src={currentNFT.image_address}
+                placeholder="blur"
+                blurDataURL={currentNFT.image_address}
+                layout="fill"
+                // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
+                //   console.log(naturalHeight, naturalWidth);
+                // }}
+              />
+            </div>
             <a
               href={"/webtoons/" + NFT.webtoon.id}
               className="flex items-center mt-3 w-[560px] xl:w-[590px]"
