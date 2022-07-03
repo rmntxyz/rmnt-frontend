@@ -39,7 +39,7 @@ export default function Webtoons({ webtoons, users, artist }) {
         </div>
         {webtoons.length > 0 ? (
           <div className="scroll overflow-x-auto">
-            <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 xl:grid-cols-4">
+            <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
               {array().map((item) => (
                 <div
                   key={item.id}
