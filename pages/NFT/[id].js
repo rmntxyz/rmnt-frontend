@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import client from "../../apollo";
 import Desc from "../../comps/NFTDetail/Desc";
 import Specs from "../../comps/NFTDetail/Specs";
