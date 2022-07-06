@@ -4,35 +4,32 @@ import { useState } from "react";
 export default function Maximizable({ currentNFT, loading }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreen = () => {
+    getOrExitFullscreen();
+    setIsFullscreen(!isFullscreen)
+  }
+  const getOrExitFullscreen = () => {
     if (isFullscreen === false) {
       if (document.getElementById("maximizableElement").requestFullscreen) {
         document.getElementById("maximizableElement").requestFullscreen();
-        setIsFullscreen(true);
       } else if (
         document.getElementById("maximizableElement").mozRequestFullScreen
       ) {
-        document.getElementById("maximizableElement").mozRequestFullScreen();
-        setIsFullscreen(true); // Firefox
+        document.getElementById("maximizableElement").mozRequestFullScreen(); // Firefox
       } else if (
         document.getElementById("maximizableElement").webkitRequestFullscreen
       ) {
-        document.getElementById("maximizableElement").webkitRequestFullscreen();
-        setIsFullscreen(true); // Chrome and Safari
+        document.getElementById("maximizableElement").webkitRequestFullscreen(); // Chrome and Safari
       }
     }
     if (isFullscreen === true) {
       if (document.exitFullscreen) {
         document.exitFullscreen();
-        setIsFullscreen(false);
       } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
-        setIsFullscreen(false);
       } else if (document.mozCancelFullScreen) {
         document.mozCancelFullScreen();
-        setIsFullscreen(false);
       } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-        setIsFullscreen(false);
       }
     }
   };
