@@ -36,7 +36,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
               width={236}
               height={236}
               src={item.image_address}
-              layout="fixed"
+              objectFit="contain"
               className={`${
                 item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
               } transition-opacity`}
@@ -102,7 +102,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
                       width={96}
                       height={96}
                       src={item.image_address}
-                      layout="fixed"
+                      objectFit="contain"
                       className={`${
                         item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
                       } transition-opacity`}

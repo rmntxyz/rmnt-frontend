@@ -1,5 +1,6 @@
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import DetailTimer from "./DetailTimer";
 
 export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
@@ -40,12 +41,13 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                 <div className="bg-white ">
                   <div className=" p-3.5 flex flex-col gap-3.5 md:p-4 ">
                     <a href={"/NFT/" + item.id} className="overflow-hidden">
-                      <img
-                        src={item.image_address}
-                        width={304}
-                        height={304}
-                        className="max-w-[220px] duration-200 hover:scale-125 md:max-w-[304px] lg:max-w-[288px]"
-                      />
+                      <div className="relative h-[220px] w-[220px] duration-200 hover:scale-125 md:h-[304px] md:w-[304px] lg:h-[288px] lg:w-[288px]">
+                        <Image
+                          src={item.image_address}
+                          layout="fill"
+                          objectFit="contain"
+                        />
+                      </div>
                     </a>
                     <div className="font-bold text-lg md:text-xl">
                       {/* {item.id.toString().length < 2 ? (
