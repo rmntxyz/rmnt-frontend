@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import Maximizable from "./Maximizable";
 
 export default function Viewer({ NFT, currentNFT, router }) {
   const [loading, setLoading] = useState(false);
@@ -60,29 +61,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
           <div
             className={`mx-auto mb-14 border bg-white rounded-sm drop-shadow-medium p-5 `}
           >
-            <div
-              onClick={(e) =>
-                document
-                  .getElementById("maximizableElement")
-                  .requestFullscreen()
-              }
-              className={`${
-                loading ? "opacity-0" : "opacity-100"
-              } relative transition-opacity h-[560px] hover:cursor-zoom-in xl:h-[590px]`}
-            >
-              <Image
-                id="maximizableElement"
-                src={currentNFT.image_address}
-                placeholder="blur"
-                blurDataURL={currentNFT.image_address}
-                layout="fill"
-                objectFit="contain"
-                // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
-                //   console.log(naturalHeight, naturalWidth);
-                // }}
-              />
-            </div>
-
+            <Maximizable currentNFT={currentNFT} loading={loading} />
             <a
               href={"/webtoons/" + NFT.webtoon.id}
               className="flex items-center mt-3 w-[560px] xl:w-[590px]"
