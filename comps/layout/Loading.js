@@ -3,7 +3,7 @@ export default function Loading() {
     <div className="w-full p-8 flex items-center justify-center">
       <svg
         role="status"
-        class="w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-ourBlack"
+        className="w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-ourBlack"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

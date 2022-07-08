@@ -86,12 +86,12 @@ export default function Desc({ props }) {
                   className="relative group flex items-center rounded-full border border-ourBlack h-11 py-2 px-2 duration-200 md:px-8 hover:bg-ourBlack "
                 >
                   <img
-                    src="/openSea/openSea_black.png"
-                    className="inline-block group-hover:opacity-0"
+                    src="/openSea/openSea_black_2x.png"
+                    className="inline-block w-[25px] h-[22px] md:w-7 md:h-6 group-hover:opacity-0"
                   />
                   <img
-                    src="/openSea/openSea_white.png"
-                    className="absolute inline-block opacity-0 top-2 left-2 md:left-8 group-hover:opacity-100"
+                    src="/openSea/openSea_white_2x.png"
+                    className="absolute inline-block opacity-0 top-2.5 left-2 w-[25px] h-[22px] md:w-7 md:h-6 md:left-8 group-hover:opacity-100"
                   />
                   <span className="hidden px-2 font-bold group-hover:text-white md:inline-block">
                     OpenSea

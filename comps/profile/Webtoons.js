@@ -39,7 +39,7 @@ export default function Webtoons({ webtoons, users, artist }) {
         </div>
         {webtoons.length > 0 ? (
           <div className="scroll overflow-x-auto">
-            <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 xl:grid-cols-4">
+            <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
               {array().map((item) => (
                 <div
                   key={item.id}
@@ -47,7 +47,7 @@ export default function Webtoons({ webtoons, users, artist }) {
                 >
                   <a href={"/webtoons/" + item.id} className="relative group">
                     <Image
-                      src={item.pages[0]}
+                      src={item.cover_image}
                       width={256}
                       height={256}
                       layout="responsive"

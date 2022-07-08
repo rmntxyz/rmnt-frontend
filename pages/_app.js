@@ -30,19 +30,19 @@ const wagmiClient = createClient({
 });
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const handleStart = () => {
-      setLoading(true);
-    };
-    const handleComplete = () => {
-      setLoading(false);
-    };
-    router.events.on("routeChangeStart", handleStart);
-    router.events.on("routeChangeComplete", handleComplete);
-    router.events.on("routeChangeError", handleComplete);
-  }, [router]);
+  // const router = useRouter();
+  // const [loading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   const handleStart = () => {
+  //     setLoading(true);
+  //   };
+  //   const handleComplete = () => {
+  //     setLoading(false);
+  //   };
+  //   router.events.on("routeChangeStart", handleStart);
+  //   router.events.on("routeChangeComplete", handleComplete);
+  //   router.events.on("routeChangeError", handleComplete);
+  // }, [router]);
   return (
     <ApolloProvider client={client}>
       <WagmiConfig client={wagmiClient}>
@@ -51,7 +51,8 @@ function MyApp({ Component, pageProps }) {
           chains={chains}
         >
           <Layout>
-            {loading ? <Loading /> : <Component {...pageProps} />}
+            {/* {loading ? <Loading /> : <Component {...pageProps} />} */}
+            <Component {...pageProps} />
           </Layout>
         </RainbowKitProvider>
       </WagmiConfig>

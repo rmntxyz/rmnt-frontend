@@ -15,6 +15,7 @@ export default function Creation({ creations, users, webtoons }) {
                 src={item.children[0].image_address}
                 width={256}
                 height={256}
+                objectFit="contain"
                 layout="responsive"
                 className="duration-200 hover:scale-125"
               />

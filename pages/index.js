@@ -27,6 +27,7 @@ export async function getServerSideProps() {
           title
           volume
           pages
+          cover_image
           NFTs {
             sold
           }
@@ -41,10 +42,12 @@ export async function getServerSideProps() {
           title
           volume
           pages
+          cover_image
           NFTs {
             sold
           }
           timeRemaining
+          sold
         }
       }
     `,
@@ -54,8 +57,8 @@ export async function getServerSideProps() {
       topData: data.webtoonTop,
       listData: data.allWebtoons
         .slice()
-        .sort((a, b) => b.id - a.id)
         .sort((a, b) => b.timeRemaining - a.timeRemaining)
+        .sort((a, b) => a.sold - b.sold)
         .filter((item) => item.id !== data.webtoonTop.id),
     },
   };

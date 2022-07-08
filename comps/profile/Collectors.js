@@ -97,7 +97,7 @@ export default function Collectors({ collectors, users }) {
                   className="text-xs text-[#555555] hover:underline md:text-sm"
                 >
                   {!showModal ? (
-                    "view all"
+                    <div className="whitespace-nowrap lg:pl-1 xl:pl-0">view all</div>
                   ) : (
                     <div className="flex items-center gap-1">
                       close
@@ -110,40 +110,41 @@ export default function Collectors({ collectors, users }) {
           </div>
         </div>
       ) : null}
-      {showModal ? (
-        <div className="absolute p-2 rounded-md bottom-12 left-1/2 bg-lightBeige bg-opacity-80">
-          {collectors
-            .filter(
-              (collector, index) => collectors.indexOf(collector) === index
-            )
-            .map((uniqueCollector) =>
-              users.find((user) => user.id === uniqueCollector)
-            )
-            .map((user) => (
-              <a href={"/users/" + user.id} key={user.id} className="flex">
-                {user.profile_picture !== null &&
-                user.profile_picture !== undefined &&
-                user.profile_picture !== "" ? (
-                  <img
-                    src={user.profile_picture}
-                    className="rounded-full border-2 border-white w-8 h-8"
-                  ></img>
-                ) : (
-                  <img
-                    src="/profile/profile_1440_768@2x.png"
-                    className="rounded-full border-2 border-white w-8 h-8"
-                  />
-                )}
-                <div className="transition-opacity text-[#555555]">
-                  <div>{user.name}</div>
-                  <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
-                    {user.wallet_address}
-                  </div>
+
+      <div
+        className={`duration-200 absolute p-2 rounded-md bottom-12 left-1/2 bg-lightBeige bg-opacity-80 ${
+          showModal ? "opacity-100" : "opacity-0"
+        } `}
+      >
+        {collectors
+          .filter((collector, index) => collectors.indexOf(collector) === index)
+          .map((uniqueCollector) =>
+            users.find((user) => user.id === uniqueCollector)
+          )
+          .map((user) => (
+            <a href={"/users/" + user.id} key={user.id} className="flex">
+              {user.profile_picture !== null &&
+              user.profile_picture !== undefined &&
+              user.profile_picture !== "" ? (
+                <img
+                  src={user.profile_picture}
+                  className="rounded-full border-2 border-white w-8 h-8"
+                ></img>
+              ) : (
+                <img
+                  src="/profile/profile_1440_768@2x.png"
+                  className="rounded-full border-2 border-white w-8 h-8"
+                />
+              )}
+              <div className="transition-opacity text-[#555555]">
+                <div>{user.name}</div>
+                <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
+                  {user.wallet_address}
                 </div>
-              </a>
-            ))}
-        </div>
-      ) : null}
+              </div>
+            </a>
+          ))}
+      </div>
     </div>
   );
 }
