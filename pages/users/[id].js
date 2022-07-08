@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
+import Seo from "../../comps/layout/SEO";
 import Desc from "../../comps/profile/Desc";
 import UserNFT from "../../comps/profile/UserNFT";
-import Seo from "../../comps/SEO";
 // import { NFTsUrl, usersUrl, webtoonsUrl } from "../../comps/URLs";
 
 // export async function getServerSideProps(context) {
@@ -78,8 +78,10 @@ export default function User({ user, NFTs, users, webtoons }) {
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />
-      <Desc props={user} />
-      <UserNFT user={user} NFTs={NFTs} users={users} webtoons={webtoons} />
+      <main>
+        <Desc props={user} />
+        <UserNFT user={user} NFTs={NFTs} users={users} webtoons={webtoons} />
+      </main>
     </div>
   );
 }

@@ -61,7 +61,7 @@ export default function TopCard({ data }) {
                   height={664}
                   priority={true}
                   placeholder="blur"
-                  blurDataURL={data.cover_image}
+                  blurDataURL={`/_next/image?url=${data.cover_image}&w=16&q=1`}
                   layout="responsive"
                   className="duration-200 hover:scale-125"
                 />

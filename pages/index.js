@@ -3,7 +3,7 @@ import client from "../apollo";
 import About from "../comps/home/About";
 import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
-import Seo from "../comps/SEO";
+import Seo from "../comps/layout/SEO";
 // import { listUrl, topUrl } from "../comps/URLs";
 
 // export async function getServerSideProps() {
@@ -66,7 +66,7 @@ export async function getServerSideProps() {
 
 export default function Home({ topData, listData }) {
   return (
-    <div className="transition-opacity opacity-100 ease-in">
+    <div>
       <Seo title="Rarement" />
       <main>
         <TopCard data={topData} />

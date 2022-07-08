@@ -5,8 +5,8 @@ export default function Maximizable({ currentNFT, loading }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreen = () => {
     getOrExitFullscreen();
-    setIsFullscreen(!isFullscreen)
-  }
+    setIsFullscreen(!isFullscreen);
+  };
   const getOrExitFullscreen = () => {
     if (isFullscreen === false) {
       if (document.getElementById("maximizableElement").requestFullscreen) {
@@ -46,7 +46,7 @@ export default function Maximizable({ currentNFT, loading }) {
         id="maximizableElement"
         src={currentNFT.image_address}
         placeholder="blur"
-        blurDataURL={currentNFT.image_address}
+        blurDataURL={`/_next/image?url=${currentNFT.image_address}&w=16&q=1`}
         layout="fill"
         objectFit="contain"
         // onLoadingComplete={({ naturalWidth, naturalHeight }) => {

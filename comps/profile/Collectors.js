@@ -97,7 +97,9 @@ export default function Collectors({ collectors, users }) {
                   className="text-xs text-[#555555] hover:underline md:text-sm"
                 >
                   {!showModal ? (
-                    <div className="whitespace-nowrap lg:pl-1 xl:pl-0">view all</div>
+                    <div className="whitespace-nowrap lg:pl-1 xl:pl-0">
+                      view all
+                    </div>
                   ) : (
                     <div className="flex items-center gap-1">
                       close

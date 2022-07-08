@@ -3,9 +3,9 @@ import Desc from "../../comps/webtoonDetail/Desc";
 import NFT from "../../comps/webtoonDetail/NFT";
 import { getExchangeRate } from "../api/USD_ETH";
 // import { usersUrl, webtoonsUrl } from "../../comps/URLs";
-import Seo from "../../comps/SEO";
 import client from "../../apollo";
 import { gql } from "@apollo/client";
+import Seo from "../../comps/layout/SEO";
 
 // export async function getServerSideProps(context) {
 //   const exchangeRate = await getExchangeRate();
@@ -95,13 +95,15 @@ export default function WebtoonPage({
   return (
     <div className="mt-20 overflow-x-hidden">
       <Seo title={`${webtoon.artist.name} - ${webtoon.title}`} />
-      <Viewer data={webtoon.pages} />
-      <Desc item={webtoon} collectors={collectors} users={users} />
-      <NFT
-        NFTs={webtoon.NFTs}
-        timeRemaining={webtoon.timeRemaining}
-        exchangeRate={exchangeRate}
-      />
+      <main>
+        <Viewer data={webtoon.pages} />
+        <Desc item={webtoon} collectors={collectors} users={users} />
+        <NFT
+          NFTs={webtoon.NFTs}
+          timeRemaining={webtoon.timeRemaining}
+          exchangeRate={exchangeRate}
+        />
+      </main>
     </div>
   );
 }
