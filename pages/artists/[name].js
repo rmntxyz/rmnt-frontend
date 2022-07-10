@@ -51,22 +51,37 @@ export async function getServerSideProps(context) {
             title
             volume
             cover_image
-            collectors
-          }
-          NFTs {
-            id
-            webtoon_id
-            name
-            owned_by
-            image_address
-            editions_title
-            user {
+            NFTs {
               id
-              profile_picture
-              wallet_address
               name
+              image_address
+              webtoon {
+                id
+                title
+                volume
+              }
+              user {
+                id
+                profile_picture
+                wallet_address
+                name
+              }
             }
           }
+          # NFTs {
+          #   id
+          #   webtoon_id
+          #   name
+          #   owned_by
+          #   image_address
+          #   # editions_title
+          #   user {
+          #     id
+          #     profile_picture
+          #     wallet_address
+          #     name
+          #   }
+          # }
         }
       }
     `,
@@ -77,7 +92,11 @@ export async function getServerSideProps(context) {
   return {
     props: {
       artist: data.artist,
-      users: data.artist.NFTs.map((NFT) => NFT.user),
+      // users: data.artist.webtoons
+      //   .map((webtoon) => webtoon.NFTs)
+      //   .filter((NFTs) => NFTs.length)
+      //   .flat(1)
+      //   .map((NFT) => NFT.user),
     },
   };
 }
@@ -88,12 +107,8 @@ export default function Artist({ artist, users }) {
       <Seo title={artist.name} />
       <main>
         <Desc props={artist} />
-        <Webtoons
-          webtoons={artist.webtoons}
-          users={users}
-          artist={artist.name}
-        />
-        <NFT users={users} artist={artist} />
+        <Webtoons webtoons={artist.webtoons} artist={artist.name} />
+        <NFT artist={artist} />
       </main>
     </div>
   );

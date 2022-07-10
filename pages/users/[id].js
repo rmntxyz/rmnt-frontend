@@ -35,28 +35,25 @@ export async function getServerSideProps(context) {
           name
           wallet_address
           NFTs {
+            edition
             id
             name
-            editions_title
             image_address
-            webtoon_id
+            webtoon {
+              id
+              title
+              volume
+              NFTs {
+                name
+                user {
+                  id
+                  name
+                  profile_picture
+                  wallet_address
+                }
+              }
+            }
           }
-        }
-        allWebtoons {
-          id
-          title
-          volume
-        }
-        allNFTs {
-          id
-          editions_title
-          owned_by
-        }
-        allUsers {
-          id
-          profile_picture
-          wallet_address
-          name
         }
       }
     `,
@@ -67,20 +64,17 @@ export async function getServerSideProps(context) {
   return {
     props: {
       user: data.user,
-      NFTs: data.allNFTs,
-      users: data.allUsers,
-      webtoons: data.allWebtoons,
     },
   };
 }
 
-export default function User({ user, NFTs, users, webtoons }) {
+export default function User({ user }) {
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />
       <main>
         <Desc props={user} />
-        <UserNFT user={user} NFTs={NFTs} users={users} webtoons={webtoons} />
+        <UserNFT user={user} />
       </main>
     </div>
   );

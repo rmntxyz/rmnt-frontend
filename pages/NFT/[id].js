@@ -37,7 +37,6 @@ export async function getServerSideProps(context) {
               price
               created_by
               edition
-              total_editions
               timeRemaining
               opensea
               metadata
@@ -81,7 +80,7 @@ export default function NFTPage({ exchangeRate, NFT }) {
       />
       <main>
         <Viewer NFT={NFT} currentNFT={currentNFT} router={router} />
-        <Desc currentNFT={currentNFT} exchangeRate={exchangeRate} />
+        <Desc NFT={NFT} currentNFT={currentNFT} exchangeRate={exchangeRate} />
         <Specs currentNFT={currentNFT} />
       </main>
     </div>

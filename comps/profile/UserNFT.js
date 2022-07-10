@@ -18,9 +18,9 @@ export default function UserNFT({ user, NFTs, users, webtoons }) {
             {user.NFTs.length > 0 ? (
               <Collection
                 collections={user.NFTs}
-                users={users}
-                webtoons={webtoons}
-                NFTs={NFTs}
+                // users={users}
+                // webtoons={webtoons}
+                // NFTs={NFTs}
               />
             ) : (
               <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">

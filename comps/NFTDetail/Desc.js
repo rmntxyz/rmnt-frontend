@@ -2,7 +2,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Timer from "../home/TopCard/Timer";
 
-export default function Desc({ currentNFT, exchangeRate }) {
+export default function Desc({ NFT, currentNFT, exchangeRate }) {
   return (
     <div className={`container mx-auto my-16 md:my-32`}>
       <div className="max-w-[85%] mx-auto flex flex-col lg:max-w-[93%] lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24">
@@ -63,7 +63,11 @@ export default function Desc({ currentNFT, exchangeRate }) {
                 />
               </span>
               <span>
-                Edition {currentNFT.edition} of {currentNFT.total_editions}
+                Edition {currentNFT.edition} of{" "}
+                {
+                  NFT.webtoon.NFTs.filter((NFT) => NFT.name === currentNFT.name)
+                    .length
+                }
               </span>
             </div>
             <div>

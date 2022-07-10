@@ -47,7 +47,6 @@ export async function getServerSideProps(context) {
           pages
           cover_image
           description
-          collectors
           timeRemaining
           NFTs {
             id
@@ -75,29 +74,18 @@ export async function getServerSideProps(context) {
     props: {
       exchangeRate: exchangeRate,
       webtoon: data.webtoon,
-      collectors: data.webtoon.collectors
-        .slice()
-        .filter(
-          (item, index) => data.webtoon.collectors.indexOf(item) === index
-        ),
-
       users: data.webtoon.NFTs.map((NFT) => NFT.user),
     },
   };
 }
 
-export default function WebtoonPage({
-  exchangeRate,
-  webtoon,
-  collectors,
-  users,
-}) {
+export default function WebtoonPage({ exchangeRate, webtoon, users }) {
   return (
     <div className="mt-20 overflow-x-hidden">
       <Seo title={`${webtoon.artist.name} - ${webtoon.title}`} />
       <main>
         <Viewer data={webtoon.pages} />
-        <Desc item={webtoon} collectors={collectors} users={users} />
+        <Desc item={webtoon} users={users} />
         <NFT
           NFTs={webtoon.NFTs}
           timeRemaining={webtoon.timeRemaining}

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Collectors from "./Collectors";
 
-export default function Desc({ item, collectors, users }) {
+export default function Desc({ item, users }) {
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
       return await navigator.clipboard.writeText(text);
@@ -108,7 +108,8 @@ export default function Desc({ item, collectors, users }) {
               </a>
             </div>
           </div>
-          <Collectors collectors={collectors} users={users} />
+          {console.log(users)}
+          <Collectors users={users} />
         </div>
       </div>
     </div>

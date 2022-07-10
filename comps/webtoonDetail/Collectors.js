@@ -1,8 +1,17 @@
-export default function Collectors({ collectors, users }) {
+export default function Collectors({ users }) {
+  const uniqueIds = [];
+  const uniqueUsers = users.filter((item) => {
+    const isDuplicate = uniqueIds.includes(item.id);
+    if (!isDuplicate) {
+      uniqueIds.push(item.id);
+      return true;
+    }
+    return false;
+  });
   return (
     <div
       className={`${
-        collectors && collectors.length
+        uniqueUsers && uniqueUsers.length
           ? "bg-white text-ourBlack"
           : "bg-darkGray text-white"
       }  border-2 border-mediumGray flex flex-col p-6 md:p-8`}
@@ -14,28 +23,23 @@ export default function Collectors({ collectors, users }) {
       </div>
       <div
         className={`${
-          collectors &&
-          collectors.length &&
+          uniqueUsers &&
+          uniqueUsers.length &&
           "grid grid-cols-3 gap-x-5 gap-y-3 sm:grid-cols-5"
         }`}
       >
-        {collectors && collectors.length ? (
-          collectors.map((collector, idx) => (
+        {uniqueUsers && uniqueUsers.length ? (
+          uniqueUsers.map((user, idx) => (
             <a
-              href={"/users/" + users.find((user) => user.id === collector).id}
+              href={"/users/" + user.id}
               key={idx}
               className="group relative hover:cursor-pointer"
             >
-              {users.find((user) => user.id === collector).profile_picture !==
-                null &&
-              users.find((user) => user.id === collector).profile_picture !==
-                undefined &&
-              users.find((user) => user.id === collector).profile_picture !==
-                "" ? (
+              {user.profile_picture !== null &&
+              user.profile_picture !== undefined &&
+              user.profile_picture !== "" ? (
                 <img
-                  src={
-                    users.find((user) => user.id === collector).profile_picture
-                  }
+                  src={user.profile_picture}
                   className="rounded-full col-span-1"
                 />
               ) : (
@@ -45,9 +49,9 @@ export default function Collectors({ collectors, users }) {
                 />
               )}
               <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
-                <div>{users.find((user) => user.id === collector).name}</div>
+                <div>{user.name}</div>
                 <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
-                  {users.find((user) => user.id === collector).wallet_address}
+                  {user.wallet_address}
                 </div>
               </div>
             </a>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Collectors from "./Collectors";
 
-export default function Webtoons({ webtoons, users, artist }) {
+export default function Webtoons({ webtoons, artist }) {
   const firstWebtoons = webtoons.slice(0, 4);
   const [isClicked, setIsClicked] = useState(false);
   const array = () => {
@@ -66,7 +66,7 @@ export default function Webtoons({ webtoons, users, artist }) {
                       vol {item.volume}
                     </div>
                   </div>
-                  <Collectors collectors={item.collectors} users={users} />
+                  <Collectors users={item.NFTs.map((NFT) => NFT.user)} />
                 </div>
               ))}
             </div>
