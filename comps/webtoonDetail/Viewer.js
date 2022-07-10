@@ -16,6 +16,11 @@ import ProgressBar from "./ProgressBar";
 export default function Viewer({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [loading, setLoading] = useState(true);
+  console.log(loading);
+  const handleLoading = () => {
+    setLoading(false);
+  };
   return (
     <div className="container mx-auto max-w-[800px]">
       <div className="flex flex-col items-center justify-center ">
@@ -61,6 +66,7 @@ export default function Viewer({ data }) {
             onSlideChange={(swiper) => setCurrentPage(swiper.realIndex + 1)}
             observer={true}
             observeParents={true}
+            onSwiper={handleLoading}
             className="w-[80%] border border-darkGray bg-white rounded-sm drop-shadow-medium lg:max-w-[590px]"
           >
             {data.map((item, idx) => (
@@ -69,6 +75,10 @@ export default function Viewer({ data }) {
                   width={590}
                   height={590}
                   src={item}
+                  style={{
+                    filter: loading ? "blur(20px)" : "none",
+                    transition: loading ? "none" : "filter 0.3s ease-out",
+                  }}
                   className="p-3.5 md:p-5 "
                 />
               </SwiperSlide>
