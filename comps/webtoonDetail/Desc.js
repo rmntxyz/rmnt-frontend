@@ -108,7 +108,6 @@ export default function Desc({ item, users }) {
               </a>
             </div>
           </div>
-          {console.log(users)}
           <Collectors users={users} />
         </div>
       </div>
