@@ -1,6 +1,7 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Desc({ props }) {
@@ -27,6 +28,11 @@ export default function Desc({ props }) {
       });
   };
 
+  const [loading, setLoading] = useState(true);
+  const handleLoading = () => {
+    setLoading(false);
+  };
+
   return (
     <div>
       <div
@@ -35,25 +41,39 @@ export default function Desc({ props }) {
           props.background_picture !== null &&
           props.background_picture !== undefined &&
           props.background_picture !== ""
-            ? { backgroundImage: "url(" + props.background_picture + ")" }
-            : null
+            ? {
+                backgroundImage: "url(" + props.background_picture + ")",
+                filter: loading ? "blur(20px)" : "none",
+                transition: loading ? "none" : "filter 0.3s ease-out",
+              }
+            : {
+                filter: loading ? "blur(20px)" : "none",
+                transition: loading ? "none" : "filter 0.3s ease-out",
+              }
         }
       ></div>
       <div className="relative container mx-auto">
         <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
-          {props.profile_picture !== null &&
-          props.profile_picture !== undefined &&
-          props.profile_picture !== "" ? (
-            <img
-              src={props.profile_picture}
-              className="absolute -top-24 border-8 border-white rounded-full w-32 aspect-square drop-shadow-small md:w-44 md:-top-36"
-            />
-          ) : (
-            <img
-              src="/profile/profile_1440_768@2x.png"
-              className="absolute -top-24 border-8 border-white rounded-full w-32 aspect-square drop-shadow-small md:w-44 md:-top-36"
-            />
-          )}
+          <div className="absolute -top-24 border-8 border-white rounded-full w-32 aspect-square drop-shadow-small overflow-hidden md:w-44 md:-top-36">
+            <div className="relative w-full h-full">
+              <Image
+                onLoadingComplete={handleLoading}
+                src={
+                  props.profile_picture !== null &&
+                  props.profile_picture !== undefined &&
+                  props.profile_picture !== ""
+                    ? props.profile_picture
+                    : "/profile/profile_1440_768@2x.png"
+                }
+                layout="fill"
+                objectFit="contain"
+                style={{
+                  filter: loading ? "blur(20px)" : "none",
+                  transition: loading ? "none" : "filter 0.3s ease-out",
+                }}
+              />
+            </div>
+          </div>
           <div className="flex flex-col gap-5 md:gap-8">
             <div className="flex justify-between mt-12 md:mt-20">
               <div className="flex flex-col gap-2.5">

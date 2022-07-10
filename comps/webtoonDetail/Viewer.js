@@ -17,7 +17,6 @@ export default function Viewer({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [loading, setLoading] = useState(true);
-  console.log(loading);
   const handleLoading = () => {
     setLoading(false);
   };
