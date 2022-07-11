@@ -54,24 +54,26 @@ export default function Desc({ props }) {
       ></div>
       <div className="relative container mx-auto">
         <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
-          <div className="absolute -top-24 border-8 border-white rounded-full w-32 h-32 drop-shadow-small overflow-hidden mb-6 md:w-44 md:h-44 md:-top-36">
-            <div className="relative w-full h-full">
-              <Image
-                onLoadingComplete={handleLoading}
-                src={
-                  props.profile_picture !== null &&
-                  props.profile_picture !== undefined &&
-                  props.profile_picture !== ""
-                    ? props.profile_picture
-                    : "/profile/profile_1440_768@2x.png"
-                }
-                layout="fill"
-                objectFit="contain"
-                style={{
-                  filter: loading ? "blur(20px)" : "none",
-                  transition: loading ? "none" : "filter 0.3s ease-out",
-                }}
-              />
+          <div className="absolute -top-24 border-8 border-white rounded-full w-32 h-32 drop-shadow-small md:w-44 md:h-44 md:-top-36">
+            <div className="overflow-hidden w-full h-full rounded-full">
+              <div className="relative w-full h-full">
+                <Image
+                  onLoadingComplete={handleLoading}
+                  src={
+                    props.profile_picture !== null &&
+                    props.profile_picture !== undefined &&
+                    props.profile_picture !== ""
+                      ? props.profile_picture
+                      : "/profile/profile_1440_768@2x.png"
+                  }
+                  layout="fill"
+                  objectFit="contain"
+                  style={{
+                    filter: loading ? "blur(20px)" : "none",
+                    transition: loading ? "none" : "filter 0.3s ease-out",
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-5 md:gap-8">
