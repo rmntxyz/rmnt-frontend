@@ -37,6 +37,8 @@ export default function Viewer({ NFT, currentNFT, router }) {
               height={236}
               src={item.image_address}
               objectFit="contain"
+              placeholder="blur"
+              blurDataURL={`/_next/image?url=${currentNFT.image_address}&w=16&q=1`}
               className={`${
                 item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
               } transition-opacity`}
