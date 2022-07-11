@@ -56,7 +56,7 @@ export default function Desc({ props }) {
         <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
           <div className="absolute -top-24 border-8 border-white rounded-full w-32 h-32 drop-shadow-small md:w-44 md:h-44 md:-top-36">
             <div className="overflow-hidden w-full h-full rounded-full">
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full rounded-full overflow-hidden">
                 <Image
                   onLoadingComplete={handleLoading}
                   src={
