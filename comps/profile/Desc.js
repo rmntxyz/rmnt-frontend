@@ -54,8 +54,8 @@ export default function Desc({ props }) {
       ></div>
       <div className="relative container mx-auto">
         <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
-          <div className="absolute -top-24 border-8 border-white rounded-full w-32 h-32 drop-shadow-small md:w-44 md:h-44 md:-top-36">
-            <div className="relative w-full h-full rounded-full overflow-hidden">
+          <div className="absolute -top-24 border-8 border-white rounded-full w-32 h-32 overflow-hidden drop-shadow-small md:w-44 md:h-44 md:-top-36">
+            <div className="relative w-full h-full">
               <Image
                 onLoadingComplete={handleLoading}
                 src={
