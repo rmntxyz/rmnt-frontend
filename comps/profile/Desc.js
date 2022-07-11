@@ -68,7 +68,7 @@ export default function Desc({ props }) {
                 layout="fill"
                 objectFit="contain"
                 style={{
-                  filter: loading ? "blur(20px)" : "none",
+                  filter: loading ? "blur(50px)" : "none",
                   transition: loading ? "none" : "filter 0.3s ease-out",
                 }}
                 className="rounded-full"
