@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Maximizable({ currentNFT, loading }) {
+  //Enable maximization of the selected NFT
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreen = () => {
     getOrExitFullscreen();

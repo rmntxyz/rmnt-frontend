@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
 export default function ListTimer({ timeRemaining }) {
+  //Fetch the time remaining from the server and set the drop time on the client side
   const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
 
+  //Use the client-side drop time to build the countdown timer
   const calculateTimeLeft = () => {
     let timeLeft = [];
     let remaining = endTime - new Date().getTime();

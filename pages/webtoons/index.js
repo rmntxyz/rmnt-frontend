@@ -45,8 +45,6 @@ export default function Webtoons({ webtoonsData }) {
       <Seo title="Webtoons | Rarement" />
       <main className="grid mx-8 my-10 gap-x-5 gap-y-10 sm:grid-cols-2 sm:my-20 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 xl:grid-cols-4">
         {webtoonsData
-          // .sort((a, b) => b.id - a.id)
-          // .sort((a, b) => a.sold - b.sold)
           .sort((a, b) => b.timeRemaining - a.timeRemaining)
           .sort((a, b) => a.sold - b.sold)
           .map((item) => (

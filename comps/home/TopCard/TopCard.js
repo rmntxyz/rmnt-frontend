@@ -1,27 +1,9 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Loading from "../../layout/Loading";
 import Available from "./Available";
 import Timer from "./Timer";
 
 export default function TopCard({ data }) {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const handleStart = () => {
-      setLoading(true);
-    };
-    const handleComplete = () => {
-      setLoading(false);
-    };
-    router.events.on("routeChangeStart", handleStart);
-    router.events.on("routeChangeComplete", handleComplete);
-    router.events.on("routeChangeError", handleComplete);
-  }, [router]);
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="bg-hero bg-cover bg-top pt-4">
       <div className="container mx-auto ">
         <div className="m-9 flex flex-col md:my-12 lg:m-20 lg:grid lg:grid-flow-col lg:grid-cols-2 lg:items-center">
@@ -36,6 +18,7 @@ export default function TopCard({ data }) {
                   width={41.33}
                   height={41.33}
                   className="rounded-full"
+                  alt="Rarement Artist Profile Image"
                 />
               </div>
               <div className="text-sm ml-1 md:text-xl md:ml-1.5">
@@ -64,6 +47,7 @@ export default function TopCard({ data }) {
                   blurDataURL={`/_next/image?url=${data.cover_image}&w=16&q=1`}
                   layout="responsive"
                   className="duration-200 hover:scale-125"
+                  alt="Rarement Webtoon Cover Image"
                 />
               </a>
             </div>

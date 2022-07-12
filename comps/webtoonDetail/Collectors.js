@@ -1,4 +1,7 @@
+import Image from "next/image";
+
 export default function Collectors({ users }) {
+  //Remove duplicate collectors from the array
   const uniqueIds = [];
   const uniqueUsers = users.filter((item) => {
     const isDuplicate = uniqueIds.includes(item.id);
@@ -35,19 +38,19 @@ export default function Collectors({ users }) {
               key={idx}
               className="group relative hover:cursor-pointer"
             >
-              {user.profile_picture !== null &&
-              user.profile_picture !== undefined &&
-              user.profile_picture !== "" ? (
-                <img
-                  src={user.profile_picture}
-                  className="rounded-full col-span-1"
-                />
-              ) : (
-                <img
-                  src="/profile/profile_1440_768@2x.png"
-                  className="rounded-full col-span-1"
-                />
-              )}
+              <Image
+                src={
+                  user.profile_picture !== null &&
+                  user.profile_picture !== undefined &&
+                  user.profile_picture !== ""
+                    ? user.profile_picture
+                    : "/profile/profile_1440_768@2x.png"
+                }
+                width={122.4}
+                height={122.4}
+                className="rounded-full col-span-1"
+                alt="Rarement NFT Collector Profile Picture"
+              />
               <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
                 <div>{user.name}</div>
                 <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">

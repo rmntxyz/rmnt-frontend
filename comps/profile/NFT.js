@@ -3,12 +3,17 @@ import Collection from "./Collection";
 import Creation from "./Creation";
 
 export default function NFT({ artist }) {
+  //Enable navigation between the Creation & Collection tabs
   const [openTab, setOpenTab] = useState(1);
+
+  //Place the artist's NFTs into one single array
   const artistNFTs = artist.webtoons
     .map((webtoon) => webtoon.NFTs)
     .filter((NFTs) => NFTs.length)
     .flat(1);
-  function groupBy(arr, property) {
+
+  //Group the NFTs by name (so NFTs with multiple editions will be displayed as one single card as opposed to multiple cards)
+  function groupByName(arr, property) {
     return arr.reduce(function (memo, x) {
       if (!memo[x[property]]) {
         memo[x[property]] = [];
@@ -17,7 +22,7 @@ export default function NFT({ artist }) {
       return memo;
     }, {});
   }
-  const groups = groupBy(artistNFTs, "name");
+  const groups = groupByName(artistNFTs, "name");
   const finalGroups = [];
 
   for (const key in groups) {
@@ -43,6 +48,7 @@ export default function NFT({ artist }) {
                   setOpenTab(1);
                 }}
                 role="tab"
+                aria-label="View Creations"
               >
                 Creation {finalGroups.length}
               </button>
@@ -60,6 +66,7 @@ export default function NFT({ artist }) {
                   setOpenTab(2);
                 }}
                 role="tab"
+                aria-label="View Collections"
               >
                 Collection {artist.collection.length}
               </button>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Maximizable from "./Maximizable";
 
 export default function Viewer({ NFT, currentNFT, router }) {
+  //Add blur to the image being loaded
   const [loading, setLoading] = useState(false);
   const handleLoading = () => {
     setLoading(true);
@@ -16,8 +17,9 @@ export default function Viewer({ NFT, currentNFT, router }) {
       <div className="flex gap-5 scroll overflow-x-auto md:hidden">
         {NFT.webtoon.NFTs.map((item, idx) => (
           <button
+            aria-label="Select NFT"
             onClick={(e) => {
-              // handleLoading();
+              // Enable shallow routing to the selected NFT page
               router.push(
                 {
                   query: { id: item.id },
@@ -33,6 +35,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
             className="border bg-white rounded-sm drop-shadow-medium p-3.5"
           >
             <Image
+              alt="Rarement NFT Image"
               width={236}
               height={236}
               src={item.image_address}
@@ -83,6 +86,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
                 {NFT.webtoon.NFTs.map((item, idx) => (
                   <button
                     onClick={(e) => {
+                      //Delay routing for the blur effect
                       handleLoading();
                       setTimeout(() => {
                         router.push(
@@ -99,11 +103,14 @@ export default function Viewer({ NFT, currentNFT, router }) {
                     }}
                     key={idx}
                     className="w-[96px]"
+                    aria-label="Select NFT"
                   >
                     <Image
+                      alt="Rarement NFT Preview Button"
                       width={96}
                       height={96}
                       src={item.image_address}
+                      layout="responsive"
                       objectFit="contain"
                       className={`${
                         item.id !== currentNFT.id ? "opacity-40" : "opacity-100"

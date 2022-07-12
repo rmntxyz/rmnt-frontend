@@ -14,8 +14,10 @@ import { useState } from "react";
 import ProgressBar from "./ProgressBar";
 
 export default function Viewer({ data }) {
+  //Identify current page for the progress bar
   const [currentPage, setCurrentPage] = useState(1);
 
+  //Add blur to the image being loaded
   const [loading, setLoading] = useState(true);
   const handleLoading = () => {
     setLoading(false);

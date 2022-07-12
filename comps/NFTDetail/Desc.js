@@ -1,5 +1,6 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Timer from "../home/TopCard/Timer";
 
 export default function Desc({ NFT, currentNFT, exchangeRate }) {
@@ -18,16 +19,26 @@ export default function Desc({ NFT, currentNFT, exchangeRate }) {
               <a
                 href={currentNFT.opensea}
                 target="_blank"
-                className="relative group w-[51px] mr-1 md:w-16"
+                className="relative group w-[51px] h-[51px] mr-1 md:w-16 md:h-16"
               >
-                <img
-                  src="/openSea/opensea_64_1440_768@2x_black.png"
-                  className="group-hover:opacity-0 duration-200 "
-                />
-                <img
-                  src="/openSea/opensea_64_1440_768@2x_white.png"
-                  className="absolute top-0 left-0 opacity-0 duration-200 group-hover:opacity-100"
-                />
+                <div className="relative w-full h-full group-hover:opacity-0 duration-200 ">
+                  <Image
+                    src="/openSea/opensea_64_1440_768@2x_black.png"
+                    layout="fill"
+                    objectFit="contain"
+                    alt="Open Sea Icon"
+                  />
+                </div>
+                <div className="absolute top-0 left-0 opacity-0 duration-200 w-[51px] h-[51px] mr-1 group-hover:opacity-100 md:w-16 md:h-16">
+                  <div className="relative w-full h-full ">
+                    <Image
+                      src="/openSea/opensea_64_1440_768@2x_white.png"
+                      layout="fill"
+                      objectFit="contain"
+                      alt="Open Sea Icon"
+                    />
+                  </div>
+                </div>
               </a>
               <span className="text-lg font-extrabold md:text-2xl">
                 Soldout

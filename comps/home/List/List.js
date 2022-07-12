@@ -4,6 +4,7 @@ import { useState } from "react";
 import ListItem from "./ListItem";
 
 export default function List({ data }) {
+  //Paginate webtoon cards
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const pages = [];
@@ -15,6 +16,7 @@ export default function List({ data }) {
   const indexofFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexofFirstItem, indexOfLastItem);
 
+  //Enable navigation between pages
   const handleNextbtn = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -47,6 +49,7 @@ export default function List({ data }) {
                 onClick={handlePrevbtn}
                 disabled={currentPage === pages[0] ? true : false}
                 className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                aria-label="Previous"
               >
                 <FontAwesomeIcon icon={faArrowLeft} />
               </button>
@@ -56,6 +59,7 @@ export default function List({ data }) {
                   currentPage === pages[pages.length - 1] ? true : false
                 }
                 className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                aria-label="Next"
               >
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>

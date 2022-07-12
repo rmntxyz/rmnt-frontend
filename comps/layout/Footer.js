@@ -34,6 +34,7 @@ const InLinks = [
 ].map(({ href, text }) => <Link href={href}>{text}</Link>);
 
 export default function Footer() {
+  //Footer icons turn white on hover
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -55,6 +56,7 @@ export default function Footer() {
               width={43}
               height={43}
               layout="fixed"
+              alt="Instagram"
             />
           </a>
           {OutLinks.map((link, idx) => (

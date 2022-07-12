@@ -2,6 +2,7 @@ import Image from "next/image";
 import Collectors from "./Collectors";
 
 export default function Collection({ collections }) {
+  //Remove duplicate NFT names from the array (so if the user has purchased multiple editions of a single NFT, only one card will be displayed as opposed to multiple cards)
   const uniqueIds = [];
   const uniqueCollections = collections.filter((item) => {
     const isDuplicate = uniqueIds.includes(item.name);

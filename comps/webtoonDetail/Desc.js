@@ -4,10 +4,12 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import { useState } from "react";
 import Collectors from "./Collectors";
 
 export default function Desc({ item, users }) {
+  //Copy wallet address
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
       return await navigator.clipboard.writeText(text);
@@ -19,7 +21,7 @@ export default function Desc({ item, users }) {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyClick = () => {
-    copyTextToClipboard(item.artist.wallet_address)
+    copyTextToClipboard(document.getElementById("to be copied").textContent)
       .then(() => {
         setIsCopied(true);
         setTimeout(() => {
@@ -58,10 +60,16 @@ export default function Desc({ item, users }) {
         <div className="flex flex-col gap-5 md:gap-8">
           <div className="flex flex-col gap-4 border-2 border-mediumGray">
             <div className="flex gap-2.5 py-2.5 px-3.5 bg-[#F3F3F3] items-center md:p-5">
-              <a href={"/artists/" + item.artist.name}>
-                <img
+              <a
+                href={"/artists/" + item.artist.name}
+                className="relative rounded-full w-16 h-16 md:w-20 md:h-20"
+              >
+                <Image
                   src={item.artist.profile_picture}
-                  className="rounded-full w-16 h-16 md:w-20 md:h-20"
+                  layout="fill"
+                  objectFit="contain"
+                  alt="Rarement Artist Profile Picture"
+                  className="rounded-full"
                 />
               </a>
               <div className="flex flex-col gap-1.5">
@@ -74,7 +82,11 @@ export default function Desc({ item, users }) {
                   onClick={handleCopyClick}
                   className="group flex items-center"
                 >
-                  <button className="px-3 py-1 bg-lightGray text-white text-xs rounded-full md:text-base">
+                  <button
+                    id="to be copied"
+                    aria-label="Copy Wallet Adress"
+                    className="px-3 py-1 bg-lightGray text-white text-xs rounded-full md:text-base"
+                  >
                     {item.artist.wallet_address}
                   </button>
                   <button className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100">
@@ -92,10 +104,14 @@ export default function Desc({ item, users }) {
                 target="_blank"
                 className="flex items-center gap-0.5 text-xs hover:underline md:text-base"
               >
-                <img
-                  src="/instagram/artist_instagram_1440_768@2x.png"
-                  className="w-5 md:w-6"
-                />
+                <div className="relative w-5 h-5 md:w-6 md:h-6">
+                  <Image
+                    src="/instagram/artist_instagram_1440_768@2x.png"
+                    layout="fill"
+                    objectFit="contain"
+                    alt="Instagram Icon"
+                  />
+                </div>
                 <span>@{item.artist.instagram}</span>
               </a>
               <a

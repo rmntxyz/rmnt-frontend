@@ -1,9 +1,13 @@
 import { faXmarkSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Collectors({ users }) {
+  //Enable collector list pop-up
   const [showModal, setShowModal] = useState(false);
+
+  //Remove duplicate collectors from the array
   const uniqueIds = [];
   const uniqueUsers = users.filter((item) => {
     const isDuplicate = uniqueIds.includes(item.id);
@@ -26,19 +30,22 @@ export default function Collectors({ users }) {
                   key={user.id}
                   className="group relative hover:cursor-pointer"
                 >
-                  {user.profile_picture !== null &&
-                  user.profile_picture !== undefined &&
-                  user.profile_picture !== "" ? (
-                    <img
-                      src={user.profile_picture}
-                      className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
-                    ></img>
-                  ) : (
-                    <img
-                      src="/profile/profile_1440_768@2x.png"
-                      className="rounded-full border-2 border-white min-w-[28px] md:min-w-[36px] lg:min-w-[32px]"
+                  <div className="rounded-full border-2 border-white  w-[28px] h-[28px] md:w-[36px] md:h-[36px] lg:w-[32px] lg:h-[32px]">
+                    <Image
+                      src={
+                        user.profile_picture !== null &&
+                        user.profile_picture !== undefined &&
+                        user.profile_picture !== ""
+                          ? user.profile_picture
+                          : "/profile/profile_1440_768@2x.png"
+                      }
+                      width={36}
+                      height={36}
+                      layout="responsive"
+                      className="rounded-full "
+                      alt="Rarement NFT Collector Profile Picture"
                     />
-                  )}
+                  </div>
                   <div className="opacity-0 w-8 transition-opacity absolute text-[#555555] group-hover:opacity-100">
                     <div>{user.name}</div>
                     <div className="px-3 py-1 min-w-fit bg-lightGray text-white text-xs rounded-full">
@@ -55,6 +62,7 @@ export default function Collectors({ users }) {
                     setShowModal(!showModal);
                   }}
                   className="text-xs text-[#555555] hover:underline md:text-sm"
+                  aria-label="View All Collector List"
                 >
                   {!showModal ? (
                     <div className="whitespace-nowrap lg:pl-1 xl:pl-0">
@@ -80,19 +88,22 @@ export default function Collectors({ users }) {
       >
         {uniqueUsers.map((user) => (
           <a href={"/users/" + user.id} key={user.id} className="flex">
-            {user.profile_picture !== null &&
-            user.profile_picture !== undefined &&
-            user.profile_picture !== "" ? (
-              <img
-                src={user.profile_picture}
-                className="rounded-full border-2 border-white w-8 h-8"
-              ></img>
-            ) : (
-              <img
-                src="/profile/profile_1440_768@2x.png"
-                className="rounded-full border-2 border-white w-8 h-8"
-              />
-            )}
+            <div className="rounded-full border-2 border-white w-8 h-8">
+              <Image
+                src={
+                  user.profile_picture !== null &&
+                  user.profile_picture !== undefined &&
+                  user.profile_picture !== ""
+                    ? user.profile_picture
+                    : "/profile/profile_1440_768@2x.png"
+                }
+                width={32}
+                height={32}
+                layout="responsive"
+                className="rounded-full"
+                alt="Rarement NFT Collector Profile Picture"
+              ></Image>
+            </div>
             <div className="transition-opacity text-[#555555]">
               <div>{user.name}</div>
               <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">

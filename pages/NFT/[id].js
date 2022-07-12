@@ -63,6 +63,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function NFTPage({ exchangeRate, NFT }) {
+  //Use router to identify the currently displayed NFT
   const router = useRouter();
   const currentNFT = NFT.webtoon.NFTs.find(
     (item) => item.id === router.query.id

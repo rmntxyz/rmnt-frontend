@@ -31,10 +31,14 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                   </div>
                 ) : (
                   <div className="flex gap-1 items-center bg-mediumBeige text-ourBlack text-sm md:text-base py-3.5 px-4">
-                    <img
-                      src="/icons/nft_available_1440_768@2x.png"
-                      className="w-4 md:w-5"
-                    />
+                    <div className="relative h-4 w-4 md:h-5 md:w-5">
+                      <Image
+                        src="/icons/nft_available_1440_768@2x.png"
+                        layout="fill"
+                        objectFit="contain"
+                        alt="Available Icon"
+                      />
+                    </div>
                     <span>Available</span>
                   </div>
                 )}
@@ -46,6 +50,7 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                           src={item.image_address}
                           layout="fill"
                           objectFit="contain"
+                          alt="Rarement NFT Image"
                         />
                       </div>
                     </a>
@@ -74,16 +79,26 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                         <a
                           href={item.opensea}
                           target="_blank"
-                          className="relative group bg-ourBlack rounded-full border border-ourBlack w-11 h-11 p-2 duration-200 hover:bg-white "
+                          className="relative group w-11 h-11 duration-200"
                         >
-                          <img
-                            src="/openSea/openSea_white.png"
-                            className="group-hover:opacity-0"
-                          />
-                          <img
-                            src="/openSea/openSea_black.png"
-                            className="absolute opacity-0 top-1.5 left-2 group-hover:opacity-100"
-                          />
+                          <div className="relative w-full h-full group-hover:opacity-0">
+                            <Image
+                              src="/openSea/opensea_64_1440_768@2x_black.png"
+                              layout="fill"
+                              objectFit="contain"
+                              alt="Open Sea Icon"
+                            />
+                          </div>
+                          <div className="absolute opacity-0 top-0 left-0 w-11 h-11 group-hover:opacity-100">
+                            <div className="relative w-full h-full">
+                              <Image
+                                src="/openSea/opensea_64_1440_768@2x_white.png"
+                                layout="fill"
+                                objectFit="contain"
+                                alt="Open Sea Icon"
+                              />
+                            </div>
+                          </div>
                         </a>
                       ) : null}
                     </div>

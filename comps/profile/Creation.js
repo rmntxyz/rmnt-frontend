@@ -18,6 +18,7 @@ export default function Creation({ creations }) {
                 objectFit="contain"
                 layout="responsive"
                 className="duration-200 hover:scale-125"
+                alt="Rarement NFT Image"
               />
             </a>
             <div className="flex max-w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">

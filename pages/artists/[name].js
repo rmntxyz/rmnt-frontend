@@ -68,20 +68,6 @@ export async function getServerSideProps(context) {
               }
             }
           }
-          # NFTs {
-          #   id
-          #   webtoon_id
-          #   name
-          #   owned_by
-          #   image_address
-          #   # editions_title
-          #   user {
-          #     id
-          #     profile_picture
-          #     wallet_address
-          #     name
-          #   }
-          # }
         }
       }
     `,
@@ -92,11 +78,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       artist: data.artist,
-      // users: data.artist.webtoons
-      //   .map((webtoon) => webtoon.NFTs)
-      //   .filter((NFTs) => NFTs.length)
-      //   .flat(1)
-      //   .map((NFT) => NFT.user),
     },
   };
 }

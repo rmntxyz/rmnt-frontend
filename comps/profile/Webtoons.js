@@ -5,9 +5,12 @@ import { useState } from "react";
 import Collectors from "./Collectors";
 
 export default function Webtoons({ webtoons, artist }) {
+  //Paginate webtoon cards
   const firstWebtoons = webtoons.slice(0, 4);
+
+  //Enable button to display all or less cards
   const [isClicked, setIsClicked] = useState(false);
-  const array = () => {
+  const cardArray = () => {
     if (!isClicked) {
       return firstWebtoons;
     } else return webtoons;
@@ -27,6 +30,7 @@ export default function Webtoons({ webtoons, artist }) {
               <button
                 onClick={(e) => setIsClicked(!isClicked)}
                 className="flex gap-2 items-center text-sm md:gap-2.5 md:text-xl"
+                aria-label="View All Or Less"
               >
                 {!isClicked ? "View all" : "View less"}
                 <FontAwesomeIcon icon={!isClicked ? faAngleDown : faAngleUp} />
@@ -40,7 +44,7 @@ export default function Webtoons({ webtoons, artist }) {
         {webtoons.length > 0 ? (
           <div className="scroll overflow-x-auto">
             <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
-              {array().map((item) => (
+              {cardArray().map((item) => (
                 <div
                   key={item.id}
                   className="border border-ourBlack rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
@@ -52,8 +56,12 @@ export default function Webtoons({ webtoons, artist }) {
                       height={256}
                       layout="responsive"
                       className="duration-200 hover:scale-125"
+                      alt="Rarement Webtoon Cover Image"
                     />
-                    <button className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-sm leading-tight font-bold whitespace-nowrap rounded-full group-hover:opacity-100">
+                    <button
+                      className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-sm leading-tight font-bold whitespace-nowrap rounded-full group-hover:opacity-100"
+                      aria-label="View Webtoon"
+                    >
                       View webtoon
                     </button>
                   </a>
