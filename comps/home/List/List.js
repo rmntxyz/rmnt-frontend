@@ -26,8 +26,8 @@ export default function List({ data }) {
   };
 
   return (
-    <div className="container mx-auto overflow-hidden">
-      <div className="ml-8 mt-10 mb-20 md:max-w-[704px] md:mx-auto md:mb-32 lg:mt-16 xl:mx-8 xl:max-w-full">
+    <div className="mx-auto xl:max-w-[1280px] 2xl:max-w-[1380px]">
+      <div className="mx-8 mt-10 mb-20 md:ml-14 md:mb-32 lg:mt-16">
         <div className="relative flex items-center justify-between mb-8 md:mb-14 ">
           <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
             Featured Series
@@ -37,14 +37,14 @@ export default function List({ data }) {
               href="/webtoons"
               className="whitespace-nowrap px-6 py-2 my-2 text-sm font-normal bg-white text-ourBlack leading-tight rounded-3xl duration-200 md:text-base hover:drop-shadow-lg md:hover:underline md:hover:drop-shadow-none"
               style={
-                data.length > 16
+                data.length > 40
                   ? { display: "inline-block" }
                   : { display: "none" }
               }
             >
               View all
             </a>
-            <div className={`${data.length > 8 ? "hidden md:flex" : "hidden"}`}>
+            <div className={`${data.length > 8 ? "flex" : "hidden"}`}>
               <button
                 onClick={handlePrevbtn}
                 disabled={currentPage === pages[0] ? true : false}
@@ -66,10 +66,12 @@ export default function List({ data }) {
             </div>
           </div>
         </div>
-        <div className="scroll overflow-x-auto flex gap-x-5 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-14 xl:max-w-none xl:grid-cols-4">
-          {currentItems?.map((item) => (
-            <ListItem key={item.id} item={item} />
-          ))}
+        <div className="scroll-large overflow-x-auto">
+          <div className="min-w-[956px] gap-x-5 gap-y-12 grid grid-cols-4 md:min-w-[1184px] md:gap-x-8 md:gap-y-16 ">
+            {currentItems?.map((item) => (
+              <ListItem key={item.id} item={item} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -3,13 +3,13 @@ import ListAvailable from "./ListAvailable";
 
 export default function ListItem({ item }) {
   return (
-    <div className="min-w-[296px] drop-shadow-medium ">
+    <div className="w-[224px] drop-shadow-medium md:w-[272px] xl:w-[288px]">
       <div className="p-4 border border-darkGray bg-white rounded-sm ">
         <a
           href={"/artists/" + item.artist.name}
           className="flex items-center mb-3 md:mb-4"
         >
-          <div className="relative rounded-full w-8 h-8 overflow-hidden md:w-10 md:h-10 ">
+          <div className="relative rounded-full w-7 h-7 overflow-hidden md:w-8 md:h-8 ">
             <Image
               src={item.artist.profile_picture}
               layout="fill"
@@ -23,23 +23,27 @@ export default function ListItem({ item }) {
           <a href={"/webtoons/" + item.id}>
             <Image
               src={item.cover_image}
-              width={304}
-              height={304}
+              width={240}
+              height={240}
               layout="responsive"
+              objectFit="contain"
               className="duration-200 hover:scale-125"
               alt="Rarement Webtoon Cover Image"
             />
-            <button className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-base leading-tight font-bold whitespace-nowrap rounded-full group-hover:opacity-100">
+            <button
+              className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-base leading-tight font-bold whitespace-nowrap rounded-full md:group-hover:opacity-100"
+              aria-label="View Webtoon"
+            >
               View webtoon
             </button>
           </a>
         </div>
         <div className="flex mt-3.5 items-center md:mt-4">
-          <div className="truncate text-2xl font-extrabold uppercase">
+          <div className="truncate text-lg font-extrabold uppercase">
             {item.title}
           </div>
           <div className="w-1 aspect-square m-2 bg-lightGray rounded-full md:m-4"></div>
-          <div className="whitespace-nowrap text-base font-extrabold">
+          <div className="whitespace-nowrap text-sm font-extrabold">
             vol {item.volume}
           </div>
         </div>

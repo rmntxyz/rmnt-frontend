@@ -13,14 +13,10 @@ export default function Collectors({ users }) {
   });
   return (
     <div
-      className={`${
-        uniqueUsers && uniqueUsers.length
-          ? "bg-white text-ourBlack"
-          : "bg-darkGray text-white"
-      }  border-2 border-mediumGray flex flex-col p-6 md:p-8`}
+      className={`bg-darkGray text-white border-2 border-mediumGray flex flex-col p-6 md:p-8`}
     >
       <div className="font-bold mb-3 md:text-2xl md:mb-4">Collectors</div>
-      <div className="text-sm mb-6 md:text-lg md:mb-8">
+      <div className="text-sm text-lightGray mb-6 md:text-lg md:mb-8">
         By purchasing a limited edition NFT of the webtoon series, collectors
         can leave a comment.
       </div>
@@ -28,7 +24,7 @@ export default function Collectors({ users }) {
         className={`${
           uniqueUsers &&
           uniqueUsers.length &&
-          "grid grid-cols-3 gap-x-5 gap-y-3 sm:grid-cols-5"
+          "grid grid-cols-4 gap-x-5 gap-y-3 sm:grid-cols-6"
         }`}
       >
         {uniqueUsers && uniqueUsers.length ? (
@@ -36,7 +32,7 @@ export default function Collectors({ users }) {
             <a
               href={"/users/" + user.id}
               key={idx}
-              className="group relative hover:cursor-pointer"
+              className="group relative hover:cursor-pointer rounded-full border-2 border-white w-14 h-14 md:w-[74px] md:h-[74px] lg:w-20 lg:h-20"
             >
               <Image
                 src={
@@ -46,9 +42,9 @@ export default function Collectors({ users }) {
                     ? user.profile_picture
                     : "/profile/profile_1440_768@2x.png"
                 }
-                width={122.4}
-                height={122.4}
-                className="rounded-full col-span-1"
+                layout="fill"
+                objectFit="contain"
+                className="rounded-full col-span-1 "
                 alt="Rarement NFT Collector Profile Picture"
               />
               <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">

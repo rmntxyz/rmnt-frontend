@@ -66,7 +66,7 @@ export async function getServerSideProps() {
 
 export default function Home({ topData, listData }) {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Seo title="Rarement" />
       <main>
         <TopCard data={topData} />

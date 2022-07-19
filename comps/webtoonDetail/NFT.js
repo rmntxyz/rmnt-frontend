@@ -6,7 +6,7 @@ import DetailTimer from "./DetailTimer";
 export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
   return (
     <div className="bg-lightBeige py-12 md:py-20">
-      <div className="ml-8 md:ml-20 lg:ml-24 2xl:ml-52 3xl:ml-80">
+      <div className="ml-8 md:ml-28 2xl:ml-72">
         <div className="flex flex-col gap-8 md:gap-14">
           <div className="flex items-start gap-4 md:gap-7 md:items-center">
             <div className="font-bold text-[22px] md:text-[40px]">NFT</div>
@@ -18,7 +18,7 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
             ) : null}
           </div>
 
-          <div className="scroll overflow-x-auto flex gap-8">
+          <div className="scroll-xlarge overflow-x-auto flex gap-8">
             {NFTs.map((item) => (
               <div key={item.id} className="drop-shadow-medium rounded-sm ">
                 {item.sold ? (
@@ -68,11 +68,11 @@ export default function NFT({ NFTs, timeRemaining, exchangeRate }) {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-1">
-                        <div className="text-[#858585] text-base md:text-lg">
-                          (≈ {(exchangeRate * item.price).toFixed(4)} USD)
-                        </div>
                         <div className="font-bold text-lg md:text-xl">
                           {item.price} ETH
+                        </div>
+                        <div className="text-[#858585] text-base md:text-lg">
+                          (≈ {(exchangeRate * item.price).toFixed(4)} USD)
                         </div>
                       </div>
                       {item.sold ? (

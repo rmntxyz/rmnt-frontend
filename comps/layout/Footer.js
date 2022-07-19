@@ -38,14 +38,14 @@ export default function Footer() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <footer className="h-40 px-8 bg-ourBlack flex items-center justify-center">
-      <div className="container text-lightGray flex flex-col items-center justify-center md:flex-row md:justify-between">
+    <footer className="h-40 px-10 bg-ourBlack flex items-center justify-center md:px-20">
+      <div className="container text-lightGray text-[13px] flex flex-col items-center justify-center md:flex-row md:justify-between">
         <ul className="flex items-center">
           <a
             onMouseOver={(e) => setIsHovered(true)}
             onMouseOut={(e) => setIsHovered(false)}
             href="/"
-            className="ml-2.5 mr-1.5 pt-1"
+            className="m-3 pt-1"
           >
             <Image
               src={`${
@@ -62,7 +62,7 @@ export default function Footer() {
           {OutLinks.map((link, idx) => (
             <li
               key={idx}
-              className="m-2.5 cursor-pointer duration-200 hover:text-[#F3F3F3]"
+              className="m-3 cursor-pointer duration-200 hover:text-[#F3F3F3] md:m-4"
             >
               {link}
             </li>
@@ -72,7 +72,7 @@ export default function Footer() {
           {InLinks.map((link, idx) => (
             <li
               key={idx}
-              className="m-2.5 cursor-pointer text-center duration-200 hover:text-[#F3F3F3]"
+              className="m-3 cursor-pointer text-center duration-200 hover:text-[#F3F3F3] md:m-4"
             >
               {link}
             </li>

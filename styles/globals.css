@@ -19,6 +19,26 @@
   padding-right: 8px;
 }
 
+.scroll-large {
+  margin: -32px -56px;
+  padding: 32px 56px;
+}
+
+.scroll-large::after {
+  content: "";
+  padding-right: 14px;
+}
+
+.scroll-xlarge {
+  margin: -32px -320px;
+  padding: 32px 320px;
+}
+
+.scroll-xlarge::after {
+  content: "";
+  padding-right: 14px;
+}
+
 .swiper-wrapper {
   align-items: center;
 }

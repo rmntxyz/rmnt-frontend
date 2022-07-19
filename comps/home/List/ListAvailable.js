@@ -11,22 +11,20 @@ export default function ListAvailable({ NFTs, timeRemaining }) {
           : "text-white bg-ourBlack"
       }`}
     >
-      <div className="w-full flex justify-between">
+      <div className="w-full flex text-xs justify-between md:text-sm">
         <div className="whitespace-nowrap">Available NFT</div>
         {timeRemaining > 0 ? (
           <div className="whitespace-nowrap">Drop begins in</div>
         ) : null}
       </div>
-      <div className="w-full mt-1 flex items-center justify-between">
+      <div className="w-full mt-1 flex items-center justify-between text-[15px] font-bold md:text-base">
         <div>
           {available.length ? (
-            <div className="text-base font-bold md:text-lg">
+            <div>
               {available.length}/{NFTs.length}
             </div>
           ) : (
-            <div className="text-lightGray text-base font-bold md:text-lg">
-              Soldout
-            </div>
+            <div className="text-lightGray">Soldout</div>
           )}
         </div>
         {available.length ? <ListTimer timeRemaining={timeRemaining} /> : null}

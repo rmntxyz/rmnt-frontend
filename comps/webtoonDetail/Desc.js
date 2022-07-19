@@ -35,10 +35,10 @@ export default function Desc({ item, users }) {
 
   return (
     <div className="container mx-auto my-20 md:my-36">
-      <div className="max-w-[85%] mx-auto flex flex-col lg:max-w-[93%] lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24">
+      <div className="max-w-[72%] mx-auto flex flex-col lg:max-w-[80%] lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24 xl:max-w-[90%] 2xl:max-w-[97%]">
         <div className="mb-12 md:mb-20">
           <div className="mt-3.5  md:mt-4">
-            <span className="text-2xl font-extrabold uppercase md:text-5xl">
+            <span className="text-xl font-extrabold uppercase md:text-[32px]">
               {item.title}
             </span>
             <div className="inline-block w-1 aspect-square m-2 bg-lightGray rounded-full md:w-1.5 md:m-3"></div>
@@ -46,12 +46,12 @@ export default function Desc({ item, users }) {
               vol. {item.volume}
             </span>
           </div>
-          <div className="text-justify my-3.5 md:my-4 md:text-xl">
+          <div className="text-justify my-3.5 text-sm md:my-4 md:text-lg">
             {item.description}
           </div>
           <a
             href={"/artists/" + item.artist.name + "/#webtoons"}
-            className="text-[#CEA671] flex items-center gap-1.5 hover:underline md:text-xl"
+            className="text-[#CEA671] flex items-center gap-1.5 text-sm hover:underline md:text-lg"
           >
             <span>View all series</span>
             <FontAwesomeIcon icon={faArrowRight} />
@@ -74,7 +74,7 @@ export default function Desc({ item, users }) {
               </a>
               <div className="flex flex-col gap-1.5">
                 <a href={"/artists/" + item.artist.name}>
-                  <div className="font-bold md:text-2xl">
+                  <div className="font-bold text-sm md:text-lg">
                     {item.artist.name}
                   </div>
                 </a>
@@ -85,7 +85,7 @@ export default function Desc({ item, users }) {
                   <button
                     id="to be copied"
                     aria-label="Copy Wallet Adress"
-                    className="px-3 py-1 bg-lightGray text-white text-xs rounded-full md:text-base"
+                    className="px-3 py-1 bg-lightGray text-white text-[11px] rounded-full md:text-xs"
                   >
                     {item.artist.wallet_address}
                   </button>
@@ -95,14 +95,14 @@ export default function Desc({ item, users }) {
                 </div>
               </div>
             </div>
-            <div className="text-sm md:text-lg mx-5 md:mx-8">
+            <div className="text-sm md:text-base mx-5 md:mx-8">
               {item.artist.description}
             </div>
-            <div className="flex mb-6 mx-5 gap-5 text-[#555555] md:mx-8 md:gap-7">
+            <div className="flex mb-6 mx-5 gap-5 text-[#555555] text-[13px] md:mx-8 md:gap-7">
               <a
                 href={`https://www.instagram.com/${item.artist.instagram}`}
                 target="_blank"
-                className="flex items-center gap-0.5 text-xs hover:underline md:text-base"
+                className="flex items-center gap-0.5 hover:underline"
               >
                 <div className="relative w-5 h-5 md:w-6 md:h-6">
                   <Image
@@ -112,15 +112,19 @@ export default function Desc({ item, users }) {
                     alt="Instagram Icon"
                   />
                 </div>
-                <span>@{item.artist.instagram}</span>
+                <span className="hidden sm:inline-block">
+                  @{item.artist.instagram}
+                </span>
               </a>
               <a
                 href={`mailto:${item.artist.email}`}
                 target="_blank"
-                className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
+                className="flex items-center gap-1.5 hover:underline"
               >
                 <FontAwesomeIcon icon={faEnvelope} />
-                {item.artist.email}
+                <span className="hidden sm:inline-block">
+                  {item.artist.email}
+                </span>
               </a>
             </div>
           </div>

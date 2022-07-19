@@ -53,8 +53,10 @@ export default function DetailTimer({ timeRemaining }) {
                 >
                   <div className="w-9 h-7 flex justify-center items-center bg-white rounded md:h-12 md:w-16">
                     <div suppressHydrationWarning={true}>
-                      {number}
-                      {unit}
+                      <span>
+                        {number.toString().length < 2 ? "0" + number : number}
+                      </span>
+                      <span>{unit}</span>
                     </div>
                   </div>
                 </div>
