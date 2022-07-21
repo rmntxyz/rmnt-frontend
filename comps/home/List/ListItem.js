@@ -15,6 +15,7 @@ export default function ListItem({ item }) {
               layout="fill"
               objectFit="contain"
               alt="Rarement Artist Profile Image"
+              className="rounded-full"
             />
           </div>
           <div className="text-sm ml-1 md:text-base">{item.artist.name}</div>
