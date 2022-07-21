@@ -51,7 +51,7 @@ export default function Timer({ timeRemaining }) {
               <div key={unit} className="relative flex flex-row">
                 <div className="flex flex-col items-center my-1 mr-3 md:mr-4 md:my-1.5">
                   <div className="w-12 h-14 flex items-center justify-center bg-lightBeige rounded md:w-16 md:h-20">
-                    <div suppressHydrationWarning={true}>
+                    <div>
                       {number.toString().length < 2 ? "0" + number : number}
                     </div>
                   </div>

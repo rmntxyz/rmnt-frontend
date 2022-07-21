@@ -51,7 +51,7 @@ export default function ListTimer({ timeRemaining }) {
                   }`}
                 >
                   <div className="w-8 h-5 flex justify-center items-center bg-lightBeige rounded md:h-6">
-                    <div suppressHydrationWarning={true}>
+                    <div>
                       <span>
                         {number.toString().length < 2 ? "0" + number : number}
                       </span>
