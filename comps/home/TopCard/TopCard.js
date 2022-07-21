@@ -14,7 +14,7 @@ export default function TopCard({ data }) {
             >
               <div className="w-7 h-7 md:w-8 md:h-8">
                 <Image
-                  src={data.artist.profile_picture}
+                  src={data.artist.profile_image}
                   width={31}
                   height={31}
                   className="rounded-full"
@@ -37,7 +37,7 @@ export default function TopCard({ data }) {
           </div>
           <div className="mt-5 md:mt-8 lg:row-span-2 lg:order-1 lg:mt-0 lg:mr-8">
             <div className="border border-darkGray bg-white rounded-sm p-3.5 drop-shadow-medium md:p-5">
-              <a href={"/webtoons/" + data.id}>
+              <a href={"/webtoons/" + data.webtoon_id}>
                 <Image
                   src={data.cover_image}
                   width={402}
@@ -61,7 +61,7 @@ export default function TopCard({ data }) {
             </div>
             <div className="mx-auto md:mx-0">
               <a
-                href={"/webtoons/" + data.id}
+                href={"/webtoons/" + data.webtoon_id}
                 className="inline-block px-10 py-4 border-2 border-ourBlack bg-ourBlack text-white text-base leading-tight font-extrabold rounded-full duration-200 hover:drop-shadow-large md:text-lg"
               >
                 View webtoon

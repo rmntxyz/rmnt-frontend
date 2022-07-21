@@ -38,8 +38,8 @@ export async function getServerSideProps(context) {
         artist(name: $name) {
           name
           description
-          profile_picture
-          background_picture
+          profile_image
+          background_image
           email
           instagram
           twitter
@@ -47,22 +47,22 @@ export async function getServerSideProps(context) {
           opensea
           collection
           webtoons {
-            id
+            webtoon_id
             title
             volume
             cover_image
             NFTs {
-              id
+              nft_id
               name
-              image_address
+              image
               webtoon {
-                id
+                webtoon_id
                 title
                 volume
               }
               user {
-                id
-                profile_picture
+                user_id
+                profile_image
                 wallet_address
                 name
               }
@@ -82,7 +82,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Artist({ artist, users }) {
+export default function Artist({ artist }) {
   return (
     <div className="overflow-x-hidden">
       <Seo title={artist.name} />

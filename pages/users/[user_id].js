@@ -25,30 +25,30 @@ import UserNFT from "../../comps/profile/UserNFT";
 // }
 
 export async function getServerSideProps(context) {
-  const { id } = context.query;
+  const { user_id } = context.query;
   const { data } = await client.query({
     query: gql`
       query User($userId: String!) {
-        user(id: $userId) {
-          id
-          profile_picture
+        user(user_id: $userId) {
+          user_id
+          profile_image
           name
           wallet_address
           NFTs {
             edition
-            id
+            nft_id
             name
-            image_address
+            image
             webtoon {
-              id
+              webtoon_id
               title
               volume
               NFTs {
                 name
                 user {
-                  id
+                  user_id
                   name
-                  profile_picture
+                  profile_image
                   wallet_address
                 }
               }
@@ -58,7 +58,7 @@ export async function getServerSideProps(context) {
       }
     `,
     variables: {
-      userId: id,
+      userId: user_id,
     },
   });
   return {

@@ -3,16 +3,16 @@ import Collectors from "./Collectors";
 
 export default function Creation({ creations }) {
   return (
-    <div className="scroll overflow-x-auto">
-      <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
+    <div className="scroll-xlarge overflow-x-auto">
+      <div className="min-w-[956px] grid grid-cols-4 gap-5 md:gap-8 md:min-w-[1184px]">
         {creations.map((item) => (
           <div
             key={item.categoryName}
             className="rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
           >
-            <a href={"/NFT/" + item.children[0].id}>
+            <a href={"/NFT/" + item.children[0].nft_id}>
               <Image
-                src={item.children[0].image_address}
+                src={item.children[0].image}
                 width={256}
                 height={256}
                 objectFit="contain"

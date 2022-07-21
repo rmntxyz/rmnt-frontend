@@ -10,9 +10,9 @@ export default function Collectors({ users }) {
   //Remove duplicate collectors from the array
   const uniqueIds = [];
   const uniqueUsers = users.filter((item) => {
-    const isDuplicate = uniqueIds.includes(item.id);
+    const isDuplicate = uniqueIds.includes(item.user_id);
     if (!isDuplicate) {
-      uniqueIds.push(item.id);
+      uniqueIds.push(item.user_id);
       return true;
     }
     return false;
@@ -26,24 +26,24 @@ export default function Collectors({ users }) {
             <div className="w-1/2 grid grid-cols-5">
               {uniqueUsers.slice(0, 5).map((user) => (
                 <a
-                  href={"/users/" + user.id}
-                  key={user.id}
+                  href={"/users/" + user.user_id}
+                  key={user.user_id}
                   className="group relative hover:cursor-pointer"
                 >
                   <div className="rounded-full border-2 border-white  w-[28px] h-[28px] md:w-[36px] md:h-[36px] lg:w-[32px] lg:h-[32px]">
                     <Image
                       src={
-                        user.profile_picture !== null &&
-                        user.profile_picture !== undefined &&
-                        user.profile_picture !== ""
-                          ? user.profile_picture
+                        user.profile_image !== null &&
+                        user.profile_image !== undefined &&
+                        user.profile_image !== ""
+                          ? user.profile_image
                           : "/profile/profile_1440_768@2x.png"
                       }
                       width={36}
                       height={36}
                       layout="responsive"
                       className="rounded-full "
-                      alt="Rarement NFT Collector Profile Picture"
+                      alt="Rarement NFT Collector Profile Image"
                     />
                   </div>
                   <div className="opacity-0 w-8 transition-opacity absolute text-[#555555] group-hover:opacity-100">
@@ -87,21 +87,25 @@ export default function Collectors({ users }) {
         } `}
       >
         {uniqueUsers.map((user) => (
-          <a href={"/users/" + user.id} key={user.id} className="flex">
+          <a
+            href={"/users/" + user.user_id}
+            key={user.user_id}
+            className="flex"
+          >
             <div className="rounded-full border-2 border-white w-8 h-8">
               <Image
                 src={
-                  user.profile_picture !== null &&
-                  user.profile_picture !== undefined &&
-                  user.profile_picture !== ""
-                    ? user.profile_picture
+                  user.profile_image !== null &&
+                  user.profile_image !== undefined &&
+                  user.profile_image !== ""
+                    ? user.profile_image
                     : "/profile/profile_1440_768@2x.png"
                 }
                 width={32}
                 height={32}
                 layout="responsive"
                 className="rounded-full"
-                alt="Rarement NFT Collector Profile Picture"
+                alt="Rarement NFT Collector Profile Image"
               ></Image>
             </div>
             <div className="transition-opacity text-[#555555]">

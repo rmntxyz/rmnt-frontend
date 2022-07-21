@@ -2,27 +2,17 @@ import Image from "next/image";
 import Collectors from "./Collectors";
 
 export default function Collection({ collections }) {
-  //Remove duplicate NFT names from the array (so if the user has purchased multiple editions of a single NFT, only one card will be displayed as opposed to multiple cards)
-  const uniqueIds = [];
-  const uniqueCollections = collections.filter((item) => {
-    const isDuplicate = uniqueIds.includes(item.name);
-    if (!isDuplicate) {
-      uniqueIds.push(item.name);
-      return true;
-    }
-    return false;
-  });
   return (
     <div className="scroll overflow-x-auto">
-      <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
-        {uniqueCollections.map((collection, idx) => (
+      <div className="min-w-[956px] grid grid-cols-4 gap-5 md:gap-8 md:min-w-[1184px]">
+        {collections.map((collection, idx) => (
           <div
             key={idx}
             className="rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
           >
-            <a href={"/NFT/" + collection.id}>
+            <a href={"/NFT/" + collection.nft_id}>
               <Image
-                src={collection.image_address}
+                src={collection.image}
                 width={256}
                 height={256}
                 layout="responsive"

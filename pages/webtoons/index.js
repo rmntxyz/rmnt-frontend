@@ -15,19 +15,19 @@ export async function getServerSideProps() {
     query: gql`
       query Webtoons_data {
         allWebtoons {
-          id
+          webtoon_id
           artist {
             name
-            profile_picture
+            profile_image
           }
           title
           volume
           cover_image
           NFTs {
-            sold
+            webtoon_id
+            sold_timestamp
           }
           timeRemaining
-          sold
         }
       }
     `,
@@ -46,9 +46,23 @@ export default function Webtoons({ webtoonsData }) {
       <main className="grid mx-8 my-10 gap-x-5 gap-y-10 sm:grid-cols-2 sm:my-20 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 xl:grid-cols-4">
         {webtoonsData
           .sort((a, b) => b.timeRemaining - a.timeRemaining)
-          .sort((a, b) => a.sold - b.sold)
+          .sort(
+            (a, b) =>
+              b.NFTs.filter(
+                (NFT) =>
+                  (NFT.sold_timestamp === null) |
+                  (NFT.sold_timestamp === undefined) |
+                  (NFT.sold_timestamp === "")
+              ).length -
+              a.NFTs.filter(
+                (NFT) =>
+                  (NFT.sold_timestamp === null) |
+                  (NFT.sold_timestamp === undefined) |
+                  (NFT.sold_timestamp === "")
+              ).length
+          )
           .map((item) => (
-            <ListItem key={item.id} item={item} />
+            <ListItem key={item.webtoon_id} item={item} />
           ))}
       </main>
     </div>

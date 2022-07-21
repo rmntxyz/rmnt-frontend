@@ -65,7 +65,7 @@ export default function Desc({ item, users }) {
                 className="relative rounded-full w-16 h-16 md:w-20 md:h-20"
               >
                 <Image
-                  src={item.artist.profile_picture}
+                  src={item.artist.profile_image}
                   layout="fill"
                   objectFit="contain"
                   alt="Rarement Artist Profile Picture"

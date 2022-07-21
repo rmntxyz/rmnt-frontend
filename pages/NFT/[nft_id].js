@@ -18,22 +18,22 @@ import { getExchangeRate } from "../api/USD_ETH";
 
 export async function getServerSideProps(context) {
   const exchangeRate = await getExchangeRate();
-  const { id } = context.query;
+  const { nft_id } = context.query;
   const { data } = await client.query({
     query: gql`
       query NFT($nftId: String!) {
-        NFT(id: $nftId) {
-          id
+        NFT(nft_id: $nftId) {
+          nft_id
           webtoon {
-            id
+            webtoon_id
             title
             volume
             NFTs {
-              id
-              image_address
+              nft_id
+              image
               name
               description
-              sold
+              sold_timestamp
               price
               created_by
               edition
@@ -51,7 +51,7 @@ export async function getServerSideProps(context) {
       }
     `,
     variables: {
-      nftId: id,
+      nftId: nft_id,
     },
   });
   return {
@@ -66,7 +66,7 @@ export default function NFTPage({ exchangeRate, NFT }) {
   //Use router to identify the currently displayed NFT
   const router = useRouter();
   const currentNFT = NFT.webtoon.NFTs.find(
-    (item) => item.id === router.query.id
+    (item) => item.nft_id === router.query.nft_id
   );
   return (
     <div className="overflow-hidden">
@@ -80,9 +80,16 @@ export default function NFTPage({ exchangeRate, NFT }) {
         }
       />
       <main>
-        <Viewer NFT={NFT} currentNFT={currentNFT} router={router} />
-        <Desc NFT={NFT} currentNFT={currentNFT} exchangeRate={exchangeRate} />
-        <Specs currentNFT={currentNFT} />
+        <div className="container mx-auto flex flex-col xl:grid xl:grid-cols-2 xl:gap-16 xl:w-[953px] xl:pb-16">
+          <Viewer NFT={NFT} currentNFT={currentNFT} router={router} />
+          <Desc
+            NFT={NFT}
+            currentNFT={currentNFT}
+            exchangeRate={exchangeRate}
+            router={router}
+          />
+        </div>
+        <Specs NFT={NFT} currentNFT={currentNFT} />
       </main>
     </div>
   );

@@ -1,8 +1,13 @@
 import ListTimer from "./ListTimer";
 
 export default function ListAvailable({ NFTs, timeRemaining }) {
-  //Filter out sold NFTs to pain the number of available NFTs
-  const available = NFTs.filter((item) => item.sold === false);
+  //Filter out sold NFTs to paint the number of available NFTs
+  const available = NFTs.filter(
+    (item) =>
+      (item.sold_timestamp === null) |
+      (item.sold_timestamp === undefined) |
+      (item.sold_timestamp === "")
+  );
   return (
     <div
       className={`flex flex-col items-center p-4 drop-shadow-md ${

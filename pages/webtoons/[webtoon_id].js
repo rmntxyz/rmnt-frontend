@@ -29,14 +29,14 @@ import Seo from "../../comps/layout/SEO";
 
 export async function getServerSideProps(context) {
   const exchangeRate = await getExchangeRate();
-  const { id } = context.query;
+  const { webtoon_id } = context.query;
   const { data } = await client.query({
     query: gql`
       query Webtoon($webtoonId: String!) {
-        webtoon(id: $webtoonId) {
+        webtoon(webtoon_id: $webtoonId) {
           artist {
             name
-            profile_picture
+            profile_image
             wallet_address
             description
             email
@@ -44,21 +44,23 @@ export async function getServerSideProps(context) {
           }
           title
           volume
-          pages
+          pages {
+            page_image
+          }
           cover_image
           description
           timeRemaining
           NFTs {
-            id
+            nft_id
             name
-            sold
+            sold_timestamp
             edition
-            image_address
+            image
             price
             opensea
             user {
-              id
-              profile_picture
+              user_id
+              profile_image
               name
               wallet_address
             }
@@ -67,14 +69,14 @@ export async function getServerSideProps(context) {
       }
     `,
     variables: {
-      webtoonId: id,
+      webtoonId: webtoon_id,
     },
   });
   return {
     props: {
       exchangeRate: exchangeRate,
       webtoon: data.webtoon,
-      users: data.webtoon.NFTs.map((NFT) => NFT.user),
+      users: data.webtoon.NFTs?.map((NFT) => NFT.user),
     },
   };
 }
@@ -84,7 +86,7 @@ export default function WebtoonPage({ exchangeRate, webtoon, users }) {
     <div className="mt-20 overflow-x-hidden">
       <Seo title={`${webtoon.artist.name} - ${webtoon.title}`} />
       <main>
-        <Viewer data={webtoon.pages} />
+        <Viewer data={webtoon.pages.map((page) => page.page_image)} />
         <Desc item={webtoon} users={users} />
         <NFT
           NFTs={webtoon.NFTs}

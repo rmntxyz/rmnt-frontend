@@ -74,9 +74,7 @@ export default function Timer({ timeRemaining }) {
             ))}
           </div>
         </div>
-      ) : (
-        "Ready to be minted!"
-      )}
+      ) : null}
     </div>
   );
 }

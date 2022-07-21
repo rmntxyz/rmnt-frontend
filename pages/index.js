@@ -19,35 +19,33 @@ export async function getServerSideProps() {
     query: gql`
       query Home_data {
         webtoonTop {
-          id
+          webtoon_id
           artist {
             name
-            profile_picture
+            profile_image
           }
           title
           volume
-          pages
           cover_image
           NFTs {
-            sold
+            sold_timestamp
           }
           timeRemaining
         }
         allWebtoons {
-          id
+          webtoon_id
           artist {
             name
-            profile_picture
+            profile_image
           }
           title
           volume
-          pages
           cover_image
           NFTs {
-            sold
+            webtoon_id
+            sold_timestamp
           }
           timeRemaining
-          sold
         }
       }
     `,
@@ -58,8 +56,22 @@ export async function getServerSideProps() {
       listData: data.allWebtoons
         .slice()
         .sort((a, b) => b.timeRemaining - a.timeRemaining)
-        .sort((a, b) => a.sold - b.sold)
-        .filter((item) => item.id !== data.webtoonTop.id),
+        .sort(
+          (a, b) =>
+            b.NFTs.filter(
+              (NFT) =>
+                (NFT.sold_timestamp === null) |
+                (NFT.sold_timestamp === undefined) |
+                (NFT.sold_timestamp === "")
+            ).length -
+            a.NFTs.filter(
+              (NFT) =>
+                (NFT.sold_timestamp === null) |
+                (NFT.sold_timestamp === undefined) |
+                (NFT.sold_timestamp === "")
+            ).length
+        )
+        .filter((item) => item.webtoon_id !== data.webtoonTop.webtoon_id),
     },
   };
 }

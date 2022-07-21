@@ -1,4 +1,4 @@
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useState } from "react";
@@ -6,15 +6,26 @@ import Collectors from "./Collectors";
 
 export default function Webtoons({ webtoons, artist }) {
   //Paginate webtoon cards
-  const firstWebtoons = webtoons.slice(0, 4);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const pages = [];
+  for (let i = 1; i <= Math.ceil(webtoons.length / itemsPerPage); i++) {
+    pages.push(i);
+  }
 
-  //Enable button to display all or less cards
-  const [isClicked, setIsClicked] = useState(false);
-  const cardArray = () => {
-    if (!isClicked) {
-      return firstWebtoons;
-    } else return webtoons;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexofFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = webtoons.slice(indexofFirstItem, indexOfLastItem);
+
+  //Enable navigation between pages
+  const handleNextbtn = () => {
+    setCurrentPage(currentPage + 1);
   };
+
+  const handlePrevbtn = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   return (
     <div id="webtoons" className="container mx-auto mb-6 md:mb-8">
       <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
@@ -26,30 +37,41 @@ export default function Webtoons({ webtoons, artist }) {
               </div>
               <div className="w-full h-[3px] bg-ourBlack rounded-sm"></div>
             </div>
-            {webtoons.length > 4 ? (
+            <div className={`${webtoons.length > 8 ? "flex" : "hidden"}`}>
               <button
-                onClick={(e) => setIsClicked(!isClicked)}
-                className="flex gap-2 items-center text-sm md:gap-2.5 md:text-xl"
-                aria-label="View All Or Less"
+                onClick={handlePrevbtn}
+                disabled={currentPage === pages[0] ? true : false}
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                aria-label="Previous"
               >
-                {!isClicked ? "View all" : "View less"}
-                <FontAwesomeIcon icon={!isClicked ? faAngleDown : faAngleUp} />
+                <FontAwesomeIcon icon={faArrowLeft} />
               </button>
-            ) : (
-              <div></div>
-            )}
+              <button
+                onClick={handleNextbtn}
+                disabled={
+                  currentPage === pages[pages.length - 1] ? true : false
+                }
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                aria-label="Next"
+              >
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+            </div>
           </div>
           <div className="absolute bottom-0 w-full h-px bg-ourBlack opacity-[15%]"></div>
         </div>
         {webtoons.length > 0 ? (
-          <div className="scroll overflow-x-auto">
-            <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
-              {cardArray().map((item) => (
+          <div className="scroll-xlarge overflow-x-auto">
+            <div className="min-w-[956px] grid grid-cols-4 gap-5 md:min-w-[1184px] md:gap-8">
+              {currentItems.map((item) => (
                 <div
-                  key={item.id}
+                  key={item.webtoon_id}
                   className="border border-ourBlack rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
                 >
-                  <a href={"/webtoons/" + item.id} className="relative group">
+                  <a
+                    href={"/webtoons/" + item.webtoon_id}
+                    className="relative group"
+                  >
                     <Image
                       src={item.cover_image}
                       width={256}
@@ -74,7 +96,7 @@ export default function Webtoons({ webtoons, artist }) {
                       vol {item.volume}
                     </div>
                   </div>
-                  <Collectors users={item.NFTs.map((NFT) => NFT.user)} />
+                  <Collectors users={item.NFTs?.map((NFT) => NFT.user)} />
                 </div>
               ))}
             </div>

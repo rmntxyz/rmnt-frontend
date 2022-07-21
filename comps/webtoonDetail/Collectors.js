@@ -4,9 +4,9 @@ export default function Collectors({ users }) {
   //Remove duplicate collectors from the array
   const uniqueIds = [];
   const uniqueUsers = users.filter((item) => {
-    const isDuplicate = uniqueIds.includes(item.id);
+    const isDuplicate = uniqueIds.includes(item.user_id);
     if (!isDuplicate) {
-      uniqueIds.push(item.id);
+      uniqueIds.push(item.user_id);
       return true;
     }
     return false;
@@ -15,8 +15,10 @@ export default function Collectors({ users }) {
     <div
       className={`bg-darkGray text-white border-2 border-mediumGray flex flex-col p-6 md:p-8`}
     >
-      <div className="font-bold mb-3 md:text-2xl md:mb-4">Collectors</div>
-      <div className="text-sm text-lightGray mb-6 md:text-lg md:mb-8">
+      <div className="font-bold mb-3 text-sm md:text-lg md:mb-4">
+        Collectors
+      </div>
+      <div className="text-xs text-lightGray mb-6 md:text-base md:mb-8">
         By purchasing a limited edition NFT of the webtoon series, collectors
         can leave a comment.
       </div>
@@ -30,16 +32,16 @@ export default function Collectors({ users }) {
         {uniqueUsers && uniqueUsers.length ? (
           uniqueUsers.map((user, idx) => (
             <a
-              href={"/users/" + user.id}
+              href={"/users/" + user.user_id}
               key={idx}
               className="group relative hover:cursor-pointer rounded-full border-2 border-white w-14 h-14 md:w-[74px] md:h-[74px] lg:w-20 lg:h-20"
             >
               <Image
                 src={
-                  user.profile_picture !== null &&
-                  user.profile_picture !== undefined &&
-                  user.profile_picture !== ""
-                    ? user.profile_picture
+                  user.profile_image !== null &&
+                  user.profile_image !== undefined &&
+                  user.profile_image !== ""
+                    ? user.profile_image
                     : "/profile/profile_1440_768@2x.png"
                 }
                 layout="fill"

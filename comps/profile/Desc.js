@@ -40,11 +40,11 @@ export default function Desc({ props }) {
       <div
         className="h-[224px] md:h-[320px] bg-[#CEA671] bg-center bg-cover bg-no-repeat "
         style={
-          props.background_picture !== null &&
-          props.background_picture !== undefined &&
-          props.background_picture !== ""
+          props.background_image !== null &&
+          props.background_image !== undefined &&
+          props.background_image !== ""
             ? {
-                backgroundImage: "url(" + props.background_picture + ")",
+                backgroundImage: "url(" + props.background_image + ")",
                 filter: loading ? "blur(20px)" : "none",
                 transition: loading ? "none" : "filter 0.3s ease-out",
               }
@@ -62,10 +62,10 @@ export default function Desc({ props }) {
                 alt="Rarement Artist Profile Image"
                 onLoadingComplete={handleLoading}
                 src={
-                  props.profile_picture !== null &&
-                  props.profile_picture !== undefined &&
-                  props.profile_picture !== ""
-                    ? props.profile_picture
+                  props.profile_image !== null &&
+                  props.profile_image !== undefined &&
+                  props.profile_image !== ""
+                    ? props.profile_image
                     : "/profile/profile_1440_768@2x.png"
                 }
                 layout="fill"
@@ -83,10 +83,10 @@ export default function Desc({ props }) {
             <div className="flex justify-between mt-12 md:mt-20">
               <div className="flex flex-col gap-2.5">
                 <div className="flex items-center gap-1.5 md:gap-2">
-                  <span className="font-extrabold text-[26px] md:text-[40px]">
+                  <span className="font-extrabold text-[21px] md:text-[32px]">
                     @{props.name}
                   </span>
-                  <div className="relative aspect-square w-6 md:w-9">
+                  <div className="relative aspect-square w-[18px] md:w-[28px]">
                     <Image
                       src="/icons/icons8-instagram-verification-badge 1.png"
                       alt="badge icon"
@@ -101,7 +101,7 @@ export default function Desc({ props }) {
                 >
                   <button
                     id="to be copied"
-                    className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-xs rounded-full hover:underline md:text-base"
+                    className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-sm rounded-full hover:underline md:text-base"
                     aria-label="Copy Wallet Address"
                   >
                     {props.wallet_address}
@@ -149,7 +149,7 @@ export default function Desc({ props }) {
             {props.description !== null &&
             props.description !== undefined &&
             props.description !== "" ? (
-              <div className="text-base md:text-xl lg:w-1/2">
+              <div className="text-sm md:text-lg lg:w-1/2">
                 {props.description}
               </div>
             ) : null}
