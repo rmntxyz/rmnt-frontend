@@ -31,7 +31,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
               );
             }}
             key={idx}
-            className="border bg-white rounded-sm drop-shadow-medium p-3.5"
+            className="border bg-white rounded-sm drop-shadow-lg p-3.5"
           >
             <Image
               alt="Rarement NFT Image"
