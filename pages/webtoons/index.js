@@ -10,27 +10,30 @@ import Seo from "../../comps/layout/SEO";
 //   return { props: { webtoonsData } };
 // }
 
+const GET_WEBTOONS_DATA = gql`
+  query Webtoons_data {
+    allWebtoons {
+      webtoon_id
+      artist {
+        name
+        profile_image
+      }
+      title
+      volume
+      cover_image
+      NFTs {
+        webtoon_id
+        sold_timestamp
+      }
+      timeRemaining
+    }
+  }
+`;
+
 export async function getServerSideProps() {
   const { data } = await client.query({
-    query: gql`
-      query Webtoons_data {
-        allWebtoons {
-          webtoon_id
-          artist {
-            name
-            profile_image
-          }
-          title
-          volume
-          cover_image
-          NFTs {
-            webtoon_id
-            sold_timestamp
-          }
-          timeRemaining
-        }
-      }
-    `,
+    query: GET_WEBTOONS_DATA,
+    fetchPolicy: "network-only",
   });
   return {
     props: {

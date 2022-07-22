@@ -16,43 +16,46 @@ import { getExchangeRate } from "../api/USD_ETH";
 //   return { props: { exchangeRate: exchangeRate, NFT: NFT } };
 // }
 
+const GET_NFT_DATA = gql`
+  query NFT($nftId: String!) {
+    NFT(nft_id: $nftId) {
+      nft_id
+      webtoon {
+        webtoon_id
+        title
+        volume
+        NFTs {
+          nft_id
+          image
+          name
+          description
+          sold_timestamp
+          price
+          created_by
+          edition
+          timeRemaining
+          opensea
+          metadata
+          contract
+          width
+          height
+          license
+          reward
+        }
+      }
+    }
+  }
+`;
+
 export async function getServerSideProps(context) {
   const exchangeRate = await getExchangeRate();
   const { nft_id } = context.query;
   const { data } = await client.query({
-    query: gql`
-      query NFT($nftId: String!) {
-        NFT(nft_id: $nftId) {
-          nft_id
-          webtoon {
-            webtoon_id
-            title
-            volume
-            NFTs {
-              nft_id
-              image
-              name
-              description
-              sold_timestamp
-              price
-              created_by
-              edition
-              timeRemaining
-              opensea
-              metadata
-              contract
-              width
-              height
-              license
-              reward
-            }
-          }
-        }
-      }
-    `,
+    query: GET_NFT_DATA,
     variables: {
       nftId: nft_id,
     },
+    fetchPolicy: "network-only",
   });
   return {
     props: {

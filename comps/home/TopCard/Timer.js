@@ -1,4 +1,7 @@
+import { useApolloClient } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import client from "../../../apollo";
 
 export default function Timer({ timeRemaining }) {
   //Fetch the time remaining from the server and set the drop time on the client side
@@ -34,7 +37,9 @@ export default function Timer({ timeRemaining }) {
     } else return null;
   };
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
   useEffect(() => {
+    // router.replace(router.asPath)
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);

@@ -30,47 +30,49 @@ import Webtoons from "../../comps/profile/Webtoons";
 //   };
 // }
 
-export async function getServerSideProps(context) {
-  const { name } = context.query;
-  const { data } = await client.query({
-    query: gql`
-      query Artist($name: String!) {
-        artist(name: $name) {
+const GET_ARTIST_DATA = gql`
+  query Artist($name: String!) {
+    artist(name: $name) {
+      name
+      description
+      profile_image
+      background_image
+      email
+      instagram
+      twitter
+      wallet_address
+      opensea
+      collection
+      webtoons {
+        webtoon_id
+        title
+        volume
+        cover_image
+        NFTs {
+          nft_id
           name
-          description
-          profile_image
-          background_image
-          email
-          instagram
-          twitter
-          wallet_address
-          opensea
-          collection
-          webtoons {
+          image
+          webtoon {
             webtoon_id
             title
             volume
-            cover_image
-            NFTs {
-              nft_id
-              name
-              image
-              webtoon {
-                webtoon_id
-                title
-                volume
-              }
-              user {
-                user_id
-                profile_image
-                wallet_address
-                name
-              }
-            }
+          }
+          user {
+            user_id
+            profile_image
+            wallet_address
+            name
           }
         }
       }
-    `,
+    }
+  }
+`;
+
+export async function getServerSideProps(context) {
+  const { name } = context.query;
+  const { data } = await client.query({
+    query: GET_ARTIST_DATA,
     variables: {
       name: name,
     },

@@ -9,7 +9,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 1000);
   };
 
   return (
@@ -19,14 +19,13 @@ export default function Viewer({ NFT, currentNFT, router }) {
           <button
             aria-label="Select NFT"
             onClick={(e) => {
-              // Enable shallow routing to the selected NFT page
+              // Enable routing to the selected NFT page without page reload
               router.push(
                 {
                   query: { nft_id: item.nft_id },
                 },
                 undefined,
                 {
-                  shallow: true,
                   scroll: false,
                 }
               );
@@ -90,20 +89,17 @@ export default function Viewer({ NFT, currentNFT, router }) {
                 {NFT.webtoon.NFTs.map((item, idx) => (
                   <button
                     onClick={(e) => {
-                      //Delay routing for the blur effect
+                      //Add blur effect while switching images
                       handleLoading();
-                      setTimeout(() => {
-                        router.push(
-                          {
-                            query: { nft_id: item.nft_id },
-                          },
-                          undefined,
-                          {
-                            shallow: true,
-                            scroll: false,
-                          }
-                        );
-                      }, 100);
+                      router.push(
+                        {
+                          query: { nft_id: item.nft_id },
+                        },
+                        undefined,
+                        {
+                          scroll: false,
+                        }
+                      );
                     }}
                     key={idx}
                     className="w-[96px]"

@@ -27,50 +27,53 @@ import Seo from "../../comps/layout/SEO";
 //   };
 // }
 
+const GET_WEBTOON_DATA = gql`
+  query Webtoon($webtoonId: String!) {
+    webtoon(webtoon_id: $webtoonId) {
+      artist {
+        name
+        profile_image
+        wallet_address
+        description
+        email
+        instagram
+      }
+      title
+      volume
+      pages {
+        page_image
+      }
+      cover_image
+      description
+      timeRemaining
+      NFTs {
+        nft_id
+        name
+        sold_timestamp
+        edition
+        image
+        price
+        opensea
+        user {
+          user_id
+          profile_image
+          name
+          wallet_address
+        }
+      }
+    }
+  }
+`;
+
 export async function getServerSideProps(context) {
   const exchangeRate = await getExchangeRate();
   const { webtoon_id } = context.query;
   const { data } = await client.query({
-    query: gql`
-      query Webtoon($webtoonId: String!) {
-        webtoon(webtoon_id: $webtoonId) {
-          artist {
-            name
-            profile_image
-            wallet_address
-            description
-            email
-            instagram
-          }
-          title
-          volume
-          pages {
-            page_image
-          }
-          cover_image
-          description
-          timeRemaining
-          NFTs {
-            nft_id
-            name
-            sold_timestamp
-            edition
-            image
-            price
-            opensea
-            user {
-              user_id
-              profile_image
-              name
-              wallet_address
-            }
-          }
-        }
-      }
-    `,
+    query: GET_WEBTOON_DATA,
     variables: {
       webtoonId: webtoon_id,
     },
+    fetchPolicy: "network-only",
   });
   return {
     props: {

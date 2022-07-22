@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import client from "../apollo";
 import About from "../comps/home/About";
 import List from "../comps/home/List/List";
@@ -14,41 +14,44 @@ import Seo from "../comps/layout/SEO";
 //   return { props: { topData: topData, listData: listData } };
 // }
 
+const GET_HOME_DATA = gql`
+  query Home_data {
+    webtoonTop {
+      webtoon_id
+      artist {
+        name
+        profile_image
+      }
+      title
+      volume
+      cover_image
+      NFTs {
+        sold_timestamp
+      }
+      timeRemaining
+    }
+    allWebtoons {
+      webtoon_id
+      artist {
+        name
+        profile_image
+      }
+      title
+      volume
+      cover_image
+      NFTs {
+        webtoon_id
+        sold_timestamp
+      }
+      timeRemaining
+    }
+  }
+`;
+
 export async function getServerSideProps() {
   const { data } = await client.query({
-    query: gql`
-      query Home_data {
-        webtoonTop {
-          webtoon_id
-          artist {
-            name
-            profile_image
-          }
-          title
-          volume
-          cover_image
-          NFTs {
-            sold_timestamp
-          }
-          timeRemaining
-        }
-        allWebtoons {
-          webtoon_id
-          artist {
-            name
-            profile_image
-          }
-          title
-          volume
-          cover_image
-          NFTs {
-            webtoon_id
-            sold_timestamp
-          }
-          timeRemaining
-        }
-      }
-    `,
+    query: GET_HOME_DATA,
+    fetchPolicy: "network-only",
   });
   return {
     props: {
@@ -77,6 +80,9 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ topData, listData }) {
+  // const { loading, error, data } = useQuery(GET_HOME_DATA, {
+  //   fetchPolicy: "network-only",
+  // });
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />

@@ -24,39 +24,41 @@ import UserNFT from "../../comps/profile/UserNFT";
 //   };
 // }
 
-export async function getServerSideProps(context) {
-  const { user_id } = context.query;
-  const { data } = await client.query({
-    query: gql`
-      query User($userId: String!) {
-        user(user_id: $userId) {
-          user_id
-          profile_image
-          name
-          wallet_address
+const GET_USER_DATA = gql`
+  query User($userId: String!) {
+    user(user_id: $userId) {
+      user_id
+      profile_image
+      name
+      wallet_address
+      NFTs {
+        edition
+        nft_id
+        name
+        image
+        webtoon {
+          webtoon_id
+          title
+          volume
           NFTs {
-            edition
-            nft_id
             name
-            image
-            webtoon {
-              webtoon_id
-              title
-              volume
-              NFTs {
-                name
-                user {
-                  user_id
-                  name
-                  profile_image
-                  wallet_address
-                }
-              }
+            user {
+              user_id
+              name
+              profile_image
+              wallet_address
             }
           }
         }
       }
-    `,
+    }
+  }
+`;
+
+export async function getServerSideProps(context) {
+  const { user_id } = context.query;
+  const { data } = await client.query({
+    query: GET_USER_DATA,
     variables: {
       userId: user_id,
     },
