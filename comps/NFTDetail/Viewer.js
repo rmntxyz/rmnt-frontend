@@ -9,7 +9,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 800);
   };
 
   return (
