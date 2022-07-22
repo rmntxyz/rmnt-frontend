@@ -35,8 +35,8 @@ export default function TopCard({ data }) {
               </div>
             </div>
           </div>
-          <div className="mt-5 md:mt-8 lg:row-span-2 lg:order-1 lg:mt-0 lg:mr-8">
-            <div className="border border-darkGray bg-white rounded-sm p-3.5 drop-shadow-medium md:p-5">
+          <div className="mt-5 drop-shadow-medium md:mt-8 lg:row-span-2 lg:order-1 lg:mt-0 lg:mr-8">
+            <div className="border border-darkGray bg-white rounded-sm p-3.5 md:p-5">
               <a href={"/webtoons/" + data.webtoon_id}>
                 <Image
                   src={data.cover_image}
