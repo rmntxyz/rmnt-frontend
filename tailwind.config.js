@@ -17,7 +17,7 @@ module.exports = {
       },
       dropShadow: {
         small: "0px 5px 10px rgba(0, 0, 0, 0.14)",
-        medium: "0px 6px 16px 0.09px rgba(0, 0, 0, 0.18)",
+        medium: "0px 6px 16px rgba(0, 0, 0, 0.18)",
         large: "0px 6px 18px rgba(0, 0, 0, 0.36)",
       },
       container: {

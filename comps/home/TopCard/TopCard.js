@@ -35,22 +35,20 @@ export default function TopCard({ data }) {
               </div>
             </div>
           </div>
-          <div className="mt-5 drop-shadow-medium md:mt-8 lg:row-span-2 lg:order-1 lg:mt-0 lg:mr-8">
-            <div className="border border-darkGray bg-white rounded-sm p-3.5 md:p-5">
-              <a href={"/webtoons/" + data.webtoon_id}>
-                <Image
-                  src={data.cover_image}
-                  width={402}
-                  height={402}
-                  priority={true}
-                  placeholder="blur"
-                  blurDataURL={`/_next/image?url=${data.cover_image}&w=16&q=1`}
-                  layout="responsive"
-                  className="duration-200 hover:scale-125"
-                  alt="Rarement Webtoon Cover Image"
-                />
-              </a>
-            </div>
+          <div className="border border-darkGray bg-white rounded-sm p-3.5 mt-5 drop-shadow-medium md:p-5 md:mt-8 lg:row-span-2 lg:order-1 lg:mt-0 lg:mr-8">
+            <a href={"/webtoons/" + data.webtoon_id}>
+              <Image
+                src={data.cover_image}
+                width={402}
+                height={402}
+                priority={true}
+                placeholder="blur"
+                blurDataURL={`/_next/image?url=${data.cover_image}&w=16&q=1`}
+                layout="responsive"
+                className="duration-200 hover:scale-125"
+                alt="Rarement Webtoon Cover Image"
+              />
+            </a>
           </div>
           <div className="mt-8 flex flex-col md:mt-12 md:flex-row md:justify-between lg:flex-col lg:order-3">
             <div className="mb-8 pl-6 border-l border-mediumBeige text-sm md:text-lg md:mb-12 md:pl-8">
