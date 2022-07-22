@@ -60,18 +60,8 @@ export async function getServerSideProps() {
         .slice()
         .sort(
           (a, b) =>
-            b.NFTs.filter(
-              (NFT) =>
-                (NFT.sold_timestamp === null) |
-                (NFT.sold_timestamp === undefined) |
-                (NFT.sold_timestamp === "")
-            ).length -
-            a.NFTs.filter(
-              (NFT) =>
-                (NFT.sold_timestamp === null) |
-                (NFT.sold_timestamp === undefined) |
-                (NFT.sold_timestamp === "")
-            ).length
+            b.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length -
+            a.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length
         )
         .sort(
           (a, b) =>

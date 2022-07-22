@@ -40,9 +40,7 @@ export default function Desc({ props }) {
       <div
         className="h-[224px] md:h-[320px] bg-[#CEA671] bg-center bg-cover bg-no-repeat "
         style={
-          props.background_image !== null &&
-          props.background_image !== undefined &&
-          props.background_image !== ""
+          props.background_image?.length > 0
             ? {
                 backgroundImage: "url(" + props.background_image + ")",
                 filter: loading ? "blur(20px)" : "none",
@@ -62,9 +60,7 @@ export default function Desc({ props }) {
                 alt="Rarement Artist Profile Image"
                 onLoadingComplete={handleLoading}
                 src={
-                  props.profile_image !== null &&
-                  props.profile_image !== undefined &&
-                  props.profile_image !== ""
+                  props.profile_image?.length > 0
                     ? props.profile_image
                     : "/profile/profile_1440_768@2x.png"
                 }
@@ -114,9 +110,7 @@ export default function Desc({ props }) {
                   </button>
                 </div>
               </div>
-              {props.opensea !== null &&
-              props.opensea !== undefined &&
-              props.opensea !== "" ? (
+              {props.opensea?.length > 0 ? (
                 <a
                   href={props.opensea}
                   target="_blank"
@@ -146,77 +140,62 @@ export default function Desc({ props }) {
                 </a>
               ) : null}
             </div>
-            {props.description !== null &&
-            props.description !== undefined &&
-            props.description !== "" ? (
+            {props.description?.length > 0 ? (
               <div className="text-sm md:text-lg lg:w-1/2">
                 {props.description}
               </div>
             ) : null}
-            {props.description !== null &&
-            props.description !== undefined &&
-            props.description !== "" ? (
-              <div className="flex mb-14 gap-5 text-[#555555] md:gap-7 md:mb-20">
-                {props.instagram !== null &&
-                props.instagram !== undefined &&
-                props.instagram !== "" ? (
-                  <a
-                    href={`https://www.instagram.com/${props.instagram}`}
-                    target="_blank"
-                    className="flex items-center gap-0.5 text-xs hover:underline md:text-base"
-                  >
-                    <div className="relative w-5 h-5 md:w-6 md:h-6">
-                      <Image
-                        src="/instagram/artist_instagram_1440_768@2x.png"
-                        alt="Instagram Icon"
-                        layout="fill"
-                        objectFit="contain"
-                      />
-                    </div>
-                    <span className="hidden md:inline-block">
-                      @{props.instagram}
-                    </span>
-                  </a>
-                ) : null}
-                {props.twitter !== null &&
-                props.twitter !== undefined &&
-                props.twitter !== "" ? (
-                  <a
-                    href={`https://www.twitter.com/${props.twitter}`}
-                    target="_blank"
-                    className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
-                  >
-                    <FontAwesomeIcon icon={faTwitter} />
-                    <span className="hidden md:inline-block">
-                      @{props.twitter}
-                    </span>
-                  </a>
-                ) : null}
-                {props.email !== null &&
-                props.email !== undefined &&
-                props.email !== "" ? (
-                  <a
-                    href={`mailto:${props.email}`}
-                    target="_blank"
-                    className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
-                  >
-                    <div className="relative w-5 h-5 md:w-6 md:h-6">
-                      <Image
-                        src="/profile/profile_website_1440_768@2x.png"
-                        alt="Website Icon"
-                        layout="fill"
-                        objectFit="contain"
-                      />
-                    </div>
-                    <span className="hidden md:inline-block">
-                      {props.email}
-                    </span>
-                  </a>
-                ) : null}
-              </div>
-            ) : (
-              <div className="h-[50px] md:h-[83px]"></div>
-            )}
+
+            <div className="flex mb-14 gap-5 text-[#555555] md:gap-7 md:mb-20">
+              {props.instagram?.length > 0 ? (
+                <a
+                  href={`https://www.instagram.com/${props.instagram}`}
+                  target="_blank"
+                  className="flex items-center gap-0.5 text-xs hover:underline md:text-base"
+                >
+                  <div className="relative w-5 h-5 md:w-6 md:h-6">
+                    <Image
+                      src="/instagram/artist_instagram_1440_768@2x.png"
+                      alt="Instagram Icon"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <span className="hidden md:inline-block">
+                    @{props.instagram}
+                  </span>
+                </a>
+              ) : null}
+              {props.twitter?.length > 0 ? (
+                <a
+                  href={`https://www.twitter.com/${props.twitter}`}
+                  target="_blank"
+                  className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
+                >
+                  <FontAwesomeIcon icon={faTwitter} />
+                  <span className="hidden md:inline-block">
+                    @{props.twitter}
+                  </span>
+                </a>
+              ) : null}
+              {props.email?.length > 0 ? (
+                <a
+                  href={`mailto:${props.email}`}
+                  target="_blank"
+                  className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
+                >
+                  <div className="relative w-5 h-5 md:w-6 md:h-6">
+                    <Image
+                      src="/profile/profile_website_1440_768@2x.png"
+                      alt="Website Icon"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <span className="hidden md:inline-block">{props.email}</span>
+                </a>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

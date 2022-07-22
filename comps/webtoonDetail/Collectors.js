@@ -38,9 +38,7 @@ export default function Collectors({ users }) {
             >
               <Image
                 src={
-                  user.profile_image !== null &&
-                  user.profile_image !== undefined &&
-                  user.profile_image !== ""
+                  user.profile_image?.length > 0
                     ? user.profile_image
                     : "/profile/profile_1440_768@2x.png"
                 }

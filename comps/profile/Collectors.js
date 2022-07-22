@@ -33,9 +33,7 @@ export default function Collectors({ users }) {
                   <div className="rounded-full border-2 border-white  w-[28px] h-[28px] md:w-[36px] md:h-[36px] lg:w-[32px] lg:h-[32px]">
                     <Image
                       src={
-                        user.profile_image !== null &&
-                        user.profile_image !== undefined &&
-                        user.profile_image !== ""
+                        user.profile_image?.length > 0
                           ? user.profile_image
                           : "/profile/profile_1440_768@2x.png"
                       }
@@ -95,9 +93,7 @@ export default function Collectors({ users }) {
             <div className="rounded-full border-2 border-white w-8 h-8">
               <Image
                 src={
-                  user.profile_image !== null &&
-                  user.profile_image !== undefined &&
-                  user.profile_image !== ""
+                  user.profile_image?.length > 0
                     ? user.profile_image
                     : "/profile/profile_1440_768@2x.png"
                 }

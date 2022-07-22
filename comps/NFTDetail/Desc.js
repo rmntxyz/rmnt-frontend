@@ -10,9 +10,7 @@ export default function Desc({ NFT, currentNFT, exchangeRate, router }) {
         <div className="text-justify my-4 text-sm md:text-lg">
           {currentNFT.description}
         </div>
-        {currentNFT.sold_timestamp !== null &&
-        currentNFT.sold_timestamp !== undefined &&
-        currentNFT.sold_timestamp !== "" ? (
+        {currentNFT.sold_timestamp?.length > 0 ? (
           <div className="flex gap-4 mt-8 items-center">
             <a
               href={currentNFT.opensea}

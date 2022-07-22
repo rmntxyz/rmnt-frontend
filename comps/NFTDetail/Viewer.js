@@ -49,7 +49,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
               href={"/webtoons/" + NFT.webtoon.webtoon_id}
               className="flex items-center mt-1 w-[236px] "
             >
-              <div className="flex items-center bg-[#F3F3F3] py-1 px-2 rounded-sm">
+              <div className="flex items-center bg-[#F3F3F3] py-1 px-2 rounded-sm max-w-full">
                 <div className="truncate text-sm font-extrabold uppercase">
                   {NFT.webtoon.title}
                 </div>
@@ -72,7 +72,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
               href={"/webtoons/" + NFT.webtoon.webtoon_id}
               className="flex items-center mt-4 w-[402px]"
             >
-              <div className="flex items-center bg-[#F3F3F3] py-2 px-4 rounded-sm">
+              <div className="flex items-center bg-[#F3F3F3] py-2 px-4 rounded-sm max-w-full">
                 <div className="truncate text-2xl font-extrabold uppercase">
                   {NFT.webtoon.title}
                 </div>

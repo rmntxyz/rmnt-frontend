@@ -31,9 +31,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                   key={item.nft_id}
                   className="drop-shadow-medium rounded-sm "
                 >
-                  {item.sold_timestamp !== null &&
-                  item.sold_timestamp !== undefined &&
-                  item.sold_timestamp !== "" ? (
+                  {item.sold_timestamp?.length > 0 ? (
                     <div className="flex gap-1.5 items-center bg-ourBlack text-white text-sm md:text-base py-3.5 px-4">
                       <FontAwesomeIcon
                         icon={faCheckCircle}
@@ -90,9 +88,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                             className="text-[#858585] text-sm"
                             style={{
                               visibility:
-                                item.sold_timestamp !== null &&
-                                item.sold_timestamp !== undefined &&
-                                item.sold_timestamp !== ""
+                                item.sold_timestamp?.length > 0
                                   ? "hidden"
                                   : "visible",
                             }}
@@ -100,9 +96,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                             (≈ {(exchangeRate * item.price).toFixed(4)} USD)
                           </div>
                         </div>
-                        {item.sold_timestamp !== null &&
-                        item.sold_timestamp !== undefined &&
-                        item.sold_timestamp !== "" ? (
+                        {item.sold_timestamp?.length > 0 ? (
                           <a
                             href={item.opensea}
                             target="_blank"
