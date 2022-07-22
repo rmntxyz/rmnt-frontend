@@ -42,7 +42,7 @@ export default function TopCard({ data }) {
                   src={data.cover_image}
                   width={402}
                   height={402}
-                  // priority={true}
+                  priority={true}
                   placeholder="blur"
                   blurDataURL={`/_next/image?url=${data.cover_image}&w=16&q=1`}
                   layout="responsive"
