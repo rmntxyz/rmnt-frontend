@@ -32,7 +32,13 @@ export default function ListAvailable({ NFTs, timeRemaining }) {
             <div className="text-lightGray">Soldout</div>
           )}
         </div>
-        {available.length ? <ListTimer timeRemaining={timeRemaining} /> : null}
+        {available.find((NFT) => NFT.timeRemaining > 0) ? (
+          <ListTimer
+            timeRemaining={
+              available.find((NFT) => NFT.timeRemaining > 0).timeRemaining
+            }
+          />
+        ) : null}
       </div>
     </div>
   );

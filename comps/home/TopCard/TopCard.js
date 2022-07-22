@@ -53,9 +53,13 @@ export default function TopCard({ data }) {
           <div className="mt-8 flex flex-col md:mt-12 md:flex-row md:justify-between lg:flex-col lg:order-3">
             <div className="mb-8 pl-6 border-l border-mediumBeige text-sm md:text-lg md:mb-12 md:pl-8">
               <Available NFTs={data.NFTs} />
-              <Timer
-                timeRemaining={data.timeRemaining ? data.timeRemaining : null}
-              />
+              {data.NFTs.find((NFT) => NFT.timeRemaining > 0) ? (
+                <Timer
+                  timeRemaining={
+                    data.NFTs.find((NFT) => NFT.timeRemaining > 0).timeRemaining
+                  }
+                />
+              ) : null}
             </div>
             <div className="mx-auto md:mx-0">
               <a

@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import client from "../apollo";
 import About from "../comps/home/About";
 import List from "../comps/home/List/List";
@@ -27,8 +27,8 @@ const GET_HOME_DATA = gql`
       cover_image
       NFTs {
         sold_timestamp
+        timeRemaining
       }
-      timeRemaining
     }
     allWebtoons {
       webtoon_id
@@ -42,8 +42,8 @@ const GET_HOME_DATA = gql`
       NFTs {
         webtoon_id
         sold_timestamp
+        timeRemaining
       }
-      timeRemaining
     }
   }
 `;
@@ -58,7 +58,6 @@ export async function getServerSideProps() {
       topData: data.webtoonTop,
       listData: data.allWebtoons
         .slice()
-        .sort((a, b) => b.timeRemaining - a.timeRemaining)
         .sort(
           (a, b) =>
             b.NFTs.filter(
@@ -74,15 +73,17 @@ export async function getServerSideProps() {
                 (NFT.sold_timestamp === "")
             ).length
         )
+        .sort(
+          (a, b) =>
+            b.NFTs.filter((NFT) => NFT.timeRemaining > 0).length -
+            a.NFTs.filter((NFT) => NFT.timeRemaining > 0).length
+        )
         .filter((item) => item.webtoon_id !== data.webtoonTop.webtoon_id),
     },
   };
 }
 
 export default function Home({ topData, listData }) {
-  // const { loading, error, data } = useQuery(GET_HOME_DATA, {
-  //   fetchPolicy: "network-only",
-  // });
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />

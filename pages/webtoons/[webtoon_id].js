@@ -45,11 +45,11 @@ const GET_WEBTOON_DATA = gql`
       }
       cover_image
       description
-      timeRemaining
       NFTs {
         nft_id
         name
         sold_timestamp
+        timeRemaining
         edition
         image
         price
@@ -91,11 +91,7 @@ export default function WebtoonPage({ exchangeRate, webtoon, users }) {
       <main>
         <Viewer data={webtoon.pages.map((page) => page.page_image)} />
         <Desc item={webtoon} users={users} />
-        <NFT
-          NFTs={webtoon.NFTs}
-          timeRemaining={webtoon.timeRemaining}
-          exchangeRate={exchangeRate}
-        />
+        <NFT NFTs={webtoon.NFTs} exchangeRate={exchangeRate} />
       </main>
     </div>
   );
