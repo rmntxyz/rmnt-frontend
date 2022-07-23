@@ -67,7 +67,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                           />
                         </div>
                       </a>
-                      <div className="font-bold text-base md:text-lg">
+                      <div className="truncate w-[196px] font-bold text-base md:text-lg md:w-[240px] lg:w-[256px] ">
                         {/* {item.id.toString().length < 2 ? (
                         <span>
                           #{"0" + item.id}. {item.name}
