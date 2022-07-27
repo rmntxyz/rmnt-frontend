@@ -41,7 +41,7 @@ export default function Webtoons({ webtoons, artist }) {
               <button
                 onClick={handlePrevbtn}
                 disabled={currentPage === pages[0] ? true : false}
-                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none"
                 aria-label="Previous"
               >
                 <FontAwesomeIcon icon={faArrowLeft} />
@@ -51,7 +51,7 @@ export default function Webtoons({ webtoons, artist }) {
                 disabled={
                   currentPage === pages[pages.length - 1] ? true : false
                 }
-                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none"
                 aria-label="Next"
               >
                 <FontAwesomeIcon icon={faArrowRight} />
@@ -66,7 +66,7 @@ export default function Webtoons({ webtoons, artist }) {
               {currentItems.map((item) => (
                 <div
                   key={item.webtoon_id}
-                  className="border border-ourBlack rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
+                  className="border border-ourBlack rounded-sm p-3.5 shadow-small bg-white md:p-4 "
                 >
                   <a
                     href={"/webtoons/" + item.webtoon_id}

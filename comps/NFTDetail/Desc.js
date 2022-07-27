@@ -44,7 +44,7 @@ export default function Desc({ NFT, currentNFT, exchangeRate, router }) {
             <button
               disabled={currentNFT.timeRemaining > 0 ? true : false}
               onClick={(e) => router.push("/")}
-              className="inline-block px-10 py-4 bg-ourBlack text-white text-base leading-tight font-extrabold rounded-full duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none md:px-14 md:py-4 md:text-lg"
+              className="inline-block px-10 py-4 bg-ourBlack text-white text-base leading-tight font-extrabold rounded-full duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none md:px-14 md:py-4 md:text-lg"
             >
               <span>Buy</span>
               <span className="font-normal ml-3 md:ml-4">

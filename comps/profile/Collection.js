@@ -8,7 +8,7 @@ export default function Collection({ collections }) {
         {collections.map((collection, idx) => (
           <div
             key={idx}
-            className="rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
+            className="rounded-sm p-3.5 shadow-small bg-white md:p-4 "
           >
             <a href={"/NFT/" + collection.nft_id}>
               <Image

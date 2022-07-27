@@ -5,7 +5,7 @@ export default function ListAvailable({ NFTs, timeRemaining }) {
   const available = NFTs.filter((item) => !(item.sold_timestamp?.length > 0));
   return (
     <div
-      className={`flex flex-col items-center p-4 drop-shadow-md ${
+      className={`flex flex-col items-center p-4 shadow-md ${
         available.length
           ? "text-ourBlack bg-mediumBeige"
           : "text-white bg-ourBlack"

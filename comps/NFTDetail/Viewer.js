@@ -31,7 +31,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
               );
             }}
             key={idx}
-            className="border bg-white rounded-sm drop-shadow-lg p-3.5"
+            className="border bg-white rounded-sm shadow-lg p-3.5"
           >
             <Image
               alt="Rarement NFT Image"
@@ -65,7 +65,7 @@ export default function Viewer({ NFT, currentNFT, router }) {
       <div className="hidden relative mx-auto w-[442px] md:block">
         <div className="flex flex-col scroll">
           <div
-            className={`mx-auto mb-14 border bg-white rounded-sm drop-shadow-medium p-5 `}
+            className={`mx-auto mb-14 border bg-white rounded-sm shadow-medium p-5 `}
           >
             <Maximizable currentNFT={currentNFT} loading={loading} />
             <a

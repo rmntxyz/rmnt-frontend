@@ -26,7 +26,7 @@ export default function Viewer({ data }) {
     <div className="container mx-auto max-w-[800px]">
       <div className="flex flex-col items-center justify-center ">
         <div className="relative w-[93%] flex items-center justify-center gap-4 sm:gap-8 sm:w-[590px]">
-          <button className="absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none sm:left-2 sm:relative sm:w-14">
+          <button className="absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:left-2 sm:relative sm:w-14">
             <FontAwesomeIcon icon={faArrowLeft} className="sm:text-2xl" />
           </button>
           <Swiper
@@ -68,7 +68,7 @@ export default function Viewer({ data }) {
             observer={true}
             observeParents={true}
             onSwiper={handleLoading}
-            className="min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm drop-shadow-medium lg:max-w-[590px]"
+            className="min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px]"
           >
             {data.map((item, idx) => (
               <SwiperSlide key={idx}>
@@ -85,7 +85,7 @@ export default function Viewer({ data }) {
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className="absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none sm:right-2 sm:relative sm:w-14">
+          <button className="absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:right-2 sm:relative sm:w-14">
             <FontAwesomeIcon icon={faArrowRight} className="sm:text-2xl" />
           </button>
         </div>

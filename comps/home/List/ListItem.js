@@ -3,7 +3,7 @@ import ListAvailable from "./ListAvailable";
 
 export default function ListItem({ item }) {
   return (
-    <div className="w-[224px] drop-shadow-medium md:w-[272px] xl:w-[288px]">
+    <div className="w-[224px] shadow-medium md:w-[272px] xl:w-[288px]">
       <div className="p-4 border border-darkGray bg-white rounded-sm ">
         <a
           href={"/artists/" + item.artist.name}

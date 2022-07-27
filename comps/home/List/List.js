@@ -35,7 +35,7 @@ export default function List({ data }) {
           <div className="flex items-center lg:absolute lg:right-0">
             <a
               href="/webtoons"
-              className="whitespace-nowrap px-6 py-2 my-2 text-sm font-normal bg-white text-ourBlack leading-tight rounded-3xl duration-200 md:text-base hover:drop-shadow-lg md:hover:underline md:hover:drop-shadow-none"
+              className="whitespace-nowrap px-6 py-2 my-2 text-sm font-normal bg-white text-ourBlack leading-tight rounded-3xl duration-200 md:text-base hover:shadow-lg md:hover:underline md:hover:shadow-none"
               style={
                 data.length > 40
                   ? { display: "inline-block" }
@@ -48,7 +48,7 @@ export default function List({ data }) {
               <button
                 onClick={handlePrevbtn}
                 disabled={currentPage === pages[0] ? true : false}
-                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none"
                 aria-label="Previous"
               >
                 <FontAwesomeIcon icon={faArrowLeft} />
@@ -58,7 +58,7 @@ export default function List({ data }) {
                 disabled={
                   currentPage === pages[pages.length - 1] ? true : false
                 }
-                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none"
+                className="m-2.5 w-8 h-8 rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none"
                 aria-label="Next"
               >
                 <FontAwesomeIcon icon={faArrowRight} />

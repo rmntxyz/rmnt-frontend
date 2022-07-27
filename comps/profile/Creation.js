@@ -8,7 +8,7 @@ export default function Creation({ creations }) {
         {creations.map((item) => (
           <div
             key={item.categoryName}
-            className="rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
+            className="rounded-sm p-3.5 shadow-small bg-white md:p-4 "
           >
             <a href={"/NFT/" + item.children[0].nft_id}>
               <Image

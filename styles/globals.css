@@ -70,6 +70,10 @@
   opacity: 1;
 }
 
+.translate-z-1px {
+  transform: translateZ(1px);
+}
+
 @media (max-width: 700px) {
   .swiper-pagination-bullet:hover span {
     visibility: hidden;

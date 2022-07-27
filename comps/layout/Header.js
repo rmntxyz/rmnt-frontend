@@ -7,7 +7,7 @@ export default function Header() {
   return (
     //White header (current)
     //Logo changes on screen size
-    <nav className="h-20 px-8 text-2xl font-bold bg-white text-ourBlack flex justify-between items-center drop-shadow-small">
+    <nav className="h-20 px-8 text-2xl font-bold bg-white text-ourBlack flex justify-between items-center shadow-small translate-z-1px">
       <div className="invisible mt-3 cursor-pointer lg:visible ">
         <a href="/">
           <Image

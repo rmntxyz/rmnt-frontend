@@ -29,7 +29,7 @@ export default function NFT({ NFTs, exchangeRate }) {
               NFTs.map((item) => (
                 <div
                   key={item.nft_id}
-                  className="drop-shadow-medium rounded-sm "
+                  className="shadow-medium rounded-sm "
                 >
                   {item.sold_timestamp?.length > 0 ? (
                     <div className="flex gap-1.5 items-center bg-ourBlack text-white text-sm md:text-base py-3.5 px-4">
