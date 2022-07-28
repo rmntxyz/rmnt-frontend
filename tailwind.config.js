@@ -20,6 +20,11 @@ module.exports = {
         medium: "0 6px 32px 0 rgba(0, 0, 0, 0.18)",
         large: "0 6px 36px 0 rgba(0, 0, 0, 0.36)",
       },
+      dropShadow: {
+        small: "0px 5px 10px rgba(0, 0, 0, 0.14)",
+        medium: "0px 6px 16px rgba(0, 0, 0, 0.18)",
+        large: "0px 6px 18px rgba(0, 0, 0, 0.36)",
+      },
       container: {
         screens: {
           sm: "640px",
@@ -27,6 +32,7 @@ module.exports = {
           lg: "1024px",
           xl: "1280px",
           "2xl": "1376px",
+          "3xl": "1920px",
         },
       },
 
