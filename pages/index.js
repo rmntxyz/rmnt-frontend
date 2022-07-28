@@ -3,7 +3,7 @@ import client from "../apollo";
 import About from "../comps/home/About";
 import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
-import Seo from "../comps/SEO";
+import Seo from "../comps/layout/SEO";
 // import { listUrl, topUrl } from "../comps/URLs";
 
 // export async function getServerSideProps() {
@@ -14,59 +14,68 @@ import Seo from "../comps/SEO";
 //   return { props: { topData: topData, listData: listData } };
 // }
 
+const GET_HOME_DATA = gql`
+  query Home_data {
+    webtoonTop {
+      webtoon_id
+      artist {
+        name
+        profile_image
+      }
+      title
+      volume
+      cover_image
+      NFTs {
+        sold_timestamp
+        timeRemaining
+      }
+    }
+    allWebtoons {
+      webtoon_id
+      artist {
+        name
+        profile_image
+      }
+      title
+      volume
+      cover_image
+      NFTs {
+        webtoon_id
+        sold_timestamp
+        timeRemaining
+      }
+    }
+  }
+`;
+
 export async function getServerSideProps() {
   const { data } = await client.query({
-    query: gql`
-      query Home_data {
-        webtoonTop {
-          id
-          artist {
-            name
-            profile_picture
-          }
-          title
-          volume
-          pages
-          cover_image
-          NFTs {
-            sold
-          }
-          timeRemaining
-        }
-        allWebtoons {
-          id
-          artist {
-            name
-            profile_picture
-          }
-          title
-          volume
-          pages
-          cover_image
-          NFTs {
-            sold
-          }
-          timeRemaining
-          sold
-        }
-      }
-    `,
+    query: GET_HOME_DATA,
+    fetchPolicy: "network-only",
   });
   return {
     props: {
       topData: data.webtoonTop,
       listData: data.allWebtoons
         .slice()
-        .sort((a, b) => b.timeRemaining - a.timeRemaining)
-        .sort((a, b) => a.sold - b.sold)
-        .filter((item) => item.id !== data.webtoonTop.id),
+        .sort(
+          (a, b) =>
+            b.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length -
+            a.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length
+        )
+        .sort(
+          (a, b) =>
+            b.NFTs.filter((NFT) => NFT.timeRemaining > 0).length -
+            a.NFTs.filter((NFT) => NFT.timeRemaining > 0).length
+        )
+        .filter((item) => item.webtoon_id !== data.webtoonTop.webtoon_id),
     },
   };
 }
 
 export default function Home({ topData, listData }) {
   return (
-    <div className="transition-opacity opacity-100 ease-in">
+    <div className="overflow-x-hidden">
       <Seo title="Rarement" />
       <main>
         <TopCard data={topData} />

@@ -2,9 +2,18 @@ import { useState } from "react";
 import Collection from "./Collection";
 import Creation from "./Creation";
 
-export default function NFT({ users, artist }) {
+export default function NFT({ artist }) {
+  //Enable navigation between the Creation & Collection tabs
   const [openTab, setOpenTab] = useState(1);
-  function groupBy(arr, property) {
+
+  //Place the artist's NFTs into one single array
+  const artistNFTs = artist.webtoons
+    .map((webtoon) => webtoon.NFTs)
+    .filter((NFTs) => NFTs.length)
+    .flat(1);
+
+  //Group the NFTs by name (so NFTs with multiple editions will be displayed as one single card as opposed to multiple cards)
+  function groupByName(arr, property) {
     return arr.reduce(function (memo, x) {
       if (!memo[x[property]]) {
         memo[x[property]] = [];
@@ -13,14 +22,13 @@ export default function NFT({ users, artist }) {
       return memo;
     }, {});
   }
-  const groups = groupBy(artist.NFTs, "editions_title");
+  const groups = groupByName(artistNFTs, "name");
   const finalGroups = [];
 
   for (const key in groups) {
     finalGroups.push({
       categoryName: key,
       children: groups[key],
-      collectors: groups[key].map((item) => item.owned_by),
     });
   }
 
@@ -40,6 +48,7 @@ export default function NFT({ users, artist }) {
                   setOpenTab(1);
                 }}
                 role="tab"
+                aria-label="View Creations"
               >
                 Creation {finalGroups.length}
               </button>
@@ -57,6 +66,7 @@ export default function NFT({ users, artist }) {
                   setOpenTab(2);
                 }}
                 role="tab"
+                aria-label="View Collections"
               >
                 Collection {artist.collection.length}
               </button>
@@ -70,12 +80,8 @@ export default function NFT({ users, artist }) {
           </ul>
           <div>
             <div className={openTab === 1 ? "block" : "hidden"}>
-              {artist.NFTs.length > 0 ? (
-                <Creation
-                  creations={finalGroups}
-                  users={users}
-                  webtoons={artist.webtoons}
-                />
+              {artistNFTs.length > 0 ? (
+                <Creation creations={finalGroups} />
               ) : (
                 <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
                   {artist.name} has not created any NFT yet.

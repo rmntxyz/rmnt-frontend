@@ -1,7 +1,13 @@
+import { useApolloClient } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import client from "../../../apollo";
 
 export default function Timer({ timeRemaining }) {
+  //Fetch the time remaining from the server and set the drop time on the client side
   const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
+
+  //Use the client-side drop time to build the countdown timer
   const calculateTimeLeft = () => {
     let timeLeft = [];
     let remaining = endTime - new Date().getTime();
@@ -31,7 +37,9 @@ export default function Timer({ timeRemaining }) {
     } else return null;
   };
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
   useEffect(() => {
+    // router.replace(router.asPath)
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -48,7 +56,9 @@ export default function Timer({ timeRemaining }) {
               <div key={unit} className="relative flex flex-row">
                 <div className="flex flex-col items-center my-1 mr-3 md:mr-4 md:my-1.5">
                   <div className="w-12 h-14 flex items-center justify-center bg-lightBeige rounded md:w-16 md:h-20">
-                    <div suppressHydrationWarning={true}>{number}</div>
+                    <div>
+                      {number.toString().length < 2 ? "0" + number : number}
+                    </div>
                   </div>
                   <div className="invisible font-normal text-neutral-500 text-sm md:visible">
                     {unit}
@@ -69,9 +79,7 @@ export default function Timer({ timeRemaining }) {
             ))}
           </div>
         </div>
-      ) : (
-        "Ready to be minted!"
-      )}
+      ) : null}
     </div>
   );
 }

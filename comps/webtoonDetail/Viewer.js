@@ -14,14 +14,20 @@ import { useState } from "react";
 import ProgressBar from "./ProgressBar";
 
 export default function Viewer({ data }) {
+  //Identify current page for the progress bar
   const [currentPage, setCurrentPage] = useState(1);
 
+  //Add blur to the image being loaded
+  const [loading, setLoading] = useState(true);
+  const handleLoading = () => {
+    setLoading(false);
+  };
   return (
     <div className="container mx-auto max-w-[800px]">
       <div className="flex flex-col items-center justify-center ">
-        <div className="w-[95%] flex items-center justify-center md:gap-4 lg:gap-8 ">
-          <button className="swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none md:w-14">
-            <FontAwesomeIcon icon={faArrowLeft} className="md:text-2xl" />
+        <div className="relative w-[93%] flex items-center justify-center gap-4 sm:gap-8 sm:w-[590px]">
+          <button className="absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:left-2 sm:relative sm:w-14">
+            <FontAwesomeIcon icon={faArrowLeft} className="sm:text-2xl" />
           </button>
           <Swiper
             modules={[Navigation, Scrollbar, Pagination]}
@@ -61,7 +67,8 @@ export default function Viewer({ data }) {
             onSlideChange={(swiper) => setCurrentPage(swiper.realIndex + 1)}
             observer={true}
             observeParents={true}
-            className="w-[80%] border border-darkGray bg-white rounded-sm drop-shadow-medium lg:max-w-[590px]"
+            onSwiper={handleLoading}
+            className="min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px]"
           >
             {data.map((item, idx) => (
               <SwiperSlide key={idx}>
@@ -69,16 +76,20 @@ export default function Viewer({ data }) {
                   width={590}
                   height={590}
                   src={item}
-                  className="p-3.5 md:p-5 "
+                  style={{
+                    filter: loading ? "blur(20px)" : "none",
+                    transition: loading ? "none" : "filter 0.3s ease-out",
+                  }}
+                  className="p-3.5 sm:p-5 "
                 />
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className="swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:drop-shadow-large disabled:bg-neutral-200 disabled:hover:drop-shadow-none md:w-14">
-            <FontAwesomeIcon icon={faArrowRight} className="md:text-2xl" />
+          <button className="absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:right-2 sm:relative sm:w-14">
+            <FontAwesomeIcon icon={faArrowRight} className="sm:text-2xl" />
           </button>
         </div>
-        <div className="container relative mx-auto mt-5 max-w-[78%] md:mt-8  lg:max-w-[75%] xl:max-w-[73%]">
+        <div className="container relative mx-auto mt-5 max-w-[78%] sm:w-[442px] sm:mt-8">
           <div className="absolute swiper-scrollbar top-2.5 h-2.5 rounded-xl border border-ourBlack !bg-transparent !overflow-hidden">
             <div className="swiper-scrollbar-drag z-20 !bg-ourBlack "></div>
           </div>

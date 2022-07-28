@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
 export default function DetailTimer({ timeRemaining }) {
+  //Fetch the time remaining from the server and set the drop time on the client side
   const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
 
+  //Use the client-side drop time to build the countdown timer
   const calculateTimeLeft = () => {
     let timeLeft = [];
     let remaining = endTime - new Date().getTime();
@@ -50,9 +52,11 @@ export default function DetailTimer({ timeRemaining }) {
                   }`}
                 >
                   <div className="w-9 h-7 flex justify-center items-center bg-white rounded md:h-12 md:w-16">
-                    <div suppressHydrationWarning={true}>
-                      {number}
-                      {unit}
+                    <div>
+                      <span>
+                        {number.toString().length < 2 ? "0" + number : number}
+                      </span>
+                      <span>{unit}</span>
                     </div>
                   </div>
                 </div>

@@ -3,9 +3,9 @@ import Desc from "../../comps/webtoonDetail/Desc";
 import NFT from "../../comps/webtoonDetail/NFT";
 import { getExchangeRate } from "../api/USD_ETH";
 // import { usersUrl, webtoonsUrl } from "../../comps/URLs";
-import Seo from "../../comps/SEO";
 import client from "../../apollo";
 import { gql } from "@apollo/client";
+import Seo from "../../comps/layout/SEO";
 
 // export async function getServerSideProps(context) {
 //   const exchangeRate = await getExchangeRate();
@@ -27,81 +27,72 @@ import { gql } from "@apollo/client";
 //   };
 // }
 
-export async function getServerSideProps(context) {
-  const exchangeRate = await getExchangeRate();
-  const { id } = context.query;
-  const { data } = await client.query({
-    query: gql`
-      query Webtoon($webtoonId: String!) {
-        webtoon(id: $webtoonId) {
-          artist {
-            name
-            profile_picture
-            wallet_address
-            description
-            email
-            instagram
-          }
-          title
-          volume
-          pages
-          cover_image
-          description
-          collectors
-          timeRemaining
-          NFTs {
-            id
-            name
-            sold
-            edition
-            image_address
-            price
-            opensea
-            user {
-              id
-              profile_picture
-              name
-              wallet_address
-            }
-          }
+const GET_WEBTOON_DATA = gql`
+  query Webtoon($webtoonId: String!) {
+    webtoon(webtoon_id: $webtoonId) {
+      artist {
+        name
+        profile_image
+        wallet_address
+        description
+        email
+        instagram
+      }
+      title
+      volume
+      pages {
+        page_image
+      }
+      cover_image
+      description
+      NFTs {
+        nft_id
+        name
+        sold_timestamp
+        timeRemaining
+        edition
+        image
+        price
+        opensea
+        user {
+          user_id
+          profile_image
+          name
+          wallet_address
         }
       }
-    `,
+    }
+  }
+`;
+
+export async function getServerSideProps(context) {
+  const exchangeRate = await getExchangeRate();
+  const { webtoon_id } = context.query;
+  const { data } = await client.query({
+    query: GET_WEBTOON_DATA,
     variables: {
-      webtoonId: id,
+      webtoonId: webtoon_id,
     },
+    fetchPolicy: "network-only",
   });
   return {
     props: {
       exchangeRate: exchangeRate,
       webtoon: data.webtoon,
-      collectors: data.webtoon.collectors
-        .slice()
-        .filter(
-          (item, index) => data.webtoon.collectors.indexOf(item) === index
-        ),
-
-      users: data.webtoon.NFTs.map((NFT) => NFT.user),
+      users: data.webtoon.NFTs?.map((NFT) => NFT.user),
     },
   };
 }
 
-export default function WebtoonPage({
-  exchangeRate,
-  webtoon,
-  collectors,
-  users,
-}) {
+export default function WebtoonPage({ exchangeRate, webtoon, users }) {
   return (
     <div className="mt-20 overflow-x-hidden">
       <Seo title={`${webtoon.artist.name} - ${webtoon.title}`} />
-      <Viewer data={webtoon.pages} />
-      <Desc item={webtoon} collectors={collectors} users={users} />
-      <NFT
-        NFTs={webtoon.NFTs}
-        timeRemaining={webtoon.timeRemaining}
-        exchangeRate={exchangeRate}
-      />
+      <main>
+        <Viewer data={webtoon.pages.map((page) => page.page_image)} />
+        <Desc item={webtoon} users={users} />
+        <NFT NFTs={webtoon.NFTs} exchangeRate={exchangeRate} />
+      </main>
     </div>
   );
 }

@@ -1,53 +1,56 @@
-export default function Collectors({ collectors, users }) {
+import Image from "next/image";
+
+export default function Collectors({ users }) {
+  //Remove duplicate collectors from the array
+  const uniqueIds = [];
+  const uniqueUsers = users.filter((item) => {
+    const isDuplicate = uniqueIds.includes(item.user_id);
+    if (!isDuplicate) {
+      uniqueIds.push(item.user_id);
+      return true;
+    }
+    return false;
+  });
   return (
     <div
-      className={`${
-        collectors && collectors.length
-          ? "bg-white text-ourBlack"
-          : "bg-darkGray text-white"
-      }  border-2 border-mediumGray flex flex-col p-6 md:p-8`}
+      className={`bg-darkGray text-white border-2 border-mediumGray flex flex-col p-6 md:p-8`}
     >
-      <div className="font-bold mb-3 md:text-2xl md:mb-4">Collectors</div>
-      <div className="text-sm mb-6 md:text-lg md:mb-8">
+      <div className="font-bold mb-3 text-sm md:text-lg md:mb-4">
+        Collectors
+      </div>
+      <div className="text-xs text-lightGray mb-6 md:text-base md:mb-8">
         By purchasing a limited edition NFT of the webtoon series, collectors
         can leave a comment.
       </div>
       <div
         className={`${
-          collectors &&
-          collectors.length &&
-          "grid grid-cols-3 gap-x-5 gap-y-3 sm:grid-cols-5"
+          uniqueUsers &&
+          uniqueUsers.length &&
+          "grid grid-cols-4 gap-x-5 gap-y-3 sm:grid-cols-6"
         }`}
       >
-        {collectors && collectors.length ? (
-          collectors.map((collector, idx) => (
+        {uniqueUsers && uniqueUsers.length ? (
+          uniqueUsers.map((user, idx) => (
             <a
-              href={"/users/" + users.find((user) => user.id === collector).id}
+              href={"/users/" + user.user_id}
               key={idx}
-              className="group relative hover:cursor-pointer"
+              className="group relative hover:cursor-pointer rounded-full border-2 border-white w-14 h-14 md:w-[74px] md:h-[74px] lg:w-20 lg:h-20"
             >
-              {users.find((user) => user.id === collector).profile_picture !==
-                null &&
-              users.find((user) => user.id === collector).profile_picture !==
-                undefined &&
-              users.find((user) => user.id === collector).profile_picture !==
-                "" ? (
-                <img
-                  src={
-                    users.find((user) => user.id === collector).profile_picture
-                  }
-                  className="rounded-full col-span-1"
-                />
-              ) : (
-                <img
-                  src="/profile/profile_1440_768@2x.png"
-                  className="rounded-full col-span-1"
-                />
-              )}
+              <Image
+                src={
+                  user.profile_image?.length > 0
+                    ? user.profile_image
+                    : "/profile/profile_1440_768@2x.png"
+                }
+                layout="fill"
+                objectFit="contain"
+                className="rounded-full col-span-1 "
+                alt="Rarement NFT Collector Profile Picture"
+              />
               <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
-                <div>{users.find((user) => user.id === collector).name}</div>
+                <div>{user.name}</div>
                 <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
-                  {users.find((user) => user.id === collector).wallet_address}
+                  {user.wallet_address}
                 </div>
               </div>
             </a>

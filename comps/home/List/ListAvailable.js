@@ -1,34 +1,39 @@
 import ListTimer from "./ListTimer";
 
 export default function ListAvailable({ NFTs, timeRemaining }) {
-  const available = NFTs.filter((item) => item.sold === false);
+  //Filter out sold NFTs to paint the number of available NFTs
+  const available = NFTs.filter((item) => !(item.sold_timestamp?.length > 0));
   return (
     <div
-      className={`flex flex-col items-center p-4 drop-shadow-md ${
+      className={`flex flex-col items-center p-4 shadow-md ${
         available.length
           ? "text-ourBlack bg-mediumBeige"
           : "text-white bg-ourBlack"
       }`}
     >
-      <div className="w-full flex justify-between">
+      <div className="w-full flex text-xs justify-between md:text-sm">
         <div className="whitespace-nowrap">Available NFT</div>
         {timeRemaining > 0 ? (
           <div className="whitespace-nowrap">Drop begins in</div>
         ) : null}
       </div>
-      <div className="w-full mt-1 flex items-center justify-between">
+      <div className="w-full mt-1 flex items-center justify-between text-[15px] font-bold md:text-base">
         <div>
           {available.length ? (
-            <div className="text-base font-bold md:text-lg">
+            <div>
               {available.length}/{NFTs.length}
             </div>
           ) : (
-            <div className="text-lightGray text-base font-bold md:text-lg">
-              Soldout
-            </div>
+            <div className="text-lightGray">Soldout</div>
           )}
         </div>
-        {available.length ? <ListTimer timeRemaining={timeRemaining} /> : null}
+        {available.find((NFT) => NFT.timeRemaining > 0) ? (
+          <ListTimer
+            timeRemaining={
+              available.find((NFT) => NFT.timeRemaining > 0).timeRemaining
+            }
+          />
+        ) : null}
       </div>
     </div>
   );

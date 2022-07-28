@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
 export default function ListTimer({ timeRemaining }) {
+  //Fetch the time remaining from the server and set the drop time on the client side
   const [endTime, setEndTime] = useState(new Date().getTime() + timeRemaining);
 
+  //Use the client-side drop time to build the countdown timer
   const calculateTimeLeft = () => {
     let timeLeft = [];
     let remaining = endTime - new Date().getTime();
@@ -40,24 +42,26 @@ export default function ListTimer({ timeRemaining }) {
     <div>
       {timeLeft ? (
         <div>
-          <div className="flex font-bold">
+          <div className="flex font-bold text-xs md:text-[13px]">
             {timeLeft.map(({ unit, number }) => (
               <div key={unit} className="relative flex flex-row">
                 <div
-                  className={`flex flex-col mr-2 md:mr-3 ${
-                    unit === "s" && "mr-0 md:mr-0"
+                  className={`flex flex-col ${
+                    unit === "s" ? "mr-0" : "mr-2 md:mr-3"
                   }`}
                 >
-                  <div className="w-9 h-5 flex justify-center items-center bg-lightBeige rounded md:h-6">
-                    <div suppressHydrationWarning={true}>
-                      {number}
-                      {unit}
+                  <div className="w-8 h-5 flex justify-center items-center bg-lightBeige rounded md:h-6">
+                    <div>
+                      <span>
+                        {number.toString().length < 2 ? "0" + number : number}
+                      </span>
+                      <span>{unit}</span>
                     </div>
                   </div>
                 </div>
                 <div
-                  className={`absolute -top-0.5 right-0.5 md:right-1 ${
-                    (unit === "d") | (unit === "s") && "text-transparent"
+                  className={`absolute top-0.5 right-0.5 md:right-1 ${
+                    (unit === "d") | (unit === "s") && "hidden"
                   }`}
                 >
                   :

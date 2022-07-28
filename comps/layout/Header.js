@@ -6,20 +6,36 @@ import Image from "next/image";
 export default function Header() {
   return (
     //White header (current)
-    <nav className="h-20 px-8 text-2xl font-bold bg-white text-ourBlack flex justify-between items-center drop-shadow-small">
+    //Logo changes on screen size
+    <nav className="h-20 px-8 text-2xl font-bold bg-white text-ourBlack flex justify-between items-center shadow-small translate-z-1px">
       <div className="invisible mt-3 cursor-pointer lg:visible ">
         <a href="/">
-          <Image src="/logo_black/logo_1440.png" width={165} height={80} />
+          <Image
+            src="/logo_black/logo_1440.png"
+            width={165}
+            height={80}
+            alt="Rarement Logo"
+          />
         </a>
       </div>
       <div className="invisible absolute mt-3 cursor-pointer md:visible lg:invisible ">
         <a href="/">
-          <Image src="/logo_black/logo_768.png" width={165} height={80} />
+          <Image
+            src="/logo_black/logo_768.png"
+            width={165}
+            height={80}
+            alt="Rarement Logo"
+          />
         </a>
       </div>
       <div className="absolute cursor-pointer mt-3 md:invisible">
         <a href="/">
-          <Image src="/logo_black/logo_360.png" width={165} height={80} />
+          <Image
+            src="/logo_black/logo_360.png"
+            width={165}
+            height={80}
+            alt="Rarement Logo"
+          />
         </a>
       </div>
       <ConnectButton.Custom>
@@ -45,7 +61,11 @@ export default function Header() {
               {(() => {
                 if (!mounted || !account || !chain) {
                   return (
-                    <button onClick={openConnectModal} type="button">
+                    <button
+                      onClick={openConnectModal}
+                      type="button"
+                      aria-label="Connect Wallet"
+                    >
                       <span className="invisible px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white duration-200 md:visible ">
                         Connect Wallet
                       </span>

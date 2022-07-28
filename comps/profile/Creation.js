@@ -1,41 +1,33 @@
 import Image from "next/image";
 import Collectors from "./Collectors";
 
-export default function Creation({ creations, users, webtoons }) {
+export default function Creation({ creations }) {
   return (
-    <div className="scroll overflow-x-auto">
-      <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
+    <div className="scroll-xlarge overflow-x-auto">
+      <div className="min-w-[956px] grid grid-cols-4 gap-5 md:gap-8 md:min-w-[1184px]">
         {creations.map((item) => (
           <div
             key={item.categoryName}
-            className="rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
+            className="rounded-sm p-3.5 shadow-small bg-white md:p-4 "
           >
-            <a href={"/NFT/" + item.children[0].id}>
+            <a href={"/NFT/" + item.children[0].nft_id}>
               <Image
-                src={item.children[0].image_address}
+                src={item.children[0].image}
                 width={256}
                 height={256}
                 objectFit="contain"
                 layout="responsive"
                 className="duration-200 hover:scale-125"
+                alt="Rarement NFT Image"
               />
             </a>
             <div className="flex max-w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">
               <div className="truncate text-sm font-extrabold uppercase">
-                {
-                  webtoons.find(
-                    (webtoon) => webtoon.id === item.children[0].webtoon_id
-                  ).title
-                }
+                {item.children[0].webtoon.title}
               </div>
               <div className="w-1 aspect-square m-1 bg-lightGray rounded-full"></div>
               <div className="whitespace-nowrap text-sm font-extrabold">
-                vol{" "}
-                {
-                  webtoons.find(
-                    (webtoon) => webtoon.id === item.children[0].webtoon_id
-                  ).volume
-                }
+                vol {item.children[0].webtoon.volume}
               </div>
             </div>
             <div className="truncate font-bold text-base md:text-lg">
@@ -50,7 +42,7 @@ export default function Creation({ creations, users, webtoons }) {
               )} */}
               {item.children[0].name}
             </div>
-            <Collectors collectors={item.collectors} users={users} />
+            <Collectors users={item.children.map((NFT) => NFT.user)} />
           </div>
         ))}
       </div>

@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Collectors from "./Collectors";
 
-export default function Collection({ collections, users, webtoons, NFTs }) {
+export default function Collection({ collections }) {
   return (
     <div className="scroll overflow-x-auto">
-      <div className="min-w-[468px] grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
+      <div className="min-w-[956px] grid grid-cols-4 gap-5 md:gap-8 md:min-w-[1184px]">
         {collections.map((collection, idx) => (
           <div
             key={idx}
-            className="rounded-sm p-3.5 drop-shadow-small bg-white md:p-4 "
+            className="rounded-sm p-3.5 shadow-small bg-white md:p-4 "
           >
-            <a href={"/NFT/" + collection.id}>
+            <a href={"/NFT/" + collection.nft_id}>
               <Image
-                src={collection.image_address}
+                src={collection.image}
                 width={256}
                 height={256}
                 layout="responsive"
@@ -21,20 +21,11 @@ export default function Collection({ collections, users, webtoons, NFTs }) {
             </a>
             <div className="flex max-w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">
               <div className="truncate text-sm font-extrabold uppercase">
-                {
-                  webtoons.find(
-                    (webtoon) => webtoon.id === collection.webtoon_id
-                  ).title
-                }
+                {collection.webtoon.title}
               </div>
               <div className="w-1 aspect-square m-1 bg-lightGray rounded-full"></div>
               <div className="whitespace-nowrap text-sm font-extrabold">
-                vol{" "}
-                {
-                  webtoons.find(
-                    (webtoon) => webtoon.id === collection.webtoon_id
-                  ).volume
-                }
+                vol {collection.webtoon.volume}
               </div>
             </div>
             <div className="truncate font-bold text-base md:text-lg">
@@ -47,13 +38,18 @@ export default function Collection({ collections, users, webtoons, NFTs }) {
               #{collection.id}. {collection.name}
             </span>
           )} */}
-              {collection.name}
+              <span>{collection.name}</span>
+              {/* {collection.edition === 1 ? null : (
+                <span className="font-normal text-xs">
+                  {" "}
+                  (Edition {collection.edition})
+                </span>
+              )} */}
             </div>
             <Collectors
-              collectors={NFTs.filter(
-                (NFT) => NFT.editions_title === collection.editions_title
-              ).map((edition) => edition.owned_by)}
-              users={users}
+              users={collection.webtoon.NFTs.filter(
+                (NFT) => NFT.name === collection.name
+              ).map((NFT) => NFT.user)}
             />
           </div>
         ))}

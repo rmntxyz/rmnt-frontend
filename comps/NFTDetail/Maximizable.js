@@ -2,11 +2,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Maximizable({ currentNFT, loading }) {
+  //Enable maximization of the selected NFT
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreen = () => {
     getOrExitFullscreen();
-    setIsFullscreen(!isFullscreen)
-  }
+    setIsFullscreen(!isFullscreen);
+  };
   const getOrExitFullscreen = () => {
     if (isFullscreen === false) {
       if (document.getElementById("maximizableElement").requestFullscreen) {
@@ -40,13 +41,13 @@ export default function Maximizable({ currentNFT, loading }) {
         isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
       } ${
         loading ? "opacity-0" : "opacity-100"
-      } relative transition-opacity h-[560px] xl:h-[590px]`}
+      } relative transition-opacity h-[402px]`}
     >
       <Image
         id="maximizableElement"
-        src={currentNFT.image_address}
+        src={currentNFT.image}
         placeholder="blur"
-        blurDataURL={currentNFT.image_address}
+        blurDataURL={`/_next/image?url=${currentNFT.image}&w=16&q=1`}
         layout="fill"
         objectFit="contain"
         // onLoadingComplete={({ naturalWidth, naturalHeight }) => {

@@ -15,6 +15,11 @@ module.exports = {
         darkGray: "#242424",
         ourBlack: "#0C0C0C",
       },
+      boxShadow: {
+        small: "0 5px 20px 0 rgba(0, 0, 0, 0.14)",
+        medium: "0 6px 32px 0 rgba(0, 0, 0, 0.18)",
+        large: "0 6px 36px 0 rgba(0, 0, 0, 0.36)",
+      },
       dropShadow: {
         small: "0px 5px 10px rgba(0, 0, 0, 0.14)",
         medium: "0px 6px 16px rgba(0, 0, 0, 0.18)",
