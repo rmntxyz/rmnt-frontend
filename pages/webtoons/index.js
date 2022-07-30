@@ -2,13 +2,6 @@ import { gql } from "@apollo/client";
 import client from "../../apollo";
 import ListItem from "../../comps/home/List/ListItem";
 import Seo from "../../comps/layout/SEO";
-// import { webtoonsUrl } from "../../comps/URLs";
-
-// export async function getServerSideProps() {
-//   const webtoonsRes = await fetch(webtoonsUrl);
-//   const webtoonsData = await webtoonsRes.json();
-//   return { props: { webtoonsData } };
-// }
 
 const GET_WEBTOONS_DATA = gql`
   query Webtoons_data {

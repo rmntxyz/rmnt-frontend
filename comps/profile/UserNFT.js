@@ -11,7 +11,6 @@ export default function UserNFT({ user, NFTs }) {
     }
     return false;
   });
-  console.log(uniqueCollections);
   return (
     <div className="bg-lightBeige py-12 md:py-20">
       <div className="container mx-auto">

@@ -4,15 +4,6 @@ import About from "../comps/home/About";
 import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
 import Seo from "../comps/layout/SEO";
-// import { listUrl, topUrl } from "../comps/URLs";
-
-// export async function getServerSideProps() {
-//   const topRes = await fetch(topUrl);
-//   const topData = await topRes.json();
-//   const listRes = await fetch(listUrl);
-//   const listData = await listRes.json();
-//   return { props: { topData: topData, listData: listData } };
-// }
 
 const GET_HOME_DATA = gql`
   query Home_data {

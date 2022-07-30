@@ -2,30 +2,9 @@ import Viewer from "../../comps/webtoonDetail/Viewer";
 import Desc from "../../comps/webtoonDetail/Desc";
 import NFT from "../../comps/webtoonDetail/NFT";
 import { getExchangeRate } from "../api/USD_ETH";
-// import { usersUrl, webtoonsUrl } from "../../comps/URLs";
 import client from "../../apollo";
 import { gql } from "@apollo/client";
 import Seo from "../../comps/layout/SEO";
-
-// export async function getServerSideProps(context) {
-//   const exchangeRate = await getExchangeRate();
-//   const { id } = context.query;
-//   const webtoonRes = await fetch(webtoonsUrl + id);
-//   const webtoon = await webtoonRes.json();
-//   const uniqueCollectors = webtoon.collectors.filter(
-//     (item, index) => webtoon.collectors.indexOf(item) === index
-//   );
-//   const usersRes = await fetch(usersUrl);
-//   const users = await usersRes.json();
-//   return {
-//     props: {
-//       exchangeRate: exchangeRate,
-//       webtoon: webtoon,
-//       collectors: uniqueCollectors,
-//       users: users,
-//     },
-//   };
-// }
 
 const GET_WEBTOON_DATA = gql`
   query Webtoon($id: ID) {

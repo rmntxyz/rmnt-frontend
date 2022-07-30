@@ -4,31 +4,6 @@ import Seo from "../../comps/layout/SEO";
 import Desc from "../../comps/profile/Desc";
 import NFT from "../../comps/profile/NFT";
 import Webtoons from "../../comps/profile/Webtoons";
-// import { artistsUrl, NFTsUrl, usersUrl, webtoonsUrl } from "../../comps/URLs";
-
-// export async function getServerSideProps(context) {
-//   const { name } = context.query;
-//   const artistRes = await fetch(artistsUrl + name);
-//   const artist = await artistRes.json();
-//   const webtoonsRes = await fetch(webtoonsUrl);
-//   const webtoons = await webtoonsRes.json();
-//   const artistWebtoons = webtoons.filter(
-//     (item) => item.artist_id === artist.id
-//   );
-//   const NFTsRes = await fetch(NFTsUrl);
-//   const NFTs = await NFTsRes.json();
-//   const artistNFTs = NFTs.filter((item) => item.created_by === artist.name);
-//   const usersRes = await fetch(usersUrl);
-//   const users = await usersRes.json();
-//   return {
-//     props: {
-//       artist: artist,
-//       webtoons: artistWebtoons,
-//       NFTs: artistNFTs,
-//       users: users,
-//     },
-//   };
-// }
 
 const GET_ARTIST_DATA = gql`
   query Artist($id: ID) {
