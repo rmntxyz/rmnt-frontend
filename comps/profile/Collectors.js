@@ -34,7 +34,8 @@ export default function Collectors({ users }) {
                     <Image
                       src={
                         user.attributes.profile_image
-                          ? user.attributes.profile_image.data.attributes.url
+                          ? "https://rmnt.herokuapp.com" +
+                            user.attributes.profile_image.data.attributes.url
                           : "/profile/profile_1440_768@2x.png"
                       }
                       width={36}
@@ -90,7 +91,8 @@ export default function Collectors({ users }) {
               <Image
                 src={
                   user.attributes.profile_image
-                    ? user.attributes.profile_image.data.attributes.url
+                    ? "https://rmnt.herokuapp.com" +
+                      user.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }
                 width={32}

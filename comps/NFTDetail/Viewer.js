@@ -42,7 +42,10 @@ export default function Viewer({
               alt="Rarement NFT Image"
               width={236}
               height={236}
-              src={item.attributes.image.data[0].attributes.url}
+              src={
+                "https://rmnt.herokuapp.com" +
+                item.attributes.image.data[0].attributes.url
+              }
               objectFit="contain"
               placeholder="blur"
               blurDataURL={`/_next/image?url=${item.attributes.image.data[0].attributes.url}&w=16&q=1`}
@@ -114,7 +117,10 @@ export default function Viewer({
                       alt="Rarement NFT Preview"
                       width={96}
                       height={96}
-                      src={item.attributes.image.data[0].attributes.url}
+                      src={
+                        "https://rmnt.herokuapp.com" +
+                        item.attributes.image.data[0].attributes.url
+                      }
                       layout="responsive"
                       objectFit="contain"
                       className={`${

@@ -70,7 +70,10 @@ export default function Webtoons({ webtoons, artist, NFTs }) {
                 >
                   <a href={"/webtoons/" + item.id} className="relative group">
                     <Image
-                      src={item.attributes.cover_image.data.attributes.url}
+                      src={
+                        "https://rmnt.herokuapp.com" +
+                        item.attributes.cover_image.data.attributes.url
+                      }
                       width={256}
                       height={256}
                       layout="responsive"

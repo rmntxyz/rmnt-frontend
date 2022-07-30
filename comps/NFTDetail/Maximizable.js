@@ -46,7 +46,10 @@ export default function Maximizable({ currentNFT, loading }) {
       <Image
         id="maximizableElement"
         alt="Rarement NFT Image"
-        src={currentNFT.attributes.image.data[0].attributes.url}
+        src={
+          "https://rmnt.herokuapp.com" +
+          currentNFT.attributes.image.data[0].attributes.url
+        }
         placeholder="blur"
         blurDataURL={`/_next/image?url=${currentNFT.attributes.image.data[0].attributes.url}&w=16&q=1`}
         layout="fill"

@@ -13,7 +13,10 @@ export default function Collection({ collections }) {
             <a href={"/NFT/" + collection.id}>
               <Image
                 alt="Rarement NFT image"
-                src={collection.attributes.image.data[0].attributes.url}
+                src={
+                  "https://rmnt.herokuapp.com" +
+                  collection.attributes.image.data[0].attributes.url
+                }
                 width={256}
                 height={256}
                 layout="responsive"

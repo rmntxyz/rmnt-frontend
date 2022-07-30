@@ -12,7 +12,10 @@ export default function Creation({ creations }) {
           >
             <a href={"/NFT/" + item.children[0].id}>
               <Image
-                src={item.children[0].image.data[0].attributes.url}
+                src={
+                  "https://rmnt.herokuapp.com" +
+                  item.children[0].image.data[0].attributes.url
+                }
                 width={256}
                 height={256}
                 objectFit="contain"
