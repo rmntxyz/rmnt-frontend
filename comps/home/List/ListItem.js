@@ -6,24 +6,28 @@ export default function ListItem({ item }) {
     <div className="w-[224px] drop-shadow-medium md:w-[272px] xl:w-[288px]">
       <div className="p-4 border border-darkGray bg-white rounded-sm ">
         <a
-          href={"/artists/" + item.artist.name}
+          href={"/artists/" + item.attributes.artist_id.data.id}
           className="flex items-center mb-3 md:mb-4"
         >
           <div className="relative rounded-full w-7 h-7 overflow-hidden md:w-8 md:h-8 ">
             <Image
-              src={item.artist.profile_image}
+              src={`https://rmnt.herokuapp.com${item.attributes.artist_id.data.attributes.profile_image.data.attributes.url}
+              `}
               layout="fill"
               objectFit="contain"
               alt="Rarement Artist Profile Image"
               className="rounded-full"
             />
           </div>
-          <div className="text-sm ml-1 md:text-base">{item.artist.name}</div>
+          <div className="text-sm ml-1 md:text-base">
+            {item.attributes.artist_id.data.attributes.first_name}
+          </div>
         </a>
         <div className="relative group">
-          <a href={"/webtoons/" + item.webtoon_id}>
+          <a href={"/webtoons/" + item.id}>
             <Image
-              src={item.cover_image}
+              src={`https://rmnt.herokuapp.com${item.attributes.cover_image.data.attributes.url}
+              `}
               width={240}
               height={240}
               layout="responsive"
@@ -41,11 +45,11 @@ export default function ListItem({ item }) {
         </div>
         <div className="flex mt-3.5 items-center md:mt-4">
           <div className="truncate text-lg font-extrabold uppercase">
-            {item.title}
+            {item.attributes.title}
           </div>
           <div className="w-1 aspect-square m-2 bg-lightGray rounded-full md:m-4"></div>
           <div className="whitespace-nowrap text-sm font-extrabold">
-            vol {item.volume}
+            vol {item.attributes.volume}
           </div>
         </div>
       </div>
@@ -54,7 +58,12 @@ export default function ListItem({ item }) {
         <div className="min-w-[33.3%] h-full border-r border-darkGray"></div>
         <div className="min-w-[33.3%] h-full"></div>
       </div>
-      <ListAvailable NFTs={item.NFTs} timeRemaining={item.timeRemaining} />
+      <ListAvailable
+        NFTs={item.attributes.webtoon_pages.data
+          .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+          .flat(1)
+          .filter((NFT) => !!NFT)}
+      />
     </div>
   );
 }

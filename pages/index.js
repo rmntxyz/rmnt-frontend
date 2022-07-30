@@ -16,33 +16,63 @@ import Seo from "../comps/layout/SEO";
 
 const GET_HOME_DATA = gql`
   query Home_data {
-    webtoonTop {
-      webtoon_id
-      artist {
-        name
-        profile_image
-      }
-      title
-      volume
-      cover_image
-      NFTs {
-        sold_timestamp
-        timeRemaining
-      }
-    }
-    allWebtoons {
-      webtoon_id
-      artist {
-        name
-        profile_image
-      }
-      title
-      volume
-      cover_image
-      NFTs {
-        webtoon_id
-        sold_timestamp
-        timeRemaining
+    # webtoonTop {
+    #   webtoon_id
+    #   artist {
+    #     name
+    #     profile_image
+    #   }
+    #   title
+    #   volume
+    #   cover_image
+    #   NFTs {
+    #     sold_timestamp
+    #     timeRemaining
+    #   }
+    # }
+    webtoons {
+      data {
+        id
+        attributes {
+          webtoon_id
+          artist_id {
+            data {
+              attributes {
+                first_name
+                profile_image {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+          title
+          volume
+          cover_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          webtoon_pages {
+            data {
+              attributes {
+                nfts {
+                  data {
+                    attributes {
+                      sold_timestamp
+                      # timeRemaining
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -55,20 +85,24 @@ export async function getServerSideProps() {
   });
   return {
     props: {
-      topData: data.webtoonTop,
-      listData: data.allWebtoons
-        .slice()
-        .sort(
-          (a, b) =>
-            b.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length -
-            a.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length
-        )
-        .sort(
-          (a, b) =>
-            b.NFTs.filter((NFT) => NFT.timeRemaining > 0).length -
-            a.NFTs.filter((NFT) => NFT.timeRemaining > 0).length
-        )
-        .filter((item) => item.webtoon_id !== data.webtoonTop.webtoon_id),
+      // topData: data.webtoonTop,
+      listData: data.webtoons.data.slice().sort(
+        (a, b) =>
+          b.attributes.webtoon_pages.data
+            .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+            .flat(1)
+            .filter((NFT) => !NFT.sold_timestamp).length -
+          a.attributes.webtoon_pages.data
+            .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+            .flat(1)
+            .filter((NFT) => !NFT?.sold_timestamp).length
+      ),
+      // .sort(
+      //   (a, b) =>
+      //     b.NFTs.filter((NFT) => NFT.timeRemaining > 0).length -
+      //     a.NFTs.filter((NFT) => NFT.timeRemaining > 0).length
+      // ),
+      // .filter((item) => item.webtoon_id !== data.webtoonTop.webtoon_id),
     },
   };
 }
@@ -78,7 +112,7 @@ export default function Home({ topData, listData }) {
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />
       <main>
-        <TopCard data={topData} />
+        {/* <TopCard data={topData} /> */}
         <List data={listData} />
         <About />
       </main>

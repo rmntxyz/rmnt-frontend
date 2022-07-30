@@ -45,9 +45,10 @@ export default function Maximizable({ currentNFT, loading }) {
     >
       <Image
         id="maximizableElement"
-        src={currentNFT.image}
+        alt="Rarement NFT Image"
+        src={currentNFT.attributes.image.data[0].attributes.url}
         placeholder="blur"
-        blurDataURL={`/_next/image?url=${currentNFT.image}&w=16&q=1`}
+        blurDataURL={`/_next/image?url=${currentNFT.attributes.image.data[0].attributes.url}&w=16&q=1`}
         layout="fill"
         objectFit="contain"
         // onLoadingComplete={({ naturalWidth, naturalHeight }) => {

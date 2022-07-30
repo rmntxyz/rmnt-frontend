@@ -1,8 +1,7 @@
 import ListTimer from "./ListTimer";
 
-export default function ListAvailable({ NFTs, timeRemaining }) {
-  //Filter out sold NFTs to paint the number of available NFTs
-  const available = NFTs.filter((item) => !(item.sold_timestamp?.length > 0));
+export default function ListAvailable({ NFTs }) {
+  const available = NFTs.filter((NFT) => !NFT.attributes.sold_timestamp);
   return (
     <div
       className={`flex flex-col items-center p-4 shadow-md ${
@@ -13,9 +12,9 @@ export default function ListAvailable({ NFTs, timeRemaining }) {
     >
       <div className="w-full flex text-xs justify-between md:text-sm">
         <div className="whitespace-nowrap">Available NFT</div>
-        {timeRemaining > 0 ? (
+        {/* {timeRemaining > 0 ? (
           <div className="whitespace-nowrap">Drop begins in</div>
-        ) : null}
+        ) : null} */}
       </div>
       <div className="w-full mt-1 flex items-center justify-between text-[15px] font-bold md:text-base">
         <div>
@@ -27,10 +26,11 @@ export default function ListAvailable({ NFTs, timeRemaining }) {
             <div className="text-lightGray">Soldout</div>
           )}
         </div>
-        {available.find((NFT) => NFT.timeRemaining > 0) ? (
+        {available.find((NFT) => NFT.attributes.timeRemaining > 0) ? (
           <ListTimer
             timeRemaining={
-              available.find((NFT) => NFT.timeRemaining > 0).timeRemaining
+              available.find((NFT) => NFT.attributes.timeRemaining > 0)
+                .attributes.timeRemaining
             }
           />
         ) : null}

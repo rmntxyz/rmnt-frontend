@@ -2,20 +2,24 @@ import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Timer from "../home/TopCard/Timer";
 
-export default function Specs({ NFT, currentNFT }) {
+export default function Specs({
+  currentWebtoon,
+  currentWebtoonNFTs,
+  currentNFT,
+}) {
   return (
     <div className="bg-ourBlack text-white py-12 px-10 text-sm md:text-lg md:py-20 md:px-24 lg:flex-row">
       <div className="container mx-auto flex flex-col gap-12 md:gap-16 lg:grid lg:grid-cols-2 lg:gap-24">
         <ul className="flex flex-col gap-12 md:gap-16">
           <li className="flex gap-7 md:gap-9">
-            <a href={currentNFT.metadata}>
+            <a href={currentNFT.attributes.metadata}>
               View Metadata{" "}
               <FontAwesomeIcon
                 icon={faArrowRight}
                 className="text-mediumBeige"
               />
             </a>
-            <a href={currentNFT.contract}>
+            <a href={currentNFT.attributes.contract}>
               View Contract{" "}
               <FontAwesomeIcon
                 icon={faArrowRight}
@@ -30,19 +34,22 @@ export default function Specs({ NFT, currentNFT }) {
                 <div>
                   <div className="text-[#858585]">Dimensions</div>
                   <div>
-                    {currentNFT.width}*{currentNFT.height}
+                    {currentNFT.attributes.image.data[0].attributes.width}*
+                    {currentNFT.attributes.image.data[0].attributes.height}
                   </div>
                 </div>
                 <div>
                   <div className="text-[#858585]">Dimensions</div>
                   <div>
-                    {currentNFT.width}*{currentNFT.height}
+                    {currentNFT.attributes.image.data[0].attributes.width}*
+                    {currentNFT.attributes.image.data[0].attributes.height}
                   </div>
                 </div>
                 <div>
                   <div className="text-[#858585]">Dimensions</div>
                   <div>
-                    {currentNFT.width}*{currentNFT.height}
+                    {currentNFT.attributes.image.data[0].attributes.width}*
+                    {currentNFT.attributes.image.data[0].attributes.height}
                   </div>
                 </div>
               </div>
@@ -51,7 +58,7 @@ export default function Specs({ NFT, currentNFT }) {
           <li className="flex flex-col">
             <div>License</div>
             <div className="text-justify text-xs text-[#858585] mt-2 md:mt-3 md:text-base">
-              {currentNFT.license}
+              {currentNFT.attributes.license}
             </div>
           </li>
         </ul>
@@ -65,25 +72,33 @@ export default function Specs({ NFT, currentNFT }) {
                 />
               </span>
               <span>
-                Edition {currentNFT.edition} of{" "}
+                Edition {currentNFT.attributes.edition} of{" "}
                 {
-                  NFT.webtoon.NFTs.filter((NFT) => NFT.name === currentNFT.name)
-                    .length
+                  currentWebtoonNFTs.filter(
+                    (NFT) => NFT.attributes.name === currentNFT.attributes.name
+                  ).length
                 }
               </span>
             </div>
             <div className="bg-white text-black ">
-              {currentNFT.timeRemaining > 0 ? (
+              {currentNFT.attributes.timeRemaining > 0 ? (
                 <div className="px-6 md:px-8">
-                  <Timer timeRemaining={currentNFT.timeRemaining} />
+                  <Timer timeRemaining={currentNFT.attributes.timeRemaining} />
                   <div className="h-px w-full mt-4 bg-lightBeige md:mt-8"></div>
                 </div>
               ) : null}
               <div className="text-xs text-black bg-white py-4 px-6 md:px-8 md:py-7 md:text-base">
-                <a href={"/artists/" + currentNFT.created_by}>
+                <a
+                  href={
+                    "/artists/" + currentWebtoon.attributes.artist_id.data.id
+                  }
+                >
                   <span>Created by </span>
                   <span className="text-[#CEA671] font-bold hover:underline">
-                    {currentNFT.created_by}
+                    {
+                      currentWebtoon.attributes.artist_id.data.attributes
+                        .first_name
+                    }
                   </span>
                 </a>
               </div>
@@ -92,7 +107,7 @@ export default function Specs({ NFT, currentNFT }) {
           <div className="flex flex-col gap-3 bg-lightBeige text-black py-4 px-6 md:gap-4 md:px-8 md:py-7">
             <div className="text-sm font-bold md:text-lg">Reward</div>
             <div className="text-justify text-xs md:text-base">
-              {currentNFT.reward}
+              {currentNFT.attributes.reward}
             </div>
           </div>
         </div>

@@ -2,15 +2,15 @@ import { useState } from "react";
 import Collection from "./Collection";
 import Creation from "./Creation";
 
-export default function NFT({ artist }) {
+export default function NFT({ NFTs, artist }) {
   //Enable navigation between the Creation & Collection tabs
   const [openTab, setOpenTab] = useState(1);
 
-  //Place the artist's NFTs into one single array
-  const artistNFTs = artist.webtoons
-    .map((webtoon) => webtoon.NFTs)
-    .filter((NFTs) => NFTs.length)
-    .flat(1);
+  // //Place the artist's NFTs into one single array
+  // const artistNFTs = artist.webtoons
+  //   .map((webtoon) => webtoon.NFTs)
+  //   .filter((NFTs) => NFTs.length)
+  //   .flat(1);
 
   //Group the NFTs by name (so NFTs with multiple editions will be displayed as one single card as opposed to multiple cards)
   function groupByName(arr, property) {
@@ -22,7 +22,10 @@ export default function NFT({ artist }) {
       return memo;
     }, {});
   }
-  const groups = groupByName(artistNFTs, "name");
+  const groups = groupByName(
+    NFTs.map((NFT) => ({ ...NFT.attributes, id: NFT.id })),
+    "name"
+  );
   const finalGroups = [];
 
   for (const key in groups) {
@@ -31,7 +34,6 @@ export default function NFT({ artist }) {
       children: groups[key],
     });
   }
-
   return (
     <div className="bg-lightBeige py-12 md:py-20">
       <div className="container mx-auto">
@@ -68,7 +70,7 @@ export default function NFT({ artist }) {
                 role="tab"
                 aria-label="View Collections"
               >
-                Collection {artist.collection.length}
+                Collection {artist.collection ? artist.collection.length : 0}
               </button>
               <div
                 className={`w-full h-[3px] bg-ourBlack rounded-sm  ${
@@ -80,11 +82,11 @@ export default function NFT({ artist }) {
           </ul>
           <div>
             <div className={openTab === 1 ? "block" : "hidden"}>
-              {artistNFTs.length > 0 ? (
+              {NFTs.length > 0 ? (
                 <Creation creations={finalGroups} />
               ) : (
                 <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
-                  {artist.name} has not created any NFT yet.
+                  {artist.attributes.first_name} has not created any NFT yet.
                 </div>
               )}
             </div>
@@ -93,7 +95,7 @@ export default function NFT({ artist }) {
                 <Collection />
               ) : (
                 <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
-                  {artist.name} does not own any RMNT NFT.
+                  {artist.attributes.first_name} does not own any RMNT NFT.
                 </div>
               )}
             </div>
