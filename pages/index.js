@@ -28,6 +28,7 @@ const GET_HOME_DATA = gql`
           webtoon_id
           artist_id {
             data {
+              id
               attributes {
                 first_name
                 profile_image {
