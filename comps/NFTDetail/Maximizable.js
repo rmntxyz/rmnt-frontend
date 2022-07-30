@@ -51,7 +51,10 @@ export default function Maximizable({ currentNFT, loading }) {
           currentNFT.attributes.image.data[0].attributes.url
         }
         placeholder="blur"
-        blurDataURL={`/_next/image?url=${currentNFT.attributes.image.data[0].attributes.url}&w=16&q=1`}
+        blurDataURL={
+          "https://rmnt.herokuapp.com" +
+          currentNFT.attributes.image.data[0].attributes.url
+        }
         layout="fill"
         objectFit="contain"
         // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
