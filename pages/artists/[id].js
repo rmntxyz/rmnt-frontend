@@ -25,13 +25,13 @@ const GET_ARTIST_DATA = gql`
               }
             }
           }
-          # background_image {
-          #   data {
-          #     attributes {
-          #       url
-          #     }
-          #   }
-          # }
+          background_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
           webtoon_ids {
             data {
               id

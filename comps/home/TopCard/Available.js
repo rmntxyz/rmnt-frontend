@@ -1,6 +1,6 @@
 export default function Available({ NFTs }) {
   //Filter out sold NFTs to paint the number of available NFTs
-  const available = NFTs.filter((item) => !(item.sold_timestamp?.length > 0));
+  const available = NFTs.filter((item) => !item.attributes.sold_timestamp);
   return (
     <div>
       <div className="whitespace-nowrap">Available NFT</div>

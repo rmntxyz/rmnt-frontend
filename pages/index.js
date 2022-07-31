@@ -7,20 +7,6 @@ import Seo from "../comps/layout/SEO";
 
 const GET_HOME_DATA = gql`
   query Home_data {
-    # webtoonTop {
-    #   webtoon_id
-    #   artist {
-    #     name
-    #     profile_image
-    #   }
-    #   title
-    #   volume
-    #   cover_image
-    #   NFTs {
-    #     sold_timestamp
-    #     timeRemaining
-    #   }
-    # }
     webtoons {
       data {
         id
@@ -55,6 +41,7 @@ const GET_HOME_DATA = gql`
               attributes {
                 nfts {
                   data {
+                    id
                     attributes {
                       sold_timestamp
                       # timeRemaining
@@ -73,12 +60,11 @@ const GET_HOME_DATA = gql`
 export async function getServerSideProps() {
   const { data } = await client.query({
     query: GET_HOME_DATA,
-    fetchPolicy: "network-only",
+    // fetchPolicy: "network-only",
   });
   return {
     props: {
-      // topData: data.webtoonTop,
-      listData: data.webtoons.data.slice().sort(
+      webtoonsData: data.webtoons.data.slice().sort(
         (a, b) =>
           b.attributes.webtoon_pages.data
             .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
@@ -99,13 +85,13 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({ topData, listData }) {
+export default function Home({ webtoonsData }) {
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />
       <main>
-        {/* <TopCard data={topData} /> */}
-        <List data={listData} />
+        <TopCard item={webtoonsData[0]} />
+        <List data={webtoonsData.slice(1)} />
         <About />
       </main>
     </div>

@@ -68,6 +68,8 @@ export default function Viewer({ data }) {
             observer={true}
             observeParents={true}
             onSwiper={handleLoading}
+            lazy={{ loadOnTransitionStart: true, enabled: true }}
+            preloadImages={false}
             className="min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px]"
           >
             {data.map((item, idx) => (
@@ -75,7 +77,7 @@ export default function Viewer({ data }) {
                 <img
                   width={590}
                   height={590}
-                  src={`https://rmnt.herokuapp.com${item}`}
+                  src={"https://rmnt.herokuapp.com" + item}
                   style={{
                     filter: loading ? "blur(20px)" : "none",
                     transition: loading ? "none" : "filter 0.3s ease-out",

@@ -87,7 +87,7 @@ export async function getServerSideProps(context) {
     variables: {
       id: id,
     },
-    fetchPolicy: "network-only",
+    // fetchPolicy: "network-only",
   });
   return {
     props: {

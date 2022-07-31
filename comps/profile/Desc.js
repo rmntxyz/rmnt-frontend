@@ -40,7 +40,7 @@ export default function Desc({ props }) {
       <div
         className="h-[224px] md:h-[320px] bg-[#CEA671] bg-center bg-cover bg-no-repeat "
         style={
-          props.attributes.background_image
+          props.attributes.background_image?.data
             ? {
                 backgroundImage:
                   "url(" +
