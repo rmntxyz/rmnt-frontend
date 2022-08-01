@@ -19,6 +19,7 @@ export default function Collection({ collections }) {
                 }
                 width={256}
                 height={256}
+                objectFit="contain"
                 layout="responsive"
                 className="duration-200 hover:scale-125"
               />

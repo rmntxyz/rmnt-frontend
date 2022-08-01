@@ -4,21 +4,23 @@ import Image from "next/image";
 import DetailTimer from "./DetailTimer";
 
 export default function NFT({ NFTs, exchangeRate }) {
+  const upcomingDropRemaining = Math.min(
+    ...NFTs.filter(
+      (NFT) => NFT.attributes.drop_timestamp - new Date().getTime() / 1000 > 0
+    ).map((NFT) => NFT.attributes.drop_timestamp - new Date().getTime() / 1000)
+  );
   return (
     <div className="bg-lightBeige py-12 md:py-20">
       <div className="ml-8 md:ml-28 2xl:ml-72">
         <div className="flex flex-col gap-8 md:gap-14">
           <div className="flex items-start gap-4 md:gap-7 md:items-center">
             <div className="font-bold text-[22px] md:text-[40px]">NFT</div>
-            {NFTs.find((item) => item.attributes.timeRemaining > 0) ? (
+            {/* {upcomingDropRemaining > 0 && upcomingDropRemaining !== Infinity ? (
               <DetailTimer
-                timeRemaining={
-                  NFTs.find((item) => item.attributes.timeRemaining > 0)
-                    .timeRemaining
-                }
+                timeRemaining={upcomingDropRemaining * 1000}
                 className="bg-white text-black"
               />
-            ) : null}
+            ) : null} */}
           </div>
 
           <div className="scroll-large overflow-x-auto flex gap-8 lg:scroll-xlarge">

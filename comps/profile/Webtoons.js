@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Collectors from "./Collectors";
 
-export default function Webtoons({ webtoons, artist, NFTs }) {
+export default function Webtoons({ webtoons, artist }) {
   //Paginate webtoon cards
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
@@ -97,7 +97,11 @@ export default function Webtoons({ webtoons, artist, NFTs }) {
                     </div>
                   </div>
                   <Collectors
-                    users={NFTs?.map((NFT) => NFT.attributes.owned_by.data)}
+                    users={item.attributes.webtoon_pages.data
+                      .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+                      .flat(1)
+                      .filter((NFT) => !!NFT)
+                      .map((NFT) => NFT.attributes.owned_by.data)}
                   />
                 </div>
               ))}

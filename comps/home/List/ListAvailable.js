@@ -2,6 +2,13 @@ import ListTimer from "./ListTimer";
 
 export default function ListAvailable({ NFTs }) {
   const available = NFTs.filter((NFT) => !NFT.attributes.sold_timestamp);
+  const upcomingDropRemaining = Math.min(
+    ...available
+      .filter(
+        (NFT) => NFT.attributes.drop_timestamp - new Date().getTime() / 1000 > 0
+      )
+      .map((NFT) => NFT.attributes.drop_timestamp - new Date().getTime() / 1000)
+  );
   return (
     <div
       className={`flex flex-col items-center p-4 shadow-md ${
@@ -26,14 +33,9 @@ export default function ListAvailable({ NFTs }) {
             <div className="text-lightGray">Soldout</div>
           )}
         </div>
-        {available.find((NFT) => NFT.attributes.timeRemaining > 0) ? (
-          <ListTimer
-            timeRemaining={
-              available.find((NFT) => NFT.attributes.timeRemaining > 0)
-                .attributes.timeRemaining
-            }
-          />
-        ) : null}
+        {/* {upcomingDropRemaining > 0 && upcomingDropRemaining !== Infinity ? (
+          <ListTimer timeRemaining={upcomingDropRemaining * 1000} />
+        ) : null} */}
       </div>
     </div>
   );

@@ -7,6 +7,16 @@ export default function TopCard({ item }) {
     .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
     .flat(1)
     .filter((NFT) => !!NFT);
+
+  const upcomingDropRemaining = Math.min(
+    ...item.attributes.webtoon_pages.data
+      .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+      .flat(1)
+      .filter(
+        (NFT) => NFT.attributes.drop_timestamp - new Date().getTime() / 1000 > 0
+      )
+      .map((NFT) => NFT.attributes.drop_timestamp - new Date().getTime() / 1000)
+  );
   return (
     <div className="pt-4 lg:bg-hero lg:bg-cover lg:bg-top ">
       <div className="container mx-auto md:px-6 lg:px-12 xl:px-32">
@@ -67,13 +77,9 @@ export default function TopCard({ item }) {
           <div className="mt-8 flex flex-col md:mt-12 md:flex-row md:justify-between lg:flex-col lg:order-3">
             <div className="mb-8 pl-6 border-l border-mediumBeige text-sm md:text-lg md:mb-12 md:pl-8">
               <Available NFTs={NFTs} />
-              {NFTs.find((NFT) => NFT.attributes.timeRemaining > 0) ? (
-                <Timer
-                  timeRemaining={
-                    data.NFTs.find((NFT) => NFT.timeRemaining > 0).timeRemaining
-                  }
-                />
-              ) : null}
+              {/* {upcomingDropRemaining > 0 ? (
+                <Timer timeRemaining={upcomingDropRemaining * 1000} />
+              ) : null} */}
             </div>
             <div className="mx-auto md:mx-0">
               <a

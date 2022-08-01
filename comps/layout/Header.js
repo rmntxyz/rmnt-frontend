@@ -11,7 +11,7 @@ export default function Header() {
       <div className="invisible mt-3 cursor-pointer lg:visible ">
         <a href="/">
           <Image
-            src="/logo_black/logo_1440.png"
+            src="/logo_black/logo_1440@3x.png"
             width={165}
             height={80}
             alt="Rarement Logo"
@@ -21,7 +21,7 @@ export default function Header() {
       <div className="invisible absolute mt-3 cursor-pointer md:visible lg:invisible ">
         <a href="/">
           <Image
-            src="/logo_black/logo_768.png"
+            src="/logo_black/logo_768@3x.png"
             width={165}
             height={80}
             alt="Rarement Logo"
@@ -31,7 +31,7 @@ export default function Header() {
       <div className="absolute cursor-pointer mt-3 md:invisible">
         <a href="/">
           <Image
-            src="/logo_black/logo_360.png"
+            src="/logo_black/logo_360@3x.png"
             width={165}
             height={80}
             alt="Rarement Logo"

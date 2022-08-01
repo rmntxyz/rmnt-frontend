@@ -34,14 +34,21 @@ export default function Maximizable({ currentNFT, loading }) {
       }
     }
   };
+
+  //Add blur to the image being loaded
+  const [blur, setBlur] = useState(true);
+  const handleBlur = () => {
+    setBlur(false);
+  };
+
   return (
     <div
       onClick={(e) => handleFullscreen()}
-      className={` ${
+      className={`${
         isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
       } ${
         loading ? "opacity-0" : "opacity-100"
-      } relative transition-opacity h-[402px]`}
+      } relative transition-opacity h-[402px] w-[931px]`}
     >
       <Image
         id="maximizableElement"
@@ -50,13 +57,18 @@ export default function Maximizable({ currentNFT, loading }) {
           "https://rmnt.herokuapp.com" +
           currentNFT.attributes.image.data[0].attributes.url
         }
-        placeholder="blur"
-        blurDataURL={
-          "https://rmnt.herokuapp.com" +
-          currentNFT.attributes.image.data[0].attributes.url
-        }
+        // placeholder="blur"
+        // blurDataURL={
+        //   "https://rmnt.herokuapp.com" +
+        //   currentNFT.attributes.image.data[0].attributes.url
+        // }
         layout="fill"
         objectFit="contain"
+        style={{
+          filter: blur ? "blur(20px)" : "none",
+          transition: blur ? "none" : "filter 0.3s ease-out",
+        }}
+        onLoadingComplete={handleBlur}
         // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
         //   console.log(naturalHeight, naturalWidth);
         // }}

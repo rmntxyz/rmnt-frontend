@@ -18,7 +18,7 @@ export default function Viewer({
   };
 
   return (
-    <div className="container mx-auto mt-12 max-w-[85%] md:max-w-none md:mt-20">
+    <div className="container mx-auto my-12 max-w-[85%] md:max-w-none md:mt-20">
       <div className="flex gap-5 scroll-large overflow-x-auto md:hidden">
         {currentWebtoonNFTs.map((item, idx) => (
           <button
@@ -70,17 +70,15 @@ export default function Viewer({
           </button>
         ))}
       </div>
-      <div className="hidden relative mx-auto w-[442px] md:block">
+      <div className="hidden relative mx-auto w-[931px] md:block">
         <div className="flex flex-col scroll">
-          <div
-            className={`mx-auto mb-14 border bg-white rounded-sm shadow-medium p-5 `}
-          >
+          <div className="mx-auto">
             <Maximizable currentNFT={currentNFT} loading={loading} />
             <a
               href={"/webtoons/" + currentWebtoon.id}
-              className="flex items-center mt-4 w-[402px]"
+              className="flex items-center max-w-[931px] mt-4"
             >
-              <div className="flex items-center bg-[#F3F3F3] py-2 px-4 rounded-sm max-w-full">
+              <div className="mx-auto flex items-center max-w-full">
                 <div className="truncate text-2xl font-extrabold uppercase">
                   {currentWebtoon.attributes.title}
                 </div>
@@ -92,7 +90,7 @@ export default function Viewer({
             </a>
           </div>
           {currentWebtoonNFTs.length > 1 ? (
-            <div className="mx-auto max-w-[442px]">
+            <div className="mx-auto max-w-[931px] mt-6">
               <div className="flex overflow-x-auto gap-x-5 pb-3">
                 {currentWebtoonNFTs.map((item, idx) => (
                   <button
@@ -110,13 +108,13 @@ export default function Viewer({
                       );
                     }}
                     key={idx}
-                    className="w-[96px]"
+                    className="w-[78px] h-[105.2px]"
                     aria-label="Select NFT"
                   >
                     <Image
                       alt="Rarement NFT Preview"
-                      width={96}
-                      height={96}
+                      width={78}
+                      height={78}
                       src={
                         "https://rmnt.herokuapp.com" +
                         item.attributes.image.data[0].attributes.url
@@ -127,7 +125,11 @@ export default function Viewer({
                         item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
                       } transition-opacity`}
                     />
-                    <div className="truncate">{item.attributes.name}</div>
+                    <div className=" w-[78px]">
+                      <div className="truncate mx-auto">
+                        {item.attributes.name}
+                      </div>
+                    </div>
                   </button>
                 ))}
               </div>

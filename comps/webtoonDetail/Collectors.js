@@ -48,8 +48,8 @@ export default function Collectors({ users }) {
                 className="rounded-full col-span-1 "
                 alt="Rarement NFT Collector Profile Picture"
               />
-              <div className="opacity-0 transition-opacity absolute text-[#555555] bg-white p-2 rounded-md group-hover:opacity-100">
-                <div>{user.attributes.first_name}</div>
+              <div className="opacity-0 transition-opacity absolute top-10 text-[#555555] p-2 rounded-md md:top-16 group-hover:opacity-100">
+                <div className="text-white">{user.attributes.first_name}</div>
                 <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
                   {user.attributes.wallet_address}
                 </div>

@@ -57,6 +57,7 @@ const GET_WEBTOON_DATA = gql`
                     attributes {
                       nft_id
                       name
+                      drop_timestamp
                       sold_timestamp
                       edition
                       price_in_wei
@@ -105,7 +106,7 @@ export async function getServerSideProps(context) {
     variables: {
       id: id,
     },
-    // fetchPolicy: "network-only",
+    fetchPolicy: "network-only",
   });
   return {
     props: {

@@ -43,6 +43,7 @@ const GET_HOME_DATA = gql`
                   data {
                     id
                     attributes {
+                      drop_timestamp
                       sold_timestamp
                       # timeRemaining
                     }
@@ -60,32 +61,42 @@ const GET_HOME_DATA = gql`
 export async function getServerSideProps() {
   const { data } = await client.query({
     query: GET_HOME_DATA,
-    // fetchPolicy: "network-only",
+    fetchPolicy: "network-only",
   });
   return {
     props: {
       webtoonsData: data.webtoons.data.slice().sort(
         (a, b) =>
-          b.attributes.webtoon_pages.data
-            .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-            .flat(1)
-            .filter((NFT) => !NFT.sold_timestamp).length -
-          a.attributes.webtoon_pages.data
-            .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-            .flat(1)
-            .filter((NFT) => !NFT?.sold_timestamp).length
+          Math.min(
+            ...a.attributes.webtoon_pages.data
+              .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+              .flat(1)
+              .filter(
+                (NFT) =>
+                  NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
+                  0
+              )
+              .map((NFT) => NFT.attributes.drop_timestamp)
+          ) -
+          Math.min(
+            ...b.attributes.webtoon_pages.data
+              .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+              .flat(1)
+              .filter(
+                (NFT) =>
+                  NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
+                  0
+              )
+              .map((NFT) => NFT.attributes.drop_timestamp)
+          )
       ),
-      // .sort(
-      //   (a, b) =>
-      //     b.NFTs.filter((NFT) => NFT.timeRemaining > 0).length -
-      //     a.NFTs.filter((NFT) => NFT.timeRemaining > 0).length
-      // ),
-      // .filter((item) => item.webtoon_id !== data.webtoonTop.webtoon_id),
     },
   };
 }
 
 export default function Home({ webtoonsData }) {
+  console.log();
+
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />

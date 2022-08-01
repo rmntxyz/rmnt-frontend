@@ -87,7 +87,7 @@ export async function getServerSideProps(context) {
     variables: {
       id: id,
     },
-    // fetchPolicy: "network-only",
+    fetchPolicy: "network-only",
   });
   return {
     props: {
@@ -122,24 +122,26 @@ export default function NFTPage({ exchangeRate, NFT }) {
         }
       />
       <main>
-        <div className="container mx-auto flex flex-col xl:grid xl:grid-cols-2 xl:gap-16 xl:w-[953px] xl:pb-16">
-          <Viewer
-            currentWebtoon={currentWebtoon}
-            currentWebtoonNFTs={currentWebtoonNFTs}
-            currentNFT={currentNFT}
-            router={router}
-          />
-          <Desc
-            currentNFT={currentNFT}
-            exchangeRate={exchangeRate}
-            router={router}
-          />
-        </div>
-        <Specs
+        <Viewer
           currentWebtoon={currentWebtoon}
           currentWebtoonNFTs={currentWebtoonNFTs}
           currentNFT={currentNFT}
+          router={router}
         />
+        <div className="bg-darkGray py-12 md:py-20">
+          <div className="container mx-auto max-w-[72%] flex flex-col gap-6 md:gap-8 xl:grid xl:grid-cols-2 xl:gap-16 xl:w-[1184px] xl:pb-16">
+            <Desc
+              currentNFT={currentNFT}
+              exchangeRate={exchangeRate}
+              router={router}
+            />
+            <Specs
+              currentWebtoon={currentWebtoon}
+              currentWebtoonNFTs={currentWebtoonNFTs}
+              currentNFT={currentNFT}
+            />
+          </div>
+        </div>
       </main>
     </div>
   );
