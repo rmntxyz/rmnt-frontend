@@ -55,6 +55,23 @@ const GET_HOME_DATA = gql`
         }
       }
     }
+    webtoonUsers(pagination: { page: 1, pageSize: 7 }) {
+      data {
+        id
+        attributes {
+          user_id
+          first_name
+          wallet_address
+          profile_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -94,16 +111,14 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({ webtoonsData }) {
-  console.log();
-
+export default function Home({ webtoonsData, users }) {
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />
       <main>
         <TopCard item={webtoonsData[0]} />
         <List data={webtoonsData.slice(1)} />
-        <About />
+        <About users={users} />
       </main>
     </div>
   );
