@@ -38,6 +38,7 @@ export default function Creation({ creations }) {
                     <div className="overflow-hidden">
                       <video
                         playsInline={true}
+                        preload="metadata"
                         alt="Rarement NFT Video"
                         src={"https://rmnt.herokuapp.com" + NFTUrl}
                         className="max-h-[256px] duration-200 hover:scale-125"
