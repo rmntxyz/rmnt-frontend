@@ -7,6 +7,8 @@ export default function Specs({
   currentWebtoonNFTs,
   currentNFT,
 }) {
+  const width = currentNFT.attributes.image.data[0].attributes.width;
+  const height = currentNFT.attributes.image.data[0].attributes.height;
   return (
     <div className="text-white text-sm md:text-lg lg:flex-row">
       <div className="flex flex-col gap-5 md:gap-8">
@@ -83,22 +85,23 @@ export default function Specs({
                 <div>
                   <div className="text-[#858585]">Dimensions</div>
                   <div>
-                    {currentNFT.attributes.image.data[0].attributes.width}*
-                    {currentNFT.attributes.image.data[0].attributes.height}
+                    {width
+                      ? currentNFT.attributes.image.data[0].attributes.width +
+                        "*" +
+                        currentNFT.attributes.image.data[0].attributes.height
+                      : "N/A"}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[#858585]">Dimensions</div>
+                  <div className="text-[#858585]">Size</div>
                   <div>
-                    {currentNFT.attributes.image.data[0].attributes.width}*
-                    {currentNFT.attributes.image.data[0].attributes.height}
+                    {currentNFT.attributes.image.data[0].attributes.size}KB
                   </div>
                 </div>
                 <div>
-                  <div className="text-[#858585]">Dimensions</div>
+                  <div className="text-[#858585]">Extension</div>
                   <div>
-                    {currentNFT.attributes.image.data[0].attributes.width}*
-                    {currentNFT.attributes.image.data[0].attributes.height}
+                    {currentNFT.attributes.image.data[0].attributes.ext}
                   </div>
                 </div>
               </div>

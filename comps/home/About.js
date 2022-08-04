@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const aboutData = [
   {
-    src: "/Screen Shot 2022-07-07 at 3.38.png",
+    src: "/rmnt_homepage_image.png",
     title: "Introducing the Webtoonists",
     desc: [
       "Most Webtoonists active on Instagram have full-time jobs, the average Joes and Janes around us. But that does not mean their talents are also ordinary. ",
@@ -10,7 +10,7 @@ const aboutData = [
     ],
   },
   {
-    src: "/Screen Shot 2022-07-23 at 1.28.png",
+    src: "/레어먼트_홈피이미지001(1).jpg",
     title: "Own the rare moment",
     desc: [
       "The webtoonists introduce webtoon-inspired artworks through RMNT NFT.",

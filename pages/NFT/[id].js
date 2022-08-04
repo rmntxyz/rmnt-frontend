@@ -58,6 +58,8 @@ const GET_NFT_DATA = gql`
                                         url
                                         width
                                         height
+                                        size
+                                        ext
                                       }
                                     }
                                   }
