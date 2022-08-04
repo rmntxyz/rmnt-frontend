@@ -23,10 +23,11 @@ export default function Viewer({
   };
 
   return (
-    <div className="container mx-auto my-12 max-w-[85%] md:max-w-none md:mt-20">
+    <div className="container mx-auto my-12 max-w-[85%] overflow-hidden md:max-w-none md:mt-20">
       <div className="flex gap-5 scroll-large overflow-x-auto md:hidden">
         {currentWebtoonNFTs.map((item, idx) => (
           <button
+            id={item.id}
             aria-label="Select NFT"
             onClick={(e) => {
               // Enable routing to the selected NFT page without page reload
