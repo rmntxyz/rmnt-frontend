@@ -35,6 +35,7 @@ export default function Collection({ collections }) {
                   ) : (
                     <div className="overflow-hidden">
                       <video
+                        playsInline={true}
                         alt="Rarement NFT Video"
                         src={"https://rmnt.herokuapp.com" + NFTUrl}
                         className="max-h-[256px] duration-200 hover:scale-125"
