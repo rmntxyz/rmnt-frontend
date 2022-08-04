@@ -70,7 +70,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                             href={"/NFT/" + item.id + "/#" + item.id}
                             className="overflow-hidden"
                           >
-                            <div className="relative h-[196px] w-[196px] duration-200 hover:scale-125 md:h-[240px] md:w-[240px] lg:h-[256px] lg:w-[256px]">
+                            <div className="relative h-[196px] w-[196px] md:h-[240px] md:w-[240px] lg:h-[256px] lg:w-[256px]">
                               {isImage.includes(
                                 NFTUrl.split(".")[NFTUrl.split(".").length - 1]
                               ) ? (
@@ -83,6 +83,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                                   blurDataURL={
                                     "https://rmnt.herokuapp.com" + NFTUrl
                                   }
+                                  className="duration-200 hover:scale-125"
                                 />
                               ) : (
                                 <video
