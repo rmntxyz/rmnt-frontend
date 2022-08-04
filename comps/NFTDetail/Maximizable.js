@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import {
-  handleMouseEnter,
-  handleMouseLeave,
-  isImage,
-} from "../../utils/mediaType";
+import { isImage } from "../../utils/mediaType";
 
 export default function Maximizable({ currentNFT, loading }) {
   const NFTUrl = currentNFT.attributes.image.data[0].attributes.url;
@@ -64,11 +60,6 @@ export default function Maximizable({ currentNFT, loading }) {
           id="maximizableElement"
           alt="Rarement NFT Image"
           src={"https://rmnt.herokuapp.com" + NFTUrl}
-          // placeholder="blur"
-          // blurDataURL={
-          //   "https://rmnt.herokuapp.com" +
-          //   NFTUrl
-          // }
           layout="fill"
           objectFit="contain"
           style={{
@@ -76,9 +67,6 @@ export default function Maximizable({ currentNFT, loading }) {
             transition: blur ? "none" : "filter 0.3s ease-out",
           }}
           onLoadingComplete={handleBlur}
-          // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
-          //   console.log(naturalHeight, naturalWidth);
-          // }}
         />
       ) : (
         <video
@@ -89,8 +77,6 @@ export default function Maximizable({ currentNFT, loading }) {
           src={"https://rmnt.herokuapp.com" + NFTUrl}
           loop={true}
           className="max-h-[402px] mx-auto"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         ></video>
       )}
     </div>
