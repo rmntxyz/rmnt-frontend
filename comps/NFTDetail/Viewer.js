@@ -69,6 +69,7 @@ export default function Viewer({
               <video
                 playsInline={true}
                 alt="Rarement NFT Video"
+                autoPlay={false}
                 src={
                   "https://rmnt.herokuapp.com" +
                   item.attributes.image.data[0].attributes.url
