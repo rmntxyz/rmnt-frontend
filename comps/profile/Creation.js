@@ -19,7 +19,11 @@ export default function Creation({ creations }) {
                 key={item.categoryName}
                 className="rounded-sm p-3.5 shadow-small bg-white md:p-4 "
               >
-                <a href={"/NFT/" + item.children[0].id}>
+                <a
+                  href={
+                    "/NFT/" + item.children[0].id + "/#" + item.children[0].id
+                  }
+                >
                   {isImage.includes(
                     NFTUrl.split(".")[NFTUrl.split(".").length - 1]
                   ) ? (
@@ -38,7 +42,6 @@ export default function Creation({ creations }) {
                     <div className="overflow-hidden">
                       <video
                         playsInline={true}
-                        preload="metadata"
                         alt="Rarement NFT Video"
                         src={"https://rmnt.herokuapp.com" + NFTUrl}
                         className="max-h-[256px] duration-200 hover:scale-125"
