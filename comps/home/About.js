@@ -30,7 +30,7 @@ export default function About({ users }) {
               key={idx}
               className="flex flex-col max-w-[916px] justify-self-end odd:justify-self-start gap-8 md:grid md:grid-cols-2 md:gap-[52px]"
             >
-              <div className="p-5 border-2 border-ourBlack bg-white rounded-md">
+              <div className="p-1 border-2 border-ourBlack bg-white rounded-md">
                 <Image
                   alt="Rarement Webtoone Page Image"
                   src={item.src}
