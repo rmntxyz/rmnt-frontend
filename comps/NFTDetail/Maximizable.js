@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   handleMouseEnter,
   handleMouseLeave,
@@ -41,6 +41,10 @@ export default function Maximizable({ currentNFT, loading }) {
     }
   };
 
+  //Get screen size to disable autoplay on mobile
+  const [screenWidth, setScreenWidth] = useState();
+  useEffect(() => setScreenWidth(window.outerWidth));
+
   //Add blur to the image being loaded
   const [blur, setBlur] = useState(true);
   const handleBlur = () => {
@@ -79,11 +83,12 @@ export default function Maximizable({ currentNFT, loading }) {
       ) : (
         <video
           controls
+          autoPlay={screenWidth < 768 ? false : true}
           id="maximizableElement"
           alt="Rarement NFT Video"
           src={"https://rmnt.herokuapp.com" + NFTUrl}
           loop={true}
-          className="max-h-[402px] mx-auto hidden md:block"
+          className="max-h-[402px] mx-auto"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         ></video>
