@@ -74,6 +74,11 @@ export default function Webtoons({ webtoons, artist }) {
                         "https://rmnt.herokuapp.com" +
                         item.attributes.cover_image.data.attributes.url
                       }
+                      placeholder="blur"
+                      blurDataURL={
+                        "https://rmnt.herokuapp.com" +
+                        item.attributes.cover_image.data.attributes.url
+                      }
                       width={256}
                       height={256}
                       layout="responsive"

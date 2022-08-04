@@ -35,6 +35,11 @@ export default function ListItem({ item }) {
               }
               width={240}
               height={240}
+              placeholder="blur"
+              blurDataURL={
+                "https://rmnt.herokuapp.com" +
+                item.attributes.cover_image.data.attributes.url
+              }
               layout="responsive"
               objectFit="contain"
               className="duration-200 hover:scale-125"

@@ -75,10 +75,14 @@ export default function NFT({ NFTs, exchangeRate }) {
                                 NFTUrl.split(".")[NFTUrl.split(".").length - 1]
                               ) ? (
                                 <Image
-                                  src={`https://rmnt.herokuapp.com${NFTUrl}`}
+                                  src={"https://rmnt.herokuapp.com" + NFTUrl}
                                   layout="fill"
                                   objectFit="contain"
                                   alt="Rarement NFT Image"
+                                  placeholder="blur"
+                                  blurDataURL={
+                                    "https://rmnt.herokuapp.com" + NFTUrl
+                                  }
                                 />
                               ) : (
                                 <video

@@ -29,17 +29,21 @@ export default function Creation({ creations }) {
                       height={256}
                       objectFit="contain"
                       layout="responsive"
+                      placeholder="blur"
+                      blurDataURL={"https://rmnt.herokuapp.com" + NFTUrl}
                       className="duration-200 hover:scale-125"
                       alt="Rarement NFT Image"
                     />
                   ) : (
-                    <video
-                      alt="Rarement NFT Video"
-                      src={"https://rmnt.herokuapp.com" + NFTUrl}
-                      className="max-h-[256px]"
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                    ></video>
+                    <div className="overflow-hidden">
+                      <video
+                        alt="Rarement NFT Video"
+                        src={"https://rmnt.herokuapp.com" + NFTUrl}
+                        className="max-h-[256px] duration-200 hover:scale-125"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                      ></video>
+                    </div>
                   )}
                 </a>
                 <div className="flex max-w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">
