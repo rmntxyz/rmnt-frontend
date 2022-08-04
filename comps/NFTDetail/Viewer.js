@@ -67,6 +67,7 @@ export default function Viewer({
               />
             ) : (
               <video
+                controls
                 playsInline={true}
                 alt="Rarement NFT Video"
                 autoPlay={false}

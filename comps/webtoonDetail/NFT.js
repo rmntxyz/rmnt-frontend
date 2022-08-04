@@ -86,6 +86,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                                 />
                               ) : (
                                 <video
+                                  controls
                                   alt="Rarement NFT Video"
                                   playsInline={true}
                                   src={"https://rmnt.herokuapp.com" + NFTUrl}

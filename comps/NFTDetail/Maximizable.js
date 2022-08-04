@@ -78,12 +78,12 @@ export default function Maximizable({ currentNFT, loading }) {
         />
       ) : (
         <video
+          controls
           id="maximizableElement"
           alt="Rarement NFT Video"
           src={"https://rmnt.herokuapp.com" + NFTUrl}
-          autoPlay={true}
           loop={true}
-          className="max-h-[402px] mx-auto"
+          className="max-h-[402px] mx-auto hidden md:block"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         ></video>
