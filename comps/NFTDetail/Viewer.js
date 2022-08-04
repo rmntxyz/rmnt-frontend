@@ -19,7 +19,7 @@ export default function Viewer({
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 800);
+    }, 1000);
   };
 
   return (
