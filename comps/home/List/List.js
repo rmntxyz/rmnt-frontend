@@ -68,7 +68,7 @@ export default function List({ data }) {
         </div>
         <div className="scroll overflow-x-auto md:scroll-large">
           <div className="min-w-[956px] gap-x-5 gap-y-12 grid grid-cols-4 md:min-w-[1184px] md:gap-x-8 md:gap-y-16 ">
-            {currentItems?.map((item) => (
+            {currentItems?.map((item, idx) => (
               <ListItem key={item.id} item={item} />
             ))}
           </div>

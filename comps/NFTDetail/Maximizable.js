@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { useState } from "react";
+import {
+  handleMouseEnter,
+  handleMouseLeave,
+  isImage,
+} from "../../utils/mediaType";
 
 export default function Maximizable({ currentNFT, loading }) {
+  const NFTUrl = currentNFT.attributes.image.data[0].attributes.url;
   //Enable maximization of the selected NFT
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreen = () => {
@@ -40,7 +46,6 @@ export default function Maximizable({ currentNFT, loading }) {
   const handleBlur = () => {
     setBlur(false);
   };
-
   return (
     <div
       onClick={(e) => handleFullscreen()}
@@ -50,29 +55,37 @@ export default function Maximizable({ currentNFT, loading }) {
         loading ? "opacity-0" : "opacity-100"
       } relative transition-opacity h-[402px] w-[931px]`}
     >
-      <Image
-        id="maximizableElement"
-        alt="Rarement NFT Image"
-        src={
-          "https://rmnt.herokuapp.com" +
-          currentNFT.attributes.image.data[0].attributes.url
-        }
-        // placeholder="blur"
-        // blurDataURL={
-        //   "https://rmnt.herokuapp.com" +
-        //   currentNFT.attributes.image.data[0].attributes.url
-        // }
-        layout="fill"
-        objectFit="contain"
-        style={{
-          filter: blur ? "blur(20px)" : "none",
-          transition: blur ? "none" : "filter 0.3s ease-out",
-        }}
-        onLoadingComplete={handleBlur}
-        // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
-        //   console.log(naturalHeight, naturalWidth);
-        // }}
-      />
+      {isImage.includes(NFTUrl.split(".")[NFTUrl.split(".").length - 1]) ? (
+        <Image
+          id="maximizableElement"
+          alt="Rarement NFT Image"
+          src={"https://rmnt.herokuapp.com" + NFTUrl}
+          // placeholder="blur"
+          // blurDataURL={
+          //   "https://rmnt.herokuapp.com" +
+          //   NFTUrl
+          // }
+          layout="fill"
+          objectFit="contain"
+          style={{
+            filter: blur ? "blur(20px)" : "none",
+            transition: blur ? "none" : "filter 0.3s ease-out",
+          }}
+          onLoadingComplete={handleBlur}
+          // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
+          //   console.log(naturalHeight, naturalWidth);
+          // }}
+        />
+      ) : (
+        <video
+          id="maximizableElement"
+          alt="Rarement NFT Video"
+          src={"https://rmnt.herokuapp.com" + NFTUrl}
+          className="max-h-[402px] mx-auto"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        ></video>
+      )}
     </div>
   );
 }

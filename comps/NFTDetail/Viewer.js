@@ -1,5 +1,10 @@
 import Image from "next/image";
 import { useState } from "react";
+import {
+  handleMouseEnter,
+  handleMouseLeave,
+  isImage,
+} from "../../utils/mediaType";
 import Maximizable from "./Maximizable";
 
 export default function Viewer({
@@ -38,21 +43,42 @@ export default function Viewer({
             key={idx}
             className="border bg-white rounded-sm shadow-lg p-3.5"
           >
-            <Image
-              alt="Rarement NFT Image"
-              width={236}
-              height={236}
-              src={
-                "https://rmnt.herokuapp.com" +
-                item.attributes.image.data[0].attributes.url
-              }
-              objectFit="contain"
-              placeholder="blur"
-              blurDataURL={`/_next/image?url=${item.attributes.image.data[0].attributes.url}&w=16&q=1`}
-              className={`${
-                item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
-              } transition-opacity`}
-            />
+            {isImage.includes(
+              item.attributes.image.data[0].attributes.url.split(".")[
+                item.attributes.image.data[0].attributes.url.split(".").length -
+                  1
+              ]
+            ) ? (
+              <Image
+                alt="Rarement NFT Image"
+                width={236}
+                height={236}
+                src={
+                  "https://rmnt.herokuapp.com" +
+                  item.attributes.image.data[0].attributes.url
+                }
+                objectFit="contain"
+                placeholder="blur"
+                blurDataURL={`/_next/image?url=${item.attributes.image.data[0].attributes.url}&w=16&q=1`}
+                className={`${
+                  item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
+                } transition-opacity`}
+              />
+            ) : (
+              <video
+                alt="Rarement NFT Video"
+                src={
+                  "https://rmnt.herokuapp.com" +
+                  item.attributes.image.data[0].attributes.url
+                }
+                className={`h-[236px] ${
+                  item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
+                } transition-opacity`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              ></video>
+            )}
+
             <a
               href={"/webtoons/" + currentWebtoon.id}
               className="flex items-center mt-1 w-[236px] "
@@ -111,20 +137,45 @@ export default function Viewer({
                     className="w-[78px] h-[105.2px]"
                     aria-label="Select NFT"
                   >
-                    <Image
-                      alt="Rarement NFT Preview"
-                      width={78}
-                      height={78}
-                      src={
-                        "https://rmnt.herokuapp.com" +
-                        item.attributes.image.data[0].attributes.url
-                      }
-                      layout="responsive"
-                      objectFit="contain"
-                      className={`${
-                        item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
-                      } transition-opacity`}
-                    />
+                    {isImage.includes(
+                      item.attributes.image.data[0].attributes.url.split(".")[
+                        item.attributes.image.data[0].attributes.url.split(".")
+                          .length - 1
+                      ]
+                    ) ? (
+                      <Image
+                        alt="Rarement NFT Preview"
+                        width={78}
+                        height={78}
+                        src={
+                          "https://rmnt.herokuapp.com" +
+                          item.attributes.image.data[0].attributes.url
+                        }
+                        layout="responsive"
+                        objectFit="contain"
+                        className={`${
+                          item.id !== currentNFT.id
+                            ? "opacity-40"
+                            : "opacity-100"
+                        } transition-opacity`}
+                      />
+                    ) : (
+                      <video
+                        alt="Rarement NFT Video"
+                        src={
+                          "https://rmnt.herokuapp.com" +
+                          item.attributes.image.data[0].attributes.url
+                        }
+                        className={`h-[78px] ${
+                          item.id !== currentNFT.id
+                            ? "opacity-40"
+                            : "opacity-100"
+                        } transition-opacity`}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                      ></video>
+                    )}
+
                     <div className=" w-[78px]">
                       <div className="truncate mx-auto">
                         {item.attributes.name}

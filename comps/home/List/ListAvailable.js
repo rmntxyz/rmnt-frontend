@@ -33,9 +33,9 @@ export default function ListAvailable({ NFTs }) {
             <div className="text-lightGray">Soldout</div>
           )}
         </div>
-        {/* {upcomingDropRemaining > 0 && upcomingDropRemaining !== Infinity ? (
+        {upcomingDropRemaining > 0 && upcomingDropRemaining !== Infinity ? (
           <ListTimer timeRemaining={upcomingDropRemaining * 1000} />
-        ) : null} */}
+        ) : null}
       </div>
     </div>
   );

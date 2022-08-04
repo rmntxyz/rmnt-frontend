@@ -10,12 +10,15 @@ export default function Collectors({ users }) {
   //Remove duplicate collectors from the array
   const uniqueIds = [];
   const uniqueUsers = users.filter((item) => {
-    const isDuplicate = uniqueIds.includes(item.attributes.user_id);
-    if (!isDuplicate) {
-      uniqueIds.push(item.attributes.user_id);
-      return true;
+    if (item === null) return false;
+    else {
+      const isDuplicate = uniqueIds.includes(item.attributes.user_id);
+      if (!isDuplicate) {
+        uniqueIds.push(item.attributes.user_id);
+        return true;
+      }
+      return false;
     }
-    return false;
   });
   return (
     <div>

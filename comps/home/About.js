@@ -25,8 +25,11 @@ export default function About({ users }) {
     <div>
       <div className="py-20 px-8 bg-lightBeige flex items-center justify-center md:py-36">
         <div className="container mx-auto grid grid-cols-1 justify-items-stretch gap-16 md:px-6 lg:px-12 xl:max-w-[1280px] 2xl:max-w-[1380px]">
-          {aboutData.map((item) => (
-            <div className="flex flex-col max-w-[916px] justify-self-end odd:justify-self-start gap-8 md:grid md:grid-cols-2 md:gap-[52px]">
+          {aboutData.map((item, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col max-w-[916px] justify-self-end odd:justify-self-start gap-8 md:grid md:grid-cols-2 md:gap-[52px]"
+            >
               <div className="p-5 border-2 border-ourBlack bg-white rounded-md">
                 <Image
                   alt="Rarement Webtoone Page Image"
@@ -40,11 +43,12 @@ export default function About({ users }) {
                 <div className="font-extrabold text-2xl md:text-[32px]">
                   {item.title}
                 </div>
-                {item.desc.map((descItem) => (
+                {item.desc.map((descItem, idx) => (
                   <ul
-                    className={`flex flex-col gap-4 text-justify list-disc ${
-                      item.desc.length === 2 && "list-none"
-                    }`}
+                    key={idx}
+                    className={`flex flex-col gap-4 text-justify text-sm ${
+                      item.desc.length === 2 ? "list-none" : "list-disc"
+                    } md:text-base`}
                   >
                     <li>{descItem}</li>
                   </ul>
