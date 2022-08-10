@@ -77,7 +77,7 @@ export default function Viewer({ data }) {
                 <img
                   width={590}
                   height={590}
-                  src={"https://rmnt.herokuapp.com" + item}
+                  src={item}
                   style={{
                     filter: loading ? "blur(20px)" : "none",
                     transition: loading ? "none" : "filter 0.3s ease-out",

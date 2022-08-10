@@ -28,13 +28,13 @@ export default function Creation({ creations }) {
                     NFTUrl.split(".")[NFTUrl.split(".").length - 1]
                   ) ? (
                     <Image
-                      src={"https://rmnt.herokuapp.com" + NFTUrl}
+                      src={NFTUrl}
                       width={256}
                       height={256}
                       objectFit="contain"
                       layout="responsive"
                       placeholder="blur"
-                      blurDataURL={"https://rmnt.herokuapp.com" + NFTUrl}
+                      blurDataURL={NFTUrl}
                       className="duration-200 hover:scale-125"
                       alt="Rarement NFT Image"
                     />
@@ -44,7 +44,7 @@ export default function Creation({ creations }) {
                         controls
                         playsInline={true}
                         alt="Rarement NFT Video"
-                        src={"https://rmnt.herokuapp.com" + NFTUrl}
+                        src={NFTUrl}
                         className="max-h-[256px]"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}

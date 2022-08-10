@@ -70,15 +70,9 @@ export default function Webtoons({ webtoons, artist }) {
                 >
                   <a href={"/webtoons/" + item.id} className="relative group">
                     <Image
-                      src={
-                        "https://rmnt.herokuapp.com" +
-                        item.attributes.cover_image.data.attributes.url
-                      }
+                      src={item.attributes.cover_image.data.attributes.url}
                       placeholder="blur"
-                      blurDataURL={
-                        "https://rmnt.herokuapp.com" +
-                        item.attributes.cover_image.data.attributes.url
-                      }
+                      blurDataURL={item.attributes.cover_image.data.attributes.url}
                       width={256}
                       height={256}
                       layout="responsive"

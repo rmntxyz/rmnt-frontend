@@ -28,11 +28,7 @@ export default function TopCard({ item }) {
             >
               <div className="w-7 h-7 md:w-8 md:h-8">
                 <Image
-                  src={
-                    "https://rmnt.herokuapp.com" +
-                    item.attributes.artist_id.data.attributes.profile_image.data
-                      .attributes.url
-                  }
+                  src={item.attributes.artist_id.data.attributes.profile_image.data.attributes.url}
                   width={31}
                   height={31}
                   className="rounded-full"
@@ -56,18 +52,12 @@ export default function TopCard({ item }) {
           <div className="border border-darkGray bg-white rounded-sm p-3.5 mt-5 shadow-medium md:p-5 md:mt-8 lg:row-span-2 lg:order-1 lg:mt-0 lg:mr-8">
             <a href={"/webtoons/" + item.id}>
               <Image
-                src={
-                  "https://rmnt.herokuapp.com" +
-                  item.attributes.cover_image.data.attributes.url
-                }
+                src={item.attributes.cover_image.data.attributes.url}
                 width={402}
                 height={402}
                 priority={true}
                 placeholder="blur"
-                blurDataURL={
-                  "https://rmnt.herokuapp.com" +
-                  item.attributes.cover_image.data.attributes.url
-                }
+                blurDataURL={item.attributes.cover_image.data.attributes.url}
                 layout="responsive"
                 className="duration-200 hover:scale-125"
                 alt="Rarement Webtoon Cover Image"

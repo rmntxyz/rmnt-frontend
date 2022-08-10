@@ -59,7 +59,7 @@ export default function Maximizable({ currentNFT, loading }) {
         <Image
           id="maximizableElement"
           alt="Rarement NFT Image"
-          src={"https://rmnt.herokuapp.com" + NFTUrl}
+          src={NFTUrl}
           layout="fill"
           objectFit="contain"
           style={{
@@ -74,7 +74,7 @@ export default function Maximizable({ currentNFT, loading }) {
           autoPlay={screenWidth < 768 ? false : true}
           id="maximizableElement"
           alt="Rarement NFT Video"
-          src={"https://rmnt.herokuapp.com" + NFTUrl}
+          src={NFTUrl}
           loop={true}
           className="max-h-[402px] mx-auto"
         ></video>

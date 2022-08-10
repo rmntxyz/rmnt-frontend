@@ -43,10 +43,7 @@ export default function Desc({ props }) {
           props.attributes.background_image?.data
             ? {
                 backgroundImage:
-                  "url(" +
-                  "https://rmnt.herokuapp.com" +
-                  props.attributes.background_image.data.attributes.url +
-                  ")",
+                  `url(${props.attributes.background_image.data.attributes.url})`,
                 filter: loading ? "blur(20px)" : "none",
                 transition: loading ? "none" : "filter 0.3s ease-out",
               }
@@ -65,8 +62,7 @@ export default function Desc({ props }) {
                 onLoadingComplete={handleLoading}
                 src={
                   props.attributes.profile_image
-                    ? "https://rmnt.herokuapp.com" +
-                      props.attributes.profile_image.data.attributes.url
+                    ? props.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }
                 layout="fill"

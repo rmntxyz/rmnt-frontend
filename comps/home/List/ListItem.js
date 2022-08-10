@@ -11,11 +11,7 @@ export default function ListItem({ item }) {
         >
           <div className="relative rounded-full w-7 h-7 overflow-hidden md:w-8 md:h-8 ">
             <Image
-              src={
-                "https://rmnt.herokuapp.com" +
-                item.attributes.artist_id.data.attributes.profile_image.data
-                  .attributes.url
-              }
+              src={item.attributes.artist_id.data.attributes.profile_image.data.attributes.url}
               layout="fill"
               objectFit="contain"
               alt="Rarement Artist Profile Image"
@@ -29,17 +25,11 @@ export default function ListItem({ item }) {
         <div className="relative group">
           <a href={"/webtoons/" + item.id}>
             <Image
-              src={
-                "https://rmnt.herokuapp.com" +
-                item.attributes.cover_image.data.attributes.url
-              }
+              src={item.attributes.cover_image.data.attributes.url}
               width={240}
               height={240}
               placeholder="blur"
-              blurDataURL={
-                "https://rmnt.herokuapp.com" +
-                item.attributes.cover_image.data.attributes.url
-              }
+              blurDataURL={item.attributes.cover_image.data.attributes.url}
               layout="responsive"
               objectFit="contain"
               className="duration-200 hover:scale-125"

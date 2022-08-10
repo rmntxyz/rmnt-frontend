@@ -42,8 +42,7 @@ export default function Collectors({ users }) {
               <Image
                 src={
                   user?.attributes.profile_image.data.attributes.url?.length > 0
-                    ? "https://rmnt.herokuapp.com" +
-                      user?.attributes.profile_image.data.attributes.url
+                    ? user?.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }
                 layout="fill"

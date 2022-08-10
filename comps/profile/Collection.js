@@ -25,7 +25,7 @@ export default function Collection({ collections }) {
                   ) ? (
                     <Image
                       alt="Rarement NFT image"
-                      src={"https://rmnt.herokuapp.com" + NFTUrl}
+                      src={NFTUrl}
                       width={256}
                       height={256}
                       objectFit="contain"
@@ -37,7 +37,7 @@ export default function Collection({ collections }) {
                       <video
                         playsInline={true}
                         alt="Rarement NFT Video"
-                        src={"https://rmnt.herokuapp.com" + NFTUrl}
+                        src={NFTUrl}
                         className="max-h-[256px] duration-200 hover:scale-125"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}

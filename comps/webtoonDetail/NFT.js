@@ -75,14 +75,12 @@ export default function NFT({ NFTs, exchangeRate }) {
                                 NFTUrl.split(".")[NFTUrl.split(".").length - 1]
                               ) ? (
                                 <Image
-                                  src={"https://rmnt.herokuapp.com" + NFTUrl}
+                                  src={NFTUrl}
                                   layout="fill"
                                   objectFit="contain"
                                   alt="Rarement NFT Image"
                                   placeholder="blur"
-                                  blurDataURL={
-                                    "https://rmnt.herokuapp.com" + NFTUrl
-                                  }
+                                  blurDataURL={NFTUrl}
                                   className="duration-200 hover:scale-125"
                                 />
                               ) : (
@@ -90,7 +88,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                                   controls
                                   alt="Rarement NFT Video"
                                   playsInline={true}
-                                  src={"https://rmnt.herokuapp.com" + NFTUrl}
+                                  src={NFTUrl}
                                   className="h-[196px] md:h-[240px] lg:h-[256px]"
                                   onMouseEnter={handleMouseEnter}
                                   onMouseLeave={handleMouseLeave}
