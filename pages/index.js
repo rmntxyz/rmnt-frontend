@@ -4,45 +4,72 @@ import About from "../comps/home/About";
 import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
 import Seo from "../comps/layout/SEO";
-// import { listUrl, topUrl } from "../comps/URLs";
-
-// export async function getServerSideProps() {
-//   const topRes = await fetch(topUrl);
-//   const topData = await topRes.json();
-//   const listRes = await fetch(listUrl);
-//   const listData = await listRes.json();
-//   return { props: { topData: topData, listData: listData } };
-// }
 
 const GET_HOME_DATA = gql`
   query Home_data {
-    webtoonTop {
-      webtoon_id
-      artist {
-        name
-        profile_image
-      }
-      title
-      volume
-      cover_image
-      NFTs {
-        sold_timestamp
-        timeRemaining
+    webtoons {
+      data {
+        id
+        attributes {
+          webtoon_id
+          artist_id {
+            data {
+              id
+              attributes {
+                first_name
+                profile_image {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+          title
+          volume
+          cover_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          webtoon_pages {
+            data {
+              attributes {
+                nfts {
+                  data {
+                    id
+                    attributes {
+                      drop_timestamp
+                      sold_timestamp
+                      # timeRemaining
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
-    allWebtoons {
-      webtoon_id
-      artist {
-        name
-        profile_image
-      }
-      title
-      volume
-      cover_image
-      NFTs {
-        webtoon_id
-        sold_timestamp
-        timeRemaining
+    webtoonUsers(pagination: { page: 1, pageSize: 7 }) {
+      data {
+        id
+        attributes {
+          user_id
+          first_name
+          wallet_address
+          profile_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -55,32 +82,43 @@ export async function getServerSideProps() {
   });
   return {
     props: {
-      topData: data.webtoonTop,
-      listData: data.allWebtoons
-        .slice()
-        .sort(
-          (a, b) =>
-            b.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length -
-            a.NFTs.filter((NFT) => !(NFT.sold_timestamp?.length > 0)).length
-        )
-        .sort(
-          (a, b) =>
-            b.NFTs.filter((NFT) => NFT.timeRemaining > 0).length -
-            a.NFTs.filter((NFT) => NFT.timeRemaining > 0).length
-        )
-        .filter((item) => item.webtoon_id !== data.webtoonTop.webtoon_id),
+      webtoonsData: data.webtoons.data.slice().sort(
+        (a, b) =>
+          Math.min(
+            ...a.attributes.webtoon_pages.data
+              .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+              .flat(1)
+              .filter(
+                (NFT) =>
+                  NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
+                  0
+              )
+              .map((NFT) => NFT.attributes.drop_timestamp)
+          ) -
+          Math.min(
+            ...b.attributes.webtoon_pages.data
+              .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+              .flat(1)
+              .filter(
+                (NFT) =>
+                  NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
+                  0
+              )
+              .map((NFT) => NFT.attributes.drop_timestamp)
+          )
+      ),
     },
   };
 }
 
-export default function Home({ topData, listData }) {
+export default function Home({ webtoonsData, users }) {
   return (
     <div className="overflow-x-hidden">
       <Seo title="Rarement" />
       <main>
-        <TopCard data={topData} />
-        <List data={listData} />
-        <About />
+        <TopCard item={webtoonsData[0]} />
+        <List data={webtoonsData.slice(1)} />
+        <About users={users} />
       </main>
     </div>
   );

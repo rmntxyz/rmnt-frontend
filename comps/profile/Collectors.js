@@ -10,12 +10,15 @@ export default function Collectors({ users }) {
   //Remove duplicate collectors from the array
   const uniqueIds = [];
   const uniqueUsers = users.filter((item) => {
-    const isDuplicate = uniqueIds.includes(item.user_id);
-    if (!isDuplicate) {
-      uniqueIds.push(item.user_id);
-      return true;
+    if (item === null) return false;
+    else {
+      const isDuplicate = uniqueIds.includes(item.attributes.user_id);
+      if (!isDuplicate) {
+        uniqueIds.push(item.attributes.user_id);
+        return true;
+      }
+      return false;
     }
-    return false;
   });
   return (
     <div>
@@ -26,15 +29,15 @@ export default function Collectors({ users }) {
             <div className="w-1/2 grid grid-cols-5">
               {uniqueUsers.slice(0, 5).map((user) => (
                 <a
-                  href={"/users/" + user.user_id}
-                  key={user.user_id}
+                  href={"/users/" + user.id}
+                  key={user.id}
                   className="group relative hover:cursor-pointer"
                 >
                   <div className="rounded-full border-2 border-white  w-[28px] h-[28px] md:w-[36px] md:h-[36px] lg:w-[32px] lg:h-[32px]">
                     <Image
                       src={
-                        user.profile_image?.length > 0
-                          ? user.profile_image
+                        user.attributes.profile_image
+                          ? user.attributes.profile_image.data.attributes.url
                           : "/profile/profile_1440_768@2x.png"
                       }
                       width={36}
@@ -45,9 +48,9 @@ export default function Collectors({ users }) {
                     />
                   </div>
                   <div className="opacity-0 w-8 transition-opacity absolute text-[#555555] group-hover:opacity-100">
-                    <div>{user.name}</div>
+                    <div>{user.attributes.first_name}</div>
                     <div className="px-3 py-1 min-w-fit bg-lightGray text-white text-xs rounded-full">
-                      {user.wallet_address}
+                      {user.attributes.wallet_address}
                     </div>
                   </div>
                 </a>
@@ -85,16 +88,12 @@ export default function Collectors({ users }) {
         } `}
       >
         {uniqueUsers.map((user) => (
-          <a
-            href={"/users/" + user.user_id}
-            key={user.user_id}
-            className="flex"
-          >
+          <a href={"/users/" + user.id} key={user.id} className="flex">
             <div className="rounded-full border-2 border-white w-8 h-8">
               <Image
                 src={
-                  user.profile_image?.length > 0
-                    ? user.profile_image
+                  user.attributes.profile_image
+                    ? user.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }
                 width={32}
@@ -105,9 +104,9 @@ export default function Collectors({ users }) {
               ></Image>
             </div>
             <div className="transition-opacity text-[#555555]">
-              <div>{user.name}</div>
+              <div>{user.attributes.first_name}</div>
               <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
-                {user.wallet_address}
+                {user.attributes.wallet_address}
               </div>
             </div>
           </a>

@@ -4,12 +4,15 @@ export default function Collectors({ users }) {
   //Remove duplicate collectors from the array
   const uniqueIds = [];
   const uniqueUsers = users.filter((item) => {
-    const isDuplicate = uniqueIds.includes(item.user_id);
-    if (!isDuplicate) {
-      uniqueIds.push(item.user_id);
-      return true;
+    if (item === null) return false;
+    else {
+      const isDuplicate = uniqueIds.includes(item.attributes.user_id);
+      if (!isDuplicate) {
+        uniqueIds.push(item.attributes.user_id);
+        return true;
+      }
+      return false;
     }
-    return false;
   });
   return (
     <div
@@ -32,14 +35,14 @@ export default function Collectors({ users }) {
         {uniqueUsers && uniqueUsers.length ? (
           uniqueUsers.map((user, idx) => (
             <a
-              href={"/users/" + user.user_id}
+              href={"/users/" + user?.id}
               key={idx}
               className="group relative hover:cursor-pointer rounded-full border-2 border-white w-14 h-14 md:w-[74px] md:h-[74px] lg:w-20 lg:h-20"
             >
               <Image
                 src={
-                  user.profile_image?.length > 0
-                    ? user.profile_image
+                  user?.attributes.profile_image.data.attributes.url?.length > 0
+                    ? user?.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }
                 layout="fill"
@@ -47,10 +50,10 @@ export default function Collectors({ users }) {
                 className="rounded-full col-span-1 "
                 alt="Rarement NFT Collector Profile Picture"
               />
-              <div className="opacity-0 transition-opacity absolute text-[#555555] group-hover:opacity-100">
-                <div>{user.name}</div>
+              <div className="opacity-0 transition-opacity absolute top-10 text-[#555555] p-2 rounded-md md:top-16 group-hover:opacity-100">
+                <div className="text-white">{user?.attributes.first_name}</div>
                 <div className="px-3 py-1 bg-lightGray text-white text-xs rounded-full">
-                  {user.wallet_address}
+                  {user?.attributes.wallet_address}
                 </div>
               </div>
             </a>

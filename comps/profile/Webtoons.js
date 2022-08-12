@@ -65,15 +65,17 @@ export default function Webtoons({ webtoons, artist }) {
             <div className="min-w-[956px] grid grid-cols-4 gap-5 md:min-w-[1184px] md:gap-8">
               {currentItems.map((item) => (
                 <div
-                  key={item.webtoon_id}
+                  key={item.id}
                   className="border border-ourBlack rounded-sm p-3.5 shadow-small bg-white md:p-4 "
                 >
-                  <a
-                    href={"/webtoons/" + item.webtoon_id}
-                    className="relative group"
-                  >
+                  <a href={"/webtoons/" + item.id} className="relative group">
                     <Image
-                      src={item.cover_image}
+                      src={item.attributes.cover_image.data.attributes.url}
+                      placeholder="blur"
+                      objectFit="contain"
+                      blurDataURL={
+                        item.attributes.cover_image.data.attributes.url
+                      }
                       width={256}
                       height={256}
                       layout="responsive"
@@ -89,14 +91,20 @@ export default function Webtoons({ webtoons, artist }) {
                   </a>
                   <div className="flex mt-3.5 items-center md:mt-4">
                     <div className="truncate text-base font-extrabold uppercase md:text-lg">
-                      {item.title}
+                      {item.attributes.title}
                     </div>
                     <div className="w-1 aspect-square m-1 bg-lightGray rounded-full"></div>
                     <div className="whitespace-nowrap text-sm font-extrabold md:text-base">
-                      vol {item.volume}
+                      vol {item.attributes.volume}
                     </div>
                   </div>
-                  <Collectors users={item.NFTs?.map((NFT) => NFT.user)} />
+                  <Collectors
+                    users={item.attributes.webtoon_pages.data
+                      .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+                      .flat(1)
+                      .filter((NFT) => !!NFT)
+                      .map((NFT) => NFT.attributes.owned_by.data)}
+                  />
                 </div>
               ))}
             </div>

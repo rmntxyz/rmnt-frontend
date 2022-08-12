@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { isImage } from "../../utils/mediaType";
 
 export default function Maximizable({ currentNFT, loading }) {
+  const NFTUrl = currentNFT.attributes.image.data[0].attributes.url;
   //Enable maximization of the selected NFT
   const [isFullscreen, setIsFullscreen] = useState(false);
   const handleFullscreen = () => {
@@ -34,26 +36,49 @@ export default function Maximizable({ currentNFT, loading }) {
       }
     }
   };
+
+  //Get screen size to disable autoplay on mobile
+  const [screenWidth, setScreenWidth] = useState();
+  useEffect(() => setScreenWidth(window.outerWidth));
+
+  //Add blur to the image being loaded
+  const [blur, setBlur] = useState(true);
+  const handleBlur = () => {
+    setBlur(false);
+  };
   return (
     <div
       onClick={(e) => handleFullscreen()}
-      className={` ${
+      className={`${
         isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
       } ${
         loading ? "opacity-0" : "opacity-100"
-      } relative transition-opacity h-[402px]`}
+      } relative transition-opacity h-[402px] w-[931px]`}
     >
-      <Image
-        id="maximizableElement"
-        src={currentNFT.image}
-        placeholder="blur"
-        blurDataURL={`/_next/image?url=${currentNFT.image}&w=16&q=1`}
-        layout="fill"
-        objectFit="contain"
-        // onLoadingComplete={({ naturalWidth, naturalHeight }) => {
-        //   console.log(naturalHeight, naturalWidth);
-        // }}
-      />
+      {isImage.includes(NFTUrl.split(".")[NFTUrl.split(".").length - 1]) ? (
+        <Image
+          id="maximizableElement"
+          alt="Rarement NFT Image"
+          src={NFTUrl}
+          layout="fill"
+          objectFit="contain"
+          style={{
+            filter: blur ? "blur(20px)" : "none",
+            transition: blur ? "none" : "filter 0.3s ease-out",
+          }}
+          onLoadingComplete={handleBlur}
+        />
+      ) : (
+        <video
+          controls
+          autoPlay={screenWidth < 768 ? false : true}
+          id="maximizableElement"
+          alt="Rarement NFT Video"
+          src={NFTUrl}
+          loop={true}
+          className="max-h-[402px] mx-auto"
+        ></video>
+      )}
     </div>
   );
 }

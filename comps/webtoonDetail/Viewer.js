@@ -68,6 +68,8 @@ export default function Viewer({ data }) {
             observer={true}
             observeParents={true}
             onSwiper={handleLoading}
+            lazy={{ loadOnTransitionStart: true, enabled: true }}
+            preloadImages={false}
             className="min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px]"
           >
             {data.map((item, idx) => (
@@ -81,6 +83,7 @@ export default function Viewer({ data }) {
                     transition: loading ? "none" : "filter 0.3s ease-out",
                   }}
                   className="p-3.5 sm:p-5 "
+                  alt="RMNT Webtoon Page"
                 />
               </SwiperSlide>
             ))}

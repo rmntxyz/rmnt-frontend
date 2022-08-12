@@ -40,9 +40,9 @@ export default function Desc({ props }) {
       <div
         className="h-[224px] md:h-[320px] bg-[#CEA671] bg-center bg-cover bg-no-repeat "
         style={
-          props.background_image?.length > 0
+          props.attributes.background_image?.data
             ? {
-                backgroundImage: "url(" + props.background_image + ")",
+                backgroundImage: `url(${props.attributes.background_image.data.attributes.url})`,
                 filter: loading ? "blur(20px)" : "none",
                 transition: loading ? "none" : "filter 0.3s ease-out",
               }
@@ -60,8 +60,8 @@ export default function Desc({ props }) {
                 alt="Rarement Artist Profile Image"
                 onLoadingComplete={handleLoading}
                 src={
-                  props.profile_image?.length > 0
-                    ? props.profile_image
+                  props.attributes.profile_image
+                    ? props.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }
                 layout="fill"
@@ -80,7 +80,7 @@ export default function Desc({ props }) {
               <div className="flex flex-col gap-2.5">
                 <div className="flex items-center gap-1.5 md:gap-2">
                   <span className="font-extrabold text-[21px] md:text-[32px]">
-                    @{props.name}
+                    @{props.attributes.first_name}
                   </span>
                   <div className="relative aspect-square w-[18px] md:w-[28px]">
                     <Image
@@ -91,28 +91,30 @@ export default function Desc({ props }) {
                     />
                   </div>
                 </div>
-                <div
-                  onClick={handleCopyClick}
-                  className="group flex items-center"
-                >
-                  <button
-                    id="to be copied"
-                    className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-sm rounded-full hover:underline md:text-base"
-                    aria-label="Copy Wallet Address"
+                {props.attributes.wallet_address?.length > 0 ? (
+                  <div
+                    onClick={handleCopyClick}
+                    className="group flex items-center"
                   >
-                    {props.wallet_address}
-                  </button>
-                  <button
-                    className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100"
-                    aria-label="Copy Icon"
-                  >
-                    {isCopied ? "Copied!" : <FontAwesomeIcon icon={faCopy} />}
-                  </button>
-                </div>
+                    <button
+                      id="to be copied"
+                      className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-sm rounded-full hover:underline md:text-base"
+                      aria-label="Copy Wallet Address"
+                    >
+                      {props.attributes.wallet_address}
+                    </button>
+                    <button
+                      className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100"
+                      aria-label="Copy Icon"
+                    >
+                      {isCopied ? "Copied!" : <FontAwesomeIcon icon={faCopy} />}
+                    </button>
+                  </div>
+                ) : null}
               </div>
-              {props.opensea?.length > 0 ? (
+              {props.attributes.opensea?.length > 0 ? (
                 <a
-                  href={props.opensea}
+                  href={props.attributes.opensea}
                   target="_blank"
                   className="relative group flex items-center rounded-full border border-ourBlack h-11 py-2 px-2 duration-200 md:px-8 hover:bg-ourBlack "
                 >
@@ -140,14 +142,14 @@ export default function Desc({ props }) {
                 </a>
               ) : null}
             </div>
-            {props.description?.length > 0 ? (
+            {props.attributes.description?.length > 0 ? (
               <div className="text-sm md:text-lg lg:w-1/2">
-                {props.description}
+                {props.attributes.description}
               </div>
             ) : null}
 
             <div className="flex mb-14 gap-5 text-[#555555] md:gap-7 md:mb-20">
-              {props.instagram?.length > 0 ? (
+              {props.attributes.instagram?.length > 0 ? (
                 <a
                   href={`https://www.instagram.com/${props.instagram}`}
                   target="_blank"
@@ -162,25 +164,25 @@ export default function Desc({ props }) {
                     />
                   </div>
                   <span className="hidden md:inline-block">
-                    @{props.instagram}
+                    @{props.attributes.instagram}
                   </span>
                 </a>
               ) : null}
-              {props.twitter?.length > 0 ? (
+              {props.attributes.twitter?.length > 0 ? (
                 <a
-                  href={`https://www.twitter.com/${props.twitter}`}
+                  href={`https://www.twitter.com/${props.attributes.twitter}`}
                   target="_blank"
                   className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
                 >
                   <FontAwesomeIcon icon={faTwitter} />
                   <span className="hidden md:inline-block">
-                    @{props.twitter}
+                    @{props.attributes.twitter}
                   </span>
                 </a>
               ) : null}
-              {props.email?.length > 0 ? (
+              {props.attributes.email?.length > 0 ? (
                 <a
-                  href={`mailto:${props.email}`}
+                  href={`mailto:${props.attributes.email}`}
                   target="_blank"
                   className="flex items-center gap-1.5 text-xs hover:underline md:text-base"
                 >
@@ -192,7 +194,9 @@ export default function Desc({ props }) {
                       objectFit="contain"
                     />
                   </div>
-                  <span className="hidden md:inline-block">{props.email}</span>
+                  <span className="hidden md:inline-block">
+                    {props.attributes.email}
+                  </span>
                 </a>
               ) : null}
             </div>

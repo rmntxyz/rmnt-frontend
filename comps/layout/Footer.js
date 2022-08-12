@@ -38,7 +38,7 @@ export default function Footer() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <footer className="h-40 px-10 bg-ourBlack flex items-center justify-center md:px-20">
+    <footer className="h-40 px-10 bg-darkGray flex items-center justify-center md:px-20">
       <div className="container text-lightGray text-[13px] flex flex-col items-center justify-center md:flex-row md:justify-between">
         <ul className="flex items-center">
           <a

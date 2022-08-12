@@ -1,12 +1,12 @@
 import Collection from "./Collection";
 
-export default function UserNFT({ user }) {
+export default function UserNFT({ user, NFTs }) {
   //Remove duplicate NFT names from the array (so if the user has purchased multiple editions of a single NFT, only one card will be displayed as opposed to multiple cards)
   const uniqueIds = [];
-  const uniqueCollections = user.NFTs.filter((item) => {
-    const isDuplicate = uniqueIds.includes(item.name);
+  const uniqueCollections = NFTs.filter((item) => {
+    const isDuplicate = uniqueIds.includes(item.attributes.name);
     if (!isDuplicate) {
-      uniqueIds.push(item.name);
+      uniqueIds.push(item.attributes.name);
       return true;
     }
     return false;
@@ -25,11 +25,11 @@ export default function UserNFT({ user }) {
             <div className="absolute bottom-0 w-full h-px bg-ourBlack opacity-[15%]"></div>
           </ul>
           <div>
-            {user.NFTs.length > 0 ? (
+            {NFTs.length > 0 ? (
               <Collection collections={uniqueCollections} />
             ) : (
               <div className="text-center text-base py-8 md:py-14 md:text-xl lg:py-20">
-                {user.name} does not own any RMNT NFT.
+                {user.attributes.first_name} does not own any RMNT NFT.
               </div>
             )}
           </div>
