@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Desc({ props }) {
+  console.log(props.attributes.wallet_address);
   //Copy wallet address
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
@@ -42,8 +43,7 @@ export default function Desc({ props }) {
         style={
           props.attributes.background_image?.data
             ? {
-                backgroundImage:
-                  `url(${props.attributes.background_image.data.attributes.url})`,
+                backgroundImage: `url(${props.attributes.background_image.data.attributes.url})`,
                 filter: loading ? "blur(20px)" : "none",
                 transition: loading ? "none" : "filter 0.3s ease-out",
               }
@@ -92,24 +92,26 @@ export default function Desc({ props }) {
                     />
                   </div>
                 </div>
-                <div
-                  onClick={handleCopyClick}
-                  className="group flex items-center"
-                >
-                  <button
-                    id="to be copied"
-                    className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-sm rounded-full hover:underline md:text-base"
-                    aria-label="Copy Wallet Address"
+                {props.attributes.wallet_address?.length > 0 ? (
+                  <div
+                    onClick={handleCopyClick}
+                    className="group flex items-center"
                   >
-                    {props.attributes.wallet_address}
-                  </button>
-                  <button
-                    className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100"
-                    aria-label="Copy Icon"
-                  >
-                    {isCopied ? "Copied!" : <FontAwesomeIcon icon={faCopy} />}
-                  </button>
-                </div>
+                    <button
+                      id="to be copied"
+                      className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-sm rounded-full hover:underline md:text-base"
+                      aria-label="Copy Wallet Address"
+                    >
+                      {props.attributes.wallet_address}
+                    </button>
+                    <button
+                      className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100"
+                      aria-label="Copy Icon"
+                    >
+                      {isCopied ? "Copied!" : <FontAwesomeIcon icon={faCopy} />}
+                    </button>
+                  </div>
+                ) : null}
               </div>
               {props.attributes.opensea?.length > 0 ? (
                 <a

@@ -67,7 +67,10 @@ export default function Desc({ item, users }) {
                 className="relative rounded-full w-16 h-16 md:w-20 md:h-20"
               >
                 <Image
-                  src={item.attributes.artist_id.data.attributes.profile_image.data.attributes.url}
+                  src={
+                    item.attributes.artist_id.data.attributes.profile_image.data
+                      .attributes.url
+                  }
                   layout="fill"
                   objectFit="contain"
                   alt="Rarement Artist Profile Picture"
@@ -80,21 +83,23 @@ export default function Desc({ item, users }) {
                     {item.attributes.artist_id.data.attributes.first_name}
                   </div>
                 </a>
-                <div
-                  onClick={handleCopyClick}
-                  className="group flex items-center"
-                >
-                  <button
-                    id="to be copied"
-                    aria-label="Copy Wallet Adress"
-                    className="px-3 py-1 bg-lightGray text-white text-[11px] rounded-full md:text-xs"
+                {item.attributes.artist_id.data.attributes.wallet_address ? (
+                  <div
+                    onClick={handleCopyClick}
+                    className="group flex items-center"
                   >
-                    {item.attributes.artist_id.data.attributes.wallet_address}
-                  </button>
-                  <button className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100">
-                    {isCopied ? "Copied!" : <FontAwesomeIcon icon={faCopy} />}
-                  </button>
-                </div>
+                    <button
+                      id="to be copied"
+                      aria-label="Copy Wallet Adress"
+                      className="px-3 py-1 bg-lightGray text-white text-[11px] rounded-full md:text-xs"
+                    >
+                      {item.attributes.artist_id.data.attributes.wallet_address}
+                    </button>
+                    <button className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100">
+                      {isCopied ? "Copied!" : <FontAwesomeIcon icon={faCopy} />}
+                    </button>
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="text-sm md:text-base mx-5 md:mx-8">
