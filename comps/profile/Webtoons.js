@@ -73,7 +73,9 @@ export default function Webtoons({ webtoons, artist }) {
                       src={item.attributes.cover_image.data.attributes.url}
                       placeholder="blur"
                       objectFit="contain"
-                      blurDataURL={item.attributes.cover_image.data.attributes.url}
+                      blurDataURL={
+                        item.attributes.cover_image.data.attributes.url
+                      }
                       width={256}
                       height={256}
                       layout="responsive"

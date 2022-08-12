@@ -11,7 +11,10 @@ export default function ListItem({ item }) {
         >
           <div className="relative rounded-full w-7 h-7 overflow-hidden md:w-8 md:h-8 ">
             <Image
-              src={item.attributes.artist_id.data.attributes.profile_image.data.attributes.url}
+              src={
+                item.attributes.artist_id.data.attributes.profile_image.data
+                  .attributes.url
+              }
               layout="fill"
               objectFit="contain"
               alt="Rarement Artist Profile Image"

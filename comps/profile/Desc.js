@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Desc({ props }) {
-  console.log(props.attributes.wallet_address);
   //Copy wallet address
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
