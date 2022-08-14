@@ -36,7 +36,7 @@ export default function Collectors({ users }) {
                   <div className="rounded-full border-2 border-white  w-[28px] h-[28px] md:w-[36px] md:h-[36px] lg:w-[32px] lg:h-[32px]">
                     <Image
                       src={
-                        user.attributes.profile_image
+                        user.attributes.profile_image?.data
                           ? user.attributes.profile_image.data.attributes.url
                           : "/profile/profile_1440_768@2x.png"
                       }

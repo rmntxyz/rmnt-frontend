@@ -89,6 +89,10 @@ export default function NFT({ NFTs, exchangeRate }) {
                                   alt="Rarement NFT Video"
                                   playsInline={true}
                                   src={NFTUrl}
+                                  poster={
+                                    item.attributes.image.data[1]?.attributes
+                                      .url
+                                  }
                                   className="h-[196px] md:h-[240px] lg:h-[256px]"
                                   onMouseEnter={handleMouseEnter}
                                   onMouseLeave={handleMouseLeave}

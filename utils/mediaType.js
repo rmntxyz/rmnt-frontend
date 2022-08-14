@@ -12,7 +12,7 @@ export const handleMouseEnter = (e) => {
 //Stop video on mouse leave
 export const handleMouseLeave = (e) => {
   const vid = e.target;
-  vid.muted = false;
-  vid.currentTime = 0;
+  // vid.muted = false;
+  // vid.currentTime = 0;
   vid.pause();
 };
