@@ -62,6 +62,13 @@ const GET_ARTIST_DATA = gql`
                                 }
                               }
                             }
+                            thumbnail {
+                              data {
+                                attributes {
+                                  url
+                                }
+                              }
+                            }
                             webtoon_pages {
                               data {
                                 attributes {

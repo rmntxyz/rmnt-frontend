@@ -63,6 +63,13 @@ const GET_NFT_DATA = gql`
                                       }
                                     }
                                   }
+                                  thumbnail {
+                                    data {
+                                      attributes {
+                                        url
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }

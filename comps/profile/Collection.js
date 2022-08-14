@@ -38,6 +38,9 @@ export default function Collection({ collections }) {
                         playsInline={true}
                         alt="Rarement NFT Video"
                         src={NFTUrl}
+                        poster={
+                          collection.attributes.thumbnail.data.attributes.url
+                        }
                         className="max-h-[256px] duration-200 hover:scale-125"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}

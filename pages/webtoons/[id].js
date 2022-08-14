@@ -69,6 +69,13 @@ const GET_WEBTOON_DATA = gql`
                           }
                         }
                       }
+                      thumbnail {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
                       owned_by {
                         data {
                           id
