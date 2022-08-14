@@ -68,6 +68,7 @@ export default function Viewer({
                 playsInline={true}
                 alt="Rarement NFT Video"
                 autoPlay={false}
+                poster={item.attributes.image.data[1].attributes.url}
                 src={item.attributes.image.data[0].attributes.url}
                 className={`h-[236px] ${
                   item.id !== currentNFT.id ? "opacity-40" : "opacity-100"

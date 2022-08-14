@@ -41,7 +41,7 @@ export default function Collectors({ users }) {
             >
               <Image
                 src={
-                  user?.attributes.profile_image.data.attributes.url?.length > 0
+                  user?.attributes.profile_image?.data
                     ? user?.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }

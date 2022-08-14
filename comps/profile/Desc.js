@@ -60,7 +60,7 @@ export default function Desc({ props }) {
                 alt="Rarement Artist Profile Image"
                 onLoadingComplete={handleLoading}
                 src={
-                  props.attributes.profile_image
+                  props.attributes.profile_image?.data
                     ? props.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }

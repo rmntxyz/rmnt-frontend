@@ -21,12 +21,12 @@ export default function NFT({ NFTs, exchangeRate }) {
         <div className="flex flex-col gap-8 md:gap-14">
           <div className="flex items-start gap-4 md:gap-7 md:items-center">
             <div className="font-bold text-[22px] md:text-[40px]">NFT</div>
-            {/* {upcomingDropRemaining > 0 && upcomingDropRemaining !== Infinity ? (
+            {upcomingDropRemaining > 0 && upcomingDropRemaining !== Infinity ? (
               <DetailTimer
                 timeRemaining={upcomingDropRemaining * 1000}
                 className="bg-white text-black"
               />
-            ) : null} */}
+            ) : null}
           </div>
 
           <div className="scroll-large overflow-x-auto flex gap-8 lg:scroll-xlarge">
@@ -89,6 +89,10 @@ export default function NFT({ NFTs, exchangeRate }) {
                                   alt="Rarement NFT Video"
                                   playsInline={true}
                                   src={NFTUrl}
+                                  poster={
+                                    item.attributes.image.data[1]?.attributes
+                                      .url
+                                  }
                                   className="h-[196px] md:h-[240px] lg:h-[256px]"
                                   onMouseEnter={handleMouseEnter}
                                   onMouseLeave={handleMouseLeave}
