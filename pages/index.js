@@ -36,7 +36,7 @@ const GET_HOME_DATA = gql`
               }
             }
           }
-          webtoon_pages {
+          webtoon_pages(pagination: { limit: 200 }) {
             data {
               attributes {
                 nfts {

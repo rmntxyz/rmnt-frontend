@@ -32,7 +32,7 @@ const GET_NFT_DATA = gql`
                           }
                         }
                       }
-                      webtoon_pages {
+                      webtoon_pages(pagination: { limit: 200 }) {
                         data {
                           id
                           attributes {

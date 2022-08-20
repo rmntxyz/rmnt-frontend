@@ -46,7 +46,7 @@ const GET_ARTIST_DATA = gql`
                     }
                   }
                 }
-                webtoon_pages {
+                webtoon_pages(pagination: { limit: 200 }) {
                   data {
                     attributes {
                       nfts {
@@ -138,6 +138,12 @@ export async function getServerSideProps(context) {
 }
 
 export default function Artist({ artist, webtoons, NFTs }) {
+  console.log(
+    webtoons
+      .map((webtoon) => webtoon.attributes.webtoon_pages.data)
+      .flat(1)
+      .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+  );
   return (
     <div className="overflow-x-hidden">
       <Seo title={artist.attributes.first_name} />

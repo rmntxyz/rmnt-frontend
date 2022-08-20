@@ -9,7 +9,11 @@ import "swiper/css/scrollbar";
 // import required modules
 import { Navigation, Scrollbar, Pagination } from "swiper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ProgressBar from "./ProgressBar";
 
@@ -18,10 +22,71 @@ export default function Viewer({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   //Add blur to the image being loaded
-  const [loading, setLoading] = useState(true);
-  const handleLoading = () => {
-    setLoading(false);
+  const [blur, setBlur] = useState(true);
+  const handleBlur = () => {
+    setBlur(false);
   };
+
+  //Enable maximization of the selected page
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const handleFullscreen = () => {
+    getOrExitFullscreen();
+    setIsFullscreen(!isFullscreen);
+  };
+
+  const getOrExitFullscreen = () => {
+    if (isFullscreen === false) {
+      if (
+        document.getElementsByClassName("swiper-slide swiper-slide-active")[0]
+          .requestFullscreen
+      ) {
+        document
+          .getElementsByClassName("swiper-slide swiper-slide-active")[0]
+          .requestFullscreen();
+      } else if (
+        document.getElementsByClassName("swiper-slide swiper-slide-active")[0]
+          .mozRequestFullScreen
+      ) {
+        document
+          .getElementsByClassName("swiper-slide swiper-slide-active")[0]
+          .mozRequestFullScreen(); // Firefox
+      } else if (
+        document.getElementsByClassName("swiper-slide swiper-slide-active")[0]
+          .webkitRequestFullscreen
+      ) {
+        document
+          .getElementsByClassName("swiper-slide swiper-slide-active")[0]
+          .webkitRequestFullscreen(); // Chrome and Safari
+      }
+    }
+    if (isFullscreen === true) {
+      document.addEventListener("fullscreenchange", exitHandler);
+      document.addEventListener("webkitfullscreenchange", exitHandler);
+      document.addEventListener("mozfullscreenchange", exitHandler);
+      document.addEventListener("MSFullscreenChange", exitHandler);
+
+      function exitHandler() {
+        if (
+          !document.fullscreenElement &&
+          !document.webkitIsFullScreen &&
+          !document.mozFullScreen &&
+          !document.msFullscreenElement
+        ) {
+          setIsFullscreen(false);
+        }
+      }
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+  };
+
   return (
     <div className="container mx-auto max-w-[800px]">
       <div className="flex flex-col items-center justify-center ">
@@ -64,26 +129,39 @@ export default function Viewer({ data }) {
                 );
               },
             }}
-            onSlideChange={(swiper) => setCurrentPage(swiper.realIndex + 1)}
+            onSlideChange={(swiper) => {
+              setCurrentPage(swiper.realIndex + 1);
+              console.log(swiper);
+            }}
             observer={true}
             observeParents={true}
-            onSwiper={handleLoading}
+            onSwiper={handleBlur}
             lazy={{ loadOnTransitionStart: true, enabled: true }}
             preloadImages={false}
-            className="min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px]"
+            className="group min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px]"
           >
             {data.map((item, idx) => (
               <SwiperSlide key={idx}>
                 <img
-                  width={590}
-                  height={590}
+                  onClick={(e) => handleFullscreen()}
                   src={item}
+                  height={590}
                   style={{
-                    filter: loading ? "blur(20px)" : "none",
-                    transition: loading ? "none" : "filter 0.3s ease-out",
+                    filter: blur ? "blur(20px)" : "none",
+                    transition: blur ? "none" : "filter 0.3s ease-out",
                   }}
-                  className="p-3.5 sm:p-5 "
+                  className={`relative p-3.5 mx-auto sm:p-5 ${
+                    isFullscreen && "h-full"
+                  }`}
                   alt="RMNT Webtoon Page"
+                />
+                <FontAwesomeIcon
+                  onClick={(e) => handleFullscreen()}
+                  icon={faPlusCircle}
+                  size="2x"
+                  className={`absolute hidden right-7 bottom-7 text-opaqueGray group-hover:block hover:cursor-zoom-in ${
+                    isFullscreen && "invisible"
+                  }`}
                 />
               </SwiperSlide>
             ))}

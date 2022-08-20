@@ -14,6 +14,7 @@ module.exports = {
         lightGray: "#B6B6B6",
         darkGray: "#242424",
         ourBlack: "#0C0C0C",
+        opaqueGray: "rgba(12, 12, 12, 0.5)",
       },
       boxShadow: {
         small: "0 5px 20px 0 rgba(0, 0, 0, 0.14)",
