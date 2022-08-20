@@ -76,7 +76,7 @@ export default function Viewer({ data }) {
       }
     }
   };
-
+  console.log(isFullscreen)
   return (
     <div className={`container mx-auto max-w-[800px]`}>
       <div className="flex flex-col items-center justify-center ">
@@ -87,7 +87,7 @@ export default function Viewer({ data }) {
           <button
             className={`absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:left-2 sm:relative sm:w-14 ${
               isFullscreen &&
-              "-top-20 bg-neutral-200 text-ourBlack disabled:bg-darkGray "
+              "lg:-top-20 lg:bg-neutral-200 lg:text-ourBlack lg:disabled:bg-darkGray "
             }`}
           >
             <FontAwesomeIcon icon={faArrowLeft} className="sm:text-2xl" />
@@ -137,7 +137,7 @@ export default function Viewer({ data }) {
             lazy={{ loadOnTransitionStart: true, enabled: true }}
             preloadImages={false}
             className={`group min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px] ${
-              isFullscreen && "lg:max-w-[880px]"
+              isFullscreen && "lg:max-w-[600px]"
             }`}
           >
             {data.map((item, idx) => (
@@ -158,10 +158,10 @@ export default function Viewer({ data }) {
                   onClick={(e) => handleFullscreen()}
                   icon={isFullscreen ? faMinusCircle : faPlusCircle}
                   size={isFullscreen ? "3x" : "2x"}
-                  className={`absolute hidden right-7 bottom-7 text-opaqueGray group-hover:block ${
+                  className={`absolute hidden right-7 bottom-7 text-opaqueGray lg:group-hover:block ${
                     isFullscreen
-                      ? "hover:cursor-zoom-out bottom-20 right-20"
-                      : "hover:cursor-zoom-in"
+                      ? "hidden lg:hover:cursor-zoom-out lg:bottom-20 lg:right-20"
+                      : "lg:hover:cursor-zoom-in"
                   }`}
                 />
               </SwiperSlide>
@@ -170,7 +170,7 @@ export default function Viewer({ data }) {
           <button
             className={`absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:right-2 sm:relative sm:w-14 ${
               isFullscreen &&
-              "-top-20 bg-neutral-200 text-ourBlack disabled:bg-darkGray "
+              "lg:-top-20 lg:bg-neutral-200 lg:text-ourBlack lg:disabled:bg-darkGray "
             }`}
           >
             <FontAwesomeIcon icon={faArrowRight} className="sm:text-2xl" />
