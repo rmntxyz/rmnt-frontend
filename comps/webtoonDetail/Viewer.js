@@ -76,7 +76,7 @@ export default function Viewer({ data }) {
       }
     }
   };
-  console.log(isFullscreen)
+  console.log(isFullscreen);
   return (
     <div className={`container mx-auto max-w-[800px]`}>
       <div className="flex flex-col items-center justify-center ">
@@ -160,7 +160,7 @@ export default function Viewer({ data }) {
                   size={isFullscreen ? "3x" : "2x"}
                   className={`absolute hidden right-7 bottom-7 text-opaqueGray lg:group-hover:block ${
                     isFullscreen
-                      ? "hidden lg:hover:cursor-zoom-out lg:bottom-20 lg:right-20"
+                      ? "hidden lg:hover:cursor-zoom-out lg:bottom-14 lg:right-14"
                       : "lg:hover:cursor-zoom-in"
                   }`}
                 />
