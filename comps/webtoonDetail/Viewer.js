@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faArrowRight,
+  faMinusCircle,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -36,27 +37,16 @@ export default function Viewer({ data }) {
 
   const getOrExitFullscreen = () => {
     if (isFullscreen === false) {
-      if (
-        document.getElementsByClassName("swiper-slide swiper-slide-active")[0]
-          .requestFullscreen
-      ) {
-        document
-          .getElementsByClassName("swiper-slide swiper-slide-active")[0]
-          .requestFullscreen();
+      if (document.getElementById("maximizableElement").requestFullscreen) {
+        document.getElementById("maximizableElement").requestFullscreen();
       } else if (
-        document.getElementsByClassName("swiper-slide swiper-slide-active")[0]
-          .mozRequestFullScreen
+        document.getElementById("maximizableElement").mozRequestFullScreen
       ) {
-        document
-          .getElementsByClassName("swiper-slide swiper-slide-active")[0]
-          .mozRequestFullScreen(); // Firefox
+        document.getElementById("maximizableElement").mozRequestFullScreen(); // Firefox
       } else if (
-        document.getElementsByClassName("swiper-slide swiper-slide-active")[0]
-          .webkitRequestFullscreen
+        document.getElementById("maximizableElement").webkitRequestFullscreen
       ) {
-        document
-          .getElementsByClassName("swiper-slide swiper-slide-active")[0]
-          .webkitRequestFullscreen(); // Chrome and Safari
+        document.getElementById("maximizableElement").webkitRequestFullscreen(); // Chrome and Safari
       }
     }
     if (isFullscreen === true) {
@@ -88,10 +78,18 @@ export default function Viewer({ data }) {
   };
 
   return (
-    <div className="container mx-auto max-w-[800px]">
+    <div className={`container mx-auto max-w-[800px]`}>
       <div className="flex flex-col items-center justify-center ">
-        <div className="relative w-[93%] flex items-center justify-center gap-4 sm:gap-8 sm:w-[590px]">
-          <button className="absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:left-2 sm:relative sm:w-14">
+        <div
+          id="maximizableElement"
+          className={`relative w-[93%] flex items-center justify-center gap-4 sm:gap-8 sm:w-[590px]`}
+        >
+          <button
+            className={`absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:left-2 sm:relative sm:w-14 ${
+              isFullscreen &&
+              "-top-20 bg-neutral-200 text-ourBlack disabled:bg-darkGray "
+            }`}
+          >
             <FontAwesomeIcon icon={faArrowLeft} className="sm:text-2xl" />
           </button>
           <Swiper
@@ -138,35 +136,43 @@ export default function Viewer({ data }) {
             onSwiper={handleBlur}
             lazy={{ loadOnTransitionStart: true, enabled: true }}
             preloadImages={false}
-            className="group min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px]"
+            className={`group min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px] ${
+              isFullscreen && "lg:max-w-[880px]"
+            }`}
           >
             {data.map((item, idx) => (
               <SwiperSlide key={idx}>
                 <img
-                  onClick={(e) => handleFullscreen()}
+                  // onClick={(e) => handleFullscreen()}
                   src={item}
-                  height={590}
                   style={{
                     filter: blur ? "blur(20px)" : "none",
                     transition: blur ? "none" : "filter 0.3s ease-out",
                   }}
-                  className={`relative p-3.5 mx-auto sm:p-5 ${
-                    isFullscreen && "h-full"
-                  }`}
+                  // width={590}
+                  height={590}
+                  className={`relative p-3.5 mx-auto sm:p-5`}
                   alt="RMNT Webtoon Page"
                 />
                 <FontAwesomeIcon
                   onClick={(e) => handleFullscreen()}
-                  icon={faPlusCircle}
-                  size="2x"
-                  className={`absolute hidden right-7 bottom-7 text-opaqueGray group-hover:block hover:cursor-zoom-in ${
-                    isFullscreen && "invisible"
+                  icon={isFullscreen ? faMinusCircle : faPlusCircle}
+                  size={isFullscreen ? "3x" : "2x"}
+                  className={`absolute hidden right-7 bottom-7 text-opaqueGray group-hover:block ${
+                    isFullscreen
+                      ? "hover:cursor-zoom-out bottom-20 right-20"
+                      : "hover:cursor-zoom-in"
                   }`}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className="absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:right-2 sm:relative sm:w-14">
+          <button
+            className={`absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:right-2 sm:relative sm:w-14 ${
+              isFullscreen &&
+              "-top-20 bg-neutral-200 text-ourBlack disabled:bg-darkGray "
+            }`}
+          >
             <FontAwesomeIcon icon={faArrowRight} className="sm:text-2xl" />
           </button>
         </div>
