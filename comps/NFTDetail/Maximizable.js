@@ -65,9 +65,8 @@ export default function Maximizable({ currentNFT, loading }) {
   };
 
   //Get screen size to disable autoplay on mobile
-  function findScreenWdith() {
-    return window.outerWidth;
-  }
+  const [screenWidth, setScreenWidth] = useState();
+  useEffect(() => setScreenWidth(window.outerWidth));
 
   //Add blur to the image being loaded
   const [blur, setBlur] = useState(true);
@@ -108,7 +107,7 @@ export default function Maximizable({ currentNFT, loading }) {
       ) : (
         <video
           controls
-          autoPlay={findScreenWdith < 768 ? false : true}
+          autoPlay={screenWidth < 768 ? false : true}
           id="maximizableElement"
           alt="Rarement NFT Video"
           src={NFTUrl}
