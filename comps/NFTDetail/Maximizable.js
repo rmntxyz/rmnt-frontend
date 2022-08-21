@@ -96,13 +96,13 @@ export default function Maximizable({ currentNFT, loading }) {
             }}
             onLoadingComplete={handleBlur}
           />
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faPlusCircle}
             size="2x"
             className={`absolute hidden right-1/2 bottom-7 text-lightGray group-hover:block hover:cursor-zoom-in ${
               isFullscreen && "invisible"
             }`}
-          />
+          /> */}
         </div>
       ) : (
         <video
