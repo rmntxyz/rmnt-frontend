@@ -20,7 +20,7 @@ import ProgressBar from "./ProgressBar";
 
 export default function Viewer({ data }) {
   //Identify current page for the progress bar
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
 
   //Add blur to the image being loaded
   const [blur, setBlur] = useState(true);
@@ -122,9 +122,9 @@ export default function Viewer({ data }) {
               clickable: true,
               renderBullet: function (index, className) {
                 let pageNumber = {};
-                if ((index + 1).toString().length < 2) {
-                  pageNumber = "0" + (index + 1);
-                } else pageNumber = index + 1;
+                if (index.toString().length < 2) {
+                  pageNumber = "0" + index;
+                } else pageNumber = index;
                 return (
                   '<span class="' +
                   className +
@@ -137,7 +137,7 @@ export default function Viewer({ data }) {
               },
             }}
             onSlideChange={(swiper) => {
-              setCurrentPage(swiper.realIndex + 1);
+              setCurrentPage(swiper.realIndex);
             }}
             observer={true}
             observeParents={true}
@@ -186,7 +186,7 @@ export default function Viewer({ data }) {
         </div>
         <div className="container relative mx-auto mt-5 max-w-[78%] sm:w-[442px] sm:mt-8">
           <div className="absolute swiper-scrollbar top-2.5 h-2.5 rounded-xl border border-ourBlack !bg-transparent !overflow-hidden">
-            <div className="swiper-scrollbar-drag z-20 !bg-ourBlack "></div>
+            <div className="swiper-scrollbar-drag z-20 !bg-transparent "></div>
           </div>
           <div className="absolute inset-y-0 h-10 flex items-center justify-center swiper-pagination"></div>
           <ProgressBar
