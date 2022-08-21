@@ -8,57 +8,66 @@ export default function Maximizable({ currentNFT, loading }) {
   const NFTUrl = currentNFT.attributes.image.data[0].attributes.url;
   //Enable maximization of the selected NFT
   const [isFullscreen, setIsFullscreen] = useState(false);
-  console.log(isFullscreen);
+  useEffect(() => {
+    document.addEventListener("fullscreenchange", exitHandler);
+    document.addEventListener("webkitfullscreenchange", exitHandler);
+    document.addEventListener("mozfullscreenchange", exitHandler);
+    document.addEventListener("MSFullscreenChange", exitHandler);
+
+    function exitHandler() {
+      if (
+        !document.fullscreenElement &&
+        !document.webkitIsFullScreen &&
+        !document.mozFullScreen &&
+        !document.msFullscreenElement
+      ) {
+        setIsFullscreen(false);
+      }
+    }
+  });
   const handleFullscreen = () => {
     getOrExitFullscreen();
     setIsFullscreen(!isFullscreen);
   };
 
   const getOrExitFullscreen = () => {
-    if (isFullscreen === false) {
+    if (!document.fullscreenElement) {
       if (document.getElementById("maximizableElement").requestFullscreen) {
         document.getElementById("maximizableElement").requestFullscreen();
+        // setIsFullscreen(true);
       } else if (
         document.getElementById("maximizableElement").mozRequestFullScreen
       ) {
         document.getElementById("maximizableElement").mozRequestFullScreen(); // Firefox
+        // setIsFullscreen(true);
       } else if (
         document.getElementById("maximizableElement").webkitRequestFullscreen
       ) {
         document.getElementById("maximizableElement").webkitRequestFullscreen(); // Chrome and Safari
+        // setIsFullscreen(true);
       }
     }
-    if (isFullscreen === true) {
-      document.addEventListener("fullscreenchange", exitHandler);
-      document.addEventListener("webkitfullscreenchange", exitHandler);
-      document.addEventListener("mozfullscreenchange", exitHandler);
-      document.addEventListener("MSFullscreenChange", exitHandler);
-
-      function exitHandler() {
-        if (
-          !document.fullscreenElement &&
-          !document.webkitIsFullScreen &&
-          !document.mozFullScreen &&
-          !document.msFullscreenElement
-        ) {
-          setIsFullscreen(false);
-        }
-      }
+    if (document.fullscreenElement) {
       if (document.exitFullscreen) {
         document.exitFullscreen();
+        // setIsFullscreen(false);
       } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
+        // setIsFullscreen(false);
       } else if (document.mozCancelFullScreen) {
         document.mozCancelFullScreen();
+        // setIsFullscreen(false);
       } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
+        // setIsFullscreen(false);
       }
     }
   };
 
   //Get screen size to disable autoplay on mobile
-  const [screenWidth, setScreenWidth] = useState();
-  useEffect(() => setScreenWidth(window.outerWidth));
+  function findScreenWdith() {
+    return window.outerWidth;
+  }
 
   //Add blur to the image being loaded
   const [blur, setBlur] = useState(true);
@@ -89,7 +98,6 @@ export default function Maximizable({ currentNFT, loading }) {
             onLoadingComplete={handleBlur}
           />
           <FontAwesomeIcon
-            onClick={(e) => handleFullscreen()}
             icon={faPlusCircle}
             size="2x"
             className={`absolute hidden right-1/2 bottom-7 text-lightGray group-hover:block hover:cursor-zoom-in ${
@@ -100,7 +108,7 @@ export default function Maximizable({ currentNFT, loading }) {
       ) : (
         <video
           controls
-          autoPlay={screenWidth < 768 ? false : true}
+          autoPlay={findScreenWdith < 768 ? false : true}
           id="maximizableElement"
           alt="Rarement NFT Video"
           src={NFTUrl}

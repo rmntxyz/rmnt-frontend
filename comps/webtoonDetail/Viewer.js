@@ -15,7 +15,7 @@ import {
   faMinusCircle,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar";
 
 export default function Viewer({ data }) {
@@ -30,53 +30,62 @@ export default function Viewer({ data }) {
 
   //Enable maximization of the selected page
   const [isFullscreen, setIsFullscreen] = useState(false);
+  useEffect(() => {
+    document.addEventListener("fullscreenchange", exitHandler);
+    document.addEventListener("webkitfullscreenchange", exitHandler);
+    document.addEventListener("mozfullscreenchange", exitHandler);
+    document.addEventListener("MSFullscreenChange", exitHandler);
+
+    function exitHandler() {
+      if (
+        !document.fullscreenElement &&
+        !document.webkitIsFullScreen &&
+        !document.mozFullScreen &&
+        !document.msFullscreenElement
+      ) {
+        setIsFullscreen(false);
+      }
+    }
+  });
+
   const handleFullscreen = () => {
     getOrExitFullscreen();
     setIsFullscreen(!isFullscreen);
   };
 
   const getOrExitFullscreen = () => {
-    if (isFullscreen === false) {
+    if (!document.fullscreenElement) {
       if (document.getElementById("maximizableElement").requestFullscreen) {
         document.getElementById("maximizableElement").requestFullscreen();
+        // setIsFullscreen(true);
       } else if (
         document.getElementById("maximizableElement").mozRequestFullScreen
       ) {
         document.getElementById("maximizableElement").mozRequestFullScreen(); // Firefox
+        // setIsFullscreen(true);
       } else if (
         document.getElementById("maximizableElement").webkitRequestFullscreen
       ) {
         document.getElementById("maximizableElement").webkitRequestFullscreen(); // Chrome and Safari
+        // setIsFullscreen(true);
       }
     }
-    if (isFullscreen === true) {
-      document.addEventListener("fullscreenchange", exitHandler);
-      document.addEventListener("webkitfullscreenchange", exitHandler);
-      document.addEventListener("mozfullscreenchange", exitHandler);
-      document.addEventListener("MSFullscreenChange", exitHandler);
-
-      function exitHandler() {
-        if (
-          !document.fullscreenElement &&
-          !document.webkitIsFullScreen &&
-          !document.mozFullScreen &&
-          !document.msFullscreenElement
-        ) {
-          setIsFullscreen(false);
-        }
-      }
+    if (document.fullscreenElement) {
       if (document.exitFullscreen) {
         document.exitFullscreen();
+        // setIsFullscreen(false);
       } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
+        // setIsFullscreen(false);
       } else if (document.mozCancelFullScreen) {
         document.mozCancelFullScreen();
+        // setIsFullscreen(false);
       } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
+        // setIsFullscreen(false);
       }
     }
   };
-  console.log(isFullscreen);
   return (
     <div className={`container mx-auto max-w-[800px]`}>
       <div className="flex flex-col items-center justify-center ">
@@ -129,7 +138,6 @@ export default function Viewer({ data }) {
             }}
             onSlideChange={(swiper) => {
               setCurrentPage(swiper.realIndex + 1);
-              console.log(swiper);
             }}
             observer={true}
             observeParents={true}
