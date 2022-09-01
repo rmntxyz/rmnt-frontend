@@ -34,6 +34,13 @@ const GET_USER_DATA = gql`
                     }
                   }
                 }
+                thumbnail {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
                 webtoon_pages {
                   data {
                     attributes {

@@ -45,6 +45,7 @@ export default function Creation({ creations }) {
                         playsInline={true}
                         alt="Rarement NFT Video"
                         src={NFTUrl}
+                        poster={item.children[0].thumbnail.data.attributes.url}
                         className="max-h-[256px]"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}

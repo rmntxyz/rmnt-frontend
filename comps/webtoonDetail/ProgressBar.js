@@ -1,5 +1,5 @@
 export default function ProgressBar({ currentPage, totalPages }) {
-  const progressPercentage = (currentPage / totalPages) * 100;
+  const progressPercentage = ((currentPage + 1) / totalPages) * 100;
 
   return (
     <div className="mx-auto w-full]">
@@ -17,9 +17,9 @@ export default function ProgressBar({ currentPage, totalPages }) {
               : currentPage}
           </span>
           <span>
-            {totalPages.toString().length < 2
-              ? "/0" + totalPages
-              : "/" + totalPages}
+            {(totalPages - 1).toString().length < 2
+              ? "/0" + (totalPages - 1)
+              : "/" + (totalPages - 1)}
           </span>
         </div>
       </div>

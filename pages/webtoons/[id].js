@@ -44,6 +44,8 @@ const GET_WEBTOON_DATA = gql`
           webtoon_pages(pagination: { limit: 200 }) {
             data {
               attributes {
+                webtoon_page_id
+                page_number
                 page_image {
                   data {
                     attributes {
@@ -63,6 +65,13 @@ const GET_WEBTOON_DATA = gql`
                       price_in_wei
                       # timeRemaining
                       image {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                      thumbnail {
                         data {
                           attributes {
                             url
@@ -112,9 +121,10 @@ export async function getServerSideProps(context) {
     props: {
       exchangeRate: exchangeRate,
       webtoon: data.webtoon.data,
-      pages: data.webtoon.data.attributes.webtoon_pages.data.map(
-        (page) => page.attributes.page_image.data.attributes.url
-      ),
+      pages: data.webtoon.data.attributes.webtoon_pages.data
+        .slice()
+        .sort((a, b) => a.attributes.page_number - b.attributes.page_number)
+        .map((page) => page.attributes.page_image.data.attributes.url),
       NFTs: data.webtoon.data.attributes.webtoon_pages.data
         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
         .flat(1)

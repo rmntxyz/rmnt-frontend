@@ -90,7 +90,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                                   playsInline={true}
                                   src={NFTUrl}
                                   poster={
-                                    item.attributes.image.data[1]?.attributes
+                                    item.attributes.thumbnail.data.attributes
                                       .url
                                   }
                                   className="h-[196px] md:h-[240px] lg:h-[256px]"
