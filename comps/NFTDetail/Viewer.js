@@ -98,7 +98,7 @@ export default function Viewer({
           </button>
         ))}
       </div> */}
-      <div className="relative mx-auto md:w-[931px] md:block">
+      <div className="relative mx-auto md:block lg:w-[931px]">
         <div className="flex flex-col scroll">
           <div>
             <Maximizable currentNFT={currentNFT} loading={loading} />

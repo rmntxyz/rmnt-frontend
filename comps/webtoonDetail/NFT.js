@@ -56,6 +56,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                           <div className="relative h-4 w-4 md:h-5 md:w-5">
                             <Image
                               src="/icons/nft_available_1440_768@2x.png"
+                              width={20}
+                              height={20}
                               layout="fill"
                               objectFit="contain"
                               alt="Available Icon"
@@ -77,6 +79,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                               ) ? (
                                 <Image
                                   src={NFTUrl}
+                                  width={256}
+                                  height={256}
                                   layout="fill"
                                   objectFit="contain"
                                   alt="Rarement NFT Image"
@@ -149,6 +153,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                                 <div className="relative w-full h-full group-hover:opacity-0">
                                   <Image
                                     src="/openSea/opensea_64_1440_768@2x_black.png"
+                                    width={44}
+                                    height={44}
                                     layout="fill"
                                     objectFit="contain"
                                     alt="Open Sea Icon"
@@ -158,6 +164,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                                   <div className="relative w-full h-full">
                                     <Image
                                       src="/openSea/opensea_64_1440_768@2x_white.png"
+                                      width={44}
+                                      height={44}
                                       layout="fill"
                                       objectFit="contain"
                                       alt="Open Sea Icon"

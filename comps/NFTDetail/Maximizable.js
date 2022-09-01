@@ -80,7 +80,7 @@ export default function Maximizable({ currentNFT, loading }) {
         isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
       } ${
         loading ? "opacity-0" : "opacity-100"
-      } relative group transition-opacity h-[236px] w-full md:h-[402px] md:w-[931px]`}
+      } relative group transition-opacity mx-auto h-[236px] w-full md:h-[402px] md:w-[90%] lg:w-[931px]`}
     >
       {isImage.includes(NFTUrl.split(".")[NFTUrl.split(".").length - 1]) ? (
         <div>
@@ -88,6 +88,8 @@ export default function Maximizable({ currentNFT, loading }) {
             id="maximizableElement"
             alt="Rarement NFT Image"
             src={NFTUrl}
+            width={931}
+            height={402}
             layout="fill"
             objectFit="contain"
             style={{
