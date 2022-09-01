@@ -100,7 +100,7 @@ export default function Viewer({
       </div> */}
       <div className="relative mx-auto md:w-[931px] md:block">
         <div className="flex flex-col scroll">
-          <div className="mx-auto">
+          <div>
             <Maximizable currentNFT={currentNFT} loading={loading} />
             <a
               href={"/webtoons/" + currentWebtoon.id}
