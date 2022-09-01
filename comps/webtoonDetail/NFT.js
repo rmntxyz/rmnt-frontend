@@ -67,7 +67,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                       <div className="bg-white ">
                         <div className=" p-3.5 flex flex-col gap-3.5 md:p-4 ">
                           <a
-                            href={"/NFT/" + item.id + "/#" + item.id}
+                            // href={"/NFT/" + item.id + "/#" + item.id}
+                            href={"/NFT/" + item.id}
                             className="overflow-hidden"
                           >
                             <div className="relative h-[196px] w-[196px] md:h-[240px] md:w-[240px] lg:h-[256px] lg:w-[256px]">

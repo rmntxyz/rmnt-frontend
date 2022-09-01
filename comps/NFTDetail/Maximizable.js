@@ -64,9 +64,9 @@ export default function Maximizable({ currentNFT, loading }) {
     }
   };
 
-  //Get screen size to disable autoplay on mobile
-  const [screenWidth, setScreenWidth] = useState();
-  useEffect(() => setScreenWidth(window.outerWidth));
+  // //Get screen size to disable autoplay on mobile
+  // const [screenWidth, setScreenWidth] = useState();
+  // useEffect(() => setScreenWidth(window.outerWidth));
 
   //Add blur to the image being loaded
   const [blur, setBlur] = useState(true);
@@ -80,7 +80,7 @@ export default function Maximizable({ currentNFT, loading }) {
         isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
       } ${
         loading ? "opacity-0" : "opacity-100"
-      } relative group transition-opacity h-[402px] w-[931px]`}
+      } relative group transition-opacity h-[236px] w-full md:h-[402px] md:w-[931px]`}
     >
       {isImage.includes(NFTUrl.split(".")[NFTUrl.split(".").length - 1]) ? (
         <div>
@@ -107,12 +107,15 @@ export default function Maximizable({ currentNFT, loading }) {
       ) : (
         <video
           controls
-          autoPlay={screenWidth < 768 ? false : true}
+          // autoPlay={screenWidth < 768 ? false : true}
+          autoPlay={true}
+          poster={currentNFT.attributes.thumbnail.data.attributes.url}
+          playsInline={true}
           id="maximizableElement"
           alt="Rarement NFT Video"
           src={NFTUrl}
           loop={true}
-          className="max-h-[402px] mx-auto"
+          className="mx-auto max-h-[236px] md:max-h-[402px] "
         ></video>
       )}
     </div>

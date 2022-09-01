@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   handleMouseEnter,
   handleMouseLeave,
@@ -22,9 +22,13 @@ export default function Viewer({
     }, 1000);
   };
 
+  //Get screen size to disable autoplay on mobile
+  const [screenWidth, setScreenWidth] = useState();
+  useEffect(() => setScreenWidth(window.outerWidth));
+
   return (
     <div className="container mx-auto my-12 max-w-[85%] overflow-hidden md:max-w-none md:mt-20">
-      <div className="flex gap-5 scroll-large overflow-x-auto md:hidden">
+      {/* <div className="flex gap-5 scroll-large overflow-x-auto md:hidden">
         {currentWebtoonNFTs.map((item, idx) => (
           <button
             id={item.id}
@@ -93,8 +97,8 @@ export default function Viewer({
             </a>
           </button>
         ))}
-      </div>
-      <div className="hidden relative mx-auto w-[931px] md:block">
+      </div> */}
+      <div className="relative mx-auto md:w-[931px] md:block">
         <div className="flex flex-col scroll">
           <div className="mx-auto">
             <Maximizable currentNFT={currentNFT} loading={loading} />
@@ -114,7 +118,7 @@ export default function Viewer({
             </a>
           </div>
           {currentWebtoonNFTs.length > 1 ? (
-            <div className="mx-auto max-w-[931px] mt-6">
+            <div className="mx-auto mt-6 max-w-full md:max-w-[931px]">
               <div className="flex overflow-x-auto gap-x-5 pb-3">
                 {currentWebtoonNFTs.map((item, idx) => (
                   <button
@@ -147,7 +151,7 @@ export default function Viewer({
                         height={78}
                         src={item.attributes.image.data[0].attributes.url}
                         layout="responsive"
-                        objectFit="contain"
+                        objectFit={screenWidth < 768 ? "cover" : "contain"}
                         className={`${
                           item.id !== currentNFT.id
                             ? "opacity-40"
@@ -163,6 +167,8 @@ export default function Viewer({
                             ? "opacity-40"
                             : "opacity-100"
                         } transition-opacity`}
+                        poster={item.attributes.thumbnail.data.attributes.url}
+                        playsInline={true}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                       ></video>
