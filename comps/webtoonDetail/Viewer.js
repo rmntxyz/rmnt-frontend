@@ -144,14 +144,14 @@ export default function Viewer({ data }) {
             // observer={true}
             // observeParents={true}
             // onSwiper={handleBlur}
-            lazy={{ loadOnTransitionStart: true, enabled: true }}
+            lazy={{ enabled: true, loadPrevNext: true }}
             preloadImages={false}
             className={`group min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px] ${
               isFullscreen && "lg:max-w-[600px]"
             }`}
           >
             {data.map((item, idx) => (
-              <SwiperSlide key={idx} >
+              <SwiperSlide key={idx}>
                 <div className="relative p-3.5 mx-auto sm:p-5">
                   <Image
                     // onClick={(e) => handleFullscreen()}
