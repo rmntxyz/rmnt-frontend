@@ -69,43 +69,36 @@ export default function Maximizable({ currentNFT, loading }) {
   // useEffect(() => setScreenWidth(window.outerWidth));
 
   //Add blur to the image being loaded
-  const [blur, setBlur] = useState(true);
-  const handleBlur = () => {
-    setBlur(false);
-  };
+  // const [blur, setBlur] = useState(true);
+  // const handleBlur = () => {
+  //   setBlur(false);
+  // };
   return (
     <div
       onClick={(e) => handleFullscreen()}
       className={`${
         isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
-      } ${
-        loading ? "opacity-0" : "opacity-100"
-      } relative group transition-opacity mx-auto h-[236px] w-full md:h-[402px] md:w-[90%] lg:w-[931px]`}
+      } 
+       relative group transition-opacity mx-auto h-[236px] w-full md:h-[402px] md:w-[90%] lg:w-[931px]`}
+      style={{ opacity: loading ? 0 : 100 }}
     >
       {isImage.includes(NFTUrl.split(".")[NFTUrl.split(".").length - 1]) ? (
-        <div>
-          <Image
-            id="maximizableElement"
-            alt="Rarement NFT Image"
-            src={NFTUrl}
-            width={931}
-            height={402}
-            layout="fill"
-            objectFit="contain"
-            style={{
-              filter: blur ? "blur(20px)" : "none",
-              transition: blur ? "none" : "filter 0.3s ease-out",
-            }}
-            onLoadingComplete={handleBlur}
-          />
-          {/* <FontAwesomeIcon
-            icon={faPlusCircle}
-            size="2x"
-            className={`absolute hidden right-1/2 bottom-7 text-lightGray group-hover:block hover:cursor-zoom-in ${
-              isFullscreen && "invisible"
-            }`}
-          /> */}
-        </div>
+        <Image
+          id="maximizableElement"
+          alt="Rarement NFT Image"
+          src={NFTUrl}
+          // width={931}
+          // height={402}
+          layout="fill"
+          objectFit="contain"
+          placeholder="blur"
+          blurDataURL={NFTUrl}
+          // style={{
+          //   filter: blur ? "blur(20px)" : "none",
+          //   transition: blur ? "none" : "filter 0.3s ease-out",
+          // }}
+          // onLoadingComplete={handleBlur}
+        />
       ) : (
         <video
           controls

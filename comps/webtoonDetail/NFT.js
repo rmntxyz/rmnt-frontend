@@ -56,8 +56,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                           <div className="relative h-4 w-4 md:h-5 md:w-5">
                             <Image
                               src="/icons/nft_available_1440_768@2x.png"
-                              width={20}
-                              height={20}
+                              // width={20}
+                              // height={20}
                               layout="fill"
                               objectFit="contain"
                               alt="Available Icon"
@@ -79,8 +79,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                               ) ? (
                                 <Image
                                   src={NFTUrl}
-                                  width={256}
-                                  height={256}
+                                  // width={256}
+                                  // height={256}
                                   layout="fill"
                                   objectFit="contain"
                                   alt="Rarement NFT Image"

@@ -30,28 +30,28 @@ export default function Desc({ props }) {
   };
 
   //Add blur to top images while loading
-  const [loading, setLoading] = useState(true);
-  const handleLoading = () => {
-    setLoading(false);
-  };
+  // const [loading, setLoading] = useState(true);
+  // const handleLoading = () => {
+  //   setLoading(false);
+  // };
 
   return (
     <div>
-      <div
-        className="relative bg-[#CEA671] w-full h-[224px] md:h-[320px]"
-        style={{
-          filter: loading ? "blur(20px)" : "none",
-          transition: loading ? "none" : "filter 0.3s ease-out",
-        }}
-      >
+      <div className="relative bg-[#CEA671] w-full h-[224px] md:h-[320px]">
         {props.attributes.background_image?.data ? (
           <Image
             src={props.attributes.background_image.data.attributes.url}
-            height={320}
-            width={1920}
+            // height={320}
+            // width={1920}
             layout="fill"
             objectFit="cover"
             alt="Profile Background"
+            placeholder="blur"
+            blurDataURL={props.attributes.background_image.data.attributes.url}
+            // style={{
+            //   filter: loading ? "blur(20px)" : "none",
+            //   transition: loading ? "none" : "filter 0.3s ease-out",
+            // }}
           />
         ) : null}
       </div>
@@ -61,19 +61,25 @@ export default function Desc({ props }) {
             <div className="relative w-full h-full rounded-full overflow-hidden">
               <Image
                 alt="Rarement Artist Profile Image"
-                onLoadingComplete={handleLoading}
+                // onLoadingComplete={handleLoading}
+                placeholder="blur"
                 src={
+                  props.attributes.profile_image?.data
+                    ? props.attributes.profile_image.data.attributes.url
+                    : "/profile/profile_1440_768@2x.png"
+                }
+                blurDataURL={
                   props.attributes.profile_image?.data
                     ? props.attributes.profile_image.data.attributes.url
                     : "/profile/profile_1440_768@2x.png"
                 }
                 layout="fill"
                 objectFit="contain"
-                style={{
-                  filter: loading ? "blur(20px) " : "none",
-                  transition: loading ? "none" : "filter 0.3s ease-out",
-                  borderRadius: "50%",
-                }}
+                // style={{
+                //   filter: loading ? "blur(20px) " : "none",
+                //   transition: loading ? "none" : "filter 0.3s ease-out",
+                //   borderRadius: "50%",
+                // }}
                 className="rounded-full"
               />
             </div>
@@ -88,6 +94,8 @@ export default function Desc({ props }) {
                   <div className="relative aspect-square w-[18px] md:w-[28px]">
                     <Image
                       src="/icons/icons8-instagram-verification-badge 1.png"
+                      // width={28}
+                      // height={28}
                       alt="badge icon"
                       layout="fill"
                       objectFit="contain"
@@ -124,6 +132,8 @@ export default function Desc({ props }) {
                   <div className="relative inline-block w-[25px] h-[22px] md:w-7 md:h-6 group-hover:opacity-0">
                     <Image
                       src="/openSea/openSea_black_2x.png"
+                      // width={28}
+                      // height={24}
                       layout="fill"
                       objectFit="contain"
                       alt="Open Sea Icon"
@@ -133,6 +143,8 @@ export default function Desc({ props }) {
                     <div className="relative w-full h-full">
                       <Image
                         src="/openSea/openSea_white_2x.png"
+                        // width={28}
+                        // height={24}
                         layout="fill"
                         objectFit="contain"
                         alt="Open Sea Icon"
@@ -161,6 +173,8 @@ export default function Desc({ props }) {
                   <div className="relative w-5 h-5 md:w-6 md:h-6">
                     <Image
                       src="/instagram/artist_instagram_1440_768@2x.png"
+                      // width={24}
+                      // height={24}
                       alt="Instagram Icon"
                       layout="fill"
                       objectFit="contain"
@@ -192,6 +206,8 @@ export default function Desc({ props }) {
                   <div className="relative w-5 h-5 md:w-6 md:h-6">
                     <Image
                       src="/profile/profile_website_1440_768@2x.png"
+                      // width={24}
+                      // height={24}
                       alt="Website Icon"
                       layout="fill"
                       objectFit="contain"

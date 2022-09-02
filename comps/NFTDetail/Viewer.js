@@ -13,13 +13,13 @@ export default function Viewer({
   currentNFT,
   router,
 }) {
-  //Add blur to the image being loaded
+  //Reduce opacity for the image being loaded
   const [loading, setLoading] = useState(false);
   const handleLoading = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 1200);
   };
 
   //Get screen size to change object fit on mobile

@@ -28,7 +28,10 @@ export default function TopCard({ item }) {
             >
               <div className="w-7 h-7 md:w-8 md:h-8">
                 <Image
-                  src={item.attributes.artist_id.data.attributes.profile_image.data.attributes.url}
+                  src={
+                    item.attributes.artist_id.data.attributes.profile_image.data
+                      .attributes.url
+                  }
                   width={31}
                   height={31}
                   className="rounded-full"

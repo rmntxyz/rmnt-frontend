@@ -24,10 +24,10 @@ export default function Viewer({ data }) {
   const [currentPage, setCurrentPage] = useState(0);
 
   //Add blur to the image being loaded
-  const [blur, setBlur] = useState(true);
-  const handleBlur = () => {
-    setBlur(false);
-  };
+  // const [blur, setBlur] = useState(true);
+  // const handleBlur = () => {
+  //   setBlur(false);
+  // };
 
   //Enable maximization of the selected page
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -143,7 +143,7 @@ export default function Viewer({ data }) {
             }}
             observer={true}
             observeParents={true}
-            onSwiper={handleBlur}
+            // onSwiper={handleBlur}
             lazy={{ loadOnTransitionStart: true, enabled: true }}
             preloadImages={false}
             className={`group min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px] ${
@@ -156,10 +156,12 @@ export default function Viewer({ data }) {
                   <Image
                     // onClick={(e) => handleFullscreen()}
                     src={item}
-                    style={{
-                      filter: blur ? "blur(20px)" : "none",
-                      transition: blur ? "none" : "filter 0.3s ease-out",
-                    }}
+                    // style={{
+                    //   filter: blur ? "blur(20px)" : "none",
+                    //   transition: blur ? "none" : "filter 0.3s ease-out",
+                    // }}
+                    placeholder="blur"
+                    blurDataURL={item}
                     width={590}
                     height={590}
                     layout="responsive"
