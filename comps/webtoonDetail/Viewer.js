@@ -108,7 +108,7 @@ export default function Viewer({ data }) {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={1}
-            freeMode={true}
+            // freeMode={true}
             navigation={{
               nextEl: ".swiper-button-toNext",
               prevEl: ".swiper-button-previous",
@@ -141,8 +141,8 @@ export default function Viewer({ data }) {
             onSlideChange={(swiper) => {
               setCurrentPage(swiper.realIndex);
             }}
-            observer={true}
-            observeParents={true}
+            // observer={true}
+            // observeParents={true}
             // onSwiper={handleBlur}
             lazy={{ loadOnTransitionStart: true, enabled: true }}
             preloadImages={false}
@@ -151,7 +151,7 @@ export default function Viewer({ data }) {
             }`}
           >
             {data.map((item, idx) => (
-              <SwiperSlide key={idx}>
+              <SwiperSlide key={idx} >
                 <div className="relative p-3.5 mx-auto sm:p-5">
                   <Image
                     // onClick={(e) => handleFullscreen()}

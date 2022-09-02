@@ -19,7 +19,7 @@ export default function Viewer({
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1200);
+    }, 1300);
   };
 
   //Get screen size to change object fit on mobile
