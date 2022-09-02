@@ -95,7 +95,10 @@ export default function Desc({ item, users }) {
                     >
                       {item.attributes.artist_id.data.attributes.wallet_address}
                     </button>
-                    <button className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100">
+                    <button
+                      aria-label="Copy Wallet Adress"
+                      className="opacity-0 transition-opacity px-2 text-[#555555] group-hover:opacity-100"
+                    >
                       {isCopied ? "Copied!" : <FontAwesomeIcon icon={faCopy} />}
                     </button>
                   </div>

@@ -22,7 +22,7 @@ export default function Viewer({
     }, 1000);
   };
 
-  //Get screen size to disable autoplay on mobile
+  //Get screen size to change object fit on mobile
   const [screenWidth, setScreenWidth] = useState();
   useEffect(() => setScreenWidth(window.outerWidth));
 

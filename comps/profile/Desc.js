@@ -38,20 +38,23 @@ export default function Desc({ props }) {
   return (
     <div>
       <div
-        className="h-[224px] md:h-[320px] bg-[#CEA671] bg-center bg-cover bg-no-repeat "
-        style={
-          props.attributes.background_image?.data
-            ? {
-                backgroundImage: `url(${props.attributes.background_image.data.attributes.url})`,
-                filter: loading ? "blur(20px)" : "none",
-                transition: loading ? "none" : "filter 0.3s ease-out",
-              }
-            : {
-                filter: loading ? "blur(20px)" : "none",
-                transition: loading ? "none" : "filter 0.3s ease-out",
-              }
-        }
-      ></div>
+        className="relative bg-[#CEA671] w-full h-[224px] md:h-[320px]"
+        style={{
+          filter: loading ? "blur(20px)" : "none",
+          transition: loading ? "none" : "filter 0.3s ease-out",
+        }}
+      >
+        {props.attributes.background_image?.data ? (
+          <Image
+            src={props.attributes.background_image.data.attributes.url}
+            height={320}
+            width={1920}
+            layout="fill"
+            objectFit="cover"
+            alt="Profile Background"
+          />
+        ) : null}
+      </div>
       <div className="relative container mx-auto">
         <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
           <div className="absolute -top-24 border-8 border-white rounded-full w-32 h-32 shadow-small md:w-44 md:h-44 md:-top-36">

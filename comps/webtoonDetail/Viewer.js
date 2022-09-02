@@ -95,7 +95,7 @@ export default function Viewer({ data }) {
           className={`relative w-[93%] flex items-center justify-center gap-4 sm:gap-8 sm:w-[590px]`}
         >
           <button
-            aria-label="Previous page"
+            aria-label="Previous Page"
             className={`absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:left-2 sm:relative sm:w-14 ${
               isFullscreen &&
               "lg:-top-20 lg:bg-neutral-200 lg:text-ourBlack lg:disabled:bg-darkGray "
@@ -180,7 +180,7 @@ export default function Viewer({ data }) {
             ))}
           </Swiper>
           <button
-            aria-label="Next page"
+            aria-label="Next Page"
             className={`absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:right-2 sm:relative sm:w-14 ${
               isFullscreen &&
               "lg:-top-20 lg:bg-neutral-200 lg:text-ourBlack lg:disabled:bg-darkGray "
