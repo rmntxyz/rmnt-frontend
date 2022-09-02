@@ -17,7 +17,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar";
-import Image from "next/image";
 
 export default function Viewer({ data }) {
   //Identify current page for the progress bar
