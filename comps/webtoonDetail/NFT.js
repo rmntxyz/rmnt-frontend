@@ -1,11 +1,7 @@
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import {
-  handleMouseEnter,
-  handleMouseLeave,
-  isImage,
-} from "../../utils/mediaType";
+import { isImage } from "../../utils/mediaType";
 import DetailTimer from "./DetailTimer";
 
 export default function NFT({ NFTs, exchangeRate }) {
@@ -56,6 +52,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                           <div className="relative h-4 w-4 md:h-5 md:w-5">
                             <Image
                               src="/icons/nft_available_1440_768@2x.png"
+                              // width={20}
+                              // height={20}
                               layout="fill"
                               objectFit="contain"
                               alt="Available Icon"
@@ -67,36 +65,47 @@ export default function NFT({ NFTs, exchangeRate }) {
                       <div className="bg-white ">
                         <div className=" p-3.5 flex flex-col gap-3.5 md:p-4 ">
                           <a
-                            href={"/NFT/" + item.id + "/#" + item.id}
+                            // href={"/NFT/" + item.id + "/#" + item.id}
+                            href={"/NFT/" + item.id}
                             className="overflow-hidden"
                           >
                             <div className="relative h-[196px] w-[196px] md:h-[240px] md:w-[240px] lg:h-[256px] lg:w-[256px]">
+                              <Image
+                                src={
+                                  isImage.includes(
+                                    NFTUrl.split(".")[
+                                      NFTUrl.split(".").length - 1
+                                    ]
+                                  )
+                                    ? NFTUrl
+                                    : item.attributes.thumbnail.data.attributes
+                                        .url
+                                }
+                                // width={256}
+                                // height={256}
+                                layout="fill"
+                                objectFit="contain"
+                                alt="Rarement NFT Image"
+                                placeholder="blur"
+                                blurDataURL={
+                                  isImage.includes(
+                                    NFTUrl.split(".")[
+                                      NFTUrl.split(".").length - 1
+                                    ]
+                                  )
+                                    ? NFTUrl
+                                    : item.attributes.thumbnail.data.attributes
+                                        .url
+                                }
+                                className="duration-200 hover:scale-125"
+                              />{" "}
                               {isImage.includes(
                                 NFTUrl.split(".")[NFTUrl.split(".").length - 1]
-                              ) ? (
-                                <Image
-                                  src={NFTUrl}
-                                  layout="fill"
-                                  objectFit="contain"
-                                  alt="Rarement NFT Image"
-                                  placeholder="blur"
-                                  blurDataURL={NFTUrl}
-                                  className="duration-200 hover:scale-125"
+                              ) ? null : (
+                                <FontAwesomeIcon
+                                  icon={faVideo}
+                                  className="absolute top-3 left-3 text-white bg-opaqueGray p-1 rounded-md md:text-xl"
                                 />
-                              ) : (
-                                <video
-                                  controls
-                                  alt="Rarement NFT Video"
-                                  playsInline={true}
-                                  src={NFTUrl}
-                                  poster={
-                                    item.attributes.thumbnail.data.attributes
-                                      .url
-                                  }
-                                  className="h-[196px] md:h-[240px] lg:h-[256px]"
-                                  onMouseEnter={handleMouseEnter}
-                                  onMouseLeave={handleMouseLeave}
-                                ></video>
                               )}
                             </div>
                           </a>
@@ -148,6 +157,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                                 <div className="relative w-full h-full group-hover:opacity-0">
                                   <Image
                                     src="/openSea/opensea_64_1440_768@2x_black.png"
+                                    width={44}
+                                    height={44}
                                     layout="fill"
                                     objectFit="contain"
                                     alt="Open Sea Icon"
@@ -157,6 +168,8 @@ export default function NFT({ NFTs, exchangeRate }) {
                                   <div className="relative w-full h-full">
                                     <Image
                                       src="/openSea/opensea_64_1440_768@2x_white.png"
+                                      width={44}
+                                      height={44}
                                       layout="fill"
                                       objectFit="contain"
                                       alt="Open Sea Icon"

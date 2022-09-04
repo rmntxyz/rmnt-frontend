@@ -1,9 +1,7 @@
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import {
-  handleMouseEnter,
-  handleMouseLeave,
-  isImage,
-} from "../../utils/mediaType";
+import { isImage } from "../../utils/mediaType";
 import Collectors from "./Collectors";
 
 export default function Creation({ creations }) {
@@ -23,34 +21,38 @@ export default function Creation({ creations }) {
                   href={
                     "/NFT/" + item.children[0].id + "/#" + item.children[0].id
                   }
+                  className="relative"
                 >
+                  <Image
+                    src={
+                      isImage.includes(
+                        NFTUrl.split(".")[NFTUrl.split(".").length - 1]
+                      )
+                        ? NFTUrl
+                        : item.children[0].thumbnail.data.attributes.url
+                    }
+                    width={256}
+                    height={256}
+                    objectFit="contain"
+                    layout="responsive"
+                    placeholder="blur"
+                    blurDataURL={
+                      isImage.includes(
+                        NFTUrl.split(".")[NFTUrl.split(".").length - 1]
+                      )
+                        ? NFTUrl
+                        : item.children[0].thumbnail.data.attributes.url
+                    }
+                    className="duration-200 hover:scale-125"
+                    alt="Rarement NFT Image"
+                  />
                   {isImage.includes(
                     NFTUrl.split(".")[NFTUrl.split(".").length - 1]
-                  ) ? (
-                    <Image
-                      src={NFTUrl}
-                      width={256}
-                      height={256}
-                      objectFit="contain"
-                      layout="responsive"
-                      placeholder="blur"
-                      blurDataURL={NFTUrl}
-                      className="duration-200 hover:scale-125"
-                      alt="Rarement NFT Image"
+                  ) ? null : (
+                    <FontAwesomeIcon
+                      icon={faVideo}
+                      className="absolute top-3 left-3 text-white bg-opaqueGray p-1 rounded-md md:text-xl"
                     />
-                  ) : (
-                    <div className="overflow-hidden">
-                      <video
-                        controls
-                        playsInline={true}
-                        alt="Rarement NFT Video"
-                        src={NFTUrl}
-                        poster={item.children[0].thumbnail.data.attributes.url}
-                        className="max-h-[256px]"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      ></video>
-                    </div>
                   )}
                 </a>
                 <div className="flex max-w-fit mt-3.5 items-center bg-[#F3F3F3] p-1 rounded-sm md:mt-4">

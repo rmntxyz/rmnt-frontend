@@ -55,6 +55,7 @@ export default function Footer() {
               }`}
               width={43}
               height={43}
+              // priority={true}
               layout="fixed"
               alt="Instagram"
             />

@@ -38,10 +38,7 @@ export default function NFT({ NFTs, artist }) {
     <div className="bg-lightBeige py-12 md:py-20">
       <div className="container mx-auto">
         <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
-          <ul
-            role="tablist"
-            className="relative flex gap-4 mb-5 md:gap-6 md:mb-8"
-          >
+          <ul className="relative flex gap-4 mb-5 md:gap-6 md:mb-8">
             <li>
               <button
                 className={`text-lg md:text-2xl py-2 px-[18px] md:py-3 md:px-6
@@ -49,7 +46,6 @@ export default function NFT({ NFTs, artist }) {
                 onClick={(e) => {
                   setOpenTab(1);
                 }}
-                role="tab"
                 aria-label="View Creations"
               >
                 Creation {finalGroups.length}
@@ -67,7 +63,6 @@ export default function NFT({ NFTs, artist }) {
                 onClick={(e) => {
                   setOpenTab(2);
                 }}
-                role="tab"
                 aria-label="View Collections"
               >
                 Collection {artist.collection ? artist.collection.length : 0}

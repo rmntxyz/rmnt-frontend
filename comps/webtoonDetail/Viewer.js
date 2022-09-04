@@ -94,6 +94,7 @@ export default function Viewer({ data }) {
           className={`relative w-[93%] flex items-center justify-center gap-4 sm:gap-8 sm:w-[590px]`}
         >
           <button
+            aria-label="Previous Page"
             className={`absolute z-10 top-[50%] left-1 swiper-button-previous w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:left-2 sm:relative sm:w-14 ${
               isFullscreen &&
               "lg:-top-20 lg:bg-neutral-200 lg:text-ourBlack lg:disabled:bg-darkGray "
@@ -106,7 +107,7 @@ export default function Viewer({ data }) {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView={1}
-            freeMode={true}
+            // freeMode={true}
             navigation={{
               nextEl: ".swiper-button-toNext",
               prevEl: ".swiper-button-previous",
@@ -139,10 +140,10 @@ export default function Viewer({ data }) {
             onSlideChange={(swiper) => {
               setCurrentPage(swiper.realIndex);
             }}
-            observer={true}
-            observeParents={true}
+            // observer={true}
+            // observeParents={true}
             onSwiper={handleBlur}
-            lazy={{ loadOnTransitionStart: true, enabled: true }}
+            lazy={{ enabled: true, loadPrevNext: true }}
             preloadImages={false}
             className={`group min-w-[296px] max-w-[442px] w-[80%] border border-darkGray bg-white rounded-sm shadow-medium lg:max-w-[590px] ${
               isFullscreen && "lg:max-w-[600px]"
@@ -150,32 +151,37 @@ export default function Viewer({ data }) {
           >
             {data.map((item, idx) => (
               <SwiperSlide key={idx}>
-                <img
-                  // onClick={(e) => handleFullscreen()}
-                  src={item}
-                  style={{
-                    filter: blur ? "blur(20px)" : "none",
-                    transition: blur ? "none" : "filter 0.3s ease-out",
-                  }}
-                  // width={590}
-                  height={590}
-                  className={`relative p-3.5 mx-auto sm:p-5`}
-                  alt="RMNT Webtoon Page"
-                />
-                <FontAwesomeIcon
-                  onClick={(e) => handleFullscreen()}
-                  icon={isFullscreen ? faMinusCircle : faPlusCircle}
-                  size={isFullscreen ? "3x" : "2x"}
-                  className={`absolute hidden right-7 bottom-7 text-opaqueGray lg:group-hover:block ${
-                    isFullscreen
-                      ? "hidden lg:hover:cursor-zoom-out lg:bottom-14 lg:right-14"
-                      : "lg:hover:cursor-zoom-in"
-                  }`}
-                />
+                <div className="relative p-3.5 mx-auto sm:p-5">
+                  <img
+                    // onClick={(e) => handleFullscreen()}
+                    src={item}
+                    style={{
+                      filter: blur ? "blur(20px)" : "none",
+                      transition: blur ? "none" : "filter 0.3s ease-out",
+                    }}
+                    // placeholder="blur"
+                    // blurDataURL={item}
+                    width={590}
+                    height={590}
+                    // layout="responsive"
+                    alt="RMNT Webtoon Page"
+                  />
+                  <FontAwesomeIcon
+                    onClick={(e) => handleFullscreen()}
+                    icon={isFullscreen ? faMinusCircle : faPlusCircle}
+                    size={isFullscreen ? "3x" : "2x"}
+                    className={`absolute hidden right-7 bottom-7 text-opaqueGray lg:group-hover:block ${
+                      isFullscreen
+                        ? "hidden lg:hover:cursor-zoom-out lg:bottom-14 lg:right-14"
+                        : "lg:hover:cursor-zoom-in"
+                    }`}
+                  />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
           <button
+            aria-label="Next Page"
             className={`absolute z-10 top-[50%] right-1 swiper-button-toNext w-8 aspect-square rounded-full text-white bg-ourBlack duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none sm:right-2 sm:relative sm:w-14 ${
               isFullscreen &&
               "lg:-top-20 lg:bg-neutral-200 lg:text-ourBlack lg:disabled:bg-darkGray "
