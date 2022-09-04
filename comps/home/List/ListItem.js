@@ -39,7 +39,7 @@ export default function ListItem({ item }) {
               alt="Rarement Webtoon Cover Image"
             />
             <button
-              className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-xs leading-tight font-bold whitespace-nowrap rounded-full group-hover:opacity-100 md:text-sm"
+              className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-xs leading-tight font-bold whitespace-nowrap rounded-full md:text-sm lg:group-hover:opacity-100"
               aria-label="View Webtoon"
             >
               View webtoon
