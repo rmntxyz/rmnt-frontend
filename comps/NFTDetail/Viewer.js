@@ -70,7 +70,7 @@ export default function Viewer({
           {currentWebtoonNFTs.length > 1 ? (
             <div className="mx-auto max-w-full mt-[22px] md:mt-6 md:max-w-[931px]">
               <div
-                className="absolute bottom-8 -left-1 bg-gradient-to-r from-white w-10 h-28 md:h-36 "
+                className="absolute z-10 bottom-8 -left-1 bg-gradient-to-r from-white w-10 h-28 md:h-36 "
                 style={{
                   opacity:
                     scrollPositon === 0 || scrollPositon === undefined ? 0 : 1,
