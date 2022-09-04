@@ -29,7 +29,7 @@ export default function Webtoons({ webtoons, artist }) {
   return (
     <div id="webtoons" className="container mx-auto mb-6 md:mb-8">
       <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
-        <div className="relative  mb-5 md:mb-8">
+        <div className="relative mb-5 md:mb-8">
           <div className="flex justify-between">
             <div>
               <div className="font-bold text-lg py-2 px-[18px] md:text-2xl md:py-3 md:px-6">
@@ -83,7 +83,7 @@ export default function Webtoons({ webtoons, artist }) {
                       alt="Rarement Webtoon Cover Image"
                     />
                     <button
-                      className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-sm leading-tight font-bold whitespace-nowrap rounded-full group-hover:opacity-100"
+                      className="opacity-0 transition-opacity absolute top-3/4 inset-x-1/4 border-2 py-2 border-ourBlack bg-ourBlack text-white text-sm leading-tight font-bold whitespace-nowrap rounded-full lg:group-hover:opacity-100"
                       aria-label="View Webtoon"
                     >
                       View webtoon

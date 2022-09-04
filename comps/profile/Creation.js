@@ -15,13 +15,12 @@ export default function Creation({ creations }) {
             (
               <div
                 key={item.categoryName}
-                className="rounded-sm p-3.5 shadow-small bg-white md:p-4 "
+                className="relative rounded-sm p-3.5 shadow-small bg-white md:p-4 "
               >
                 <a
                   href={
                     "/NFT/" + item.children[0].id + "/#" + item.children[0].id
                   }
-                  className="relative"
                 >
                   <Image
                     src={
@@ -51,7 +50,7 @@ export default function Creation({ creations }) {
                   ) ? null : (
                     <FontAwesomeIcon
                       icon={faVideo}
-                      className="absolute top-3 left-3 text-white bg-opaqueGray p-1 rounded-md md:text-xl"
+                      className="absolute top-7 left-7 text-white bg-opaqueGray p-1 rounded-md md:text-xl"
                     />
                   )}
                 </a>
