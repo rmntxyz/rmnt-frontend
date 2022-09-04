@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import {
-  handleMouseEnter,
-  handleMouseLeave,
-  isImage,
-} from "../../utils/mediaType";
+import { isImage } from "../../utils/mediaType";
 import Maximizable from "./Maximizable";
 
 export default function Viewer({
@@ -24,80 +20,34 @@ export default function Viewer({
 
   //Get screen size to change object fit on mobile
   const [screenWidth, setScreenWidth] = useState();
-  useEffect(() => setScreenWidth(window.outerWidth));
+  useEffect(() => {
+    setScreenWidth(window.outerWidth);
+  });
+
+  //Get scroll position on NFT list
+  const [scrollPositon, setScrollPosition] = useState();
+  const [scrollableWidth, setScrollableWidth] = useState();
+  const handleScroll = () => {
+    const scroll = document.getElementById("scrollableElement").scrollLeft;
+    const width =
+      document.getElementById("scrollableElement").scrollWidth -
+      document.getElementById("scrollableElement").clientWidth;
+    setScrollPosition(scroll);
+    setScrollableWidth(width);
+  };
+  useEffect(() => {
+    document
+      .getElementById("scrollableElement")
+      .addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      document
+        .getElementById("scrollableElement")
+        .removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="container mx-auto my-12 max-w-[85%] overflow-hidden md:max-w-none md:mt-20">
-      {/* <div className="flex gap-5 scroll-large overflow-x-auto md:hidden">
-        {currentWebtoonNFTs.map((item, idx) => (
-          <button
-            id={item.id}
-            aria-label="Select NFT"
-            onClick={(e) => {
-              // Enable routing to the selected NFT page without page reload
-              router.push(
-                {
-                  query: { id: item.id },
-                },
-                undefined,
-                {
-                  scroll: false,
-                }
-              );
-            }}
-            key={idx}
-            className="border bg-white rounded-sm shadow-lg p-3.5"
-          >
-            {isImage.includes(
-              item.attributes.image.data[0].attributes.url.split(".")[
-                item.attributes.image.data[0].attributes.url.split(".").length -
-                  1
-              ]
-            ) ? (
-              <Image
-                alt="Rarement NFT Image"
-                width={236}
-                height={236}
-                src={item.attributes.image.data[0].attributes.url}
-                objectFit="contain"
-                placeholder="blur"
-                blurDataURL={`/_next/image?url=${item.attributes.image.data[0].attributes.url}&w=16&q=1`}
-                className={`${
-                  item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
-                } transition-opacity`}
-              />
-            ) : (
-              <video
-                controls
-                playsInline={true}
-                alt="Rarement NFT Video"
-                autoPlay={false}
-                poster={item.attributes.thumbnail.data.attributes.url}
-                src={item.attributes.image.data[0].attributes.url}
-                className={`h-[236px] ${
-                  item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
-                } transition-opacity`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              ></video>
-            )}
-            <a
-              href={"/webtoons/" + currentWebtoon.id}
-              className="flex items-center mt-1 w-[236px] "
-            >
-              <div className="flex items-center bg-[#F3F3F3] py-1 px-2 rounded-sm max-w-full">
-                <div className="truncate text-sm font-extrabold uppercase">
-                  {currentWebtoon.attributes.title}
-                </div>
-                <div className="w-1 aspect-square mx-2 bg-lightGray rounded-full"></div>
-                <div className="whitespace-nowrap text-xs font-extrabold">
-                  vol {currentWebtoon.attributes.volume}
-                </div>
-              </div>
-            </a>
-          </button>
-        ))}
-      </div> */}
       <div className="relative mx-auto md:block lg:w-[931px]">
         <div className="flex flex-col scroll">
           <div>
@@ -107,19 +57,29 @@ export default function Viewer({
               className="flex items-center max-w-[931px] mt-4"
             >
               <div className="mx-auto flex items-center max-w-full">
-                <div className="truncate text-2xl font-extrabold uppercase">
+                <div className="truncate font-extrabold uppercase text-sm md:text-2xl">
                   {currentWebtoon.attributes.title}
                 </div>
                 <div className="w-1 aspect-square bg-lightGray rounded-full mx-4"></div>
-                <div className="whitespace-nowrap text-lg font-extrabold">
+                <div className="whitespace-nowrap font-extrabold text-xs md:text-lg">
                   vol {currentWebtoon.attributes.volume}
                 </div>
               </div>
             </a>
           </div>
           {currentWebtoonNFTs.length > 1 ? (
-            <div className="mx-auto mt-6 max-w-full md:max-w-[931px]">
-              <div className="flex overflow-x-auto gap-x-5 pb-3">
+            <div className="mx-auto max-w-full mt-[22px] md:mt-6 md:max-w-[931px]">
+              <div
+                className="absolute bottom-8 -left-1 bg-gradient-to-r from-white w-10 h-28 md:h-36 "
+                style={{
+                  opacity:
+                    scrollPositon === 0 || scrollPositon === undefined ? 0 : 1,
+                }}
+              ></div>
+              <div
+                id="scrollableElement"
+                className="flex overflow-x-auto pb-3 gap-x-2 md:gap-x-5"
+              >
                 {currentWebtoonNFTs.map((item, idx) => (
                   <button
                     onClick={(e) => {
@@ -136,53 +96,55 @@ export default function Viewer({
                       );
                     }}
                     key={idx}
-                    className="w-[78px] h-[105.2px]"
+                    className="w-[64px] h-[82px] md:w-[78px] md:h-[105.2px]"
                     aria-label="Select NFT"
                   >
-                    {isImage.includes(
-                      item.attributes.image.data[0].attributes.url.split(".")[
-                        item.attributes.image.data[0].attributes.url.split(".")
-                          .length - 1
-                      ]
-                    ) ? (
-                      <Image
-                        alt="Rarement NFT Preview"
-                        width={78}
-                        height={78}
-                        src={item.attributes.image.data[0].attributes.url}
-                        layout="responsive"
-                        objectFit={screenWidth < 768 ? "cover" : "contain"}
-                        className={`${
-                          item.id !== currentNFT.id
-                            ? "opacity-40"
-                            : "opacity-100"
-                        } transition-opacity`}
-                      />
-                    ) : (
-                      <video
-                        alt="Rarement NFT Video"
-                        src={item.attributes.image.data[0].attributes.url}
-                        className={`h-[78px] ${
-                          item.id !== currentNFT.id
-                            ? "opacity-40"
-                            : "opacity-100"
-                        } transition-opacity`}
-                        poster={item.attributes.thumbnail.data.attributes.url}
-                        playsInline={true}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      ></video>
-                    )}
-
-                    <div className=" w-[78px]">
-                      <div className="truncate mx-auto">
+                    <Image
+                      alt="Rarement NFT Preview"
+                      width={78}
+                      height={78}
+                      src={
+                        isImage.includes(
+                          item.attributes.image.data[0].attributes.url.split(
+                            "."
+                          )[
+                            item.attributes.image.data[0].attributes.url.split(
+                              "."
+                            ).length - 1
+                          ]
+                        )
+                          ? item.attributes.image.data[0].attributes.url
+                          : item.attributes.thumbnail.data.attributes.url
+                      }
+                      layout="responsive"
+                      objectFit={screenWidth < 768 ? "cover" : "contain"}
+                      className={`${
+                        item.id !== currentNFT.id ? "opacity-40" : "opacity-100"
+                      } transition-opacity`}
+                    />
+                    <div className="w-[64px] md:w-[78px]">
+                      <div className="truncate mx-auto text-xs md:text-base">
+                        {/* {(idx + 1).toString().length < 2 ? (
+                          <span>#{"0" + (idx + 1)}</span>
+                        ) : (
+                          <span>#{idx + 1}</span>
+                        )} */}
                         {item.attributes.name}
                       </div>
                     </div>
                   </button>
                 ))}
               </div>
-              <div className="absolute bottom-8 -right-1 h-36 w-10 bg-gradient-to-l from-white"></div>
+              <div
+                className="absolute bottom-8 -right-1 w-10 bg-gradient-to-l from-white h-28 md:h-36"
+                style={{
+                  opacity:
+                    scrollPositon !== undefined &&
+                    scrollPositon === scrollableWidth
+                      ? 0
+                      : 1,
+                }}
+              ></div>
             </div>
           ) : null}
         </div>

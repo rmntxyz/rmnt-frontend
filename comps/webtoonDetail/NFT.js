@@ -1,11 +1,7 @@
 import { faCheckCircle, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import {
-  handleMouseEnter,
-  handleMouseLeave,
-  isImage,
-} from "../../utils/mediaType";
+import { isImage } from "../../utils/mediaType";
 import DetailTimer from "./DetailTimer";
 
 export default function NFT({ NFTs, exchangeRate }) {
@@ -91,7 +87,16 @@ export default function NFT({ NFTs, exchangeRate }) {
                                 objectFit="contain"
                                 alt="Rarement NFT Image"
                                 placeholder="blur"
-                                blurDataURL={NFTUrl}
+                                blurDataURL={
+                                  isImage.includes(
+                                    NFTUrl.split(".")[
+                                      NFTUrl.split(".").length - 1
+                                    ]
+                                  )
+                                    ? NFTUrl
+                                    : item.attributes.thumbnail.data.attributes
+                                        .url
+                                }
                                 className="duration-200 hover:scale-125"
                               />{" "}
                               {isImage.includes(
