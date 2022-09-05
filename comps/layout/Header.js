@@ -65,6 +65,7 @@ export default function Header() {
                       onClick={openConnectModal}
                       type="button"
                       aria-label="Connect Wallet"
+                      className="py-3"
                     >
                       <span className="invisible px-8 py-3 border-2 border-ourBlack text-ourBlack text-base leading-tight font-extrabold rounded-3xl hover:bg-ourBlack hover:text-white duration-200 md:visible ">
                         Connect Wallet

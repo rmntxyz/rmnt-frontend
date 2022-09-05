@@ -26,17 +26,17 @@
 
 .scroll-large::after {
   content: "";
-  padding-right: 14px;
+  padding-right: 200px;
 }
 
 .scroll-xlarge {
-  margin: -32px -320px;
-  padding: 32px 320px;
+  margin: -32px -400px;
+  padding: 32px 400px;
 }
 
 .scroll-xlarge::after {
   content: "";
-  padding-right: 14px;
+  padding-right: 400px;
 }
 
 .swiper-wrapper {
