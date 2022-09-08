@@ -9,34 +9,36 @@
   }
 }
 
-.scroll {
-  margin: -32px;
-  padding: 32px;
-}
+@layer utilities {
+  .scroll {
+    margin: -32px;
+    padding: 32px;
+  }
 
-.scroll::after {
-  content: "";
-  padding-right: 8px;
-}
+  .scroll::after {
+    content: "";
+    padding-right: 8px;
+  }
 
-.scroll-large {
-  margin: -32px -200px;
-  padding: 32px 200px;
-}
+  .scroll-large {
+    margin: -32px -118px;
+    padding: 32px 118px;
+  }
 
-.scroll-large::after {
-  content: "";
-  padding-right: 200px;
-}
+  .scroll-large::after {
+    content: "";
+    padding-right: 118px;
+  }
 
-.scroll-xlarge {
-  margin: -32px -400px;
-  padding: 32px 400px;
-}
+  .scroll-xlarge {
+    margin: -32px -400px;
+    padding: 32px 400px;
+  }
 
-.scroll-xlarge::after {
-  content: "";
-  padding-right: 400px;
+  .scroll-xlarge::after {
+    content: "";
+    padding-right: 400px;
+  }
 }
 
 .swiper-wrapper {
