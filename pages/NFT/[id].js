@@ -50,6 +50,7 @@ const GET_NFT_DATA = gql`
                                   # reward
                                   description
                                   sold_timestamp
+                                  drop_timestamp
                                   price_in_wei
                                   edition
                                   image {
@@ -118,6 +119,8 @@ export default function NFTPage({ exchangeRate, NFT }) {
   const currentNFT = currentWebtoonNFTs.find(
     (item) => item.id === router.query.id
   );
+  const currentNFTTimeRemaining =
+    (currentNFT.attributes.drop_timestamp - new Date().getTime() / 1000) * 1000;
 
   return (
     <div className="overflow-hidden">
@@ -143,11 +146,13 @@ export default function NFTPage({ exchangeRate, NFT }) {
               currentNFT={currentNFT}
               exchangeRate={exchangeRate}
               router={router}
+              timeRemaining={currentNFTTimeRemaining}
             />
             <Specs
               currentWebtoon={currentWebtoon}
               currentWebtoonNFTs={currentWebtoonNFTs}
               currentNFT={currentNFT}
+              timeRemaining={currentNFTTimeRemaining}
             />
           </div>
         </div>

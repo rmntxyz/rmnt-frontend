@@ -6,6 +6,7 @@ export default function Specs({
   currentWebtoon,
   currentWebtoonNFTs,
   currentNFT,
+  timeRemaining,
 }) {
   const width = currentNFT.attributes.image.data[0].attributes.width;
   const height = currentNFT.attributes.image.data[0].attributes.height;
@@ -31,9 +32,9 @@ export default function Specs({
               </span>
             </div>
             <div className="bg-white text-black ">
-              {currentNFT.attributes.timeRemaining > 0 ? (
+              {timeRemaining > 0 ? (
                 <div className="px-6 md:px-8">
-                  <Timer timeRemaining={currentNFT.attributes.timeRemaining} />
+                  <Timer timeRemaining={timeRemaining} />
                   <div className="h-px w-full mt-4 bg-lightBeige md:mt-8"></div>
                 </div>
               ) : null}
@@ -84,13 +85,7 @@ export default function Specs({
               <div className="flex gap-8 text-xs mt-2 md:mt-3 md:text-base">
                 <div>
                   <div className="text-[#858585]">Dimensions</div>
-                  <div>
-                    {width
-                      ? currentNFT.attributes.image.data[0].attributes.width +
-                        "*" +
-                        currentNFT.attributes.image.data[0].attributes.height
-                      : "N/A"}
-                  </div>
+                  <div>{width ? width + "*" + height : "N/A"}</div>
                 </div>
                 <div>
                   <div className="text-[#858585]">Size</div>

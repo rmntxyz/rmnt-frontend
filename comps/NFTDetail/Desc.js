@@ -1,6 +1,11 @@
 import Image from "next/image";
 
-export default function Desc({ currentNFT, exchangeRate, router }) {
+export default function Desc({
+  currentNFT,
+  exchangeRate,
+  router,
+  timeRemaining,
+}) {
   return (
     <div className="text-white">
       <div className="text-[21px] font-extrabold uppercase md:text-[32px]">
@@ -44,7 +49,7 @@ export default function Desc({ currentNFT, exchangeRate, router }) {
       ) : (
         <div className="max-w-fit mt-8 flex flex-col items-center">
           <button
-            disabled={currentNFT.attributes.timeRemaining > 0 ? true : false}
+            disabled={timeRemaining > 0 ? true : false}
             onClick={(e) => router.push("/")}
             className="inline-block px-10 py-4 bg-[#CEA671]  text-white text-base leading-tight font-extrabold rounded-full duration-200 hover:shadow-large disabled:bg-neutral-200 disabled:hover:shadow-none md:px-14 md:py-4 md:text-lg"
           >
