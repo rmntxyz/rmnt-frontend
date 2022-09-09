@@ -20,6 +20,16 @@
     padding-right: 8px;
   }
 
+  .scroll-medium {
+    margin: -32px -100px;
+    padding: 32px 100px;
+  }
+
+  .scroll-medium::after {
+    content: "";
+    padding-right: 100px;
+  }
+
   .scroll-large {
     margin: -32px -118px;
     padding: 32px 118px;
@@ -27,7 +37,7 @@
 
   .scroll-large::after {
     content: "";
-    padding-right: 118px;
+    padding-right: 112px;
   }
 
   .scroll-xlarge {
@@ -37,7 +47,7 @@
 
   .scroll-xlarge::after {
     content: "";
-    padding-right: 400px;
+    padding-right: 296px;
   }
 }
 

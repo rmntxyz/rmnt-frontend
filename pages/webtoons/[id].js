@@ -149,7 +149,6 @@ export default function WebtoonPage({
   NFTs,
   users,
 }) {
-  console.log(NFTs);
   return (
     <div className="mt-20 overflow-x-hidden">
       <Seo

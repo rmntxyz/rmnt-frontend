@@ -38,7 +38,7 @@ export default function NFT({ NFTs, artist }) {
     <div className="bg-lightBeige py-12 md:py-20">
       <div className="container mx-auto">
         <div className="mx-auto max-w-[82%] md:max-w-[77%] lg:max-w-[90%]">
-          <ul className="relative flex gap-4 mb-5 md:gap-6 md:mb-8">
+          <ul className="relative flex gap-4 mb-5 md:gap-6 md:mb-8 ">
             <li>
               <button
                 className={`text-lg md:text-2xl py-2 px-[18px] md:py-3 md:px-6
