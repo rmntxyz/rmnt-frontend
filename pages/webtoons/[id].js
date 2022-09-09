@@ -128,7 +128,11 @@ export async function getServerSideProps(context) {
       NFTs: data.webtoon.data.attributes.webtoon_pages.data
         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
         .flat(1)
-        .filter((NFT) => !!NFT),
+        .filter((NFT) => !!NFT)
+        .sort((a, b) => a.id - b.id)
+        .sort(
+          (a, b) => a.attributes.drop_timestamp - b.attributes.drop_timestamp
+        ),
       users: data.webtoon.data.attributes.webtoon_pages.data
         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
         .flat(1)

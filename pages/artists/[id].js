@@ -55,6 +55,7 @@ const GET_ARTIST_DATA = gql`
                           attributes {
                             name
                             nft_id
+                            drop_timestamp
                             image {
                               data {
                                 attributes {
@@ -132,7 +133,11 @@ export async function getServerSideProps(context) {
         .flat(1)
         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
         .flat(1)
-        .filter((NFT) => !!NFT),
+        .filter((NFT) => !!NFT)
+        .sort((a, b) => a.id - b.id)
+        .sort(
+          (a, b) => a.attributes.drop_timestamp - b.attributes.drop_timestamp
+        ),
     },
   };
 }
