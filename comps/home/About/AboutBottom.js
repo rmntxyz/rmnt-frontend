@@ -30,9 +30,10 @@ export default function AboutBottom({ artists }) {
           </div>
           <div className="text-base mt-12 md:mt-9 md:text-lg">
             Rarement’s mission is to build a webtoon community where webtoonists
-            and fans can own the moment they collectively built together. This
-            will be done via active discussions and participation opportunities
-            in Discord, Rarement DAO, on/off-line events, and more to come.
+            and fans can own the moment they collectively built together.
+            <br></br> This will be done via active discussions and participation
+            opportunities in Discord, Rarement DAO, on/off-line events, and more
+            to come.
           </div>
           <div className="text-xl font-bold mt-12 md:mt-9 md:text-2xl">
             Interested in joining Rarement as a webtoonist? Then{" "}
