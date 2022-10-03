@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../apollo";
-import About from "../comps/home/About";
+import AboutBottom from "../comps/home/About/AboutBottom";
+import AboutTop from "../comps/home/About/AboutTop";
 import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
 import Seo from "../comps/layout/SEO";
@@ -55,13 +56,11 @@ const GET_HOME_DATA = gql`
         }
       }
     }
-    webtoonUsers(pagination: { page: 1, pageSize: 7 }) {
+    artists(pagination: { page: 1, pageSize: 7 }) {
       data {
         id
         attributes {
-          user_id
           first_name
-          wallet_address
           profile_image {
             data {
               attributes {
@@ -72,17 +71,34 @@ const GET_HOME_DATA = gql`
         }
       }
     }
+    # webtoonUsers(pagination: { page: 1, pageSize: 7 }) {
+    #   data {
+    #     id
+    #     attributes {
+    #       user_id
+    #       first_name
+    #       wallet_address
+    #       profile_image {
+    #         data {
+    #           attributes {
+    #             url
+    #           }
+    #         }
+    #       }
+    #     }
+    #   }
+    # }
   }
 `;
 
 export async function getServerSideProps() {
   const { data } = await client.query({
     query: GET_HOME_DATA,
-    fetchPolicy: "network-only",
+    // fetchPolicy: "network-only",
   });
   return {
     props: {
-      webtoonsData: data.webtoons.data.slice().sort(
+      webtoons: data.webtoons.data.slice().sort(
         (a, b) =>
           Math.min(
             ...a.attributes.webtoon_pages.data
@@ -107,18 +123,20 @@ export async function getServerSideProps() {
               .map((NFT) => NFT.attributes.drop_timestamp)
           )
       ),
+      artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
     },
   };
 }
 
-export default function Home({ webtoonsData, users }) {
+export default function Home({ webtoons, artists }) {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden text-ourBlack">
       <Seo title="Rarement" />
       <main>
-        <TopCard item={webtoonsData[0]} />
-        <List data={webtoonsData.slice(1)} />
-        <About users={users} />
+        <TopCard item={webtoons[0]} />
+        <List data={webtoons.slice(1)} />
+        <AboutTop />
+        <AboutBottom artists={artists} />
       </main>
     </div>
   );

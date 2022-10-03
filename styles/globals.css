@@ -51,6 +51,11 @@
   }
 }
 
+.stroke {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+
 .swiper-wrapper {
   align-items: center;
 }
