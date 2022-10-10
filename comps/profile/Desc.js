@@ -49,10 +49,10 @@ export default function Desc({ props }) {
             alt="Profile Background"
             placeholder="blur"
             blurDataURL={props.attributes.background_image.data.attributes.url}
-          // style={{
-          //   filter: loading ? "blur(20px)" : "none",
-          //   transition: loading ? "none" : "filter 0.3s ease-out",
-          // }}
+            // style={{
+            //   filter: loading ? "blur(20px)" : "none",
+            //   transition: loading ? "none" : "filter 0.3s ease-out",
+            // }}
           />
         ) : null}
       </div>

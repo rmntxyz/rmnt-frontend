@@ -12,7 +12,7 @@ export default function Desc({
       <div className="text-[21px] font-extrabold uppercase md:text-[32px]">
         {currentNFT.attributes.name}
       </div>
-      <div className="text-justify my-4 text-sm md:text-lg"  >
+      <div className="text-justify my-4 text-sm md:text-lg">
         <ReactMarkdown children={currentNFT.attributes.description} />
       </div>
       {currentNFT.attributes.sold_timestamp?.toString().length > 0 ? (

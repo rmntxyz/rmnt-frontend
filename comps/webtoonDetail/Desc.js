@@ -107,7 +107,9 @@ export default function Desc({ item, users }) {
               </div>
             </div>
             <div className="text-sm md:text-base mx-5 md:mx-8">
-              <ReactMarkdown children={item.attributes.artist_id.data.attributes.description} />
+              <ReactMarkdown
+                children={item.attributes.artist_id.data.attributes.description}
+              />
             </div>
             <div className="flex mb-6 mx-5 gap-5 text-[#555555] text-[13px] md:mx-8 md:gap-7">
               {item.attributes.artist_id.data.attributes.instagram ? (
