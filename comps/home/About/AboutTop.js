@@ -20,49 +20,42 @@ const aboutData = [
   },
 ];
 
-export default function About({ users }) {
+export default function AboutTop() {
   return (
-    <div>
-      <div className="py-20 px-8 bg-lightBeige flex items-center justify-center md:py-36">
-        <div className="container mx-auto grid grid-cols-1 justify-items-stretch gap-16 md:px-6 lg:px-12 xl:max-w-[1280px] 2xl:max-w-[1380px]">
-          {aboutData.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col max-w-[916px] justify-self-end odd:justify-self-start gap-8 md:grid md:grid-cols-2 md:gap-[52px]"
-            >
-              <div className="p-1 border-2 border-ourBlack bg-white rounded-md">
-                <Image
-                  alt="Rarement Webtoone Page Image"
-                  src={item.src}
-                  width={402}
-                  height={402}
-                  layout="responsive"
-                />
-              </div>
-              <div className="flex flex-col gap-4 justify-center">
-                <div className="font-extrabold text-2xl md:text-[32px]">
-                  {item.title}
-                </div>
-                {item.desc.map((descItem, idx) => (
-                  <ul
-                    key={idx}
-                    className={`flex flex-col gap-4 text-justify text-sm ${
-                      item.desc.length === 2 ? "list-none" : "list-disc"
-                    } md:text-base`}
-                  >
-                    <li>{descItem}</li>
-                  </ul>
-                ))}
-              </div>
+    <div className="py-20 px-8 bg-lightBeige flex items-center justify-center md:py-36">
+      <div className="container mx-auto grid grid-cols-1 justify-items-stretch gap-16 md:px-6 lg:px-12 xl:max-w-[1280px] 2xl:max-w-[1380px]">
+        {aboutData.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col max-w-[916px] justify-self-end odd:justify-self-start gap-8 md:grid md:grid-cols-2 md:gap-[52px]"
+          >
+            <div className="p-1 border-2 border-ourBlack bg-white rounded-md">
+              <Image
+                alt="Rarement Webtoone Page Image"
+                src={item.src}
+                width={402}
+                height={402}
+                layout="responsive"
+              />
             </div>
-          ))}
-        </div>
+            <div className="flex flex-col gap-4 justify-center">
+              <div className="font-extrabold text-2xl md:text-[32px]">
+                {item.title}
+              </div>
+              {item.desc.map((descItem, idx) => (
+                <ul
+                  key={idx}
+                  className={`flex flex-col gap-4 text-justify text-sm ${
+                    item.desc.length === 2 ? "list-none" : "list-disc"
+                  } md:text-base`}
+                >
+                  <li>{descItem}</li>
+                </ul>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-      {/* <div className="py-20 px-8 bg-mediumBeige flex items-center justify-center md:py-36">
-        <div className="container mx-auto grid grid-cols-1 justify-items-stretch gap-16 md:px-6 lg:px-12 xl:max-w-[1280px] 2xl:max-w-[1380px]">
-          <div>Build a webtoon community TOGETHER!</div>
-        </div>
-      </div> */}
     </div>
   );
 }
