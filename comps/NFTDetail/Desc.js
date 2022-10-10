@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
 export default function Desc({
   currentNFT,
@@ -11,8 +12,8 @@ export default function Desc({
       <div className="text-[21px] font-extrabold uppercase md:text-[32px]">
         {currentNFT.attributes.name}
       </div>
-      <div className="text-justify my-4 text-sm md:text-lg">
-        {currentNFT.attributes.description}
+      <div className="text-justify my-4 text-sm md:text-lg"  >
+        <ReactMarkdown children={currentNFT.attributes.description} />
       </div>
       {currentNFT.attributes.sold_timestamp?.toString().length > 0 ? (
         <div className="flex gap-4 mt-8 items-center">

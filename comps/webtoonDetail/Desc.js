@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import Collectors from "./Collectors";
 
 export default function Desc({ item, users }) {
@@ -47,7 +48,7 @@ export default function Desc({ item, users }) {
             </span>
           </div>
           <div className="text-justify my-3.5 text-sm md:my-4 md:text-lg">
-            {item.attributes.description}
+            <ReactMarkdown children={item.attributes.description} />
           </div>
           <a
             href={
@@ -106,7 +107,7 @@ export default function Desc({ item, users }) {
               </div>
             </div>
             <div className="text-sm md:text-base mx-5 md:mx-8">
-              {item.attributes.artist_id.data.attributes.description}
+              <ReactMarkdown children={item.attributes.artist_id.data.attributes.description} />
             </div>
             <div className="flex mb-6 mx-5 gap-5 text-[#555555] text-[13px] md:mx-8 md:gap-7">
               {item.attributes.artist_id.data.attributes.instagram ? (

@@ -3,6 +3,7 @@ import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function Desc({ props }) {
   //Copy wallet address
@@ -48,10 +49,10 @@ export default function Desc({ props }) {
             alt="Profile Background"
             placeholder="blur"
             blurDataURL={props.attributes.background_image.data.attributes.url}
-            // style={{
-            //   filter: loading ? "blur(20px)" : "none",
-            //   transition: loading ? "none" : "filter 0.3s ease-out",
-            // }}
+          // style={{
+          //   filter: loading ? "blur(20px)" : "none",
+          //   transition: loading ? "none" : "filter 0.3s ease-out",
+          // }}
           />
         ) : null}
       </div>
@@ -159,7 +160,7 @@ export default function Desc({ props }) {
             </div>
             {props.attributes.description?.length > 0 ? (
               <div className="text-sm md:text-lg lg:w-1/2">
-                {props.attributes.description}
+                <ReactMarkdown children={props.attributes.description} />
               </div>
             ) : null}
 
