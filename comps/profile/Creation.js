@@ -7,7 +7,7 @@ import Collectors from "./Collectors";
 export default function Creation({ creations }) {
   let NFTUrl = "";
   return (
-    <div className="scroll-medium overflow-x-auto flex sm:scroll-large md:scroll-xlarge">
+    <div className="scroll-medium overflow-x-auto flex sm:scroll-large md:scroll-xlarge xl:overflow-visible">
       <div className="min-w-[956px] grid grid-cols-4 gap-5 md:gap-8 md:min-w-[1184px]">
         {creations.map(
           (item) => (

@@ -5,7 +5,7 @@ import Collectors from "./Collectors";
 export default function Collection({ collections }) {
   let NFTUrl = "";
   return (
-    <div className="scroll-large overflow-x-auto lg:scroll-xlarge">
+    <div className="scroll-medium overflow-x-auto flex sm:scroll-large md:scroll-xlarge xl:overflow-visible">
       <div className="min-w-[956px] grid grid-cols-4 gap-5 md:gap-8 md:min-w-[1184px]">
         {collections.map(
           (collection, idx) => (

@@ -25,7 +25,7 @@ export default function NFT({ NFTs, exchangeRate }) {
             ) : null}
           </div>
 
-          <div className="scroll overflow-x-auto flex gap-8 md:scroll-large">
+          <div className="scroll overflow-x-auto flex gap-8 md:scroll-large 2xl:scroll-xlarge ">
             {NFTs.length === 0 ? (
               <span className="text-lg md:text-xl">
                 New NFTs are on the way—stay tuned!
