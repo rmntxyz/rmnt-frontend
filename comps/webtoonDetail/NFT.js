@@ -13,7 +13,7 @@ export default function NFT({ NFTs, exchangeRate }) {
   );
   return (
     <div className="bg-lightBeige py-12 md:py-20">
-      <div className="mx-8 md:mx-28 2xl:mx-72">
+      <div className="mx-8 md:mx-28 2xl:container 2xl:mx-auto">
         <div className="flex flex-col gap-8 md:gap-14">
           <div className="flex items-start gap-4 md:gap-7 md:items-center">
             <div className="font-bold text-[22px] md:text-[40px]">NFT</div>
