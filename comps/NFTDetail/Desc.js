@@ -1,4 +1,7 @@
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export default function Desc({
@@ -7,13 +10,44 @@ export default function Desc({
   router,
   timeRemaining,
 }) {
+  //Find if the text is truncated & display the "more/close" button if the text is truncated
+  const [truncated, setTruncated] = useState(false);
+
+  useEffect(() => {
+    setTruncated(false);
+    const element = document.getElementById("desc");
+    if (
+      element.offsetHeight < element.scrollHeight ||
+      element.offsetWidth < element.scrollWidth
+    ) {
+      setTruncated(true);
+      return;
+    }
+  }, [router]);
+
+  //Toggle the "more/close" button
+  const [showText, setShowText] = useState(false);
   return (
     <div className="text-white">
       <div className="text-[21px] font-extrabold uppercase md:text-[32px]">
         {currentNFT.attributes.name}
       </div>
       <div className="text-justify my-4 text-sm md:text-lg">
-        <ReactMarkdown children={currentNFT.attributes.description} />
+        <div id="desc" className={`${showText ? "" : "truncate-5"}`}>
+          <ReactMarkdown children={currentNFT.attributes.description} />
+        </div>
+        <button
+          className="text-[#555555] text-xs md:text-base"
+          onClick={(e) => setShowText(!showText)}
+          style={{ display: truncated ? "block" : "none" }}
+        >
+          <span>{showText ? "close" : "more"}</span>
+          <FontAwesomeIcon
+            icon={showText ? faChevronUp : faChevronDown}
+            size="xs"
+            className="ml-1"
+          />
+        </button>
       </div>
       {currentNFT.attributes.sold_timestamp?.toString().length > 0 ? (
         <div className="flex gap-4 mt-8 items-center">

@@ -97,7 +97,7 @@ export default function ArtistDesc({ item, users }) {
             ) : null}
           </div>
         </div>
-        <div className="text-sm md:text-base mx-5 md:mx-8">
+        <div className="text-sm text-justify mx-5 md:text-base md:mx-8">
           <div id="desc" className={`${showText ? "" : "truncate-2"}`}>
             <ReactMarkdown
               children={item.attributes.artist_id.data.attributes.description}

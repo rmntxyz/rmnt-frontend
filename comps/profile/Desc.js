@@ -1,8 +1,12 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faCopy,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export default function Desc({ props }) {
@@ -29,6 +33,22 @@ export default function Desc({ props }) {
         console.log(err);
       });
   };
+
+  //Find if the text is truncated & display the "more/close" button if the text is truncated
+  const [truncated, setTruncated] = useState(false);
+
+  useEffect(() => {
+    const element = document.getElementById("desc");
+    if (
+      element.offsetHeight < element.scrollHeight ||
+      element.offsetWidth < element.scrollWidth
+    ) {
+      setTruncated(true);
+    }
+  });
+
+  //Toggle the "more/close" button
+  const [showText, setShowText] = useState(false);
 
   //Add blur to top images while loading
   // const [loading, setLoading] = useState(true);
@@ -159,8 +179,22 @@ export default function Desc({ props }) {
               ) : null}
             </div>
             {props.attributes.description?.length > 0 ? (
-              <div className="text-sm md:text-lg lg:w-1/2">
-                <ReactMarkdown children={props.attributes.description} />
+              <div className="text-sm text-justify md:text-lg lg:w-1/2">
+                <div id="desc" className={`${showText ? "" : "truncate-2"}`}>
+                  <ReactMarkdown children={props.attributes.description} />
+                </div>
+                <button
+                  className="text-[#555555] text-xs md:text-base"
+                  onClick={(e) => setShowText(!showText)}
+                  style={{ display: truncated ? "block" : "none" }}
+                >
+                  <span>{showText ? "close" : "more"}</span>
+                  <FontAwesomeIcon
+                    icon={showText ? faChevronUp : faChevronDown}
+                    size="xs"
+                    className="ml-1"
+                  />
+                </button>
               </div>
             ) : null}
 
