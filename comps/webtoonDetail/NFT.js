@@ -26,7 +26,7 @@ export default function NFT({ NFTs, exchangeRate }) {
           </div>
 
           <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible ">
-            <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:min-w-[1184px] lg:grid lg:grid-cols-4 2xl:min-w-[1376px]">
+            <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 xl:grid xl:grid-cols-4 xl:min-w-[1284px]">
               {NFTs.length === 0 ? (
                 <span className="text-lg md:text-xl">
                   New NFTs are on the way—stay tuned!
@@ -54,8 +54,6 @@ export default function NFT({ NFTs, exchangeRate }) {
                             <div className="relative h-4 w-4 md:h-5 md:w-5">
                               <Image
                                 src="/icons/nft_available_1440_768@2x.png"
-                                // width={20}
-                                // height={20}
                                 layout="fill"
                                 objectFit="contain"
                                 alt="Available Icon"
@@ -67,11 +65,10 @@ export default function NFT({ NFTs, exchangeRate }) {
                         <div className="bg-white ">
                           <div className=" p-3.5 flex flex-col gap-3.5 md:p-4 ">
                             <a
-                              // href={"/NFT/" + item.id + "/#" + item.id}
                               href={"/NFT/" + item.id}
                               className="overflow-hidden"
                             >
-                              <div className="relative h-[196px] w-[196px] md:h-[240px] md:w-[240px] lg:h-[256px] lg:w-[256px]">
+                              <div className="relative h-[196px] w-[196px] md:h-[240px] md:w-[240px] lg:h-[256px] lg:w-[256px] 2xl:w-[288px] 2xl:h-[288px]">
                                 <Image
                                   src={
                                     isImage.includes(
@@ -83,8 +80,6 @@ export default function NFT({ NFTs, exchangeRate }) {
                                       : item.attributes.thumbnail.data
                                           .attributes.url
                                   }
-                                  // width={256}
-                                  // height={256}
                                   layout="fill"
                                   objectFit="contain"
                                   alt="Rarement NFT Image"
@@ -113,7 +108,7 @@ export default function NFT({ NFTs, exchangeRate }) {
                                 )}
                               </div>
                             </a>
-                            <div className="truncate w-[196px] font-bold text-base md:text-lg md:w-[240px] lg:w-[256px] ">
+                            <div className="truncate w-[196px] font-bold text-base md:text-lg md:w-[240px] lg:w-[256px] 2xl:w-[288px]">
                               {/* {item.id.toString().length < 2 ? (
                         <span>
                           #{"0" + item.id}. {item.name}

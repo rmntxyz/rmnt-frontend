@@ -8,17 +8,17 @@ export default function Collection({ collections }) {
   let NFTUrl = "";
   return (
     <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible">
-      <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:min-w-[1248px] lg:grid lg:grid-cols-4">
+      <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 xl:min-w-[1184px] xl:grid xl:grid-cols-4 ">
         {collections.map(
           (collection, idx) => (
             (NFTUrl = collection.attributes.image.data[0].attributes.url),
             (
               <div
                 key={idx}
-                className="rounded-sm p-3.5 shadow-small bg-white md:p-4 "
+                className="rounded-sm p-3.5 shadow-small bg-white w-[224px] md:w-[272px] md:p-4 xl:w-[288px]"
               >
                 <a href={"/NFT/" + collection.id}>
-                  <div className="relative h-[196px] w-[196px] md:h-[240px] md:w-[240px] lg:h-[256px] lg:w-[256px]">
+                  <div className="relative">
                     <Image
                       alt="Rarement NFT image"
                       src={
@@ -45,12 +45,12 @@ export default function Collection({ collections }) {
                     ) ? null : (
                       <FontAwesomeIcon
                         icon={faVideo}
-                        className="absolute top-7 left-7 text-white bg-opaqueGray p-1 rounded-md md:text-xl"
+                        className="absolute top-3 left-3 text-white bg-opaqueGray p-1 rounded-md md:text-xl"
                       />
                     )}
                   </div>
                 </a>
-                <div className="flex max-w-fit mt-3.5 items-center w-[196px] bg-[#F3F3F3] p-1 rounded-sm md:mt-4 md:w-[240px] lg:w-[256px]">
+                <div className="flex max-w-fit mt-3.5 items-center w-[194px] bg-[#F3F3F3] p-1 rounded-sm md:mt-4 md:w-[238px] xl:w-[254px]">
                   <div className="truncate text-sm font-extrabold uppercase">
                     {
                       collection.attributes.webtoon_pages.data[0].attributes
@@ -66,7 +66,7 @@ export default function Collection({ collections }) {
                     }
                   </div>
                 </div>
-                <div className="truncate font-bold text-base w-[196px] md:text-lg md:w-[240px] lg:w-[256px]">
+                <div className="truncate font-bold text-base w-[194px] md:text-lg md:w-[238px] xl:w-[254px]">
                   {/* {collection.id.toString().length < 2 ? (
             <span>
               #{"0" + collection.id}. {collection.name}

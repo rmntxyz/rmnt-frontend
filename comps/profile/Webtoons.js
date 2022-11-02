@@ -29,7 +29,7 @@ export default function Webtoons({ webtoons, artist }) {
   return (
     <div
       id="webtoons"
-      className="mx-8 mb-6 md:mb-8 md:mx-24 lg:mx-16 xl:mx-32 2xl:container 2xl:mx-auto"
+      className="mx-8 mb-6 md:mb-8 md:mx-28 2xl:container 2xl:mx-auto"
     >
       <div className="relative mb-5 md:mb-8">
         <div className="flex justify-between">
@@ -62,13 +62,13 @@ export default function Webtoons({ webtoons, artist }) {
       </div>
       {webtoons.length > 0 ? (
         <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible">
-          <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:min-w-[1184px] lg:grid lg:grid-cols-4">
+          <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 xl:min-w-[1184px] xl:grid xl:grid-cols-4">
             {currentItems.map((item) => (
               <div
                 key={item.id}
-                className="border border-ourBlack rounded-sm p-3.5 shadow-small bg-white w-[224px] md:p-4 md:w-[272px] xl:w-[288px]"
+                className="border border-ourBlack rounded-sm p-3.5 shadow-small bg-white w-[224px] md:w-[272px] md:p-4 xl:w-[288px] "
               >
-                <a href={"/webtoons/" + item.id} className="relative group">
+                <a href={"/webtoons/" + item.id} className="relative group ">
                   <Image
                     src={item.attributes.cover_image.data.attributes.url}
                     placeholder="blur"
@@ -89,7 +89,7 @@ export default function Webtoons({ webtoons, artist }) {
                     View webtoon
                   </button>
                 </a>
-                <div className="flex mt-3.5 items-center md:mt-4">
+                <div className="flex mt-3.5 items-center w-[194px] md:mt-4 md:w-[238px] xl:w-[254px]">
                   <div className="truncate text-base font-extrabold uppercase md:text-lg">
                     {item.attributes.title}
                   </div>

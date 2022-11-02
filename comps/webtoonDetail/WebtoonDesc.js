@@ -23,7 +23,7 @@ export default function WebtoonDesc({ item, users }) {
   const [showText, setShowText] = useState(false);
 
   return (
-    <div className="mx-8 my-20 md:my-36 md:mx-24 lg:mx-16 xl:mx-32 2xl:container 2xl:mx-auto">
+    <div className="mx-8 my-20 md:my-36 md:mx-28 2xl:container 2xl:mx-auto">
       <div className="mx-auto flex flex-col lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24">
         <div className="mb-12 md:mb-20">
           <div className="mt-3.5  md:mt-4">

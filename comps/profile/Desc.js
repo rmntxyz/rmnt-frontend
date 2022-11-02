@@ -73,7 +73,7 @@ export default function Desc({ props }) {
           />
         ) : null}
       </div>
-      <div className="relative mx-8 md:mx-24 lg:mx-16 xl:mx-32 2xl:container 2xl:mx-auto">
+      <div className="relative mx-8 md:mx-28 2xl:container 2xl:mx-auto">
         <div className="absolute -top-24 border-8 border-white rounded-full bg-white w-32 h-32 shadow-small md:w-44 md:h-44 md:-top-36">
           <div className="relative w-full h-full rounded-full overflow-hidden">
             <Image
@@ -111,8 +111,6 @@ export default function Desc({ props }) {
                 <div className="relative aspect-square w-[18px] md:w-[28px]">
                   <Image
                     src="/icons/icons8-instagram-verification-badge 1.png"
-                    // width={28}
-                    // height={28}
                     alt="badge icon"
                     layout="fill"
                     objectFit="contain"
@@ -149,8 +147,6 @@ export default function Desc({ props }) {
                 <div className="relative inline-block w-[25px] h-[22px] md:w-7 md:h-6 group-hover:opacity-0">
                   <Image
                     src="/openSea/openSea_black_2x.png"
-                    // width={28}
-                    // height={24}
                     layout="fill"
                     objectFit="contain"
                     alt="Open Sea Icon"
@@ -160,8 +156,6 @@ export default function Desc({ props }) {
                   <div className="relative w-full h-full">
                     <Image
                       src="/openSea/openSea_white_2x.png"
-                      // width={28}
-                      // height={24}
                       layout="fill"
                       objectFit="contain"
                       alt="Open Sea Icon"
@@ -204,8 +198,6 @@ export default function Desc({ props }) {
                 <div className="relative w-5 h-5 md:w-6 md:h-6">
                   <Image
                     src="/instagram/artist_instagram_1440_768@2x.png"
-                    // width={24}
-                    // height={24}
                     alt="Instagram Icon"
                     layout="fill"
                     objectFit="contain"
@@ -237,8 +229,6 @@ export default function Desc({ props }) {
                 <div className="relative w-5 h-5 md:w-6 md:h-6">
                   <Image
                     src="/profile/profile_website_1440_768@2x.png"
-                    // width={24}
-                    // height={24}
                     alt="Website Icon"
                     layout="fill"
                     objectFit="contain"
