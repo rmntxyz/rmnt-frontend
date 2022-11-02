@@ -106,11 +106,11 @@ export default function Desc({ props }) {
                 {props.attributes.wallet_address?.length > 0 ? (
                   <div
                     onClick={handleCopyClick}
-                    className="group flex items-center truncate"
+                    className="group flex items-center w-32"
                   >
                     <button
                       id="to be copied"
-                      className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-sm rounded-full hover:underline md:text-base"
+                      className="px-3 py-1 bg-[#E8E8E8] text-ourBlack text-sm rounded-full truncate hover:underline md:text-base"
                       aria-label="Copy Wallet Address"
                     >
                       {props.attributes.wallet_address}

@@ -1,5 +1,6 @@
 import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Timer from "../home/TopCard/Timer";
 
 export default function Specs({
@@ -43,26 +44,47 @@ export default function Specs({
                   href={
                     "/artists/" + currentWebtoon.attributes.artist_id.data.id
                   }
+                  className="flex items-center gap-3"
                 >
-                  <span>Created by </span>
-                  <span className="text-[#CEA671] font-bold hover:underline">
-                    {
-                      currentWebtoon.attributes.artist_id.data.attributes
-                        .first_name
-                    }
-                  </span>
+                  <div className="relative rounded-full w-10 h-10 md:w-11 md:h-11">
+                    <Image
+                      src={
+                        currentWebtoon.attributes.artist_id.data.attributes
+                          .profile_image.data.attributes.url
+                      }
+                      layout="fill"
+                      objectFit="contain"
+                      alt="Rarement Artist Profile Picture"
+                      className="rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <span>Created by </span>
+                    <span className="text-[#CEA671] font-bold hover:underline">
+                      {
+                        currentWebtoon.attributes.artist_id.data.attributes
+                          .first_name
+                      }
+                    </span>
+                  </div>
                 </a>
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-3 bg-[#333333] text-white py-4 px-6 md:gap-4 md:px-8 md:py-7">
+          {/* <div className="flex flex-col gap-3 bg-[#333333] text-white py-4 px-6 md:gap-4 md:px-8 md:py-7">
             <div className="text-sm font-bold md:text-lg">Reward</div>
             <div className="text-justify text-xs md:text-base">
               {currentNFT.attributes.reward}
             </div>
-          </div>
+          </div> */}
         </div>
         <ul className="flex flex-col gap-12 border-2 border-[#333333] py-4 px-6 md:px-8 md:py-7 md:gap-16">
+          <li className="flex flex-col">
+            <div>License</div>
+            <div className="text-justify text-xs text-[#858585] mt-2 md:mt-3 md:text-base">
+              {currentNFT.attributes.license}
+            </div>
+          </li>
           <li className="flex gap-7 md:gap-9">
             <a href={currentNFT.attributes.metadata}>
               View Metadata{" "}
@@ -72,7 +94,7 @@ export default function Specs({
               />
             </a>
             <a href={currentNFT.attributes.contract}>
-              View Contract{" "}
+              Etherscan{" "}
               <FontAwesomeIcon
                 icon={faArrowRight}
                 className="text-mediumBeige"
@@ -100,12 +122,6 @@ export default function Specs({
                   </div>
                 </div>
               </div>
-            </div>
-          </li>
-          <li className="flex flex-col">
-            <div>License</div>
-            <div className="text-justify text-xs text-[#858585] mt-2 md:mt-3 md:text-base">
-              {currentNFT.attributes.license}
             </div>
           </li>
         </ul>

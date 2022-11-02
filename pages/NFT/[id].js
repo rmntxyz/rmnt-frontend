@@ -29,6 +29,13 @@ const GET_NFT_DATA = gql`
                           id
                           attributes {
                             first_name
+                            profile_image {
+                              data {
+                                attributes {
+                                  url
+                                }
+                              }
+                            }
                           }
                         }
                       }

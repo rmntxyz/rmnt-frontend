@@ -5,8 +5,8 @@ import Collectors from "./Collectors";
 export default function Collection({ collections }) {
   let NFTUrl = "";
   return (
-    <div className="scroll-medium overflow-x-auto flex sm:scroll-large md:scroll-xlarge xl:overflow-visible">
-      <div className="min-w-[956px] grid grid-cols-4 gap-5 md:gap-8 md:min-w-[1184px]">
+    <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible">
+      <div className="min-w-[956px] grid grid-cols-4 gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 md:min-w-[1248px]">
         {collections.map(
           (collection, idx) => (
             (NFTUrl = collection.attributes.image.data[0].attributes.url),

@@ -1,10 +1,10 @@
 import Viewer from "../../comps/webtoonDetail/Viewer";
-import Desc from "../../comps/webtoonDetail/Desc";
 import NFT from "../../comps/webtoonDetail/NFT";
 import { getExchangeRate } from "../api/USD_ETH";
 import client from "../../apollo";
 import { gql } from "@apollo/client";
 import Seo from "../../comps/layout/SEO";
+import WebtoonDesc from "../../comps/webtoonDetail/WebtoonDesc";
 
 const GET_WEBTOON_DATA = gql`
   query Webtoon($id: ID) {
@@ -156,7 +156,7 @@ export default function WebtoonPage({
       />
       <main>
         <Viewer data={pages} />
-        <Desc item={webtoon} users={users} />
+        <WebtoonDesc item={webtoon} users={users} />
         <NFT NFTs={NFTs} exchangeRate={exchangeRate} />
       </main>
     </div>
