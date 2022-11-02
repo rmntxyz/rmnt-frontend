@@ -61,12 +61,12 @@ export default function Webtoons({ webtoons, artist }) {
           <div className="absolute bottom-0 w-full h-px bg-ourBlack opacity-[15%]"></div>
         </div>
         {webtoons.length > 0 ? (
-          <div className="scroll-xlarge overflow-x-auto">
-            <div className="min-w-[956px] grid grid-cols-4 gap-5 md:min-w-[1184px] md:gap-8">
+          <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible">
+            <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:min-w-[1248px] lg:grid lg:grid-cols-4">
               {currentItems.map((item) => (
                 <div
                   key={item.id}
-                  className="border border-ourBlack rounded-sm p-3.5 shadow-small bg-white md:p-4 "
+                  className="border border-ourBlack rounded-sm p-3.5 shadow-small bg-white w-[224px] md:p-4 md:w-[272px] xl:w-[288px]"
                 >
                   <a href={"/webtoons/" + item.id} className="relative group">
                     <Image

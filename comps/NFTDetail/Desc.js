@@ -37,7 +37,7 @@ export default function Desc({
           <ReactMarkdown children={currentNFT.attributes.description} />
         </div>
         <button
-          className="text-[#555555] text-xs md:text-base"
+          className="text-lightGray text-xs md:text-base"
           onClick={(e) => setShowText(!showText)}
           style={{ display: truncated ? "block" : "none" }}
         >

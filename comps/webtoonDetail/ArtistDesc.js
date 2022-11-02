@@ -78,7 +78,7 @@ export default function ArtistDesc({ item, users }) {
             {item.attributes.artist_id.data.attributes.wallet_address ? (
               <div
                 onClick={handleCopyClick}
-                className="group flex items-center w-28"
+                className="group flex items-center w-36"
               >
                 <button
                   id="to be copied"

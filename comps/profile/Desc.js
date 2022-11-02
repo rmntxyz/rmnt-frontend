@@ -126,7 +126,7 @@ export default function Desc({ props }) {
                 {props.attributes.wallet_address?.length > 0 ? (
                   <div
                     onClick={handleCopyClick}
-                    className="group flex items-center w-32"
+                    className="group flex items-center w-44"
                   >
                     <button
                       id="to be copied"

@@ -9,7 +9,7 @@ export default function AboutBottom({ artists }) {
         </div>
         <div className="bg-darkGray h-0.5 w-24 sm:w-36"></div>
         <div className="flex flex-col items-center">
-          <div className="flex flex-wrap gap-3 md:gap-4 ">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 ">
             {artists.map((artist, idx) =>
               artist.attributes.profile_image.data ? (
                 <a
