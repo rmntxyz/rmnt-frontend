@@ -38,15 +38,11 @@ export default function ArtistDesc({ item, users }) {
   const [truncated, setTruncated] = useState(false);
 
   useEffect(() => {
-    const element = document.getElementById("desc");
-    if (
-      element.offsetHeight < element.scrollHeight ||
-      element.offsetWidth < element.scrollWidth
-    ) {
+    const element = document.getElementById("artistDesc");
+    if (element.offsetHeight < element.scrollHeight) {
       setTruncated(true);
     }
   });
-
   //Toggle the "more/close" button
   const [showText, setShowText] = useState(false);
 
@@ -98,7 +94,7 @@ export default function ArtistDesc({ item, users }) {
           </div>
         </div>
         <div className="text-sm text-justify mx-5 md:text-base md:mx-8">
-          <div id="desc" className={`${showText ? "" : "truncate-2"}`}>
+          <div id="artistDesc" className={`${showText ? "" : "truncate-2"}`}>
             <ReactMarkdown
               children={item.attributes.artist_id.data.attributes.description}
             />

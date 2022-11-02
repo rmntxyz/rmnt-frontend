@@ -16,10 +16,7 @@ export default function Desc({
   useEffect(() => {
     setTruncated(false);
     const element = document.getElementById("desc");
-    if (
-      element.offsetHeight < element.scrollHeight ||
-      element.offsetWidth < element.scrollWidth
-    ) {
+    if (element.offsetHeight < element.scrollHeight) {
       setTruncated(true);
       return;
     }

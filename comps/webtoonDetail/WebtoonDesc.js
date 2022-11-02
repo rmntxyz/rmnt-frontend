@@ -14,10 +14,7 @@ export default function WebtoonDesc({ item, users }) {
 
   useEffect(() => {
     const element = document.getElementById("desc");
-    if (
-      element.offsetHeight < element.scrollHeight ||
-      element.offsetWidth < element.scrollWidth
-    ) {
+    if (element.offsetHeight < element.scrollHeight) {
       setTruncated(true);
     }
   });
@@ -26,8 +23,8 @@ export default function WebtoonDesc({ item, users }) {
   const [showText, setShowText] = useState(false);
 
   return (
-    <div className="container mx-auto my-20 md:my-36">
-      <div className="max-w-[72%] mx-auto flex flex-col lg:max-w-[80%] lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24 xl:max-w-[90%] 2xl:max-w-[97%]">
+    <div className="mx-8 my-20 md:my-36 md:mx-24 lg:mx-16 xl:mx-32 2xl:container 2xl:mx-auto">
+      <div className="mx-auto flex flex-col lg:gap-16 lg:grid lg:grid-cols-2 xl:gap-24">
         <div className="mb-12 md:mb-20">
           <div className="mt-3.5  md:mt-4">
             <span className="text-xl font-extrabold uppercase md:text-[32px]">
