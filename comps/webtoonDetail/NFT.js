@@ -13,7 +13,7 @@ export default function NFT({ NFTs, exchangeRate }) {
   );
   return (
     <div className="bg-lightBeige py-12 md:py-20">
-      <div className="ml-8 md:ml-28 2xl:ml-72">
+      <div className="mx-8 md:mx-28 2xl:mx-72">
         <div className="flex flex-col gap-8 md:gap-14">
           <div className="flex items-start gap-4 md:gap-7 md:items-center">
             <div className="font-bold text-[22px] md:text-[40px]">NFT</div>
@@ -26,7 +26,7 @@ export default function NFT({ NFTs, exchangeRate }) {
           </div>
 
           <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible ">
-            <div className="min-w-[956px] grid grid-cols-4 gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 md:min-w-[1184px]">
+            <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:min-w-[1248px] lg:grid lg:grid-cols-4">
               {NFTs.length === 0 ? (
                 <span className="text-lg md:text-xl">
                   New NFTs are on the way—stay tuned!

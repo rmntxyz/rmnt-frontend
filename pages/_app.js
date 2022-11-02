@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+// import { useRouter } from "next/router";
+// import { useEffect, useState } from "react";
 import Layout from "../comps/layout/Layout";
-import Loading from "../comps/layout/Loading";
+// import Loading from "../comps/layout/Loading";
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
