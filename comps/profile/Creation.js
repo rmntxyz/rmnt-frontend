@@ -31,8 +31,6 @@ export default function Creation({ creations }) {
                           ? NFTUrl
                           : item.children[0].thumbnail.data.attributes.url
                       }
-                      width={256}
-                      height={256}
                       objectFit="contain"
                       layout="fill"
                       placeholder="blur"

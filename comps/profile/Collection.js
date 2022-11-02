@@ -28,8 +28,6 @@ export default function Collection({ collections }) {
                           ? NFTUrl
                           : collection.attributes.thumbnail.data.attributes.url
                       }
-                      width={256}
-                      height={256}
                       placeholder="blur"
                       blurDataURL={
                         isImage.includes(
