@@ -17,7 +17,10 @@ import client from "../apollo";
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.rinkeby, chain.polygon, chain.optimism, chain.arbitrum],
-  [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
+  [
+    alchemyProvider({ alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
+    publicProvider(),
+  ]
 );
 const { connectors } = getDefaultWallets({
   appName: "rmnt-frontend",
