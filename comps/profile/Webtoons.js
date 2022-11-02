@@ -62,7 +62,7 @@ export default function Webtoons({ webtoons, artist }) {
         </div>
         {webtoons.length > 0 ? (
           <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible">
-            <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:min-w-[1248px] lg:grid lg:grid-cols-4">
+            <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:min-w-[1184px] lg:grid lg:grid-cols-4">
               {currentItems.map((item) => (
                 <div
                   key={item.id}
