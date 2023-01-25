@@ -3,7 +3,7 @@ import Header from "./Header";
 
 export default function Layout({ children }) {
   return (
-    <div>
+    <div className="bg-mainBg">
       <Header />
       {children}
       <Footer />
