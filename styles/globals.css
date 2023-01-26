@@ -10,6 +10,13 @@
 }
 
 @layer utilities {
+  .gradientBorder {
+    background: linear-gradient(black, black) padding-box,
+      linear-gradient(to bottom, #70efcf, #cea671) border-box;
+    border-radius: 44px;
+    border: 1px solid transparent;
+  }
+
   .scroll {
     margin: -32px;
     padding: 32px;

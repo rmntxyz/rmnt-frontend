@@ -7,7 +7,12 @@ export default function Header() {
   //Use router to determine whether to show the back button or not
   const router = useRouter();
   return (
-    <nav className="bg-navBg h-20 px-8 text-2xl font-bold flex justify-between items-center">
+    <nav
+      className="bg-navBg h-20 px-8 text-2xl font-bold flex justify-between items-center"
+      style={{
+        display: router.pathname.includes("/episode/") ? "none" : "flex",
+      }}
+    >
       <div className="flex items-center gap-6">
         <FontAwesomeIcon
           icon={faArrowLeft}

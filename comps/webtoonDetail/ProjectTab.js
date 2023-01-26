@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import ArtistDesc from "./ArtistDesc";
 
-export default function WebtoonDesc({ item, users }) {
+export default function ProjectTab({ item, users }) {
   //Find if the text is truncated & display the "more/close" button if the text is truncated
   const [truncated, setTruncated] = useState(false);
 

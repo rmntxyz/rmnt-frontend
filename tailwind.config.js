@@ -13,11 +13,11 @@ module.exports = {
         mediumGray: "#DBDBDB",
         lightGray: "#B6B6B6",
         darkGray: "#242424",
+        opaqueGray: "rgba(12, 12, 12, 0.5)",
         ourBlack: "#0C0C0C",
         navBg: "#1D1D1D",
         mainBg: "#333333",
         mintGreen: "#70EFCF",
-        opaqueGray: "rgba(12, 12, 12, 0.5)",
       },
       boxShadow: {
         small: "0 5px 20px 0 rgba(0, 0, 0, 0.14)",

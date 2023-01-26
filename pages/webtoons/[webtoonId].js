@@ -1,10 +1,8 @@
-import Viewer from "../../comps/webtoonDetail/Viewer";
-import NFT from "../../comps/webtoonDetail/NFT";
 import { getExchangeRate } from "../api/USD_ETH";
 import client from "../../apollo";
 import { gql } from "@apollo/client";
 import Seo from "../../comps/layout/SEO";
-import WebtoonDesc from "../../comps/webtoonDetail/WebtoonDesc";
+import Desc from "../../comps/webtoonDetail/Desc";
 
 const GET_WEBTOON_DATA = gql`
   query Webtoon($id: ID) {
@@ -43,6 +41,7 @@ const GET_WEBTOON_DATA = gql`
           }
           webtoon_pages(pagination: { limit: 200 }) {
             data {
+              id
               attributes {
                 webtoon_page_id
                 page_number
@@ -109,11 +108,11 @@ const GET_WEBTOON_DATA = gql`
 
 export async function getServerSideProps(context) {
   const exchangeRate = await getExchangeRate();
-  const { id } = context.query;
+  const { webtoonId } = context.query;
   const { data } = await client.query({
     query: GET_WEBTOON_DATA,
     variables: {
-      id: id,
+      id: webtoonId,
     },
     fetchPolicy: "network-only",
   });
@@ -121,10 +120,10 @@ export async function getServerSideProps(context) {
     props: {
       exchangeRate: exchangeRate,
       webtoon: data.webtoon.data,
-      pages: data.webtoon.data.attributes.webtoon_pages.data
+      episodes: data.webtoon.data.attributes.webtoon_pages.data
         .slice()
-        .sort((a, b) => a.attributes.page_number - b.attributes.page_number)
-        .map((page) => page.attributes.page_image.data.attributes.url),
+        .sort((a, b) => a.attributes.page_number - b.attributes.page_number),
+      // .map((page) => page.attributes.page_image.data.attributes.url),
       NFTs: data.webtoon.data.attributes.webtoon_pages.data
         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
         .flat(1)
@@ -145,19 +144,23 @@ export async function getServerSideProps(context) {
 export default function WebtoonPage({
   exchangeRate,
   webtoon,
-  pages,
+  episodes,
   NFTs,
   users,
 }) {
   return (
-    <div className="mt-20 overflow-x-hidden">
+    <div>
       <Seo
         title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
       />
       <main>
-        <Viewer data={pages} />
-        <WebtoonDesc item={webtoon} users={users} />
-        <NFT NFTs={NFTs} exchangeRate={exchangeRate} />
+        <Desc
+          webtoon={webtoon}
+          users={users}
+          NFTs={NFTs}
+          exchangeRate={exchangeRate}
+          episodes={episodes}
+        />
       </main>
     </div>
   );
