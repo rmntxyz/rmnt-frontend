@@ -1,7 +1,5 @@
 import { gql } from "@apollo/client";
 import client from "../apollo";
-import AboutBottom from "../comps/home/About/AboutBottom";
-import AboutTop from "../comps/home/About/AboutTop";
 import List from "../comps/home/List/List";
 import TopCard from "../comps/home/TopCard/TopCard";
 import Seo from "../comps/layout/SEO";
