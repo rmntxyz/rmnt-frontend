@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import CollectiblesTab from "./CollectiblesTab";
 import ProjectTab from "./ProjectTab";
 import WebtoonTab from "./WebtoonTab";
 
@@ -22,10 +23,10 @@ export default function Desc({ webtoon, users, NFTs, exchangeRate, episodes }) {
         <div className="absolute bottom-0 h-2/5 w-full bg-gradient-to-t from-navBg"></div>
       </div>
       <div>
-        <ul className="relative flex gap-4 md:gap-6 2xl:max-w-[90%]">
+        <ul className="relative flex">
           <li className="ml-4">
             <button
-              className={`text-lg md:text-2xl py-4 px-[18px] md:px-6
+              className={`text-lg py-4 px-5
                   ${openTab === 1 ? "font-bold" : "text-white/50"}`}
               onClick={(e) => {
                 setOpenTab(1);
@@ -42,7 +43,7 @@ export default function Desc({ webtoon, users, NFTs, exchangeRate, episodes }) {
           </li>
           <li>
             <button
-              className={`text-lg md:text-2xl py-4 px-[18px] md:px-6
+              className={`text-lg py-4 px-5
                ${openTab === 2 ? "font-bold" : "text-white/50"}`}
               onClick={(e) => {
                 setOpenTab(2);
@@ -59,7 +60,7 @@ export default function Desc({ webtoon, users, NFTs, exchangeRate, episodes }) {
           </li>
           <li>
             <button
-              className={`text-lg md:text-2xl py-4 px-[18px] md:px-6
+              className={`text-lg py-4 px-5
                ${openTab === 3 ? "font-bold" : "text-white/50"}`}
               onClick={(e) => {
                 setOpenTab(3);
@@ -74,14 +75,22 @@ export default function Desc({ webtoon, users, NFTs, exchangeRate, episodes }) {
               }`}
             ></div>
           </li>
-          <div className="absolute bottom-0 w-full h-px bg-black/10"></div>
+          <div className="absolute bottom-0 w-full h-px bg-white/10"></div>
         </ul>
         <div>
           <div className={openTab === 1 ? "block" : "hidden"}>
-            <ProjectTab item={webtoon} user={users} />
+            <ProjectTab
+              webtoon={webtoon}
+              users={users}
+              NFTs={NFTs}
+              exchangeRate={exchangeRate}
+            />
           </div>
           <div className={openTab === 2 ? "block" : "hidden"}>
             <WebtoonTab episodes={episodes} webtoon={webtoon} />
+          </div>
+          <div className={openTab === 3 ? "block" : "hidden"}>
+            <CollectiblesTab NFTs={NFTs} exchangeRate={exchangeRate} />
           </div>
         </div>
       </div>

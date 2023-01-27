@@ -108,7 +108,7 @@ export default function Episode({ webtoon, episode, allEpisodes }) {
           </svg>
         </a>
       </nav>
-      <main>
+      <main className="max-w-[768px] mx-auto">
         <Viewer webtoon={webtoon} episode={episode} allEpisodes={allEpisodes} />
       </main>
     </div>

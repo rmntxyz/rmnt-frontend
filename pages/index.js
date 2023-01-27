@@ -135,8 +135,8 @@ export default function Home({ webtoons, artists }) {
       <main>
         <TopCard item={webtoons[0]} />
         <List data={webtoons.slice(1)} />
-        <AboutTop />
-        <AboutBottom artists={artists} />
+        {/* <AboutTop />
+        <AboutBottom artists={artists} /> */}
       </main>
     </div>
   );

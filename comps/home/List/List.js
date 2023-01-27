@@ -28,7 +28,7 @@ export default function List({ data }) {
   return (
     <div className="mx-auto xl:max-w-[1280px] 2xl:max-w-[1380px]">
       <div className="mx-8 mt-10 mb-20 md:ml-14 md:mb-32 lg:mt-16">
-        <div className="relative flex items-center justify-between mb-8 md:mb-14 ">
+        {/* <div className="relative flex items-center justify-between mb-8 md:mb-14 ">
           <div className="text-xl font-extrabold md:text-4xl lg:mx-auto">
             Featured Series
           </div>
@@ -65,7 +65,7 @@ export default function List({ data }) {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="scroll overflow-x-auto flex md:scroll-large 2xl:overflow-visible">
           <div className="flex gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 xl:grid xl:grid-cols-4">
             {currentItems?.map((item, idx) => (

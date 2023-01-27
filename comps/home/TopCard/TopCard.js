@@ -18,7 +18,7 @@ export default function TopCard({ item }) {
       .map((NFT) => NFT.attributes.drop_timestamp - new Date().getTime() / 1000)
   );
   return (
-    <div className="pt-4 lg:bg-hero lg:bg-cover lg:bg-top ">
+    <div className="pt-4">
       <div className="container mx-auto md:px-6 lg:px-12 xl:px-32">
         <div className="m-9 flex flex-col md:my-12 lg:m-20 lg:grid lg:grid-flow-col lg:grid-cols-2 lg:items-center">
           <div className="lg:order-2">

@@ -60,6 +60,7 @@ const GET_WEBTOON_DATA = gql`
                       name
                       drop_timestamp
                       sold_timestamp
+                      quantity
                       edition
                       price_in_wei
                       # timeRemaining
@@ -153,7 +154,7 @@ export default function WebtoonPage({
       <Seo
         title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
       />
-      <main>
+      <main className="max-w-[768px] mx-auto">
         <Desc
           webtoon={webtoon}
           users={users}

@@ -13,7 +13,7 @@ module.exports = {
         mediumGray: "#DBDBDB",
         lightGray: "#B6B6B6",
         darkGray: "#242424",
-        opaqueGray: "rgba(12, 12, 12, 0.5)",
+        opaqueGray: "rgba(65, 65, 65, 0.9)",
         ourBlack: "#0C0C0C",
         navBg: "#1D1D1D",
         mainBg: "#333333",
@@ -42,10 +42,9 @@ module.exports = {
       screens: {
         "3xl": "1920px",
       },
-
-      backgroundImage: {
-        hero: "url('/background/background img@3x.png')",
-      },
+      // backgroundImage: {
+      //   hero: "url('/background/background img@3x.png')",
+      // },
     },
   },
   plugins: [],

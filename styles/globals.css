@@ -11,10 +11,124 @@
 
 @layer utilities {
   .gradientBorder {
-    background: linear-gradient(black, black) padding-box,
+    background: linear-gradient(#70efcf, #cea671) padding-box,
       linear-gradient(to bottom, #70efcf, #cea671) border-box;
     border-radius: 44px;
     border: 1px solid transparent;
+  }
+
+  .clipped {
+    filter: url(#round);
+    -webkit-clip-path: polygon(
+      0% 0%,
+      0% 0%,
+      100% 0%,
+      100% 74%,
+      74% 100%,
+      0% 100%,
+      0% 74%,
+      0% 30%
+    );
+    clip-path: polygon(
+      0% 0%,
+      0% 0%,
+      100% 0%,
+      100% 74%,
+      74% 100%,
+      0% 100%,
+      0% 74%,
+      0% 30%
+    );
+  }
+  
+  .box {
+    --all: 0px;
+    display: inline-block;
+    position: relative;
+    /* background:  linear-gradient(#70efcf, #cea671) padding-box,
+    linear-gradient(to bottom, #70efcf, #cea671) border-box; */
+    filter: url(#round);
+    --bottom-right: 25%;
+  }
+  .box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(#70efcf, #cea671) padding-box,
+      linear-gradient(to bottom, #70efcf, #cea671) border-box;
+    -webkit-mask: linear-gradient(
+          45deg,
+          transparent 0 var(--bottom-left, var(--all)),
+          #fff 0
+        )
+        bottom left,
+      linear-gradient(
+          -45deg,
+          transparent 0 var(--bottom-right, var(--all)),
+          #fff 0
+        )
+        bottom right,
+      linear-gradient(135deg, transparent 0 var(--top-left, var(--all)), #fff 0)
+        top left,
+      linear-gradient(
+          -135deg,
+          transparent 0 var(--top-right, var(--all)),
+          #fff 0
+        )
+        top right;
+    -webkit-mask-size: 50.5% 50.5%;
+    -webkit-mask-repeat: no-repeat;
+  }
+  .innerBox {
+    --all: 0px;
+    display: inline-block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 98.5%;
+    height: 98.5%;
+    /* background:  linear-gradient(#70efcf, #cea671) padding-innerBox,
+    linear-gradient(to bottom, #70efcf, #cea671) border-box; */
+    filter: url(#round);
+    --bottom-right: 25%;
+  }
+  .innerBox::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(65, 65, 65, 0.9);
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-mask: linear-gradient(
+          45deg,
+          transparent 0 var(--bottom-left, var(--all)),
+          #fff 0
+        )
+        bottom left,
+      linear-gradient(
+          -45deg,
+          transparent 0 var(--bottom-right, var(--all)),
+          #fff 0
+        )
+        bottom right,
+      linear-gradient(135deg, transparent 0 var(--top-left, var(--all)), #fff 0)
+        top left,
+      linear-gradient(
+          -135deg,
+          transparent 0 var(--top-right, var(--all)),
+          #fff 0
+        )
+        top right;
+    -webkit-mask-size: 50.5% 50.5%;
+    -webkit-mask-repeat: no-repeat;
   }
 
   .scroll {

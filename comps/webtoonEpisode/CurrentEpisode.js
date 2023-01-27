@@ -108,13 +108,11 @@ export default function CurrentEpisode({ episode, allEpisodes }) {
   // };
   return (
     <div
-      // onClick={(e) => handleFullscreen()}
-      // className={`${
-      //   isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
-      // }
-
-      className="container"
-      // style={{ opacity: loading ? 0 : 100 }}
+    // onClick={(e) => handleFullscreen()}
+    // className={`${
+    //   isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
+    // }
+    // style={{ opacity: loading ? 0 : 100 }}
     >
       <Image
         id="scrollableElement"
@@ -129,45 +127,50 @@ export default function CurrentEpisode({ episode, allEpisodes }) {
         blurDataURL={imageUrl}
       />
       <div
-        className="fixed w-full container bottom-0"
+        className="fixed w-full bottom-0"
         style={{
           display:
-            scrollPosition + viewportHeight >= imageHeight + 80 ||
+            //80 equals the navbar height & 32 equals the margin below the image
+            scrollPosition + viewportHeight >= imageHeight + 80 + 32 ||
             click === false
               ? "none"
               : "block",
         }}
       >
-        <div className="flex items-center justify-center gap-8 py-8 font-bold">
-          <a
-            href={
-              "/webtoons/episode/" + allEpisodes[episode.page_number - 2]?.id
-            }
-            style={{
-              display: allEpisodes[episode.page_number - 2] ? "block" : "none",
-            }}
-            className="gradientBorder py-3 px-4 bg-black"
-          >
-            <FontAwesomeIcon icon={faArrowLeft} className="mr-3 text-lg" />
-            Ep.{episode.page_number - 1}
-          </a>
-          <a
-            href={"/webtoons/episode/" + allEpisodes[episode.page_number]?.id}
-            style={{
-              display: allEpisodes[episode.page_number] ? "block" : "none",
-            }}
-            className="gradientBorder py-3 px-4 bg-black"
-          >
-            Ep.{episode.page_number + 1}
-            <FontAwesomeIcon icon={faArrowRight} className="ml-3 text-lg" />
-          </a>
+        <div className="relative max-w-[768px]">
+          <div className="flex items-center justify-center gap-8 py-8 font-bold">
+            <a
+              href={
+                "/webtoons/episode/" + allEpisodes[episode.page_number - 2]?.id
+              }
+              style={{
+                display: allEpisodes[episode.page_number - 2]
+                  ? "block"
+                  : "none",
+              }}
+              className="gradientBorder py-3 px-4 !bg-black"
+            >
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-3 text-lg" />
+              Ep.{episode.page_number - 1}
+            </a>
+            <a
+              href={"/webtoons/episode/" + allEpisodes[episode.page_number]?.id}
+              style={{
+                display: allEpisodes[episode.page_number] ? "block" : "none",
+              }}
+              className="gradientBorder py-3 px-4 !bg-black"
+            >
+              Ep.{episode.page_number + 1}
+              <FontAwesomeIcon icon={faArrowRight} className="ml-3 text-lg" />
+            </a>
+          </div>
+          <button onClick={scrollToTop}>
+            <FontAwesomeIcon
+              icon={faArrowUp}
+              className="absolute right-0 top-0 gradientBorder m-8 px-3.5 py-3 text-lg !bg-black"
+            />
+          </button>
         </div>
-        <button onClick={scrollToTop}>
-          <FontAwesomeIcon
-            icon={faArrowUp}
-            className="absolute right-0 top-0 gradientBorder m-8 px-3.5 py-3 text-lg"
-          />
-        </button>
       </div>
     </div>
   );
