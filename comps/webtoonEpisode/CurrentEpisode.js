@@ -148,7 +148,7 @@ export default function CurrentEpisode({ episode, allEpisodes }) {
                   ? "block"
                   : "none",
               }}
-              className="gradientBorder py-3 px-4 !bg-black"
+              className="gradientBorder py-3 px-4"
             >
               <FontAwesomeIcon icon={faArrowLeft} className="mr-3 text-lg" />
               Ep.{episode.page_number - 1}
@@ -158,7 +158,7 @@ export default function CurrentEpisode({ episode, allEpisodes }) {
               style={{
                 display: allEpisodes[episode.page_number] ? "block" : "none",
               }}
-              className="gradientBorder py-3 px-4 !bg-black"
+              className="gradientBorder py-3 px-4"
             >
               Ep.{episode.page_number + 1}
               <FontAwesomeIcon icon={faArrowRight} className="ml-3 text-lg" />
@@ -167,7 +167,7 @@ export default function CurrentEpisode({ episode, allEpisodes }) {
           <button onClick={scrollToTop}>
             <FontAwesomeIcon
               icon={faArrowUp}
-              className="absolute right-0 top-0 gradientBorder m-8 px-3.5 py-3 text-lg !bg-black"
+              className="absolute right-0 top-0 gradientBorder m-8 px-3.5 py-3 text-lg"
             />
           </button>
         </div>

@@ -11,7 +11,7 @@
 
 @layer utilities {
   .gradientBorder {
-    background: linear-gradient(#70efcf, #cea671) padding-box,
+    background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
       linear-gradient(to bottom, #70efcf, #cea671) border-box;
     border-radius: 44px;
     border: 1px solid transparent;
@@ -40,7 +40,7 @@
       0% 30%
     );
   }
-  
+
   .box {
     --all: 0px;
     display: inline-block;
