@@ -33,8 +33,8 @@ export default function Header() {
               fill="white"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M24.5 40.4771L16.4917 38.3313V27.5H24.5V40.4771ZM24.5 41.8359L12.1719 38.5326L12.1719 48.5H24.5V41.8359ZM10.8594 48.5L10.8594 43.5776L3.5 43.5776V48.5H10.8594ZM3.5 42.2651L10.8594 42.2651V38.1809L3.5 36.209V42.2651ZM3.5 34.8502L15.1792 37.9796V27.5H3.5V34.8502Z"
               fill="white"
             />

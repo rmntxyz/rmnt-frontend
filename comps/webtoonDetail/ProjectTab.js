@@ -48,7 +48,11 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
       <div className="text-justify flex flex-col gap-3 justify-center items-start">
         <div className="text-2xl flex gap-1.5 items-center justify-start">
           {/* <FontAwesomeIcon icon={faPencil} /> */}
-          <Image src="/KakaoTalk_Photo_2023-01-27-11-57-45.png" width={20} height={20} />
+          <Image
+            src="/KakaoTalk_Photo_2023-01-27-11-57-45.png"
+            width={20}
+            height={20}
+          />
           <span>Synopsis</span>
         </div>
         <div id="desc" className={`${showText ? "" : "truncate-5"}`}>
@@ -73,8 +77,6 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
           <div className="box w-full aspect-square">
             <Image
               src={NFT.attributes.image.data[0].attributes.url}
-              width={336}
-              height={336}
               layout="fill"
               className="clipped scale-[98.5%]"
             />
@@ -207,7 +209,7 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
         <div className="grid grid-cols-2 gap-8 font-bold">
           {uniqueUsers && uniqueUsers.length ? (
             uniqueUsers.map((user, idx) => (
-              <div className="flex items-center gap-3">
+              <div key={idx} className="flex items-center gap-3">
                 <span
                   className="py-1 px-2.5 bg-opaqueGray rounded"
                   style={{ color: idx < 3 ? "#70EFCF" : "white" }}
