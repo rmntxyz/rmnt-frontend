@@ -48,7 +48,7 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
       <div className="text-justify flex flex-col gap-3 justify-center items-start">
         <div className="text-2xl flex gap-1.5 items-center justify-start">
           {/* <FontAwesomeIcon icon={faPencil} /> */}
-          <Image src="/✏.png" width={20} height={20} />
+          <Image src="/KakaoTalk_Photo_2023-01-27-11-57-45.png" width={20} height={20} />
           <span>Synopsis</span>
         </div>
         <div id="desc" className={`${showText ? "" : "truncate-5"}`}>
