@@ -73,7 +73,7 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
       </div>
       <div className="mt-7 flex flex-col gap-4">
         <div className="text-2xl font-bold">Digital Avatars</div>
-        <div className="flex gap-8">
+        <div className="flex flex-col gap-8 sm:flex-row">
           <div className="box w-full aspect-square">
             <Image
               src={NFT.attributes.image.data[0].attributes.url}
@@ -124,7 +124,7 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
                   />
                 </svg>
 
-                <div className="font-bold text-base md:text-lg">
+                <div className="font-bold">
                   {parseFloat(NFT.attributes.price_in_wei) / Math.pow(10, 18)}{" "}
                   ETH
                 </div>
@@ -167,7 +167,7 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
       </div>
       <div className="mt-7 flex flex-col gap-4">
         <div className="text-2xl font-bold">Benefits</div>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           <svg
             style={{ visibility: "hidden", position: "absolute" }}
             width="0"

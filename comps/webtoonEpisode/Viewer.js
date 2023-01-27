@@ -37,7 +37,7 @@ export default function Viewer({ webtoon, allEpisodes, episode }) {
                   ? "block"
                   : "none",
               }}
-              className="py-3 px-4 border border-black/20 bg-black/[0.04] rounded-full"
+              className="py-3 px-4 border border-white/20 bg-opaqueGray rounded-full"
             >
               <FontAwesomeIcon icon={faArrowLeft} className="mr-3 text-lg" />
               Ep.{episode.page_number - 1}
@@ -47,7 +47,7 @@ export default function Viewer({ webtoon, allEpisodes, episode }) {
               style={{
                 display: allEpisodes[episode.page_number] ? "block" : "none",
               }}
-              className="py-3 px-4 border border-black/20 bg-black/[0.04] rounded-full"
+              className="py-3 px-4 border border-white/20 bg-opaqueGray rounded-full"
             >
               Ep.{episode.page_number + 1}
               <FontAwesomeIcon icon={faArrowRight} className="ml-3 text-lg" />
@@ -56,7 +56,7 @@ export default function Viewer({ webtoon, allEpisodes, episode }) {
           <button onClick={scrollToTop}>
             <FontAwesomeIcon
               icon={faArrowUp}
-              className="absolute right-0 top-0 m-8 px-3.5 py-3 border border-black/20 bg-black/[0.04] rounded-full text-lg"
+              className="absolute right-0 top-0 m-8 px-3.5 py-3 border border-white/20 bg-opaqueGray rounded-full text-lg"
             />
           </button>
         </div>

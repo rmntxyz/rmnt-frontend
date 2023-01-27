@@ -13,7 +13,7 @@ module.exports = {
         mediumGray: "#DBDBDB",
         lightGray: "#B6B6B6",
         darkGray: "#242424",
-        opaqueGray: "rgba(65, 65, 65, 0.9)",
+        opaqueGray: "rgba(65, 65, 65, 0.4)",
         ourBlack: "#0C0C0C",
         navBg: "#1D1D1D",
         mainBg: "#333333",
