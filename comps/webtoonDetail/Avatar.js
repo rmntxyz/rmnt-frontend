@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Eth } from "../svgs/svgs";
+import { Eth } from "../../utils/svgs";
 
 export default function Avatar({ NFT, exchangeRate, webtoon }) {
   return (

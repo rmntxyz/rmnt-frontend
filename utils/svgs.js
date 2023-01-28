@@ -104,7 +104,7 @@ export const RoundFilter = () => {
       version="1.1"
     >
       <defs>
-        <filter id="round"  x="-50%" width="200%" y="-50%" height="200%" >
+        <filter id="round" x="-50%" width="200%" y="-50%" height="200%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
           <feColorMatrix
             in="blur"

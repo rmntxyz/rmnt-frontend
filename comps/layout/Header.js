@@ -2,7 +2,7 @@ import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
-import { Logo } from "../svgs/svgs";
+import { Logo } from "../../utils/svgs";
 
 export default function Header() {
   //Use router to determine whether to show the back button or not

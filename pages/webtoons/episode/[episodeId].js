@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import client from "../../../apollo";
 import Seo from "../../../comps/layout/SEO";
-import { SmallLogo } from "../../../comps/svgs/svgs";
+import { SmallLogo } from "../../../utils/svgs";
 import Viewer from "../../../comps/webtoonEpisode/Viewer";
 
 const GET_EPISODE_DATA = gql`

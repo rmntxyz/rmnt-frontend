@@ -1,4 +1,4 @@
-import { RoundFilter } from "../svgs/svgs";
+import { RoundFilter } from "../../utils/svgs";
 
 export default function Benefits() {
   return (
