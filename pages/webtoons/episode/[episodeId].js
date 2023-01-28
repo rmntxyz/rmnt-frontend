@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import client from "../../../apollo";
 import Seo from "../../../comps/layout/SEO";
@@ -92,9 +93,11 @@ export default function Episode({ webtoon, episode, allEpisodes }) {
           </span>
           <span>{webtoon.title}</span>
         </div>
-        <a href="/">
-          <SmallLogo />
-        </a>
+        <Link href="/" passHref>
+          <a>
+            <SmallLogo />
+          </a>
+        </Link>
       </nav>
       <main className="max-w-[768px] mx-auto">
         <Viewer webtoon={webtoon} episode={episode} allEpisodes={allEpisodes} />
