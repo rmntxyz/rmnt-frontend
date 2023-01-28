@@ -2,7 +2,7 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { isImage } from "../../utils/mediaType";
-import { Eth, OpenSea } from "../svgs/svgs";
+import { Eth, OpenSea, RoundFilter } from "../svgs/svgs";
 
 export default function CollectiblesTab({ NFTs, exchangeRate }) {
   let NFTUrl = "";

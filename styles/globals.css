@@ -10,6 +10,7 @@
 }
 
 @layer utilities {
+  /* for pop-up navigation buttons on episode page */
   .gradientBorder {
     background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
       linear-gradient(to bottom, #70efcf, #cea671) border-box;
@@ -17,6 +18,8 @@
     border: 1px solid transparent;
   }
 
+  /* 여기부터 잘린 사각형 모양들 */
+  /* for clipping the bottom right corner of digital avatar image */
   .clipped {
     filter: url(#round);
     -webkit-clip-path: polygon(
@@ -41,17 +44,15 @@
     );
   }
 
+  /* gradient background to be used as a bordder for digital avatar or benefits or collectibles */
   .box {
     --all: 0px;
     display: inline-block;
     position: relative;
-    /* background:  linear-gradient(#70efcf, #cea671) padding-box,
-    linear-gradient(to bottom, #70efcf, #cea671) border-box; */
     filter: url(#round);
     --bottom-right: 15%;
   }
   .box::before {
-    /* z-index: -2; */
     content: "";
     position: absolute;
     top: 0;
@@ -83,8 +84,9 @@
     -webkit-mask-size: 50.5% 50.5%;
     -webkit-mask-repeat: no-repeat;
   }
+
+  /* gray inside to be used with/without the .box */
   .innerBox {
-    /* z-index: -1; */
     --all: 0px;
     display: inline-block;
     position: absolute;
@@ -95,8 +97,6 @@
     left: 0;
     width: 98.5%;
     height: 98.5%;
-    /* background:  linear-gradient(#70efcf, #cea671) padding-innerBox,
-    linear-gradient(to bottom, #70efcf, #cea671) border-box; */
     filter: url(#round);
     --bottom-right: 15%;
   }
