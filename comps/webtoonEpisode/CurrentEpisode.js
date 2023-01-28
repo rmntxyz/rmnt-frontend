@@ -39,81 +39,8 @@ export default function CurrentEpisode({ episode, allEpisodes }) {
   //Detect click on image to show navigation buttons
   const [click, setClick] = useState(false);
 
-  // //Enable maximization of the selected NFT
-  // const [isFullscreen, setIsFullscreen] = useState(false);
-  // useEffect(() => {
-  //   document.addEventListener("fullscreenchange", exitHandler);
-  //   document.addEventListener("webkitfullscreenchange", exitHandler);
-  //   document.addEventListener("mozfullscreenchange", exitHandler);
-  //   document.addEventListener("MSFullscreenChange", exitHandler);
-
-  //   function exitHandler() {
-  //     if (
-  //       !document.fullscreenElement &&
-  //       !document.webkitIsFullScreen &&
-  //       !document.mozFullScreen &&
-  //       !document.msFullscreenElement
-  //     ) {
-  //       setIsFullscreen(false);
-  //     }
-  //   }
-  // });
-  // const handleFullscreen = () => {
-  //   getOrExitFullscreen();
-  //   setIsFullscreen(!isFullscreen);
-  // };
-
-  // const getOrExitFullscreen = () => {
-  //   if (!document.fullscreenElement) {
-  //     if (document.getElementById("maximizableElement").requestFullscreen) {
-  //       document.getElementById("maximizableElement").requestFullscreen();
-  //       // setIsFullscreen(true);
-  //     } else if (
-  //       document.getElementById("maximizableElement").mozRequestFullScreen
-  //     ) {
-  //       document.getElementById("maximizableElement").mozRequestFullScreen(); // Firefox
-  //       // setIsFullscreen(true);
-  //     } else if (
-  //       document.getElementById("maximizableElement").webkitRequestFullscreen
-  //     ) {
-  //       document.getElementById("maximizableElement").webkitRequestFullscreen(); // Chrome and Safari
-  //       // setIsFullscreen(true);
-  //     }
-  //   }
-  //   if (document.fullscreenElement) {
-  //     if (document.exitFullscreen) {
-  //       document.exitFullscreen();
-  //       // setIsFullscreen(false);
-  //     } else if (document.msExitFullscreen) {
-  //       document.msExitFullscreen();
-  //       // setIsFullscreen(false);
-  //     } else if (document.mozCancelFullScreen) {
-  //       document.mozCancelFullScreen();
-  //       // setIsFullscreen(false);
-  //     } else if (document.webkitExitFullscreen) {
-  //       document.webkitExitFullscreen();
-  //       // setIsFullscreen(false);
-  //     }
-  //   }
-  // };
-
-  // //Get screen size to disable autoplay on mobile
-  // const [screenWidth, setScreenWidth] = useState();
-  // useEffect(() => setScreenWidth(window.outerWidth));
-
-  //Add blur to the image being loaded
-  // const [blur, setBlur] = useState(true);
-  // const handleBlur = () => {
-  //   setBlur(false);
-  // };
   return (
-    <div
-    // onClick={(e) => handleFullscreen()}
-    // className={`${
-    //   isFullscreen ? "hover:cursor-pointer" : "hover:cursor-zoom-in"
-    // }
-    // style={{ opacity: loading ? 0 : 100 }}
-    >
+    <div>
       <Image
         id="scrollableElement"
         onClick={() => setClick(!click)}

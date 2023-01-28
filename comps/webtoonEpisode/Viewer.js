@@ -8,12 +8,6 @@ import Image from "next/image";
 import CurrentEpisode from "./CurrentEpisode";
 
 export default function Viewer({ webtoon, allEpisodes, episode }) {
-  // //Get screen size to change object fit on mobile
-  // const [screenWidth, setScreenWidth] = useState();
-  // useEffect(() => {
-  //   setScreenWidth(window.outerWidth);
-  // });
-
   //Scroll to top when the up button is pressed
   const isBrowser = () => typeof window !== "undefined";
 
