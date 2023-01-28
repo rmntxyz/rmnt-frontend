@@ -10,127 +10,41 @@
 }
 
 @layer utilities {
-  /* for pop-up navigation buttons on episode page */
-  .gradientBorder {
-    background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
-      linear-gradient(to bottom, #70efcf, #cea671) border-box;
-    border-radius: 44px;
-    border: 1px solid transparent;
+  @keyframes upperStopColor {
+    from {
+      stop-color: #70efcf;
+    }
+    50% {
+      stop-color: #cea671;
+    }
+    to {
+      stop-color: #70efcf;
+    }
   }
 
-  /* 여기부터 잘린 사각형 모양들 */
-  /* for clipping the bottom right corner of digital avatar image */
-  .clipped {
-    filter: url(#round);
-    -webkit-clip-path: polygon(
-      0% 0%,
-      0% 0%,
-      100% 0%,
-      100% 84%,
-      84% 100%,
-      0% 100%,
-      0% 84%,
-      0% 30%
-    );
-    clip-path: polygon(
-      0% 0%,
-      0% 0%,
-      100% 0%,
-      100% 84%,
-      84% 100%,
-      0% 100%,
-      0% 84%,
-      0% 30%
-    );
+  @keyframes lowerStopColor {
+    from {
+      stop-color: #cea671;
+    }
+    50% {
+      stop-color: #70efcf;
+    }
+    to {
+      stop-color: #cea671;
+    }
   }
 
-  /* gradient background to be used as a bordder for digital avatar or benefits or collectibles */
-  .box {
-    --all: 0px;
-    display: inline-block;
-    position: relative;
-    filter: url(#round);
-    --bottom-right: 15%;
-  }
-  .box::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(#70efcf, #cea671) padding-box,
-      linear-gradient(to bottom, #70efcf, #cea671) border-box;
-    -webkit-mask: linear-gradient(
-          45deg,
-          transparent 0 var(--bottom-left, var(--all)),
-          #fff 0
-        )
-        bottom left,
-      linear-gradient(
-          -45deg,
-          transparent 0 var(--bottom-right, var(--all)),
-          #fff 0
-        )
-        bottom right,
-      linear-gradient(135deg, transparent 0 var(--top-left, var(--all)), #fff 0)
-        top left,
-      linear-gradient(
-          -135deg,
-          transparent 0 var(--top-right, var(--all)),
-          #fff 0
-        )
-        top right;
-    -webkit-mask-size: 50.5% 50.5%;
-    -webkit-mask-repeat: no-repeat;
+  stop {
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
   }
 
-  /* gray inside to be used with/without the .box */
-  .innerBox {
-    --all: 0px;
-    display: inline-block;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 98.5%;
-    height: 98.5%;
-    filter: url(#round);
-    --bottom-right: 15%;
+  svg:hover stop:first-child {
+    animation-name: upperStopColor;
   }
-  .innerBox::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #333333;
-    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.2);
-    -webkit-mask: linear-gradient(
-          45deg,
-          transparent 0 var(--bottom-left, var(--all)),
-          #fff 0
-        )
-        bottom left,
-      linear-gradient(
-          -45deg,
-          transparent 0 var(--bottom-right, var(--all)),
-          #fff 0
-        )
-        bottom right,
-      linear-gradient(135deg, transparent 0 var(--top-left, var(--all)), #fff 0)
-        top left,
-      linear-gradient(
-          -135deg,
-          transparent 0 var(--top-right, var(--all)),
-          #fff 0
-        )
-        top right;
-    -webkit-mask-size: 50.5% 50.5%;
-    -webkit-mask-repeat: no-repeat;
+
+  svg:hover stop:last-child {
+    animation-name: lowerStopColor;
   }
 }
 
