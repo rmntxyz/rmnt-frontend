@@ -1,19 +1,17 @@
 export const PolyFrameCard = () => (
-  <svg viewBox="0 0 246 351" xmlns="http://www.w3.org/2000/svg">
+  <svg id="cardSVG" viewBox="0 0 238 340" xmlns="http://www.w3.org/2000/svg">
     <g
       id="cardG"
       filter="url(#filter0_d_2449_5660)"
       stroke="url(#cardGradient)"
       strokeWidth="1"
       fill="white"
-      fill-opacity="0.04"
-      width="100%"
-      height="100%"
+      fillOpacity="0.04"
     >
       <path
         id="cardPath"
         d="M232 13C232 8.58172 228.418 5 224 5H14C9.58172 5 6 8.58173 6 13V328C6 332.418 9.58173 336 14 336H176.726C178.407 336 180.045 335.47 181.408 334.486L228.683 300.359C230.766 298.855 232 296.442 232 293.873V13Z"
-        shape-rendering="crispEdges"
+        shapeRendering="crispEdges"
       />
     </g>
     <defs>
@@ -28,9 +26,9 @@ export const PolyFrameCard = () => (
         width="246"
         height="351"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"

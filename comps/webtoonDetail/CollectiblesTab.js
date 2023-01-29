@@ -10,7 +10,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
   let NFTUrl = "";
 
   return (
-    <div className="mx-8 my-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
+    <div className="mx-8 my-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
       {NFTs.length === 0 ? (
         <span className="text-lg">New NFTs are on the way—stay tuned!</span>
       ) : (
@@ -26,10 +26,10 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                 //     : "gradientBorder-2 overflow-hidden"
                 // }
                 // className="gradientBorder-2 overflow-hidden"
-                className="card relative min-w-fit min-h-fit"
+                className="card relative overflow-hidden min-w-fit min-h-fit"
               >
                 <PolyFrameCard />
-                <div className="flex flex-col absolute w-[91.5%] top-[5px] left-1.5 rounded-lg overflow-hidden">
+                <div className="flex flex-col absolute rounded-lg w-[94.4%] top-[14px] left-[16px] sm:w-[94.7%] sm:top-[5px] sm:left-1.5">
                   <div className="relative aspect-square">
                     <Image
                       src={
