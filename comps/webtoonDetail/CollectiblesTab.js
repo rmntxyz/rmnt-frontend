@@ -29,7 +29,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                 className="card relative overflow-hidden min-w-fit min-h-fit"
               >
                 <PolyFrameCard />
-                <div className="flex flex-col absolute rounded-lg w-[94.4%] top-[14px] left-[16px] sm:w-[94.7%] sm:top-[5px] sm:left-1.5">
+                <div className="flex flex-col absolute rounded-lg overflow-hidden w-[94.4%] top-[14px] left-[16px] sm:w-[94.7%] sm:top-[5px] sm:left-1.5">
                   <div className="relative aspect-square">
                     <Image
                       src={
