@@ -130,7 +130,7 @@ export default function Home({ webtoons, artists }) {
   return (
     <div className="overflow-x-hidden text-ourBlack">
       <Seo title="Rarement" />
-      <main>
+      <main className="max-w-[768px] mx-auto">
         <TopCard item={webtoons[0]} />
         <List data={webtoons.slice(1)} />
         {/* <AboutTop />

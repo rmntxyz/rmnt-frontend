@@ -39,15 +39,54 @@
     animation-iteration-count: infinite;
   }
 
-  svg:hover stop:first-child {
+  svg:hover stop:first-child,
+  .card stop:first-child {
     animation-name: upperStopColor;
   }
 
-  svg:hover stop:last-child {
+  svg:hover stop:last-child,
+  .card stop:last-child {
     animation-name: lowerStopColor;
   }
 }
 
+/* for pop-up navigation buttons on episode page */
+.gradientBorder {
+  background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
+    linear-gradient(to bottom, #70efcf, #cea671) border-box;
+  border-radius: 44px;
+  border: 1px solid transparent;
+}
+
+/* for collectible & benefit cards */
+.gradientBorder-2 {
+  z-index: 10;
+  background: linear-gradient(#333333, #333333) padding-box,
+    linear-gradient(to bottom, #70efcf, #cea671) border-box;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.gradientBorder-right {
+  border-radius: 14px;
+  border: 3px solid transparent;
+  background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
+    linear-gradient(to right, #1d1d1d 70%, #cea671 85%, #70efcf 100%) border-box;
+}
+
+.gradientBorder-left {
+  border-radius: 14px;
+  border: 3px solid transparent;
+  background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
+    linear-gradient(to left, #1d1d1d 70%, #cea671 85%, #70efcf 100%) border-box;
+}
+
+.collectibleCard {
+  background-color: #333333 !important;
+  border-radius: 8px;
+}
+
+/* to truncate long text */
 .truncate-5 {
   overflow: hidden;
   text-overflow: ellipsis;

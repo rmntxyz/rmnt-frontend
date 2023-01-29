@@ -13,7 +13,7 @@ export const PolyFrameImage = ({ href }) => (
         <use href="#path" />
       </clipPath>
     </defs>
-    <use href="#path" stroke="url(#gradient)" stroke-width="0.5" fill="none" />
+    <use href="#path" stroke="url(#gradient)" strokeWidth="0.5" fill="none" />
     <image
       width="100%"
       clipPath="url(#clip)"

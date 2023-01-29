@@ -2,13 +2,15 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { isImage } from "../../utils/mediaType";
-import { Eth, OpenSea, RoundFilter } from "../../utils/svgs";
+import { OpenSea } from "../../utils/svgs";
+import { PolyFrameCard } from "./PolyFrameCard";
+import { PolyFrameImage } from "./PolyFrameImage";
 
 export default function CollectiblesTab({ NFTs, exchangeRate }) {
   let NFTUrl = "";
 
   return (
-    <div className="mx-8 my-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+    <div className="mx-8 my-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
       {NFTs.length === 0 ? (
         <span className="text-lg">New NFTs are on the way—stay tuned!</span>
       ) : (
@@ -18,14 +20,16 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
             (
               <div
                 key={item.attributes.nft_id}
-                className={
-                  item.attributes.sold_timestamp?.toString().length > 0
-                    ? "relative"
-                    : "box"
-                }
+                // className={
+                //   item.attributes.sold_timestamp?.toString().length > 0
+                //     ? "collectibleCard overflow-hidden"
+                //     : "gradientBorder-2 overflow-hidden"
+                // }
+                // className="gradientBorder-2 overflow-hidden"
+                className="card relative min-w-fit min-h-fit"
               >
-                <div className="innerBox"></div>
-                <div className="flex flex-col gap-3">
+                <PolyFrameCard />
+                <div className="flex flex-col absolute w-[91.5%] top-[5px] left-1.5 rounded-lg overflow-hidden">
                   <div className="relative aspect-square">
                     <Image
                       src={
@@ -37,6 +41,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                       }
                       layout="fill"
                       objectFit="contain"
+                      // className="rounded-tl-lg"
                       alt="Rarement NFT Image"
                       placeholder="blur"
                       blurDataURL={
@@ -46,7 +51,6 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                           ? NFTUrl
                           : item.attributes.thumbnail.data.attributes.url
                       }
-                      className="scale-[98.5%] rounded-tl-lg rounded-tr-lg"
                     />{" "}
                     {isImage.includes(
                       NFTUrl.split(".")[NFTUrl.split(".").length - 1]
@@ -56,7 +60,14 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                         className="absolute top-3 left-3 text-white bg-opaqueGray p-1 rounded-md"
                       />
                     )}
-                    {item.attributes.sold_timestamp?.toString().length > 0 ? (
+                    <a
+                      href={item.attributes.opensea}
+                      target="_blank"
+                      className="absolute bottom-2 right-2 px-2 py-2.5 bg-mintGreen rounded-md border border-navBg"
+                    >
+                      <OpenSea />
+                    </a>
+                    {/* {item.attributes.sold_timestamp?.toString().length > 0 ? (
                       <a
                         href={item.attributes.opensea}
                         target="_blank"
@@ -64,56 +75,17 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                       >
                         <OpenSea />
                       </a>
-                    ) : null}
+                    ) : null} */}
                   </div>
-                  <div className="px-4 flex flex-col gap-3 mb-7 z-10">
+                  <div className="px-4 pb-7 pt-3 flex flex-col gap-3">
                     <div className="truncate font-bold">
                       {item.attributes.name}
                     </div>
                     <div className="w-full h-px bg-white/10"></div>
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-1">
-                        <Eth />
-                        <div className="font-bold text-sm">
-                          {parseFloat(item.attributes.price_in_wei) /
-                            Math.pow(10, 18)}{" "}
-                          ETH
-                        </div>
-                        <div
-                          className="text-white/50 text-sm"
-                          style={{
-                            visibility:
-                              item.attributes.sold_timestamp?.toString()
-                                .length > 0
-                                ? "hidden"
-                                : "visible",
-                          }}
-                        >
-                          (≈{" "}
-                          {(
-                            (exchangeRate *
-                              parseFloat(item.attributes.price_in_wei)) /
-                            Math.pow(10, 18)
-                          ).toFixed(3)}{" "}
-                          USD)
-                        </div>
-                      </div>
-                      <div className="ml-4">
-                        {item.attributes.sold_timestamp?.toString().length >
-                        0 ? (
-                          <span className="text-sm text-white/50 ml-1">
-                            (Soldout)
-                          </span>
-                        ) : (
-                          <div>
-                            <span className="font-bold"></span>
-                            <span>/{item.attributes.quantity}</span>
-                            <span className="text-sm text-white/50 ml-1">
-                              (Available)
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                    {/* <PriceAvail item={item} exchangeRate={exchangeRate} /> */}
+                    <div className="text-sm text-mintGreen">
+                      edition {item.attributes.edition}/
+                      {item.attributes.quantity}
                     </div>
                   </div>
                 </div>
