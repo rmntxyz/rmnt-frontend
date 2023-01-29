@@ -71,7 +71,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                     <a
                       href={item.attributes.opensea}
                       target="_blank"
-                      className="absolute bottom-2 right-2 px-2 py-2.5 bg-mintGreen rounded-md border border-navBg"
+                      className="absolute bottom-4 right-5 px-2 py-2.5 bg-mintGreen rounded-md border border-navBg sm:bottom-2 sm:right-2"
                     >
                       <OpenSea />
                     </a>

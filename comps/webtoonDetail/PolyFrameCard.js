@@ -8,12 +8,18 @@ export const PolyFrameCard = ({ href }) => (
       fill="white"
       fillOpacity="0.04"
     >
+      <image
+        xlinkHref={href}
+        width="100%"
+        x="6.5"
+        y="-5"
+        clipPath="url(#imageClip)"
+      />
       <path
         id="cardPath"
         d="M232 13C232 8.58172 228.418 5 224 5H14C9.58172 5 6 8.58173 6 13V328C6 332.418 9.58173 336 14 336H176.726C178.407 336 180.045 335.47 181.408 334.486L228.683 300.359C230.766 298.855 232 296.442 232 293.873V13Z"
         shapeRendering="crispEdges"
       />
-      <image xlinkHref={href} width="100%" y="-5" clipPath="url(#imageClip)" />
     </g>
     <defs>
       <clipPath id="imageClip">
