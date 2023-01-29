@@ -28,10 +28,18 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                 // className="gradientBorder-2 overflow-hidden"
                 className="card relative overflow-hidden min-w-fit min-h-fit"
               >
-                <PolyFrameCard />
+                <PolyFrameCard
+                  href={
+                    isImage.includes(
+                      NFTUrl.split(".")[NFTUrl.split(".").length - 1]
+                    )
+                      ? NFTUrl
+                      : item.attributes.thumbnail.data.attributes.url
+                  }
+                />
                 <div className="flex flex-col absolute rounded-lg overflow-hidden w-[94.4%] top-[14px] left-[16px] sm:w-[94.7%] sm:top-[5px] sm:left-1.5">
                   <div className="relative aspect-square">
-                    <Image
+                    {/* <Image
                       src={
                         isImage.includes(
                           NFTUrl.split(".")[NFTUrl.split(".").length - 1]
@@ -51,7 +59,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                           ? NFTUrl
                           : item.attributes.thumbnail.data.attributes.url
                       }
-                    />{" "}
+                    />{" "} */}
                     {isImage.includes(
                       NFTUrl.split(".")[NFTUrl.split(".").length - 1]
                     ) ? null : (

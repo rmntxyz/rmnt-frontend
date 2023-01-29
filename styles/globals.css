@@ -39,12 +39,12 @@
     animation-iteration-count: infinite;
   }
 
-  svg:hover stop:first-child,
+  #avatar:hover stop:first-child,
   .card:hover stop:first-child {
     animation-name: upperStopColor;
   }
 
-  svg:hover stop:last-child,
+  #avatar:hover stop:last-child,
   .card:hover stop:last-child {
     animation-name: lowerStopColor;
   }

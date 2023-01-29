@@ -1,4 +1,4 @@
-export const PolyFrameCard = () => (
+export const PolyFrameCard = ({ href }) => (
   <svg id="cardSVG" viewBox="0 0 238 340" xmlns="http://www.w3.org/2000/svg">
     <g
       id="cardG"
@@ -13,8 +13,12 @@ export const PolyFrameCard = () => (
         d="M232 13C232 8.58172 228.418 5 224 5H14C9.58172 5 6 8.58173 6 13V328C6 332.418 9.58173 336 14 336H176.726C178.407 336 180.045 335.47 181.408 334.486L228.683 300.359C230.766 298.855 232 296.442 232 293.873V13Z"
         shapeRendering="crispEdges"
       />
+      <image xlinkHref={href} width="100%" y="-5" clipPath="url(#imageClip)" />
     </g>
     <defs>
+      <clipPath id="imageClip">
+        <use href="#cardPath" />
+      </clipPath>
       <linearGradient id="cardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
         <stop offset="0%" stopColor="#70efcf" />
         <stop offset="100%" stopColor="#cea671" />
