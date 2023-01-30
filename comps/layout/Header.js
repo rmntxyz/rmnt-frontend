@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Logo } from "../../utils/svgs";
 
 export default function Header() {
-  //Use router to determine whether to show the back button or not
+  //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
   return (
     <nav

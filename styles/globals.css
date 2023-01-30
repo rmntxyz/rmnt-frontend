@@ -60,7 +60,7 @@
 
 /* for collectible & benefit cards */
 .gradientBorder-2 {
-  z-index: 10;
+  /* z-index: 10; */
   background: linear-gradient(#333333, #333333) padding-box,
     linear-gradient(to bottom, #70efcf, #cea671) border-box;
   border-radius: 8px;

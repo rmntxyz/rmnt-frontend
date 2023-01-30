@@ -1,12 +1,10 @@
 import { gql } from "@apollo/client";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import client from "../../../apollo";
 import Seo from "../../../comps/layout/SEO";
-import { SmallLogo } from "../../../utils/svgs";
-import Viewer from "../../../comps/webtoonEpisode/Viewer";
+import Nav from "../../../comps/webtoonEpisode/Nav";
+import hideOrPaint from "../../../utils/hideOrPaint";
+import CurrentEpisode from "../../../comps/webtoonEpisode/Episode";
+import Buttons from "../../../comps/webtoonEpisode/Buttons";
 
 const GET_EPISODE_DATA = gql`
   query Webtoon_Page($id: ID) {
@@ -65,7 +63,7 @@ export async function getServerSideProps(context) {
   });
   return {
     props: {
-      webtoon: data.webtoonPage.data.attributes.webtoon_id.data.attributes,
+      webtoon: data.webtoonPage.data.attributes.webtoon_id.data,
       episode: data.webtoonPage.data.attributes,
       allEpisodes:
         data.webtoonPage.data.attributes.webtoon_id.data.attributes.webtoon_pages.data
@@ -76,31 +74,16 @@ export async function getServerSideProps(context) {
 }
 
 export default function Episode({ webtoon, episode, allEpisodes }) {
-  //User router to enable the back button
-  const router = useRouter();
+  //Hide navbar and navgation buttons on scroll
+  hideOrPaint();
+
   return (
     <div>
-      <Seo title={`${webtoon.title} - Ep.${episode.page_number}`} />
-      <nav className="bg-navBg h-20 pl-8 text-2xl font-bold flex justify-between items-center">
-        <FontAwesomeIcon
-          icon={faArrowLeft}
-          onClick={() => router.back()}
-          className="cursor-pointer"
-        />
-        <div className="flex gap-6">
-          <span className="text-lg py-1 px-3.5 rounded-3xl bg-mainBg drop-shadow-[4px_5px_10px_rgba(0, 0, 0, 0.1)]">
-            Ep.{episode.page_number}
-          </span>
-          <span>{webtoon.title}</span>
-        </div>
-        <Link href="/" passHref>
-          <a>
-            <SmallLogo />
-          </a>
-        </Link>
-      </nav>
-      <main className="max-w-[768px] mx-auto">
-        <Viewer webtoon={webtoon} episode={episode} allEpisodes={allEpisodes} />
+      <Seo title={`${webtoon.attributes.title} - Ep.${episode.page_number}`} />
+      <Nav episode={episode} webtoon={webtoon} />
+      <main className="max-w-[768px] mx-auto pt-20 pb-40">
+        <Episode episode={episode} />
+        <Buttons episode={episode} allEpisodes={allEpisodes} />
       </main>
     </div>
   );

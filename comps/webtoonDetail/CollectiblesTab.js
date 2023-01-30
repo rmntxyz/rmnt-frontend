@@ -1,10 +1,9 @@
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import { isImage } from "../../utils/mediaType";
 import { OpenSea } from "../../utils/svgs";
-import { PolyFrameCard } from "./PolyFrameCard";
-import { PolyFrameImage } from "./PolyFrameImage";
+import { PolyFrameCard } from "../../utils/PolyFrameCard";
+import Line from "../../utils/Line";
 
 export default function CollectiblesTab({ NFTs, exchangeRate }) {
   let NFTUrl = "";
@@ -89,7 +88,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                     <div className="truncate font-bold">
                       {item.attributes.name}
                     </div>
-                    <div className="w-full h-px bg-white/10"></div>
+                    <Line />
                     {/* <PriceAvail item={item} exchangeRate={exchangeRate} /> */}
                     <div className="text-sm text-mintGreen">
                       edition {item.attributes.edition}/

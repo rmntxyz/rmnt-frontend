@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { PolyFrameImage } from "./PolyFrameImage";
+import Line from "../../utils/Line";
+import { PolyFrameImage } from "../../utils/PolyFrameImage";
 import PriceAvail from "./PriceAvail";
 
 export default function Avatar({ NFT, exchangeRate, webtoon }) {
@@ -17,7 +17,7 @@ export default function Avatar({ NFT, exchangeRate, webtoon }) {
               {webtoon.attributes.artist_id.data.attributes.first_name}
             </span>
           </div>
-          <div className="w-full h-px bg-white/10"></div>
+          <Line />
           <div>
             <PriceAvail item={NFT} exchangeRate={exchangeRate} />
             <button aria-label="Collect NFT" className="py-3 mt-8">

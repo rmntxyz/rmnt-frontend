@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
+import Line from "../../utils/Line";
+import { useRouter } from "next/router";
 
 // "next.link" must have only one child. (e.g. <a>)
 // so, can't use a <Link> component here.
@@ -37,10 +39,18 @@ export default function Footer() {
   //Footer icons turn white on hover
   const [isHovered, setIsHovered] = useState(false);
 
+  //Use router to determine whether to show the footer or not
+  const router = useRouter();
+
   return (
-    <footer className="py-14 bg-navBg flex flex-col items-center justify-center gap-6 text-lightGray">
-      <div className="h-px w-full bg-white/10 mb-14"></div>
-      <ul className="flex items-center gap-5">
+    <footer
+      className="py-14 bg-navBg flex flex-col items-center justify-center gap-6 text-lightGray"
+      style={{
+        display: router.pathname.includes("/episode/") ? "none" : "flex",
+      }}
+    >
+      <Line />
+      <ul className="flex items-center gap-5 mt-14">
         <a
           onMouseOver={(e) => setIsHovered(true)}
           onMouseOut={(e) => setIsHovered(false)}
