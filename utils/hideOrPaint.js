@@ -13,7 +13,7 @@ export default function hideOrPaint() {
     setClicked(false);
   };
   const handleClick = () => {
-    setClicked(true);
+    setClicked(!clicked);
   };
 
   useEffect(() => {

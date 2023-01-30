@@ -16,8 +16,8 @@ export default function Tabs({ webtoon, users, NFTs, exchangeRate, episodes }) {
       <ul
         className={`${
           scrollPosition > elementHeight + 80
-            ? "fixed top-0 flex w-[768px] bg-navBg z-10"
-            : "relative flex"
+            ? "fixed top-0 flex w-[768px] bg-navBg z-10 shadow-md"
+            : "relative flex shadow-md"
         }`}
       >
         <li className="ml-4">
