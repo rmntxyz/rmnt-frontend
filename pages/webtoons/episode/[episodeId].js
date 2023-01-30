@@ -3,7 +3,7 @@ import client from "../../../apollo";
 import Seo from "../../../comps/layout/SEO";
 import Nav from "../../../comps/webtoonEpisode/Nav";
 import hideOrPaint from "../../../utils/hideOrPaint";
-import CurrentEpisode from "../../../comps/webtoonEpisode/Episode";
+import CurrentEpisode from "../../../comps/webtoonEpisode/CurrentEpisode";
 import Buttons from "../../../comps/webtoonEpisode/Buttons";
 
 const GET_EPISODE_DATA = gql`
@@ -82,7 +82,7 @@ export default function Episode({ webtoon, episode, allEpisodes }) {
       <Seo title={`${webtoon.attributes.title} - Ep.${episode.page_number}`} />
       <Nav episode={episode} webtoon={webtoon} />
       <main className="max-w-[768px] mx-auto pt-20 pb-40">
-        <Episode episode={episode} />
+        <CurrentEpisode episode={episode} />
         <Buttons episode={episode} allEpisodes={allEpisodes} />
       </main>
     </div>

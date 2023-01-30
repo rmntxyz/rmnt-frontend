@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Episode({ episode }) {
+export default function CurrentEpisode({ episode }) {
   const imageUrl = episode.page_image.data.attributes.url;
   const width = episode.page_image.data.attributes.width;
   const height = episode.page_image.data.attributes.height;

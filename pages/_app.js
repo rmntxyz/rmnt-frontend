@@ -15,7 +15,7 @@ import client from "../apollo";
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.goerli, chain.polygon, chain.optimism, chain.arbitrum],
   [
-    alchemyProvider({ alchemyId: 'Ajppi54_lVhZ8_x1KIH1-xxm4V9a3kRJ' }),
+    alchemyProvider({ alchemyId: "Ajppi54_lVhZ8_x1KIH1-xxm4V9a3kRJ" }),
     publicProvider(),
   ]
 );

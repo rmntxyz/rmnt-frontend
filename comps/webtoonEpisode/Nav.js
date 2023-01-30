@@ -2,8 +2,6 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import hideOnScroll from "../../utils/hideOrPaint";
 import { SmallLogo } from "../../utils/svgs";
 
 export default function Nav({ episode, webtoon }) {
