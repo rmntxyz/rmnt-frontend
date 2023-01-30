@@ -13,7 +13,7 @@ export default function Cover({ webtoon }) {
         objectFit="cover"
         alt="Rarement Webtoon Cover Image"
       />
-      <div className="absolute bottom-0 h-2/5 w-full bg-gradient-to-t from-navBg"></div>
+      <div className="absolute -bottom-1 -left-10 h-2/5 w-[110%] bg-gradient-to-t from-navBg"></div>
     </div>
   );
 }
