@@ -2,7 +2,8 @@ import { getExchangeRate } from "../api/USD_ETH";
 import client from "../../apollo";
 import { gql } from "@apollo/client";
 import Seo from "../../comps/layout/SEO";
-import Desc from "../../comps/webtoonDetail/Desc";
+import Tabs from "../../comps/webtoonDetail/Tabs";
+import Cover from "../../comps/webtoonDetail/Cover";
 
 const GET_WEBTOON_DATA = gql`
   query Webtoon($id: ID) {
@@ -155,7 +156,8 @@ export default function WebtoonPage({
         title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
       />
       <main className="max-w-[768px] mx-auto">
-        <Desc
+        <Cover webtoon={webtoon} />
+        <Tabs
           webtoon={webtoon}
           users={users}
           NFTs={NFTs}

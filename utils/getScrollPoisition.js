@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 export default function getScrollPosition() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [imageHeight, setImageHeight] = useState();
+  const [elementHeight, setElementHeight] = useState();
   const [viewportHeight, setViewportHeight] = useState();
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
-    setImageHeight(document.getElementById("scrollableElement").clientHeight);
+    setElementHeight(document.getElementById("scrollableElement").clientHeight);
     setViewportHeight(window.innerHeight);
   };
   useEffect(() => {
@@ -15,5 +15,5 @@ export default function getScrollPosition() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  return { scrollPosition, imageHeight, viewportHeight };
+  return { scrollPosition, elementHeight, viewportHeight };
 }
