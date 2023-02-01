@@ -83,7 +83,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
     <div>
       <Seo title={`${webtoon.attributes.title} - Ep.${episode.page_number}`} />
       <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
-      <main className="max-w-[768px] mx-auto pt-20 pb-40">
+      <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">
         <CurrentEpisode episode={episode} />
         <Buttons episode={episode} allEpisodes={allEpisodes} />
       </main>

@@ -14,7 +14,7 @@ export default function Nav({ episode, webtoon, prevUrl }) {
       id="navbar"
       className="fixed z-10 w-full bg-navBg h-20 text-2xl font-bold duration-200"
     >
-      <div className="flex justify-between items-center mx-auto h-full px-8 max-w-[768px]">
+      <div className="flex justify-between items-center mx-auto h-full px-8 max-w-[768px] md:max-w-[630px]">
         <div className="flex gap-6 items-center justify-center">
           <a href={"/webtoons/" + webtoon.id}>
             <FontAwesomeIcon
@@ -29,9 +29,9 @@ export default function Nav({ episode, webtoon, prevUrl }) {
             <span className="text-lg py-1 px-3.5 rounded-3xl bg-mainBg drop-shadow-[4px_5px_10px_rgba(0, 0, 0, 0.1)]">
               Ep.{episode.page_number}
             </span>
-            <a href={"/webtoons/" + webtoon.id}>
-              <span>{webtoon.attributes.title}</span>
-            </a>
+            {/* <a href={"/webtoons/" + webtoon.id}> */}
+            <span>{webtoon.attributes.title}</span>
+            {/* </a> */}
           </div>
         </div>
         <div className="flex gap-5 items-center justify-center">

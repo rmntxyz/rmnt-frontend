@@ -9,7 +9,7 @@ import scrollToTop from "../../utils/scrollToTop";
 export default function Buttons({ episode, allEpisodes }) {
   return (
     <div id="buttons" className="fixed w-full bottom-0 duration-200">
-      <div className="relative max-w-[768px]">
+      <div className="relative max-w-[768px] md:max-w-[630px]">
         <div className="flex items-center justify-center gap-8 py-8 font-bold">
           <a
             href={
