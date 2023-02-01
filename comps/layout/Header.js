@@ -2,11 +2,16 @@ import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
+import getPrevRoute from "../../utils/getPrevRoute";
 import { Logo } from "../../utils/svgs";
 
 export default function Header() {
   //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
+
+  //Get current/previous routes to determine whether to show the back button or not
+  const { prevPath } = getPrevRoute();
+
   return (
     <nav
       className="bg-navBg h-20 px-8 text-2xl font-bold flex justify-between items-center"
@@ -16,9 +21,12 @@ export default function Header() {
     >
       <div className="flex items-center gap-6">
         <FontAwesomeIcon
+          id="back"
           icon={faArrowLeft}
           onClick={() => router.back()}
-          style={{ display: router.pathname === "/" ? "none" : "block" }}
+          style={{
+            display: router.pathname === "/" || !prevPath ? "none" : "block",
+          }}
           className="cursor-pointer"
         />
         <a href="/">

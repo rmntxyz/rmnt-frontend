@@ -1,7 +1,7 @@
 export default function Toggle() {
   return (
     <label
-      for="Toggle4"
+      htmlFor="Toggle4"
       className="rounded-full gradientBorder inline-flex items-center p-1.5 cursor-pointer text-base"
     >
       <input id="Toggle4" type="checkbox" className="hidden peer" />

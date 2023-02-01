@@ -61,8 +61,10 @@ export async function getServerSideProps(context) {
       id: episodeId,
     },
   });
+  const prevUrl = context.req.headers.referer;
   return {
     props: {
+      prevUrl: prevUrl || null,
       webtoon: data.webtoonPage.data.attributes.webtoon_id.data,
       episode: data.webtoonPage.data.attributes,
       allEpisodes:
@@ -73,14 +75,14 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Episode({ webtoon, episode, allEpisodes }) {
+export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   //Hide navbar and navgation buttons on scroll
   hideOrPaint();
 
   return (
     <div>
       <Seo title={`${webtoon.attributes.title} - Ep.${episode.page_number}`} />
-      <Nav episode={episode} webtoon={webtoon} />
+      <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
       <main className="max-w-[768px] mx-auto pt-20 pb-40">
         <CurrentEpisode episode={episode} />
         <Buttons episode={episode} allEpisodes={allEpisodes} />

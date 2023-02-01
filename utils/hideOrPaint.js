@@ -9,7 +9,7 @@ export default function hideOrPaint() {
   const handleScroll = () => {
     setCurrentPos(window.scrollY);
     setViewportHeight(window.innerHeight);
-    setImageHeight(document.getElementById("episode").clientHeight);
+    setImageHeight(document.getElementById("episode")?.clientHeight);
     setClicked(false);
   };
   const handleClick = () => {
@@ -25,13 +25,13 @@ export default function hideOrPaint() {
       currentPos + viewportHeight > imageHeight + 80 ||
       clicked === true
     ) {
-      document.getElementById("navbar").style.top = "0";
-      document.getElementById("navbar").style.opacity = "1";
-      document.getElementById("buttons").style.opacity = "1";
+      document.getElementById("navbar")?.style.top = "0";
+      document.getElementById("navbar")?.style.opacity = "1";
+      document.getElementById("buttons")?.style.opacity = "1";
     } else {
-      document.getElementById("navbar").style.top = "-80px";
-      document.getElementById("navbar").style.opacity = "0";
-      document.getElementById("buttons").style.opacity = "0";
+      document.getElementById("navbar")?.style.top = "-80px";
+      document.getElementById("navbar")?.style.opacity = "0";
+      document.getElementById("buttons")?.style.opacity = "0";
     }
     return () => {
       window.removeEventListener("scroll", handleScroll);

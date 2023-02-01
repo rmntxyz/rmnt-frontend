@@ -11,7 +11,9 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
+import getPrevRoute from "../utils/getPrevRoute";
 
+//Enable wallet connection
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.goerli, chain.polygon, chain.optimism, chain.arbitrum],
   [
