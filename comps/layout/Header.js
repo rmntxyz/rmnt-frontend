@@ -10,7 +10,7 @@ export default function Header() {
   const router = useRouter();
 
   //Get current/previous routes to determine whether to show the back button or not
-  const { prevPath } = getPrevRoute();
+  // const { prevPath } = getPrevRoute();
 
   return (
     <nav
@@ -20,15 +20,19 @@ export default function Header() {
       }}
     >
       <div className="flex items-center gap-6">
-        <FontAwesomeIcon
-          id="back"
-          icon={faArrowLeft}
-          onClick={() => router.back()}
+        <a
           style={{
-            display: router.pathname === "/" || !prevPath ? "none" : "block",
+            display: router.pathname === "/" ? "none" : "block",
           }}
-          className="cursor-pointer"
-        />
+          href="/"
+        >
+          <FontAwesomeIcon
+            id="back"
+            icon={faArrowLeft}
+            onClick={() => router.back()}
+            className="cursor-pointer"
+          />
+        </a>
         <a href="/">
           <Logo />
         </a>

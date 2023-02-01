@@ -16,13 +16,15 @@ export default function Nav({ episode, webtoon, prevUrl }) {
     >
       <div className="flex justify-between items-center mx-auto h-full px-8 max-w-[768px]">
         <div className="flex gap-6 items-center justify-center">
-          <FontAwesomeIcon
-            id="episodeBack"
-            icon={faArrowLeft}
-            onClick={() => router.back()}
-            className="cursor-pointer"
-            style={{ display: !prevUrl ? "none" : "block" }}
-          />
+          <a href={"/webtoons/" + webtoon.id}>
+            <FontAwesomeIcon
+              id="episodeBack"
+              icon={faArrowLeft}
+              // onClick={() => router.back()}
+              className="cursor-pointer"
+              // style={{ display: !prevUrl ? "none" : "block" }}
+            />
+          </a>
           <div className="flex gap-2">
             <span className="text-lg py-1 px-3.5 rounded-3xl bg-mainBg drop-shadow-[4px_5px_10px_rgba(0, 0, 0, 0.1)]">
               Ep.{episode.page_number}
