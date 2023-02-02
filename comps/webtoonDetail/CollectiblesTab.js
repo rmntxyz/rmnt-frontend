@@ -9,7 +9,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
   let NFTUrl = "";
 
   return (
-    <div className="mx-8 my-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+    <div className="mx-8 my-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
       {NFTs.length === 0 ? (
         <span className="text-lg">New NFTs are on the way—stay tuned!</span>
       ) : (
@@ -36,7 +36,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                       : item.attributes.thumbnail.data.attributes.url
                   }
                 />
-                <div className="flex flex-col absolute rounded-lg overflow-hidden w-[94.4%] top-[14px] left-[16px] sm:w-[94.7%] sm:top-[5px] sm:left-1.5">
+                <div className="flex flex-col absolute h-full w-full rounded-lg top-0 left-0">
                   <div className="relative aspect-square">
                     {/* <Image
                       src={
@@ -84,7 +84,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                       </a>
                     ) : null} */}
                   </div>
-                  <div className="px-4 pb-7 pt-3 flex flex-col gap-3">
+                  <div className="px-4 pb-1 w-full mx-auto my-auto flex flex-col gap-2 sm:pb-2">
                     <div className="truncate font-bold">
                       {item.attributes.name}
                     </div>
