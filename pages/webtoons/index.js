@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
-import ListItem from "../../comps/home/List/ListItem";
+import SmallItem from "../../comps/home/SmallItem";
 import Seo from "../../comps/layout/SEO";
 
 const GET_WEBTOONS_DATA = gql`
@@ -44,6 +44,13 @@ const GET_WEBTOONS_DATA = gql`
                       drop_timestamp
                       sold_timestamp
                       # timeRemaining
+                      image {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -94,11 +101,11 @@ export async function getServerSideProps() {
 
 export default function Webtoons({ webtoons }) {
   return (
-    <div className="container mx-auto">
+    <div className="">
       <Seo title="Webtoons | Rarement" />
-      <main className="grid mx-8 my-10 gap-x-5 gap-y-10 sm:grid-cols-2 sm:my-20 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 xl:grid-cols-4">
+      <main className="max-w-[768px] mx-auto grid grid-cols-2 gap-3 md:max-w-[630px]">
         {webtoons.map((item) => (
-          <ListItem key={item.id} item={item} />
+          <SmallItem key={item.id} item={item} />
         ))}
       </main>
     </div>

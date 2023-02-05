@@ -141,7 +141,7 @@ export async function getServerSideProps() {
 
 export default function Home({ webtoons }) {
   return (
-    <div className="overflow-x-hidden text-ourBlack">
+    <div>
       <Seo title="Rarement" />
       <main className="max-w-[768px] mx-auto md:max-w-[630px]">
         <List data={webtoons} />
