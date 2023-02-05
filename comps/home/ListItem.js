@@ -22,7 +22,7 @@ export default function ListItem({ item }) {
         className="rounded-2xl"
         alt="Rarement Webtoon Cover Image"
       />
-      <div className="absolute p-4 h-fit bottom-0 z-10 flex items-center w-full gap-4 bg-black/50">
+      <div className="absolute p-4 h-fit bottom-0 z-10 flex items-center w-full gap-4 rounded-bl-2xl rounded-br-2xl bg-black/50">
         <div className="w-1/5">
           <PolyFrameImage href={avatarUrl} />
         </div>

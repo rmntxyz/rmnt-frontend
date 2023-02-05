@@ -143,7 +143,7 @@ export default function Home({ webtoons }) {
   return (
     <div>
       <Seo title="Rarement" />
-      <main className="max-w-[768px] mx-auto md:max-w-[630px]">
+      <main className="max-w-[768px] mx-auto px-4 md:max-w-[630px]">
         <List data={webtoons} />
         {/* <AboutTop />
         <AboutBottom artists={artists} /> */}
