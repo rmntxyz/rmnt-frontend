@@ -11,6 +11,7 @@ export const PolyFrameCard = ({ href }) => (
       <image
         xlinkHref={href}
         width="100%"
+        height="68%"
         clipPath="url(#imageClip)"
       />
       <path

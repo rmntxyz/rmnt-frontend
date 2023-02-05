@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 import client from "../apollo";
-import List from "../comps/home/List/List";
-import TopCard from "../comps/home/TopCard/TopCard";
+import List from "../comps/home/List";
 import Seo from "../comps/layout/SEO";
 
 const GET_HOME_DATA = gql`
@@ -45,6 +44,20 @@ const GET_HOME_DATA = gql`
                       drop_timestamp
                       sold_timestamp
                       # timeRemaining
+                      image {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                      thumbnail {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -54,21 +67,21 @@ const GET_HOME_DATA = gql`
         }
       }
     }
-    artists(pagination: { page: 1, pageSize: 7 }) {
-      data {
-        id
-        attributes {
-          first_name
-          profile_image {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
+    # artists(pagination: { page: 1, pageSize: 7 }) {
+    #   data {
+    #     id
+    #     attributes {
+    #       first_name
+    #       profile_image {
+    #         data {
+    #           attributes {
+    #             url
+    #           }
+    #         }
+    #       }
+    #     }
+    #   }
+    # }
     # webtoonUsers(pagination: { page: 1, pageSize: 7 }) {
     #   data {
     #     id
@@ -121,18 +134,17 @@ export async function getServerSideProps() {
               .map((NFT) => NFT.attributes.drop_timestamp)
           )
       ),
-      artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
+      // artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
     },
   };
 }
 
-export default function Home({ webtoons, artists }) {
+export default function Home({ webtoons }) {
   return (
     <div className="overflow-x-hidden text-ourBlack">
       <Seo title="Rarement" />
       <main className="max-w-[768px] mx-auto md:max-w-[630px]">
-        <TopCard item={webtoons[0]} />
-        <List data={webtoons.slice(1)} />
+        <List data={webtoons} />
         {/* <AboutTop />
         <AboutBottom artists={artists} /> */}
       </main>

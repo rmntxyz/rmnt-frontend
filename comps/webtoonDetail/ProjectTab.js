@@ -1,8 +1,7 @@
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import ShowOrClose from "../../utils/showOrClose";
 import Avatar from "./Avatar";
 import Benefits from "./Benefits";
 import Patrons from "./Patrons";
@@ -22,7 +21,7 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
   });
 
   //Toggle the "more/close" button
-  const [showText, setShowText] = useState(false);
+  const [show, setShow] = useState(false);
 
   //Remove duplicate collectors from the array
   const uniqueIds = [];
@@ -53,21 +52,10 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
           />
           <span>Synopsis</span>
         </div>
-        <div id="desc" className={`${showText ? "" : "truncate-5"}`}>
+        <div id="desc" className={`${show ? "" : "truncate-5"}`}>
           <ReactMarkdown children={webtoon.attributes.description} />
         </div>
-        <button
-          className="text-white/50 text-sm"
-          onClick={(e) => setShowText(!showText)}
-          style={{ display: truncated ? "block" : "none" }}
-        >
-          <span>{showText ? "close" : "more"}</span>
-          <FontAwesomeIcon
-            icon={showText ? faChevronUp : faChevronDown}
-            size="xs"
-            className="ml-1"
-          />
-        </button>
+        <ShowOrClose truncated={truncated} show={show} setShow={setShow} />
       </div>
       <Avatar NFT={NFT} exchangeRate={exchangeRate} webtoon={webtoon} />
       <Benefits />

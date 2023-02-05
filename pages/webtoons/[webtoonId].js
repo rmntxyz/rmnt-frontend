@@ -53,7 +53,7 @@ const GET_WEBTOON_DATA = gql`
                     }
                   }
                 }
-                nfts {
+                nfts(pagination: { limit: 200 }) {
                   data {
                     id
                     attributes {
@@ -155,7 +155,7 @@ export default function WebtoonPage({
       <Seo
         title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
       />
-      <main className="max-w-[768px] mx-auto md:max-w-[630px]">
+      <main className="max-w-[768px] mx-auto overflow-hidden md:max-w-[630px]">
         <Cover webtoon={webtoon} />
         <Tabs
           webtoon={webtoon}

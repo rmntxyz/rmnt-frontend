@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 import PriceAvail from "./PriceAvail";
@@ -11,11 +12,22 @@ export default function Avatar({ NFT, exchangeRate, webtoon }) {
           <PolyFrameImage href={NFT.attributes.image.data[0].attributes.url} />
         </div>
         <div className="w-full flex flex-col gap-6">
-          <div className="text-lg">
-            Created by{" "}
-            <span className="font-bold">
-              {webtoon.attributes.artist_id.data.attributes.first_name}
-            </span>
+          <div className="flex flex-col gap-px">
+            <div>Created by</div>
+            <div className="flex gap-1.5">
+              <Image
+                src={
+                  webtoon.attributes.artist_id.data.attributes.profile_image
+                    .data.attributes.url
+                }
+                width={24}
+                height={24}
+                className="rounded-full"
+              />
+              <span className="text-lg font-bold">
+                {webtoon.attributes.artist_id.data.attributes.first_name}
+              </span>
+            </div>
           </div>
           <Line />
           <div>
