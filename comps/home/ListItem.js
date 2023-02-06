@@ -3,6 +3,10 @@ import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 
 export default function ListItem({ item }) {
+  const allAvatars = item.attributes.avatars?.data.length;
+  const availableAvatars = item.attributes.avatars?.data.filter(
+    (avatar) => !avatar.attributes.owned_by.data
+  ).length;
   // const NFTs = item.attributes.webtoon_pages.data
   //   .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
   //   .flat(1)
@@ -41,13 +45,15 @@ export default function ListItem({ item }) {
                 height={33}
                 className="rounded-full"
               />
-              <span className="text-2xl font-bold">
+              <span className="text-2xl font-bold truncate">
                 {item.attributes.artist_id.data.attributes.first_name}
               </span>
             </div>
           </div>
           <Line />
-          <div></div>
+          <div>
+            Available {availableAvatars}/{allAvatars}
+          </div>
         </div>
       </div>
     </a>

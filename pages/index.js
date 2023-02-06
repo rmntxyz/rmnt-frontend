@@ -41,6 +41,18 @@ const GET_HOME_DATA = gql`
               }
             }
           }
+          avatars(pagination: { limit: 200 }) {
+            data {
+              id
+              attributes {
+                owned_by {
+                  data {
+                    id
+                  }
+                }
+              }
+            }
+          }
           webtoon_pages(pagination: { limit: 200 }) {
             data {
               attributes {
