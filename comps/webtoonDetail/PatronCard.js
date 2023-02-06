@@ -24,7 +24,9 @@ export default function PatronCard({ webtoon, user }) {
     >
       <button>
         <PolyFrameImage
-          href={webtoon.attributes.cover_image.data.attributes.url}
+          href={
+            user.attributes.nfts.data[0].attributes.image.data[0].attributes.url
+          }
         />
       </button>
     </Tippy>

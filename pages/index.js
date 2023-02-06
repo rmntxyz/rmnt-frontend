@@ -34,6 +34,13 @@ const GET_HOME_DATA = gql`
               }
             }
           }
+          avatarGIF {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
           webtoon_pages(pagination: { limit: 200 }) {
             data {
               attributes {

@@ -9,7 +9,9 @@ export default function Avatar({ NFT, exchangeRate, webtoon }) {
       <div className="text-2xl font-bold">Digital Avatars</div>
       <div className="flex flex-col gap-8 sm:flex-row">
         <div className="w-full aspect-square">
-          <PolyFrameImage href={NFT.attributes.image.data[0].attributes.url} />
+          <PolyFrameImage
+            href={webtoon.attributes.avatarGIF.data.attributes.url}
+          />
         </div>
         <div className="w-full flex flex-col gap-6">
           <div className="flex flex-col gap-px">

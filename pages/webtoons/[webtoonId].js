@@ -21,6 +21,13 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
+          avatarGIF {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
           artist_id {
             data {
               id
@@ -40,6 +47,11 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
+          # avatars(pagination: { limit: 200 }) {
+          #   data {
+          #     id
+          #   }
+          # }
           webtoon_pages(pagination: { limit: 200 }) {
             data {
               id
@@ -93,6 +105,20 @@ const GET_WEBTOON_DATA = gql`
                                 }
                               }
                             }
+                            nfts {
+                              data {
+                                id
+                                attributes {
+                                  image {
+                                    data {
+                                      attributes {
+                                        url
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -122,6 +148,7 @@ export async function getServerSideProps(context) {
     props: {
       exchangeRate: exchangeRate,
       webtoon: data.webtoon.data,
+      // avatars: data.webtoon.data.attributes.avatars.data,
       episodes: data.webtoon.data.attributes.webtoon_pages.data
         .slice()
         .sort((a, b) => a.attributes.page_number - b.attributes.page_number),
@@ -149,7 +176,9 @@ export default function WebtoonPage({
   episodes,
   NFTs,
   users,
+  // avatars
 }) {
+  // console.log(avatars)
   return (
     <div>
       <Seo
