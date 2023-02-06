@@ -116,31 +116,32 @@ export async function getServerSideProps() {
   });
   return {
     props: {
-      webtoons: data.webtoons.data.slice().sort(
-        (a, b) =>
-          Math.min(
-            ...a.attributes.webtoon_pages.data
-              .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-              .flat(1)
-              .filter(
-                (NFT) =>
-                  NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
-                  0
-              )
-              .map((NFT) => NFT.attributes.drop_timestamp)
-          ) -
-          Math.min(
-            ...b.attributes.webtoon_pages.data
-              .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-              .flat(1)
-              .filter(
-                (NFT) =>
-                  NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
-                  0
-              )
-              .map((NFT) => NFT.attributes.drop_timestamp)
-          )
-      ),
+      webtoons: data.webtoons.data.slice().sort((a, b) => b.id - a.id),
+      // webtoons: data.webtoons.data.slice().sort(
+      //   (a, b) =>
+      //     Math.min(
+      //       ...a.attributes.webtoon_pages.data
+      //         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+      //         .flat(1)
+      //         .filter(
+      //           (NFT) =>
+      //             NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
+      //             0
+      //         )
+      //         .map((NFT) => NFT.attributes.drop_timestamp)
+      //     ) -
+      //     Math.min(
+      //       ...b.attributes.webtoon_pages.data
+      //         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+      //         .flat(1)
+      //         .filter(
+      //           (NFT) =>
+      //             NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
+      //             0
+      //         )
+      //         .map((NFT) => NFT.attributes.drop_timestamp)
+      //     )
+      // ),
       // artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
     },
   };

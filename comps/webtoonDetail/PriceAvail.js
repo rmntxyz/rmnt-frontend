@@ -12,13 +12,13 @@ export default function PriceAvail({ avatars, exchangeRate }) {
       <div className="flex items-center gap-1">
         <Eth />
         <div className="font-bold text-sm">
-          {parseFloat(avatars[0].attributes.price_in_wei) / Math.pow(10, 18)}{" "}
+          {parseFloat(avatars[0]?.attributes.price_in_wei) / Math.pow(10, 18)}{" "}
           ETH
         </div>
         <div className="text-white/50 text-sm">
           (≈{" "}
           {(
-            (exchangeRate * parseFloat(avatars[0].attributes.price_in_wei)) /
+            (exchangeRate * parseFloat(avatars[0]?.attributes.price_in_wei)) /
             Math.pow(10, 18)
           ).toFixed(3)}{" "}
           USD)
