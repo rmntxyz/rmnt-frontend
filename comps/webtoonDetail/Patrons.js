@@ -3,8 +3,10 @@ import ShowOrClose from "../../utils/showOrClose";
 import PatronCard from "./PatronCard";
 
 export default function Patrons({ avatars }) {
-  //Find the sold avatars
-  const sold = avatars.filter((avatar) => avatar.attributes.owned_by.data);
+  //Find the sold avatars & list them on the order of time of sale
+  const sold = avatars
+    .filter((avatar) => avatar.attributes.owned_by.data)
+    .sort((a, b) => a.attributes.sold_timestamp - b.attributes.sold_timestamp);
 
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
