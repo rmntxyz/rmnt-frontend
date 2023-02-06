@@ -6,10 +6,7 @@ import Avatar from "./Avatar";
 import Benefits from "./Benefits";
 import Patrons from "./Patrons";
 
-export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
-  //Store the value of the NFT to be used on the screen
-  const NFT = NFTs[0];
-
+export default function ProjectTab({ webtoon, avatars, exchangeRate }) {
   //Find if the text is truncated & display the "more/close" button if the text is truncated
   const [truncated, setTruncated] = useState(false);
 
@@ -23,19 +20,6 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
 
-  //Remove duplicate collectors from the array
-  const uniqueIds = [];
-  const uniqueUsers = users.filter((item) => {
-    if (item === null) return false;
-    else {
-      const isDuplicate = uniqueIds.includes(item.attributes.user_id);
-      if (!isDuplicate) {
-        uniqueIds.push(item.attributes.user_id);
-        return true;
-      }
-      return false;
-    }
-  });
   return (
     <div className="mx-8 my-8 flex flex-col gap-8">
       <div className="relative w-fit">
@@ -57,9 +41,9 @@ export default function ProjectTab({ webtoon, users, NFTs, exchangeRate }) {
         </div>
         <ShowOrClose truncated={truncated} show={show} setShow={setShow} />
       </div>
-      <Avatar NFT={NFT} exchangeRate={exchangeRate} webtoon={webtoon} />
+      <Avatar avatars={avatars} exchangeRate={exchangeRate} webtoon={webtoon} />
       <Benefits />
-      <Patrons uniqueUsers={uniqueUsers} webtoon={webtoon} />
+      <Patrons avatars={avatars} />
     </div>
   );
 }

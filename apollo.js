@@ -2,11 +2,11 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 // const defaultOptions = {
 //   watchQuery: {
-//     fetchPolicy: 'network-only',
+//     // fetchPolicy: 'network-only',
 //     errorPolicy: 'ignore',
 //   },
 //   query: {
-//     fetchPolicy: 'network-only',
+//     // fetchPolicy: 'network-only',
 //     errorPolicy: 'all',
 //   },
 // }

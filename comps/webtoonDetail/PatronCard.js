@@ -2,7 +2,7 @@ import { PolyFrameImage } from "../../utils/PolyFrameImage";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
-export default function PatronCard({ webtoon, user }) {
+export default function PatronCard({ item }) {
   return (
     <Tippy
       content={
@@ -10,24 +10,21 @@ export default function PatronCard({ webtoon, user }) {
           <div className="w-[66px]">
             <PolyFrameImage
               href={
-                user?.attributes.profile_image?.data
-                  ? user?.attributes.profile_image.data.attributes.url
+                item?.attributes.owned_by.data.attributes.profile_image?.data
+                  ? item?.attributes.owned_by.data.attributes.profile_image
+                      ?.data.attributes.url
                   : "/profile.png"
               }
             />
           </div>
           <span className="w-[99px] truncate font-normal">
-            {user.attributes.wallet_address}
+            {item.attributes.owned_by.data.attributes.wallet_address}
           </span>
         </div>
       }
     >
       <button>
-        <PolyFrameImage
-          href={
-            user.attributes.nfts.data[0].attributes.image.data[0].attributes.url
-          }
-        />
+        <PolyFrameImage href={item.attributes.image.data.attributes.url} />
       </button>
     </Tippy>
   );

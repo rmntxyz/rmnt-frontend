@@ -47,11 +47,37 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
-          # avatars(pagination: { limit: 200 }) {
-          #   data {
-          #     id
-          #   }
-          # }
+          avatars(pagination: { limit: 200 }) {
+            data {
+              id
+              attributes {
+                image {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                price_in_wei
+                sold_timestamp
+                owned_by {
+                  data {
+                    id
+                    attributes {
+                      wallet_address
+                      profile_image {
+                        data {
+                          attributes {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
           webtoon_pages(pagination: { limit: 200 }) {
             data {
               id
@@ -105,20 +131,6 @@ const GET_WEBTOON_DATA = gql`
                                 }
                               }
                             }
-                            nfts {
-                              data {
-                                id
-                                attributes {
-                                  image {
-                                    data {
-                                      attributes {
-                                        url
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
                           }
                         }
                       }
@@ -148,11 +160,10 @@ export async function getServerSideProps(context) {
     props: {
       exchangeRate: exchangeRate,
       webtoon: data.webtoon.data,
-      // avatars: data.webtoon.data.attributes.avatars.data,
+      avatars: data.webtoon.data.attributes.avatars.data,
       episodes: data.webtoon.data.attributes.webtoon_pages.data
         .slice()
         .sort((a, b) => a.attributes.page_number - b.attributes.page_number),
-      // .map((page) => page.attributes.page_image.data.attributes.url),
       NFTs: data.webtoon.data.attributes.webtoon_pages.data
         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
         .flat(1)
@@ -161,11 +172,11 @@ export async function getServerSideProps(context) {
         .sort(
           (a, b) => b.attributes.drop_timestamp - a.attributes.drop_timestamp
         ),
-      users: data.webtoon.data.attributes.webtoon_pages.data
-        .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-        .flat(1)
-        .filter((NFT) => !!NFT)
-        .map((NFT) => NFT.attributes.owned_by.data),
+      // users: data.webtoon.data.attributes.webtoon_pages.data
+      //   .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+      //   .flat(1)
+      //   .filter((NFT) => !!NFT)
+      //   .map((NFT) => NFT.attributes.owned_by.data),
     },
   };
 }
@@ -175,10 +186,8 @@ export default function WebtoonPage({
   webtoon,
   episodes,
   NFTs,
-  users,
-  // avatars
+  avatars,
 }) {
-  // console.log(avatars)
   return (
     <div>
       <Seo
@@ -188,10 +197,10 @@ export default function WebtoonPage({
         <Cover webtoon={webtoon} />
         <Tabs
           webtoon={webtoon}
-          users={users}
           NFTs={NFTs}
           exchangeRate={exchangeRate}
           episodes={episodes}
+          avatars={avatars}
         />
       </main>
     </div>

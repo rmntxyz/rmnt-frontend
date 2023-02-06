@@ -3,7 +3,7 @@ import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 import PriceAvail from "./PriceAvail";
 
-export default function Avatar({ NFT, exchangeRate, webtoon }) {
+export default function Avatar({ avatars, exchangeRate, webtoon }) {
   return (
     <div className="mt-7 flex flex-col gap-4">
       <div className="text-2xl font-bold">Digital Avatars</div>
@@ -33,7 +33,7 @@ export default function Avatar({ NFT, exchangeRate, webtoon }) {
           </div>
           <Line />
           <div>
-            <PriceAvail item={NFT} exchangeRate={exchangeRate} />
+            <PriceAvail avatars={avatars} exchangeRate={exchangeRate} />
             <button aria-label="Collect NFT" className="py-3 mt-8">
               <span className="px-8 py-3 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight font-bold rounded-3xl hover:bg-navBg hover:text-white duration-200">
                 Collect

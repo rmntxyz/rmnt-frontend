@@ -2,12 +2,15 @@ import { useState } from "react";
 import ShowOrClose from "../../utils/showOrClose";
 import PatronCard from "./PatronCard";
 
-export default function Patrons({ uniqueUsers, webtoon }) {
+export default function Patrons({ avatars }) {
+  //Find the sold avatars
+  const sold = avatars.filter((avatar) => avatar.attributes.owned_by.data);
+
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
 
   //Find if the list is truncated & display the "more/close" button if the text is truncated
-  const [truncated, setTruncated] = useState(uniqueUsers.length > 7);
+  const [truncated, setTruncated] = useState(sold.length > 7);
 
   return (
     <div className="mt-7 flex flex-col">
@@ -18,18 +21,18 @@ export default function Patrons({ uniqueUsers, webtoon }) {
       <div className="w-full h-px my-6 bg-white/10"></div>
       <div className="flex flex-col mb-6">
         <div className="grid grid-cols-3">
-          {uniqueUsers.slice(0, 3).map((user) => (
-            <PatronCard key={user.id} webtoon={webtoon} user={user} />
+          {sold.slice(0, 3).map((item) => (
+            <PatronCard key={item.id} item={item} />
           ))}
         </div>
         <div className="grid grid-cols-4">
-          {uniqueUsers.slice(3, 7).map((user) => (
-            <PatronCard key={user.id} webtoon={webtoon} user={user} />
+          {sold.slice(3, 7).map((item) => (
+            <PatronCard key={item.id} item={item} />
           ))}
         </div>
         <div className={`grid grid-cols-5 ${show ? "visible" : "hidden"}`}>
-          {uniqueUsers.slice(7).map((user) => (
-            <PatronCard key={user.id} webtoon={webtoon} user={user} />
+          {sold.slice(7).map((item) => (
+            <PatronCard key={item.id} item={item} />
           ))}
         </div>
       </div>

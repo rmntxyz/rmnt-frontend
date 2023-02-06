@@ -4,7 +4,13 @@ import CollectiblesTab from "./CollectiblesTab";
 import ProjectTab from "./ProjectTab";
 import WebtoonTab from "./WebtoonTab";
 
-export default function Tabs({ webtoon, users, NFTs, exchangeRate, episodes }) {
+export default function Tabs({
+  webtoon,
+  avatars,
+  NFTs,
+  exchangeRate,
+  episodes,
+}) {
   //Enable navigation between Project, Webtoon, Collection tabs
   const [openTab, setOpenTab] = useState(1);
 
@@ -77,8 +83,7 @@ export default function Tabs({ webtoon, users, NFTs, exchangeRate, episodes }) {
         <div className={openTab === 1 ? "block" : "hidden"}>
           <ProjectTab
             webtoon={webtoon}
-            users={users}
-            NFTs={NFTs}
+            avatars={avatars}
             exchangeRate={exchangeRate}
           />
         </div>
