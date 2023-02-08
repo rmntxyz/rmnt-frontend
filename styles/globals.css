@@ -34,19 +34,26 @@
     }
   }
 
-  stop {
+  .card:hover svg g {
+    stroke: url(#cardGradientHover);
+  }
+
+  .avatar:hover use {
+    stroke: url(#gradientHover);
+  }
+
+  #cardGradientHover stop:first-child,
+  #gradientHover stop:first-child {
+    animation-name: upperStopColor;
     animation-duration: 2s;
     animation-iteration-count: infinite;
   }
 
-  #avatar:hover stop:first-child,
-  .card:hover stop:first-child {
-    animation-name: upperStopColor;
-  }
-
-  #avatar:hover stop:last-child,
-  .card:hover stop:last-child {
+  #cardGradientHover stop:last-child,
+  #gradientHover stop:last-child {
     animation-name: lowerStopColor;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
   }
 }
 

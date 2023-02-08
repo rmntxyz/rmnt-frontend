@@ -1,8 +1,17 @@
 export const PolyFrameImage = ({ href }) => (
-  <svg id="avatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
+  <svg
+    id="avatar"
+    className="avatar"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 34 34"
+  >
     <image width="100%" height="100%" clipPath="url(#clip)" xlinkHref={href} />
     <defs>
       <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#70efcf" />
+        <stop offset="100%" stopColor="#cea671" />
+      </linearGradient>
+      <linearGradient id="gradientHover" x1="0%" y1="0%" x2="0%" y2="100%">
         <stop offset="0%" stopColor="#70efcf" />
         <stop offset="100%" stopColor="#cea671" />
       </linearGradient>

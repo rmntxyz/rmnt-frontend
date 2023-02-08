@@ -1,7 +1,6 @@
 export const PolyFrameCard = ({ href }) => (
-  <svg id="cardSVG" viewBox="0 0 238 340" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 238 340" xmlns="http://www.w3.org/2000/svg">
     <g
-      id="cardG"
       filter="url(#filter0_d_2449_5660)"
       stroke="url(#cardGradient)"
       strokeWidth="1"
@@ -25,6 +24,16 @@ export const PolyFrameCard = ({ href }) => (
         <use href="#cardPath" />
       </clipPath>
       <linearGradient id="cardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#70efcf" />
+        <stop offset="100%" stopColor="#cea671" />
+      </linearGradient>
+      <linearGradient
+        id="cardGradientHover"
+        x1="0%"
+        y1="0%"
+        x2="0%"
+        y2="100%"
+      >
         <stop offset="0%" stopColor="#70efcf" />
         <stop offset="100%" stopColor="#cea671" />
       </linearGradient>
