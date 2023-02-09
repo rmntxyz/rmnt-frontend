@@ -1,6 +1,6 @@
 import Image from "next/image";
+import { AvatarSVG } from "../../utils/AvatarSVG";
 import Line from "../../utils/Line";
-import { PolyFrameImage } from "../../utils/PolyFrameImage";
 
 export default function SmallItem({ item }) {
   const allAvatars = item.attributes.avatars?.data.length;
@@ -28,7 +28,7 @@ export default function SmallItem({ item }) {
       />
       <div className="absolute p-3 h-fit bottom-0 z-10 flex items-center w-full gap-3 rounded-bl-2xl rounded-br-2xl bg-black/50">
         <div className="w-1/4">
-          <PolyFrameImage
+          <AvatarSVG
             href={item.attributes.avatarGIF.data.attributes.url}
           />
         </div>

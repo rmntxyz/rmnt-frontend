@@ -34,12 +34,12 @@
     }
   }
 
-  .card:hover svg g {
-    stroke: url(#cardGradientHover);
+  /* .card:hover svg g {
+    stroke: url(#cardGradientHover) !important;
   }
 
   .avatar:hover svg use {
-    stroke: url(#gradientHover);
+    stroke: url(#gradientHover) !important;
   }
 
   #cardGradientHover stop:first-child,
@@ -54,7 +54,7 @@
     animation-name: lowerStopColor;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-  }
+  } */
 }
 
 /* for pop-up navigation buttons on episode page */
