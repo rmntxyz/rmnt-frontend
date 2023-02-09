@@ -1,4 +1,5 @@
-import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import getScrollPosition from "../../utils/getScrollPoisition";
 import CollectiblesTab from "./CollectiblesTab";
 import ProjectTab from "./ProjectTab";
@@ -11,11 +12,15 @@ export default function Tabs({
   exchangeRate,
   episodes,
 }) {
-  //Enable navigation between Project, Webtoon, Collection tabs
-  const [openTab, setOpenTab] = useState(1);
-
   //Get scroll position to fix the tab list
   const { scrollPosition, elementHeight } = getScrollPosition();
+
+  //Enable navigation between Project, Webtoon, Collection tabs
+  const { query } = useRouter();
+
+  const isTabOneSelected = !!query.tabOne;
+  const isTabTwoSelected = !!query.tabTwo;
+  const isTabThreeSelected = !!query.tabThree;
 
   return (
     <div>
@@ -27,70 +32,79 @@ export default function Tabs({
         }`}
       >
         <li className="ml-4">
-          <button
-            className={`text-lg py-4 px-5
-                  ${openTab === 1 ? "font-bold" : "text-white/50"}`}
-            onClick={(e) => {
-              setOpenTab(1);
-            }}
-            aria-label="View Project"
+          <Link
+            shallow
+            href={"/webtoons/" + webtoon.id + "?tabOne=true"}
+            isSelected={isTabOneSelected}
           >
-            Project
-          </button>
+            <a
+              className={`text-lg py-4 px-5
+                  ${isTabOneSelected ? "font-bold" : "text-white/50"}`}
+              aria-label="View Project"
+            >
+              Project
+            </a>
+          </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
-              openTab === 1 ? "visible" : "invisible"
+              isTabOneSelected ? "visible" : "invisible"
             }`}
           ></div>
         </li>
         <li>
-          <button
-            className={`text-lg py-4 px-5
-               ${openTab === 2 ? "font-bold" : "text-white/50"}`}
-            onClick={(e) => {
-              setOpenTab(2);
-            }}
-            aria-label="View Webtoon"
+          <Link
+            shallow
+            href={"/webtoons/" + webtoon.id + "?tabTwo=true"}
+            isSelected={isTabTwoSelected}
           >
-            Webtoon
-          </button>
+            <a
+              className={`text-lg py-4 px-5
+               ${isTabTwoSelected ? "font-bold" : "text-white/50"}`}
+              aria-label="View Webtoon"
+            >
+              Webtoon
+            </a>
+          </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
-              openTab === 2 ? "visible" : "invisible"
+              isTabTwoSelected ? "visible" : "invisible"
             }`}
           ></div>
         </li>
         <li>
-          <button
-            className={`text-lg py-4 px-5
-               ${openTab === 3 ? "font-bold" : "text-white/50"}`}
-            onClick={(e) => {
-              setOpenTab(3);
-            }}
-            aria-label="View Collectibles"
+          <Link
+            shallow
+            href={"/webtoons/" + webtoon.id + "?tabThree=true"}
+            isSelected={isTabThreeSelected}
           >
-            Collectibles
-          </button>
+            <a
+              className={`text-lg py-4 px-5
+               ${isTabThreeSelected ? "font-bold" : "text-white/50"}`}
+              aria-label="View Collectibles"
+            >
+              Collectibles
+            </a>
+          </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
-              openTab === 3 ? "visible" : "invisible"
+              isTabThreeSelected ? "visible" : "invisible"
             }`}
           ></div>
         </li>
         <div className="absolute bottom-0 w-full h-px bg-white/10"></div>
       </ul>
       <div className={`${scrollPosition > elementHeight + 80 ? "pt-16" : ""}`}>
-        <div className={openTab === 1 ? "block" : "hidden"}>
+        <div id="tabOne" className={isTabOneSelected ? "block" : "hidden"}>
           <ProjectTab
             webtoon={webtoon}
             avatars={avatars}
             exchangeRate={exchangeRate}
           />
         </div>
-        <div className={openTab === 2 ? "block" : "hidden"}>
+        <div id="tabTwo" className={isTabTwoSelected ? "block" : "hidden"}>
           <WebtoonTab episodes={episodes} webtoon={webtoon} />
         </div>
-        <div className={openTab === 3 ? "block" : "hidden"}>
+        <div id="tabThree" className={isTabThreeSelected ? "block" : "hidden"}>
           <CollectiblesTab NFTs={NFTs} exchangeRate={exchangeRate} />
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function SmallItem({ item }) {
   //   .sort((a, b) => b.attributes.drop_timestamp - a.attributes.drop_timestamp);
   // const avatarUrl = NFTs[0].attributes.image.data[0].attributes.url;
   return (
-    <a href={"/webtoons/" + item.id} className="relative">
+    <a href={"/webtoons/" + item.id + "?tabOne=true"} className="relative">
       <Image
         src={item.attributes.cover_image.data.attributes.url}
         width={704}

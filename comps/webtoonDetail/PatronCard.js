@@ -62,7 +62,7 @@ export default function PatronCard({ item }) {
       //   </div>
       // }
     >
-      <button>
+      <button className="avatar">
         <PolyFrameImage href={item.attributes.image.data.attributes.url} />
       </button>
     </Tippy>

@@ -1,7 +1,5 @@
 export const PolyFrameImage = ({ href }) => (
   <svg
-    id="avatar"
-    className="avatar"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 34 34"
   >

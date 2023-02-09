@@ -38,7 +38,7 @@
     stroke: url(#cardGradientHover);
   }
 
-  .avatar:hover use {
+  .avatar:hover svg use {
     stroke: url(#gradientHover);
   }
 
