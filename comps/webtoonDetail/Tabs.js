@@ -38,11 +38,10 @@ export default function Tabs({
             isSelected={isTabOneSelected}
           >
             <a
-              className={`text-lg py-4 px-5
-                  ${isTabOneSelected ? "font-bold" : "text-white/50"}`}
+              className={`${isTabOneSelected ? "font-bold" : "text-white/50"}`}
               aria-label="View Project"
             >
-              Project
+              <div className="text-lg py-4 px-5">Project</div>
             </a>
           </Link>
           <div
@@ -58,11 +57,10 @@ export default function Tabs({
             isSelected={isTabTwoSelected}
           >
             <a
-              className={`text-lg py-4 px-5
-               ${isTabTwoSelected ? "font-bold" : "text-white/50"}`}
+              className={`${isTabTwoSelected ? "font-bold" : "text-white/50"}`}
               aria-label="View Webtoon"
             >
-              Webtoon
+              <div className="text-lg py-4 px-5">Webtoon</div>
             </a>
           </Link>
           <div
@@ -78,11 +76,12 @@ export default function Tabs({
             isSelected={isTabThreeSelected}
           >
             <a
-              className={`text-lg py-4 px-5
-               ${isTabThreeSelected ? "font-bold" : "text-white/50"}`}
+              className={`${
+                isTabThreeSelected ? "font-bold" : "text-white/50"
+              }`}
               aria-label="View Collectibles"
             >
-              Collectibles
+              <div className="text-lg py-4 px-5">Collectibles</div>
             </a>
           </Link>
           <div
