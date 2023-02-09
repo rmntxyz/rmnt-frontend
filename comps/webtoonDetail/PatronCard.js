@@ -1,6 +1,5 @@
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
+import Tippy from "@tippyjs/react/headless";
 
 export default function PatronCard({ item }) {
   //Find the date of sale
@@ -12,8 +11,13 @@ export default function PatronCard({ item }) {
 
   return (
     <Tippy
-      content={
-        <div className="flex p-3 gap-2">
+      render={(attrs) => (
+        <div
+          {...attrs}
+          id="tooltip"
+          className="tooltip flex p-3 gap-2"
+          role="tooltip"
+        >
           <div className="w-[66px]">
             <PolyFrameImage
               href={
@@ -32,8 +36,31 @@ export default function PatronCard({ item }) {
               {item.attributes.owned_by.data.attributes.wallet_address}
             </div>
           </div>
+          <div id="arrow" className="arrow" data-popper-arrow=""></div>
         </div>
-      }
+      )}
+      // content={
+      //   <div className="flex p-3 gap-2">
+      //     <div className="w-[66px]">
+      //       <PolyFrameImage
+      //         href={
+      //           item?.attributes.owned_by.data.attributes.profile_image?.data
+      //             ? item?.attributes.owned_by.data.attributes.profile_image
+      //                 ?.data.attributes.url
+      //             : "/profile.png"
+      //         }
+      //       />
+      //     </div>
+      //     <div>
+      //       <div className="text-white/70 text-sm">
+      //         {month}/{date}/{year}
+      //       </div>
+      //       <div className="w-[99px] truncate font-normal">
+      //         {item.attributes.owned_by.data.attributes.wallet_address}
+      //       </div>
+      //     </div>
+      //   </div>
+      // }
     >
       <button>
         <PolyFrameImage href={item.attributes.image.data.attributes.url} />

@@ -111,3 +111,44 @@
   line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+/* for tooltips */
+#tooltip {
+  background-color: #333333;
+  border-radius: 4px;
+  position: relative;
+}
+
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
+}
+
+#tooltip[data-placement^="top"] > #arrow {
+  bottom: -4px;
+}
+
+#tooltip[data-placement^="bottom"] > #arrow {
+  top: -4px;
+}
+
+#tooltip[data-placement^="left"] > #arrow {
+  right: -4px;
+}
+
+#tooltip[data-placement^="right"] > #arrow {
+  left: -4px;
+}
