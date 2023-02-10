@@ -23,6 +23,7 @@ const GET_WEBTOON_DATA = gql`
           }
           avatarGIF {
             data {
+              id
               attributes {
                 url
               }

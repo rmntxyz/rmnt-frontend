@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import ShowOrClose from "../../utils/showOrClose";
+import ShowOrClose from "../../../utils/showOrClose";
 import Avatar from "./Avatar";
 import Benefits from "./Benefits";
 import Patrons from "./Patrons";

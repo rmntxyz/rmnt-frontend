@@ -2,7 +2,7 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isImage } from "../../utils/mediaType";
 import { OpenSea } from "../../utils/svgs";
-import { CollectibleSVG } from "../../utils/CollectibleSVG";
+import { PolyFrameCard } from "../../utils/PolyFrameCard";
 import Line from "../../utils/Line";
 
 export default function CollectiblesTab({ NFTs, exchangeRate }) {
@@ -14,7 +14,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
         <span className="text-lg">New NFTs are on the way—stay tuned!</span>
       ) : (
         NFTs.map(
-          (item) => (
+          (item, idx) => (
             (NFTUrl = item.attributes.image.data[0].attributes.url),
             (
               <div
@@ -27,7 +27,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                 // className="gradientBorder-2 overflow-hidden"
                 className="card relative overflow-hidden min-w-fit min-h-fit"
               >
-                <CollectibleSVG
+                <PolyFrameCard
                   href={
                     isImage.includes(
                       NFTUrl.split(".")[NFTUrl.split(".").length - 1]
@@ -35,6 +35,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                       ? NFTUrl
                       : item.attributes.thumbnail.data.attributes.url
                   }
+                  idx={idx}
                 />
                 <div className="flex flex-col absolute h-full w-full rounded-lg top-0 left-0">
                   <div className="relative aspect-square">

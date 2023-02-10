@@ -1,6 +1,6 @@
 import Tippy from "@tippyjs/react/headless";
-import "tippy.js/dist/tippy.css";
-import { PatronSVG } from "../../utils/PatronSVG";
+// import "tippy.js/dist/tippy.css";
+import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 
 export default function PatronCard({ item }) {
   //Find the date of sale
@@ -9,7 +9,6 @@ export default function PatronCard({ item }) {
   const month = dateTime.getMonth() + 1;
   const date = dateTime.getDate();
   // const fullDate = dateTime.toDateString().slice(4);
-
   return (
     <Tippy
       interactive="true"
@@ -21,13 +20,14 @@ export default function PatronCard({ item }) {
           role="tooltip"
         >
           <div className="w-[66px]">
-            <PatronSVG
+            <PolyFrameImage
               href={
                 item?.attributes.owned_by.data.attributes.profile_image?.data
                   ? item?.attributes.owned_by.data.attributes.profile_image
                       ?.data.attributes.url
                   : "/profile.png"
               }
+              idx="tippy"
             />
           </div>
           <div>
@@ -65,7 +65,7 @@ export default function PatronCard({ item }) {
       // }
     >
       <button className="avatar">
-        <PatronSVG
+        <PolyFrameImage
           idx={item.id}
           href={item.attributes.image.data.attributes.url}
         />

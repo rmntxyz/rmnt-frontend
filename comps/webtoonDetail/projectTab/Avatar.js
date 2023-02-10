@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Line from "../../utils/Line";
-import { AvatarSVG } from "../../utils/AvatarSVG";
+import Line from "../../../utils/Line";
+import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 import PriceAvail from "./PriceAvail";
 
 export default function Avatar({ avatars, exchangeRate, webtoon }) {
@@ -9,7 +9,10 @@ export default function Avatar({ avatars, exchangeRate, webtoon }) {
       <div className="text-2xl font-bold">Digital Avatars</div>
       <div className="flex flex-col gap-8 sm:flex-row">
         <div className="w-full aspect-square">
-          <AvatarSVG href={webtoon.attributes.avatarGIF.data.attributes.url} />
+          <PolyFrameImage
+            href={webtoon.attributes.avatarGIF.data.attributes.url}
+            idx="gif"
+          />
         </div>
         <div className="w-full flex flex-col gap-6">
           <div className="flex flex-col gap-px">

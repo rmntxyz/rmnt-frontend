@@ -1,8 +1,8 @@
-export const CollectibleSVG = ({ href }) => (
+export const PolyFrameCard = ({ href, idx }) => (
   <svg viewBox="0 0 238 340" xmlns="http://www.w3.org/2000/svg">
     <g
-      filter="url(#filter0_d_2449_5660)"
-      stroke="url(#cardGradient)"
+      filter={"url(#filter0_d_2449_5660" + idx + ")"}
+      stroke={"url(#cardGradient" + idx + ")"}
       strokeWidth="1"
       fill="white"
       fillOpacity="0.04"
@@ -11,19 +11,25 @@ export const CollectibleSVG = ({ href }) => (
         xlinkHref={href}
         width="100%"
         height="68%"
-        clipPath="url(#imageClip)"
+        clipPath={"url(#imageClip" + idx + ")"}
       />
       <path
-        id="cardPath"
+        id={"cardPath" + idx}
         d="M232 13C232 8.58172 228.418 5 224 5H14C9.58172 5 6 8.58173 6 13V328C6 332.418 9.58173 336 14 336H176.726C178.407 336 180.045 335.47 181.408 334.486L228.683 300.359C230.766 298.855 232 296.442 232 293.873V13Z"
         shapeRendering="crispEdges"
       />
     </g>
     <defs>
-      <clipPath id="imageClip">
-        <use href="#cardPath" />
+      <clipPath id={"imageClip" + idx}>
+        <use href={"#cardPath" + idx} />
       </clipPath>
-      <linearGradient id="cardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <linearGradient
+        id={"cardGradient" + idx}
+        x1="0%"
+        y1="0%"
+        x2="0%"
+        y2="100%"
+      >
         <stop offset="0%" stopColor="#70efcf" />
         <stop offset="100%" stopColor="#cea671" />
       </linearGradient>
@@ -32,7 +38,7 @@ export const CollectibleSVG = ({ href }) => (
         <stop offset="100%" stopColor="#cea671" />
       </linearGradient>
       <filter
-        id="filter0_d_2449_5660"
+        id={"filter0_d_2449_5660" + idx}
         x="0"
         y="0"
         width="246"

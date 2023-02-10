@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import getScrollPosition from "../../utils/getScrollPoisition";
 import CollectiblesTab from "./CollectiblesTab";
-import ProjectTab from "./ProjectTab";
+import ProjectTab from "./projectTab/ProjectTab";
 import WebtoonTab from "./WebtoonTab";
 
 export default function Tabs({

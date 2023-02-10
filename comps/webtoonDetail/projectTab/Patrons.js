@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ShowOrClose from "../../utils/showOrClose";
+import ShowOrClose from "../../../utils/showOrClose";
 import PatronCard from "./PatronCard";
 
 export default function Patrons({ avatars }) {

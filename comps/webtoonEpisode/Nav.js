@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { House } from "../../utils/svgs";
-import Toggle from "../webtoonDetail/Toggle";
+import Toggle from "../webtoonEpisode/Toggle";
 
 export default function Nav({ episode, webtoon, prevUrl }) {
   //Use router to enable navigation

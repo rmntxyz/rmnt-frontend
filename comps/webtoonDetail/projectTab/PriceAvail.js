@@ -1,4 +1,4 @@
-import { Eth } from "../../utils/svgs";
+import { Eth } from "../../../utils/svgs";
 
 export default function PriceAvail({ avatars, exchangeRate }) {
   //Determine the number of all avatars and available avatars
