@@ -18,7 +18,8 @@ export default function Tabs({
   //Enable navigation between Project, Webtoon, Collection tabs
   const { query } = useRouter();
 
-  const isTabOneSelected = !!query.tabOne;
+  const isTabOneSelected =
+    !!query.tabOne || (!query.tabOne && !query.tabTwo && !query.tabThree);
   const isTabTwoSelected = !!query.tabTwo;
   const isTabThreeSelected = !!query.tabThree;
 
