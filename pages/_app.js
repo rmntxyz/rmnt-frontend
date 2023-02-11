@@ -4,19 +4,20 @@ import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
   RainbowKitProvider,
-  lightTheme,
+  darkTheme,
 } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createClient, WagmiConfig, chain } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
+import {mainnet, goerli} from "wagmi/chains"
 
 //Enable wallet connection
 const { chains, provider } = configureChains(
-  [chain.mainnet, chain.goerli, chain.polygon, chain.optimism, chain.arbitrum],
+  [ mainnet, goerli ],
   [
-    alchemyProvider({ alchemyId: "Ajppi54_lVhZ8_x1KIH1-xxm4V9a3kRJ" }),
+    alchemyProvider({ apiKey: "Ajppi54_lVhZ8_x1KIH1-xxm4V9a3kRJ" }),
     publicProvider(),
   ]
 );
@@ -35,7 +36,13 @@ function MyApp({ Component, pageProps }) {
     <ApolloProvider client={client}>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider
-          theme={lightTheme({ accentColor: "#0C0C0C" })}
+          theme={darkTheme({ 
+            accentColor: '#7b3fe4',
+            accentColorForeground: 'white',
+            borderRadius: 'small',
+            fontStack: 'system',
+            overlayBlur: 'small'
+          })}
           chains={chains}
         >
           <Layout>
