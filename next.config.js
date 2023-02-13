@@ -7,11 +7,11 @@ module.exports = {
     domains: ["storage.googleapis.com"],
   },
   async rewrites() {
-   return [
-     {
-       source: '/webtoons/:webtoonId/:tabName',
-       destination: '/webtoons/:webtoonId?tab=:tabName'
-     },
-   ]
+    return [
+      {
+        source: "/webtoons/:webtoonId/:tabName",
+        destination: "/webtoons/:webtoonId?tab=:tabName",
+      },
+    ];
   },
 };

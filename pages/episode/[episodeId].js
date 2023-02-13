@@ -1,14 +1,14 @@
 import { gql } from "@apollo/client";
-import client from "../../../../apollo";
-import Seo from "../../../../comps/layout/SEO";
-import Nav from "../../../../comps/webtoonEpisode/Nav";
-import hideOrPaint from "../../../../utils/hideOrPaint";
-import CurrentEpisode from "../../../../comps/webtoonEpisode/CurrentEpisode";
-import Buttons from "../../../../comps/webtoonEpisode/Buttons";
+import client from "../../apollo";
+import Seo from "../../comps/layout/SEO";
+import Nav from "../../comps/webtoonEpisode/Nav";
+import hideOrPaint from "../../utils/hideOrPaint";
+import CurrentEpisode from "../../comps/webtoonEpisode/CurrentEpisode";
+import Buttons from "../../comps/webtoonEpisode/Buttons";
 
 const GET_EPISODE_DATA = gql`
-  query Webtoon_Page($id: ID) {
-    webtoonPage(id: $id) {
+  query Webtoon_Page($id: String) {
+    webtoonPages(filters: { webtoon_page_id: { eq: $id } }) {
       data {
         id
         attributes {
@@ -27,6 +27,7 @@ const GET_EPISODE_DATA = gql`
             data {
               id
               attributes {
+                webtoon_id
                 title
                 cover_image {
                   data {
@@ -55,20 +56,25 @@ const GET_EPISODE_DATA = gql`
 
 export async function getServerSideProps(context) {
   const { episodeId } = context.query;
-  const { data } = await client.query({
+  const {
+    data: { webtoonPages },
+  } = await client.query({
     query: GET_EPISODE_DATA,
     variables: {
       id: episodeId,
     },
   });
+
+  const webtoonPage = webtoonPages.data[0];
+
   const prevUrl = context.req.headers.referer;
   return {
     props: {
       prevUrl: prevUrl || null,
-      webtoon: data.webtoonPage.data.attributes.webtoon_id.data,
-      episode: data.webtoonPage.data.attributes,
+      webtoon: webtoonPage.attributes.webtoon_id.data,
+      episode: webtoonPage.attributes,
       allEpisodes:
-        data.webtoonPage.data.attributes.webtoon_id.data.attributes.webtoon_pages.data
+        webtoonPage.attributes.webtoon_id.data.attributes.webtoon_pages.data
           .slice()
           .sort((a, b) => a.attributes.page_number - b.attributes.page_number),
     },

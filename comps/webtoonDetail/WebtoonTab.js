@@ -9,7 +9,14 @@ export default function WebtoonTab({ webtoon, episodes }) {
       </div>
       <div className="grid grid-cols-3 gap-3.5">
         {episodes.map((item, idx) => (
-          <a key={idx} href={"/webtoons/episode/" + item.id}>
+          <a
+            key={idx}
+            href={
+              // "/webtoons/" +
+              // webtoon.attributes.webtoon_id +
+              "/episode/" + item.attributes.webtoon_page_id
+            }
+          >
             <Image
               src={webtoon.attributes.cover_image.data.attributes.url}
               width={768}
