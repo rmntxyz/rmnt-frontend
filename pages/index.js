@@ -53,71 +53,9 @@ const GET_HOME_DATA = gql`
               }
             }
           }
-          webtoon_pages(pagination: { limit: 200 }) {
-            data {
-              attributes {
-                nfts {
-                  data {
-                    id
-                    attributes {
-                      drop_timestamp
-                      sold_timestamp
-                      # timeRemaining
-                      image {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                      thumbnail {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+        } 
       }
     }
-    # artists(pagination: { page: 1, pageSize: 7 }) {
-    #   data {
-    #     id
-    #     attributes {
-    #       first_name
-    #       profile_image {
-    #         data {
-    #           attributes {
-    #             url
-    #           }
-    #         }
-    #       }
-    #     }
-    #   }
-    # }
-    # webtoonUsers(pagination: { page: 1, pageSize: 7 }) {
-    #   data {
-    #     id
-    #     attributes {
-    #       user_id
-    #       first_name
-    #       wallet_address
-    #       profile_image {
-    #         data {
-    #           attributes {
-    #             url
-    #           }
-    #         }
-    #       }
-    #     }
-    #   }
-    # }
   }
 `;
 

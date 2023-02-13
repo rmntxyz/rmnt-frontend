@@ -1,9 +1,9 @@
-import { getExchangeRate } from "../api/USD_ETH";
-import client from "../../apollo";
+import { getExchangeRate } from "../../api/USD_ETH";
+import client from "../../../apollo";
 import { gql } from "@apollo/client";
-import Seo from "../../comps/layout/SEO";
-import Tabs from "../../comps/webtoonDetail/Tabs";
-import Cover from "../../comps/webtoonDetail/Cover";
+import Seo from "../../../comps/layout/SEO";
+import Tabs from "../../../comps/webtoonDetail/Tabs";
+import Cover from "../../../comps/webtoonDetail/Cover";
 
 const GET_WEBTOON_DATA = gql`
 query Webtoon($id: String) {
@@ -160,7 +160,8 @@ export async function getServerSideProps(context) {
   });
 
   const webtoon = webtoons.data[0];
-  console.log(webtoon);
+  // console.log(webtoon);
+
 
   return {
     props: {
@@ -197,7 +198,7 @@ export default function WebtoonPage({
   return (
     <div>
       <Seo
-        title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
+        // title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
       />
       <main className="max-w-[768px] mx-auto overflow-hidden md:max-w-[630px]">
         <Cover webtoon={webtoon} />

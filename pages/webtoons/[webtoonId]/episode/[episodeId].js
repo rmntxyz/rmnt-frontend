@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
-import client from "../../../apollo";
-import Seo from "../../../comps/layout/SEO";
-import Nav from "../../../comps/webtoonEpisode/Nav";
-import hideOrPaint from "../../../utils/hideOrPaint";
-import CurrentEpisode from "../../../comps/webtoonEpisode/CurrentEpisode";
-import Buttons from "../../../comps/webtoonEpisode/Buttons";
+import client from "../../../../apollo";
+import Seo from "../../../../comps/layout/SEO";
+import Nav from "../../../../comps/webtoonEpisode/Nav";
+import hideOrPaint from "../../../../utils/hideOrPaint";
+import CurrentEpisode from "../../../../comps/webtoonEpisode/CurrentEpisode";
+import Buttons from "../../../../comps/webtoonEpisode/Buttons";
 
 const GET_EPISODE_DATA = gql`
   query Webtoon_Page($id: ID) {
