@@ -1,5 +1,8 @@
 import { gql } from "@apollo/client";
 import client from "../apollo";
+import AboutBottom from "../comps/home/AboutBottom";
+import AboutTop from "../comps/home/AboutTop";
+import Artists from "../comps/home/Artists";
 import List from "../comps/home/List";
 import Seo from "../comps/layout/SEO";
 
@@ -53,7 +56,22 @@ const GET_HOME_DATA = gql`
               }
             }
           }
-        } 
+        }
+      }
+    }
+    artists(pagination: { page: 1, pageSize: 6 }) {
+      data {
+        id
+        attributes {
+          first_name
+          profile_image {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -92,19 +110,21 @@ export async function getServerSideProps() {
       //         .map((NFT) => NFT.attributes.drop_timestamp)
       //     )
       // ),
-      // artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
+      artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
     },
   };
 }
 
-export default function Home({ webtoons }) {
+export default function Home({ webtoons, artists }) {
+  console.log(artists);
   return (
     <div>
       <Seo title="Rarement" />
       <main className="max-w-[768px] mx-auto px-4 md:max-w-[630px]">
         <List data={webtoons} />
-        {/* <AboutTop />
-        <AboutBottom artists={artists} /> */}
+        <AboutTop />
+        <Artists artists={artists} />
+        <AboutBottom />
       </main>
     </div>
   );
