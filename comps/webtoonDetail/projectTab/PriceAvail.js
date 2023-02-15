@@ -29,11 +29,8 @@ export default function PriceAvail({ avatars, exchangeRate }) {
           <span className="text-sm text-white/50 ml-1">(Soldout)</span>
         ) : (
           <div>
-            <span className="font-bold"></span>
-            <span>
-              {available}/{all}
-            </span>
-            <span className="text-sm text-white/50 ml-1">(Available)</span>
+            <span className="font-bold">Availability {available}</span>
+            <span>/{all}</span>
           </div>
         )}
       </div>

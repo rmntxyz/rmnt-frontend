@@ -62,7 +62,8 @@ export default function ListItem({ item }) {
 
           <Line />
           <div>
-            Available {availableAvatars}/{allAvatars}
+            <span className="font-bold">Availability {availableAvatars}</span>
+            <span>/{allAvatars}</span>
           </div>
         </div>
       </div>
