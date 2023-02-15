@@ -6,14 +6,17 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import scrollToTop from "../../utils/scrollToTop";
 
-export default function Buttons({ episode, allEpisodes }) {
+export default function Buttons({ webtoon, episode, allEpisodes }) {
   return (
     <div id="buttons" className="fixed w-full bottom-0 duration-200">
       <div className="relative max-w-[768px] md:max-w-[630px]">
         <div className="flex items-center justify-center gap-8 py-8 font-bold">
           <a
             href={
-              "/webtoons/episode/" + allEpisodes[episode.page_number - 2]?.id
+              "/webtoons/" +
+              webtoon.attributes.webtoon_id +
+              "/episode/" +
+              allEpisodes[episode.page_number - 2]?.attributes.page_number
             }
             style={{
               display: allEpisodes[episode.page_number - 2] ? "block" : "none",
@@ -24,7 +27,12 @@ export default function Buttons({ episode, allEpisodes }) {
             Ep.{episode.page_number - 1}
           </a>
           <a
-            href={"/webtoons/episode/" + allEpisodes[episode.page_number]?.id}
+            href={
+              "/webtoons/" +
+              webtoon.attributes.webtoon_id +
+              "/episode/" +
+              allEpisodes[episode.page_number]?.attributes.page_number
+            }
             style={{
               display: allEpisodes[episode.page_number] ? "block" : "none",
             }}

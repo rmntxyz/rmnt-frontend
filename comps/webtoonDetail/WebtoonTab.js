@@ -12,9 +12,10 @@ export default function WebtoonTab({ webtoon, episodes }) {
           <a
             key={idx}
             href={
-              // "/webtoons/" +
-              // webtoon.attributes.webtoon_id +
-              "/episode/" + item.attributes.webtoon_page_id
+              "/webtoons/" +
+              webtoon.attributes.webtoon_id +
+              "/episode/" +
+              item.attributes.page_number
             }
           >
             <Image

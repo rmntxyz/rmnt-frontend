@@ -158,7 +158,7 @@ export async function getServerSideProps(context) {
     variables: {
       id: webtoonId,
     },
-    fetchPolicy: "network-only",
+    // fetchPolicy: "network-only",
   });
 
   const webtoon = webtoons.data[0];
