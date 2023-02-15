@@ -28,10 +28,12 @@ export default function hideOrPaint() {
       document.getElementById("navbar")?.style.top = "0";
       document.getElementById("navbar")?.style.opacity = "1";
       document.getElementById("buttons")?.style.opacity = "1";
+      document.getElementById("buttons")?.style.pointerEvents = "auto";
     } else {
       document.getElementById("navbar")?.style.top = "-80px";
       document.getElementById("navbar")?.style.opacity = "0";
       document.getElementById("buttons")?.style.opacity = "0";
+      document.getElementById("buttons")?.style.pointerEvents = "none";
     }
     return () => {
       window.removeEventListener("scroll", handleScroll);

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
 import Seo from "../../comps/layout/SEO";
-// import Desc from "../../comps/profile/Desc";
+import Desc from "../../comps/profile/Desc";
 // import NFT from "../../comps/profile/NFT";
 // import Webtoons from "../../comps/profile/Webtoons";
 
@@ -14,9 +14,9 @@ const GET_ARTIST_DATA = gql`
           first_name
           description
           email
-          # instagram
-          # twitter
-          # opensea
+          instagram
+          twitter
+          opensea
           wallet_address
           profile_image {
             data {
@@ -131,28 +131,27 @@ export async function getServerSideProps(context) {
   return {
     props: {
       artist: artist,
-      //   webtoons: artist.attributes.webtoon_ids.data,
-      //   NFTs: artist.attributes.webtoon_ids.data
-      //     .map((webtoon) => webtoon.attributes.webtoon_pages.data)
-      //     .flat(1)
-      //     .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-      //     .flat(1)
-      //     .filter((NFT) => !!NFT)
-      //     .sort((a, b) => a.id - b.id)
-      //     .sort(
-      //       (a, b) => a.attributes.drop_timestamp - b.attributes.drop_timestamp
-      //     ),
+      webtoons: artist.attributes.webtoon_ids.data,
+      NFTs: artist.attributes.webtoon_ids.data
+        .map((webtoon) => webtoon.attributes.webtoon_pages.data)
+        .flat(1)
+        .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
+        .flat(1)
+        .filter((NFT) => !!NFT)
+        .sort((a, b) => a.id - b.id)
+        .sort(
+          (a, b) => a.attributes.drop_timestamp - b.attributes.drop_timestamp
+        ),
     },
   };
 }
 
-export default function Artist({ artist, artists, webtoons, NFTs }) {
+export default function Artist({ artist, webtoons, NFTs }) {
   return (
-    <div className="overflow-x-hidden">
+    <div className="bg-white text-ourBlack">
       <Seo title={artist.attributes.first_name} />
       <main>
-        {artist.attributes.first_name}
-        {/* <Desc props={artist} /> */}
+        <Desc props={artist} />
         {/* <Webtoons
           webtoons={webtoons}
           NFTs={NFTs}

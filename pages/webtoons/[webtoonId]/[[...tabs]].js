@@ -80,6 +80,22 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
+          characters {
+            data {
+              id
+              attributes {
+                image {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                name
+                description
+              }
+            }
+          }
           webtoon_pages(pagination: { limit: 200 }) {
             data {
               id

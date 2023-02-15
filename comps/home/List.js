@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import getScreenSize from "../../utils/getScreenSize";
 import ListItem from "./ListItem";
 import SmallItem from "./SmallItem";
 
@@ -23,18 +25,31 @@ export default function List({ data }) {
   //   setCurrentPage(currentPage - 1);
   // };
 
+  //Get screen size to determine the layout
+  const screenWidth = getScreenSize();
+
   return (
-    <div className="grid grid-cols-1 gap-3">
-      <div className="grid grid-cols-1 gap-3">
-        {data.slice(0, 1).map((item) => (
-          <ListItem key={item.id} item={item} />
-        ))}
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        {data.slice(1).map((item) => (
-          <SmallItem key={item.id} item={item} />
-        ))}
-      </div>
+    <div>
+      {screenWidth >= 640 ? (
+        <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-3">
+            {data.slice(0, 1).map((item) => (
+              <ListItem key={item.id} item={item} />
+            ))}
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {data.slice(1).map((item) => (
+              <SmallItem key={item.id} item={item} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-3">
+          {data.map((item) => (
+            <SmallItem key={item.id} item={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

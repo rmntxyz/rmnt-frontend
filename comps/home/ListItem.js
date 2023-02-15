@@ -15,17 +15,19 @@ export default function ListItem({ item }) {
   //   .sort((a, b) => b.attributes.drop_timestamp - a.attributes.drop_timestamp);
   // const avatarUrl = NFTs[0].attributes.image.data[0].attributes.url;
   return (
-    <a href={"/webtoons/" + item.attributes.webtoon_id} className="relative">
-      <Image
-        src={item.attributes.cover_image.data.attributes.url}
-        width={704}
-        height={704}
-        layout="responsive"
-        placeholder="blur"
-        blurDataURL={item.attributes.cover_image.data.attributes.url}
-        className="rounded-2xl"
-        alt="Rarement Webtoon Cover Image"
-      />
+    <div className="relative">
+      <a href={"/webtoons/" + item.attributes.webtoon_id}>
+        <Image
+          src={item.attributes.cover_image.data.attributes.url}
+          width={704}
+          height={704}
+          layout="responsive"
+          placeholder="blur"
+          blurDataURL={item.attributes.cover_image.data.attributes.url}
+          className="rounded-2xl"
+          alt="Rarement Webtoon Cover Image"
+        />
+      </a>
       <div className="absolute p-4 h-fit bottom-0 z-10 flex items-center w-full gap-4 rounded-bl-2xl rounded-br-2xl bg-black/50">
         <div className="w-1/5">
           <PolyFrameImage
@@ -33,30 +35,37 @@ export default function ListItem({ item }) {
             idx={item.attributes.avatarGIF.data.id}
           />
         </div>
-        <div className="w-4/5 flex flex-col gap-3">
-          <div>
-            <div>Created by</div>
-            <div className="flex gap-1.5 items-center">
-              <Image
-                src={
-                  item.attributes.artist_id.data.attributes.profile_image.data
-                    .attributes.url
-                }
-                width={33}
-                height={33}
-                className="rounded-full"
-              />
-              <span className="text-2xl font-bold truncate">
+        <div className="w-4/5 flex flex-col gap-3 text-lg">
+          <div className="flex gap-1.5 items-center">
+            <Image
+              src={
+                item.attributes.artist_id.data.attributes.profile_image.data
+                  .attributes.url
+              }
+              width={33}
+              height={33}
+              className="rounded-full"
+            />
+            <a
+              href={
+                "/artists/" +
+                item.attributes.artist_id.data.attributes.first_name
+              }
+              className="hover:underline"
+            >
+              <span>Created by </span>
+              <span className="font-bold truncate">
                 {item.attributes.artist_id.data.attributes.first_name}
               </span>
-            </div>
+            </a>
           </div>
+
           <Line />
           <div>
             Available {availableAvatars}/{allAvatars}
           </div>
         </div>
       </div>
-    </a>
+    </div>
   );
 }

@@ -7,6 +7,8 @@ module.exports = {
       },
       display: ["group-hover"],
       colors: {
+        ourBlack: "#0C0C0C",
+        opaqueBlack: "rgba(12, 12, 12, 0.8)",
         lightGray: "#B6B6B6",
         opaqueGray: "rgba(65, 65, 65, 0.4)",
         navBg: "#1D1D1D",

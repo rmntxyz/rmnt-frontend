@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function Artists({ artists }) {
   return (
     <div className="artists bg-opaqueGray">
-      <div className="w-fit flex items-center gap-14 px-[88px] mx-auto">
-        <div className="w-24 h-0.5 gradientBorder-straightLeft"></div>
+      <div className="w-fit flex items-center gap-14 mx-auto">
+        <div className="w-24 h-0.5 gradientBorder-straightLeft hidden sm:block"></div>
         <div className="grid grid-cols-3 gap-2 mx-auto max-w-[292px] py-12">
           {artists.map((artist, idx) =>
             artist.attributes.profile_image.data ? (
@@ -22,7 +22,7 @@ export default function Artists({ artists }) {
             ) : null
           )}
         </div>{" "}
-        <div className="w-24 h-0.5 gradientBorder-straightRight"></div>
+        <div className="w-24 h-0.5 gradientBorder-straightRight hidden sm:block"></div>
       </div>
     </div>
   );

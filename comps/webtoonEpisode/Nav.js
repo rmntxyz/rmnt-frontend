@@ -16,7 +16,11 @@ export default function Nav({ episode, webtoon, prevUrl }) {
     >
       <div className="flex justify-between items-center mx-auto h-full px-8 max-w-[768px] md:max-w-[630px]">
         <div className="flex gap-6 items-center justify-center">
-          <a href={"/webtoons/" + webtoon.attributes.webtoon_id + "/webtoon#main"}>
+          <a
+            href={
+              "/webtoons/" + webtoon.attributes.webtoon_id + "/webtoon#main"
+            }
+          >
             <FontAwesomeIcon
               id="episodeBack"
               icon={faArrowLeft}
@@ -25,7 +29,7 @@ export default function Nav({ episode, webtoon, prevUrl }) {
               // style={{ display: !prevUrl ? "none" : "block" }}
             />
           </a>
-          <div className="flex gap-2">
+          <div className="hidden gap-2 sm:block">
             <span className="text-lg py-1 px-3.5 rounded-3xl bg-mainBg drop-shadow-[4px_5px_10px_rgba(0, 0, 0, 0.1)]">
               Ep.{episode.page_number}
             </span>

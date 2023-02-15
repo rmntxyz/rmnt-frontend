@@ -75,6 +75,8 @@
 }
 
 .gradientBorder-right {
+  position: relative;
+  left: -5px;
   border-radius: 14px;
   border: 3px solid transparent;
   background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
@@ -82,6 +84,8 @@
 }
 
 .gradientBorder-left {
+  position: relative;
+  left: 5px;
   border-radius: 14px;
   border: 3px solid transparent;
   background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
@@ -115,6 +119,7 @@
 /* for tooltips */
 #tooltip {
   background-color: #333333;
+  max-width: 320px;
   border-radius: 4px;
   position: relative;
 }
@@ -188,4 +193,9 @@
       #70efcf 100%
     )
     border-box;
+}
+
+/* set the text color for more/close button on profile page */
+.profile .show {
+  color: rgba(12, 12, 12, 0.5) !important;
 }

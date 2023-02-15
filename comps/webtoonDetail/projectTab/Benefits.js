@@ -25,14 +25,14 @@ export default function Benefits() {
   return (
     <div className="mt-7 flex flex-col gap-4">
       <div className="text-2xl font-bold">Benefits</div>
-      <div className="grid grid-cols-2">
+      <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-0">
         {content.map((item, idx) => (
           <div
             key={idx}
             className={`h-fit ${
               idx % 2 === 0
-                ? "mb-11 mr-2.5 gradientBorder-right"
-                : "mt-11 ml-2.5 gradientBorder-left"
+                ? "gradientBorder-right sm:mb-11 sm:mr-2.5"
+                : "gradientBorder-left sm:mt-11 sm:ml-2.5"
             } last:opacity-20`}
           >
             <div className="m-1.5 p-4 gradientBorder-2 flex flex-col gap-2 items-center justify-center text-center">

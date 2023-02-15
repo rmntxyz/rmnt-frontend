@@ -4,9 +4,11 @@ import {
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import getScreenSize from "../../utils/getScreenSize";
 import scrollToTop from "../../utils/scrollToTop";
 
 export default function Buttons({ webtoon, episode, allEpisodes }) {
+  const screenWidth = getScreenSize();
   return (
     <div id="buttons" className="fixed w-full bottom-0 duration-200">
       <div className="relative max-w-[768px] md:max-w-[630px]">
@@ -23,8 +25,18 @@ export default function Buttons({ webtoon, episode, allEpisodes }) {
             }}
             className="gradientBorder py-3 px-4 "
           >
-            <FontAwesomeIcon icon={faArrowLeft} className="mr-3 text-lg" />
-            Ep.{episode.page_number - 1}
+            <FontAwesomeIcon icon={faArrowLeft} className="text-lg" />
+            <span
+              style={{
+                display:
+                  screenWidth < 768 && allEpisodes[episode.page_number]
+                    ? "none"
+                    : "inline-block",
+              }}
+              className="ml-3"
+            >
+              Ep.{episode.page_number - 1}
+            </span>
           </a>
           <a
             href={
@@ -38,14 +50,24 @@ export default function Buttons({ webtoon, episode, allEpisodes }) {
             }}
             className="gradientBorder py-3 px-4"
           >
-            Ep.{episode.page_number + 1}
-            <FontAwesomeIcon icon={faArrowRight} className="ml-3 text-lg" />
+            <span
+              style={{
+                display:
+                  screenWidth < 768 && allEpisodes[episode.page_number - 2]
+                    ? "none"
+                    : "inline-block",
+              }}
+              className="mr-3"
+            >
+              Ep.{episode.page_number + 1}
+            </span>
+            <FontAwesomeIcon icon={faArrowRight} className="text-lg" />
           </a>
         </div>
         <button onClick={scrollToTop}>
           <FontAwesomeIcon
             icon={faArrowUp}
-            className="absolute right-0 top-0 gradientBorder m-8 px-3.5 py-3 text-lg"
+            className="absolute right-0 top-1 gradientBorder m-8 px-3.5 py-3 text-lg"
           />
         </button>
       </div>

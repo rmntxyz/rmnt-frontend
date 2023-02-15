@@ -5,7 +5,7 @@ export default function AboutTop() {
     <div className="max-w-[336px] py-14 mx-auto text-center flex flex-col gap-14">
       <div className="flex flex-col gap-3">
         <div className="font-bold text-2xl">
-          Introducing Rarement,the webtoon universe
+          Introducing Rarement, the webtoon universe
         </div>
         <div>
           We built Rarement to provide a limitless space for webtoonists and

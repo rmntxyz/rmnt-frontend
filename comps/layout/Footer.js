@@ -44,7 +44,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="py-14 bg-navBg flex flex-col items-center justify-center gap-6 text-lightGray"
+      className="pb-14 bg-navBg flex flex-col items-center justify-center gap-6 text-lightGray"
       style={{
         display: router.pathname.includes("/episode/") ? "none" : "flex",
       }}

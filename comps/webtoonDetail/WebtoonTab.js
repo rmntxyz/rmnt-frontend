@@ -7,7 +7,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
         <span className="text-3xl font-bold">{webtoon.attributes.title}</span>
         <div className="bg-mintGreen/20 absolute h-1/2 w-full bottom-0"></div>
       </div>
-      <div className="grid grid-cols-3 gap-3.5">
+      <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3">
         {episodes.map((item, idx) => (
           <a
             key={idx}
@@ -17,6 +17,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
               "/episode/" +
               item.attributes.page_number
             }
+            className="pb-8"
           >
             <Image
               src={webtoon.attributes.cover_image.data.attributes.url}

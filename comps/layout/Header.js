@@ -2,8 +2,7 @@ import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
-import getPrevRoute from "../../utils/getPrevRoute";
-import { Logo } from "../../utils/svgs";
+import { Logo, MediumLogo } from "../../utils/svgs";
 
 export default function Header() {
   //Use router to determine whether to show the back button or not & whether to display the header or not
@@ -34,7 +33,12 @@ export default function Header() {
           />
         </a>
         <a href="/">
-          <Logo />
+          <div className="hidden md:block">
+            <Logo />
+          </div>
+          <div className="block md:hidden">
+            <MediumLogo />
+          </div>
         </a>
       </div>
       <ConnectButton.Custom>
