@@ -34,22 +34,32 @@
     }
   }
 
-  /* .card:hover svg g {
+  .card:hover svg g {
     stroke: url(#cardGradientHover) !important;
   }
 
-  .avatar:hover svg use {
-    stroke: url(#gradientHover) !important;
-  }
-
-  #cardGradientHover stop:first-child,
-  #gradientHover stop:first-child {
+  #cardGradientHover stop:first-child {
     animation-name: upperStopColor;
     animation-duration: 2s;
     animation-iteration-count: infinite;
   }
 
-  #cardGradientHover stop:last-child,
+  #cardGradientHover stop:last-child {
+    animation-name: lowerStopColor;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
+  /* .avatar:hover svg use {
+    stroke: url(#gradientHover) !important;
+  } */
+
+  /* #gradientHover stop:first-child {
+    animation-name: upperStopColor;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
   #gradientHover stop:last-child {
     animation-name: lowerStopColor;
     animation-duration: 2s;
@@ -207,4 +217,11 @@
 
 .characters button:hover {
   opacity: 1;
+}
+
+/* change image height in collectible cards on smaller screens */
+@media (max-width: 420px) {
+  .card svg g image {
+    height: 58%;
+  }
 }

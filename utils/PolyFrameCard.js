@@ -12,6 +12,7 @@ export const PolyFrameCard = ({ href, idx }) => (
         width="100%"
         height="68%"
         clipPath={"url(#imageClip" + idx + ")"}
+        preserveAspectRatio="xMinYMin slice"
       />
       <path
         id={"cardPath" + idx}
