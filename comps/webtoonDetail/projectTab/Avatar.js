@@ -42,7 +42,7 @@ export default function Avatar({ avatars, exchangeRate, webtoon }) {
             </div>
           </div>
           <Line />
-          <div className="flex gap-2">
+          <div className="characters flex gap-2">
             {webtoon.attributes.characters?.data.map((item, idx) => (
               <Character item={item} key={idx} />
             ))}

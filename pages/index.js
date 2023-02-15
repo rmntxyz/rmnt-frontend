@@ -116,7 +116,6 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ webtoons, artists }) {
-  console.log(artists);
   return (
     <div>
       <Seo title="Rarement" />
