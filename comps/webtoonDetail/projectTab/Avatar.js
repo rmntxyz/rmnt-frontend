@@ -27,10 +27,18 @@ export default function Avatar({ avatars, exchangeRate, webtoon }) {
                 height={24}
                 className="rounded-full"
               />
-              <span>Created by </span>
-              <span className="font-bold">
-                {webtoon.attributes.artist_id.data.attributes.first_name}
-              </span>
+              <a
+                href={
+                  "/artists/" +
+                  webtoon.attributes.artist_id.data.attributes.first_name
+                }
+                className="hover:underline"
+              >
+                <span>Created by </span>
+                <span className="font-bold">
+                  {webtoon.attributes.artist_id.data.attributes.first_name}
+                </span>
+              </a>
             </div>
           </div>
           <Line />
