@@ -73,7 +73,7 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
                       </a>
                     ) : null} */}
                   </div>
-                  <div className="px-4 pb-7 w-full mx-auto my-auto flex flex-col gap-1 sm:pb-4 sm:gap-2">
+                  <div className="px-4 pb-5 w-full mx-auto my-auto flex flex-col gap-1 sm:pb-4 sm:gap-2">
                     <div className="truncate font-bold">
                       {item.attributes.name}
                     </div>

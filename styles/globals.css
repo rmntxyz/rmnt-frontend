@@ -218,6 +218,12 @@
 /* change image height in collectible cards on smaller screens */
 @media (max-width: 420px) {
   .card svg g image {
-    height: 58%;
+    height: 65%;
+  }
+}
+
+@media (max-width: 375px) {
+  .card svg g image {
+    height: 61%;
   }
 }
