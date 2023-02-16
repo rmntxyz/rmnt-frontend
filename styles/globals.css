@@ -34,17 +34,13 @@
     }
   }
 
-  .card:hover svg g {
-    stroke: url(#cardGradientHover) !important;
-  }
-
-  #cardGradientHover stop:first-child {
+  [id^="cardGradientHover"] stop:first-child {
     animation-name: upperStopColor;
     animation-duration: 2s;
     animation-iteration-count: infinite;
   }
 
-  #cardGradientHover stop:last-child {
+  [id^="cardGradientHover"] stop:last-child {
     animation-name: lowerStopColor;
     animation-duration: 2s;
     animation-iteration-count: infinite;

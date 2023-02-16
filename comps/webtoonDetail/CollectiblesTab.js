@@ -2,11 +2,24 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isImage } from "../../utils/mediaType";
 import { OpenSea } from "../../utils/svgs";
-import { PolyFrameCard } from "../../utils/PolyFrameCard";
 import Line from "../../utils/Line";
+import { PolyFrameCard } from "../../utils/PolyFrameCard";
 
 export default function CollectiblesTab({ NFTs, exchangeRate }) {
   let NFTUrl = "";
+
+  //Enable card border animation
+  function switchStroke(e, idx) {
+    e.currentTarget
+      .querySelector("g")
+      .setAttribute("stroke", `url(#cardGradientHover${idx})`);
+  }
+
+  function switchBackStroke(e, idx) {
+    e.currentTarget
+      .querySelector("g")
+      .setAttribute("stroke", `url(#cardGradient${idx})`);
+  }
 
   return (
     <div className="mx-8 my-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -20,6 +33,8 @@ export default function CollectiblesTab({ NFTs, exchangeRate }) {
               <div
                 key={item.attributes.nft_id}
                 className="card relative overflow-hidden min-w-fit min-h-fit"
+                onMouseEnter={(e) => switchStroke(e, idx)}
+                onMouseLeave={(e) => switchBackStroke(e, idx)}
               >
                 <PolyFrameCard
                   href={
