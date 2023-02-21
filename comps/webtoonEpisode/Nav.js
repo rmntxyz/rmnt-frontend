@@ -31,7 +31,7 @@ export default function Nav({ episode, webtoon, prevUrl }) {
           </a>
           <div className="hidden gap-2 items-center sm:flex">
             <span className="text-lg py-1 px-3.5 rounded-3xl bg-mainBg drop-shadow-[4px_5px_10px_rgba(0, 0, 0, 0.1)]">
-              Ep.{episode.page_number}
+              Ep.{episode.episode_number}
             </span>
             {/* <a href={"/webtoons/" + webtoon.id}> */}
             <span>{webtoon.attributes.title}</span>

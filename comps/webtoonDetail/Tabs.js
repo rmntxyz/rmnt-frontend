@@ -8,7 +8,7 @@ import WebtoonTab from "./WebtoonTab";
 export default function Tabs({
   webtoon,
   avatars,
-  NFTs,
+  collectibles,
   exchangeRate,
   episodes,
 }) {
@@ -104,7 +104,10 @@ export default function Tabs({
           <WebtoonTab episodes={episodes} webtoon={webtoon} />
         </div>
         <div className={tab === "collectibles" ? "block" : "hidden"}>
-          <CollectiblesTab NFTs={NFTs} exchangeRate={exchangeRate} />
+          <CollectiblesTab
+            collectibles={collectibles}
+            exchangeRate={exchangeRate}
+          />
         </div>
       </div>
     </div>

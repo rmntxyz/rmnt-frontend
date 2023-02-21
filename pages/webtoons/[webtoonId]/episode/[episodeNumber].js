@@ -21,64 +21,17 @@ const GET_EPISODE_DATA = gql`
               }
             }
           }
-          webtoon_pages(pagination: { limit: 200 }) {
+          episodes(pagination: { limit: 200 }) {
             data {
               id
               attributes {
-                webtoon_page_id
-                page_number
-                page_image {
+                episode_number
+                image {
                   data {
                     attributes {
                       width
                       height
                       url
-                    }
-                  }
-                }
-                nfts(pagination: { limit: 200 }) {
-                  data {
-                    id
-                    attributes {
-                      nft_id
-                      name
-                      drop_timestamp
-                      sold_timestamp
-                      quantity
-                      edition
-                      price_in_wei
-                      # timeRemaining
-                      image {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                      thumbnail {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                      owned_by {
-                        data {
-                          id
-                          attributes {
-                            user_id
-                            first_name
-                            wallet_address
-                            profile_image {
-                              data {
-                                attributes {
-                                  url
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
                     }
                   }
                 }
@@ -102,19 +55,21 @@ export async function getServerSideProps(context) {
     },
   });
   const webtoon = webtoons.data[0];
-  const webtoonPages = webtoon.attributes.webtoon_pages.data;
-  const webtoonPage = webtoonPages.find(
-    (item) => item.attributes.page_number === parseInt(episodeNumber)
+  const episodes = webtoon.attributes.episodes.data;
+  const episode = episodes.find(
+    (item) => item.attributes.episode_number === parseInt(episodeNumber)
   );
   const prevUrl = context.req.headers.referer;
   return {
     props: {
       prevUrl: prevUrl || null,
       webtoon: webtoon,
-      episode: webtoonPage.attributes,
-      allEpisodes: webtoonPages
+      episode: episode.attributes,
+      allEpisodes: episodes
         .slice()
-        .sort((a, b) => a.attributes.page_number - b.attributes.page_number),
+        .sort(
+          (a, b) => a.attributes.episode_number - b.attributes.episode_number
+        ),
     },
   };
 }
@@ -123,7 +78,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   //Hide navbar and navgation buttons on scroll
   hideOrPaint();
   return (
-    <div>
+    <div className="min-h-screen">
       <Seo title={`${webtoon.attributes.title} - Ep.${episode.page_number}`} />
       <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
       <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">

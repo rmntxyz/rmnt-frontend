@@ -17,6 +17,9 @@ export default function hideOrPaint() {
   };
 
   useEffect(() => {
+    setCurrentPos(window.scrollY);
+    setViewportHeight(window.innerHeight);
+    setImageHeight(document.getElementById("episode")?.clientHeight);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("click", handleClick, { passive: true });
     if (
@@ -35,9 +38,17 @@ export default function hideOrPaint() {
       document.getElementById("buttons")?.style.opacity = "0";
       document.getElementById("buttons")?.style.pointerEvents = "none";
     }
+    if (viewportHeight > imageHeight) {
+      document.getElementById("scrollToTop")?.style.opacity="0";
+      document.getElementById("scrollToTop")?.style.pointerEvents = "none";
+    } else {
+      document.getElementById("scrollToTop")?.style.opacity="1";
+      document.getElementById("scrollToTop")?.style.pointerEvents = "auto";
+    }
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("click", handleClick);
     };
   });
+  // return {viewportHeight, imageHeight}
 }

@@ -15,7 +15,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
               "/webtoons/" +
               webtoon.attributes.webtoon_id +
               "/episode/" +
-              item.attributes.page_number
+              item.attributes.episode_number
             }
             className="pb-8"
           >
@@ -31,7 +31,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
               className="rounded"
             />
             <div className="w-fit font-bold text-sm mt-[18px] px-2 py-0.5 bg-opaqueGray rounded-xl">
-              Ep.{item.attributes.page_number}
+              Ep.{item.attributes.episode_number}
             </div>
           </a>
         ))}

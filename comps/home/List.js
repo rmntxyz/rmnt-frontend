@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import getScreenSize from "../../utils/getScreenSize";
 import ListItem from "./ListItem";
 import SmallItem from "./SmallItem";
@@ -26,7 +25,7 @@ export default function List({ data }) {
   // };
 
   //Get screen size to determine the layout
-  const screenWidth = getScreenSize();
+  const { screenWidth } = getScreenSize();
 
   return (
     <div>
