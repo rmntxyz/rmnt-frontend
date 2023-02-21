@@ -11,6 +11,7 @@ export default function Tabs({
   collectibles,
   exchangeRate,
   episodes,
+  benefits,
 }) {
   //Get scroll position to fix the tab list
   const { scrollPosition, elementHeight } = getScrollPosition();
@@ -98,6 +99,7 @@ export default function Tabs({
             webtoon={webtoon}
             avatars={avatars}
             exchangeRate={exchangeRate}
+            benefits={benefits}
           />
         </div>
         <div className={tab === "webtoon" ? "block" : "hidden"}>

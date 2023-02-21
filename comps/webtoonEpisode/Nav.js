@@ -34,7 +34,7 @@ export default function Nav({ episode, webtoon, prevUrl }) {
               Ep.{episode.episode_number}
             </span>
             {/* <a href={"/webtoons/" + webtoon.id}> */}
-            <span>{webtoon.attributes.title}</span>
+            <span className="truncate w-56">{webtoon.attributes.title}</span>
             {/* </a> */}
           </div>
         </div>

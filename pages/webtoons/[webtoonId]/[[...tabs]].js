@@ -133,6 +133,16 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
+          benefits {
+            data {
+              id
+              attributes {
+                name
+                description
+                active
+              }
+            }
+          }
         }
       }
     }
@@ -165,11 +175,10 @@ export async function getServerSideProps(context) {
         .sort(
           (a, b) => a.attributes.episode_number - b.attributes.episode_number
         ),
-      // users: data.webtoon.data.attributes.webtoon_pages.data
-      //   .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-      //   .flat(1)
-      //   .filter((NFT) => !!NFT)
-      //   .map((NFT) => NFT.attributes.owned_by.data),
+      benefits: webtoon.attributes.benefits.data
+        .slice()
+        .sort((a, b) => a.id - b.id)
+        .sort((a, b) => b.attributes.active - a.attributes.active),
     },
   };
 }
@@ -180,6 +189,7 @@ export default function WebtoonPage({
   episodes,
   collectibles,
   avatars,
+  benefits,
 }) {
   return (
     <div>
@@ -194,6 +204,7 @@ export default function WebtoonPage({
           exchangeRate={exchangeRate}
           episodes={episodes}
           avatars={avatars}
+          benefits={benefits}
         />
       </main>
     </div>
