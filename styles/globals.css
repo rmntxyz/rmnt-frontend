@@ -174,7 +174,6 @@
 .gradientBorder-3 {
   background: linear-gradient(#343434, #343434) padding-box,
     linear-gradient(to bottom, #70efcf, #cea671) border-box;
-  border-radius: 44px;
   border: 1px solid transparent;
 }
 
@@ -201,12 +200,7 @@
     border-box;
 }
 
-/* set the text color for more/close button on profile page */
-.profile .show {
-  color: rgba(12, 12, 12, 0.5) !important;
-}
-
-/* change opacity for unhovers characters */
+/* change opacity for unhovered characters */
 .characters:hover button {
   opacity: 0.5;
 }

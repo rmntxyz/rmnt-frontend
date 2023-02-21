@@ -10,6 +10,7 @@ export default function Artists({ artists }) {
             artist.attributes.profile_image.data ? (
               <a
                 key={idx}
+                href={"/artists/" + artist.attributes.first_name}
                 className="gradientBorder-3 w-[92px] h-[92px] rounded-full p-1.5"
               >
                 <Image

@@ -55,7 +55,7 @@ export default function Footer() {
           onMouseOver={(e) => setIsHovered(true)}
           onMouseOut={(e) => setIsHovered(false)}
           href="/"
-          className="w-[44px] h-[44px] flex items-center justify-center border border-white/20 rounded-md bg-opaqueGray"
+          className="w-[44px] h-[44px] flex items-center justify-center border border-white/20 rounded-full bg-opaqueGray"
         >
           <Image
             src={`${
@@ -71,7 +71,7 @@ export default function Footer() {
         {OutLinks.map((link, idx) => (
           <li
             key={idx}
-            className="w-[44px] h-[44px] flex items-center justify-center duration-200 border border-white/20 rounded-md bg-opaqueGray hover:text-[#F3F3F3]"
+            className="w-[44px] h-[44px] flex items-center justify-center duration-200 border border-white/20 rounded-full bg-opaqueGray hover:text-[#F3F3F3]"
           >
             {link}
           </li>

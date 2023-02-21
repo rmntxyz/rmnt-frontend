@@ -33,12 +33,13 @@ export default function Header() {
           />
         </a>
         <a href="/">
-          <div className="hidden md:block">
+          <Logo />
+          {/* <div className="hidden md:block">
             <Logo />
           </div>
           <div className="block md:hidden">
             <MediumLogo />
-          </div>
+          </div> */}
         </a>
       </div>
       <ConnectButton.Custom>
