@@ -13,7 +13,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 import { mainnet, goerli } from "wagmi/chains";
 import { Web3Auth } from "@web3auth/modal";
-import { CHAIN_NAMESPACES } from "@web3auth/base";
+import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from "@web3auth/base";
 import { useEffect, useState } from "react";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 
@@ -56,11 +56,22 @@ function MyApp({ Component, pageProps }) {
             chainId: "0x1",
             rpcTarget: "https://rpc.ankr.com/eth", // This is the public RPC we have added, please pass on your own endpoint while creating an app
           },
+          uiConfig: {
+            theme: "dark",
+            loginMethodsOrder: ["google"],
+          },
         });
 
         const openloginAdapter = new OpenloginAdapter({
           loginSettings: {
             mfaLevel: "default",
+          },
+          adapterSettings: {
+            whiteLabel: {
+              name: "Rarement",
+              defaultLanguage: "en",
+              dark: true,
+            },
           },
           loginConfig: {
             google: {
@@ -74,8 +85,58 @@ function MyApp({ Component, pageProps }) {
         });
         web3auth.configureAdapter(openloginAdapter);
         setWeb3auth(web3auth);
-        await web3auth.initModal();
-        setProvider(web3auth.provider);
+        await web3auth.initModal({
+          modalConfig: {
+            [WALLET_ADAPTERS.OPENLOGIN]: {
+              label: "openlogin",
+              loginMethods: {
+                google: {
+                  name: "google login",
+                },
+                facebook: {
+                  showOnModal: false,
+                },
+                reddit: {
+                  showOnModal: false,
+                },
+                discord: {
+                  showOnModal: false,
+                },
+                twitch: {
+                  showOnModal: false,
+                },
+                twitter: {
+                  showOnModal: false,
+                },
+                github: {
+                  showOnModal: false,
+                },
+                linkedin: {
+                  showOnModal: false,
+                },
+                apple: {
+                  showOnModal: false,
+                },
+                line: {
+                  showOnModal: false,
+                },
+                wechat: {
+                  showOnModal: false,
+                },
+                weibo: {
+                  showOnModal: false,
+                },
+                kakao: {
+                  showOnModal: false,
+                },
+              },
+              showOnModal: true,
+            },
+          },
+        });
+        if (web3auth.provider) {
+          setProvider(web3auth.provider);
+        }
       } catch (error) {
         console.error(error);
       }
