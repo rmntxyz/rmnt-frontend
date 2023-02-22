@@ -1,10 +1,27 @@
-import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faUser,
+  faWallet,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
 import { Logo, MediumLogo } from "../../utils/svgs";
+import {
+  authenticateUser,
+  getAccounts,
+  getBalance,
+  getChainId,
+  getPrivateKey,
+  getUserInfo,
+  login,
+  logout,
+  sendTransaction,
+  signMessage,
+} from "../../utils/web3auth";
+import { loggedInView, unloggedInView } from "./AuthView";
 
-export default function Header() {
+export default function Header({ provider, web3auth, setProvider }) {
   //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
 
@@ -42,7 +59,23 @@ export default function Header() {
           </div> */}
         </a>
       </div>
-      <ConnectButton.Custom>
+      {provider
+        ? loggedInView(
+            authenticateUser,
+            getAccounts,
+            getBalance,
+            getChainId,
+            getPrivateKey,
+            getUserInfo,
+            logout,
+            sendTransaction,
+            signMessage,
+            web3auth,
+            provider,
+            setProvider
+          )
+        : unloggedInView(login, web3auth, setProvider)}
+      {/* <ConnectButton.Custom>
         {({
           account,
           chain,
@@ -135,7 +168,7 @@ export default function Header() {
             </div>
           );
         }}
-      </ConnectButton.Custom>
+      </ConnectButton.Custom> */}
     </nav>
   );
 }

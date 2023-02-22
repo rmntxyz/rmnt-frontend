@@ -34,7 +34,7 @@ export default function CollectiblesTab({ collectibles, exchangeRate }) {
               (NFTUrl = item.attributes.image.data.attributes.url),
               (
                 <div
-                  key={item.attributes.nft_id}
+                  key={idx}
                   className="card relative overflow-hidden min-w-fit min-h-fit"
                   onMouseEnter={(e) => switchStroke(e, idx)}
                   onMouseLeave={(e) => switchBackStroke(e, idx)}
