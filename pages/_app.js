@@ -12,10 +12,9 @@ import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 import { mainnet, goerli } from "wagmi/chains";
-import { Web3Auth } from "@web3auth/modal";
-import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from "@web3auth/base";
+import { ethers } from "ethers";
+import { magic, UserContext } from "../utils/magic";
 import { useEffect, useState } from "react";
-import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 
 //Store the value of web3auth client ID
 const clientId =
@@ -41,107 +40,11 @@ const wagmiClient = createClient({
 });
 
 function MyApp({ Component, pageProps }) {
-  //Initiate web3auth
-  const [web3auth, setWeb3auth] = useState();
-  const [provider, setProvider] = useState();
-
+  //Initiate magic
+  const [account, setAccount] = useState();
   useEffect(() => {
-    const init = async () => {
-      try {
-        const web3auth = new Web3Auth({
-          clientId,
-          web3AuthNetwork: "testnet",
-          chainConfig: {
-            chainNamespace: CHAIN_NAMESPACES.EIP155,
-            chainId: "0x1",
-            rpcTarget: "https://rpc.ankr.com/eth", // This is the public RPC we have added, please pass on your own endpoint while creating an app
-          },
-          uiConfig: {
-            theme: "dark",
-            loginMethodsOrder: ["google"],
-          },
-        });
-
-        const openloginAdapter = new OpenloginAdapter({
-          loginSettings: {
-            mfaLevel: "default",
-          },
-          adapterSettings: {
-            whiteLabel: {
-              name: "Rarement",
-              defaultLanguage: "en",
-              dark: true,
-            },
-          },
-          loginConfig: {
-            google: {
-              name: "Google Login",
-              verifier: "rarement_google_testnet",
-              typeOfLogin: "google",
-              clientId:
-                "829321399103-ibs2ha4eneq0rr9bcc3s8fj0205oq84h.apps.googleusercontent.com",
-            },
-          },
-        });
-        web3auth.configureAdapter(openloginAdapter);
-        setWeb3auth(web3auth);
-        await web3auth.initModal({
-          modalConfig: {
-            [WALLET_ADAPTERS.OPENLOGIN]: {
-              label: "openlogin",
-              loginMethods: {
-                google: {
-                  name: "google login",
-                },
-                facebook: {
-                  showOnModal: false,
-                },
-                reddit: {
-                  showOnModal: false,
-                },
-                discord: {
-                  showOnModal: false,
-                },
-                twitch: {
-                  showOnModal: false,
-                },
-                twitter: {
-                  showOnModal: false,
-                },
-                github: {
-                  showOnModal: false,
-                },
-                linkedin: {
-                  showOnModal: false,
-                },
-                apple: {
-                  showOnModal: false,
-                },
-                line: {
-                  showOnModal: false,
-                },
-                wechat: {
-                  showOnModal: false,
-                },
-                weibo: {
-                  showOnModal: false,
-                },
-                kakao: {
-                  showOnModal: false,
-                },
-              },
-              showOnModal: true,
-            },
-          },
-        });
-        if (web3auth.provider) {
-          setProvider(web3auth.provider);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    init();
+    setAccount(localStorage.getItem("user"));
+    const provider = new ethers.providers.Web3Provider(magic.rpcProvider);
   }, []);
 
   return (
@@ -157,11 +60,7 @@ function MyApp({ Component, pageProps }) {
           })}
           chains={chains}
         > */}
-        <Layout
-          provider={provider}
-          setProvider={setProvider}
-          web3auth={web3auth}
-        >
+        <Layout account={account} setAccount={setAccount}>
           <Component {...pageProps} />
         </Layout>
         {/* </RainbowKitProvider> */}
