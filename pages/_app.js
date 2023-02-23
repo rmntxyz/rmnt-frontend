@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }) {
   const [account, setAccount] = useState();
   useEffect(() => {
     setAccount(localStorage.getItem("user"));
-    const provider = new ethers.providers.Web3Provider(magic.rpcProvider);
   }, []);
 
   return (

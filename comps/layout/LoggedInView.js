@@ -1,9 +1,13 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tippy from "@tippyjs/react/headless";
+import { ethers } from "ethers";
 import { magic } from "../../utils/magic";
 
 export default function LoggedInView(setAccount) {
+  const provider = new ethers.providers.Web3Provider(magic.rpcProvider);
+  const signer = provider.getSigner();
+
   async function openWallet() {
     const { walletType } = await magic.wallet.getInfo();
     if (walletType === "magic") {
@@ -21,6 +25,27 @@ export default function LoggedInView(setAccount) {
     }
   }
 
+  async function getAddress() {
+    try {
+      const address = await signer.getAddress();
+      alert(address);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function getBalance() {
+    try {
+      const address = await signer.getAddress();
+      const balance = ethers.utils.formatEther(
+        await provider.getBalance(address)
+      );
+      alert(balance);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <Tippy
       interactive="true"
@@ -33,6 +58,12 @@ export default function LoggedInView(setAccount) {
         >
           <div>
             <button onClick={(e) => openWallet()}>Open Wallet</button>
+          </div>
+          <div>
+            <button onClick={(e) => getAddress()}>Get Address</button>
+          </div>
+          <div>
+            <button onClick={(e) => getBalance()}>Get Balance</button>
           </div>
           <div>
             <button onClick={(e) => logout()}>Log Out</button>

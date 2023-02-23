@@ -7,7 +7,8 @@ const createMagic = (key) => {
   return (
     typeof window != "undefined" &&
     new Magic(key, {
-      network: "goerli",
+      rpcUrl: "https://matic-mumbai.chainstacklabs.com",
+      chainId: 80001,
     })
   );
 };

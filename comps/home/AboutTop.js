@@ -12,11 +12,7 @@ export default function AboutTop() {
           their fans through the blockchain technology.
         </div>
       </div>
-      <Image
-        src="/레어먼트_홈피이미지001(1) 1@3x.png"
-        width={336}
-        height={336}
-      />
+      <Image src="/aboutImage.png" width={336} height={336} />
       <div className="flex flex-col gap-3">
         <div className="font-bold text-2xl">Collect & Support Your Artist</div>
         <div>
