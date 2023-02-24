@@ -6,6 +6,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import getLoggedIn from "../../utils/getLoggedIn";
 import { Logo, MediumLogo } from "../../utils/svgs";
 import {
   authenticateUser,
@@ -25,9 +27,11 @@ export default function Header({ provider, web3auth, setProvider }) {
   //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
 
+  //Get logged-in status to determine whether to show the profile button or not
+  const loggedIn = getLoggedIn(web3auth);
+
   //Get current/previous routes to determine whether to show the back button or not
   // const { prevPath } = getPrevRoute();
-
   return (
     <nav
       className="bg-navBg h-20 px-8 text-2xl font-bold flex justify-between items-center"
@@ -59,7 +63,7 @@ export default function Header({ provider, web3auth, setProvider }) {
           </div> */}
         </a>
       </div>
-      {provider
+      {loggedIn
         ? loggedInView(
             authenticateUser,
             getAccounts,
