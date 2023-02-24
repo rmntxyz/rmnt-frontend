@@ -3,7 +3,6 @@ import client from "../../../../apollo";
 import Seo from "../../../../comps/layout/SEO";
 import Nav from "../../../../comps/webtoonEpisode/Nav";
 import hideOrPaint from "../../../../utils/hideOrPaint";
-import CurrentEpisode from "../../../../comps/webtoonEpisode/EngEpisode";
 import Buttons from "../../../../comps/webtoonEpisode/Buttons";
 import EngEpisode from "../../../../comps/webtoonEpisode/EngEpisode";
 import { useEffect, useState } from "react";
