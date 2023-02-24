@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { House } from "../../utils/svgs";
 import Toggle from "../webtoonEpisode/Toggle";
 
-export default function Nav({ episode, webtoon, prevUrl }) {
+export default function Nav({ episode, webtoon, prevUrl, lang, setLang }) {
   //Use router to enable navigation
   const router = useRouter();
 
@@ -44,7 +44,7 @@ export default function Nav({ episode, webtoon, prevUrl }) {
               <House />
             </a>
           </Link>
-          <Toggle />
+          <Toggle lang={lang} setLang={setLang} />
         </div>
       </div>
     </nav>

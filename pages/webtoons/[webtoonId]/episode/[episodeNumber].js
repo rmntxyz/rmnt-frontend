@@ -3,9 +3,11 @@ import client from "../../../../apollo";
 import Seo from "../../../../comps/layout/SEO";
 import Nav from "../../../../comps/webtoonEpisode/Nav";
 import hideOrPaint from "../../../../utils/hideOrPaint";
-import CurrentEpisode from "../../../../comps/webtoonEpisode/CurrentEpisode";
+import CurrentEpisode from "../../../../comps/webtoonEpisode/EngEpisode";
 import Buttons from "../../../../comps/webtoonEpisode/Buttons";
-
+import EngEpisode from "../../../../comps/webtoonEpisode/EngEpisode";
+import { useEffect, useState } from "react";
+import KorEpisode from "../../../../comps/webtoonEpisode/KorEpisode";
 const GET_EPISODE_DATA = gql`
   query Webtoon($webtoonId: String) {
     webtoons(filters: { webtoon_id: { eq: $webtoonId } }) {
@@ -26,7 +28,16 @@ const GET_EPISODE_DATA = gql`
               id
               attributes {
                 episode_number
-                image {
+                eng_image {
+                  data {
+                    attributes {
+                      width
+                      height
+                      url
+                    }
+                  }
+                }
+                kor_image {
                   data {
                     attributes {
                       width
@@ -77,14 +88,35 @@ export async function getServerSideProps(context) {
 export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   //Hide navbar and navgation buttons on scroll
   hideOrPaint();
+
+  //Set episode language
+  const [lang, setLang] = useState(false);
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem("episodeLang");
+    if (storedLang === "true") {
+      setLang(true);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Seo
         title={`${webtoon.attributes.title} - Ep.${episode.episode_number}`}
       />
-      <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
+      <Nav
+        episode={episode}
+        webtoon={webtoon}
+        prevUrl={prevUrl}
+        lang={lang}
+        setLang={setLang}
+      />
       <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">
-        <CurrentEpisode episode={episode} />
+        {lang === false ? (
+          <EngEpisode episode={episode} />
+        ) : (
+          <KorEpisode episode={episode} />
+        )}
         <Buttons
           webtoon={webtoon}
           episode={episode}

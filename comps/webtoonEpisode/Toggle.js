@@ -1,14 +1,37 @@
-export default function Toggle() {
+import { useEffect } from "react";
+
+export default function Toggle({ lang, setLang }) {
+  useEffect(() => {
+    const toggle = document.getElementById("toggle");
+    let episodeLang;
+    function handleClick() {
+      setLang(!lang);
+      episodeLang = !lang;
+      localStorage.setItem("episodeLang", episodeLang.toString());
+    }
+    toggle.addEventListener("click", handleClick);
+    return () => toggle.removeEventListener("click", handleClick);
+  });
   return (
     <label
-      htmlFor="Toggle4"
+      htmlFor="toggle"
       className="rounded-full gradientBorder inline-flex items-center p-1.5 cursor-pointer text-base"
     >
-      <input id="Toggle4" type="checkbox" className="hidden peer" />
-      <span className="rounded-full px-[18px] py-[6.5px] bg-white text-navBg peer-checked:bg-transparent peer-checked:text-white/50">
+      <input id="toggle" type="checkbox" className="hidden peer" />
+      <span
+        id="eng"
+        className={`rounded-full px-[18px] py-[6.5px] ${
+          lang ? "bg-transparent text-white/50" : "bg-white text-navBg"
+        }`}
+      >
         Eng
       </span>
-      <span className="rounded-full px-[18px] py-[6.5px] bg-transparent text-white/50 peer-checked:bg-white peer-checked:text-navBg">
+      <span
+        id="kor"
+        className={`rounded-full px-[18px] py-[6.5px] ${
+          lang ? "bg-white text-navBg" : "bg-transparent text-white/50"
+        }`}
+      >
         Kor
       </span>
     </label>
