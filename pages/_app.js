@@ -16,7 +16,6 @@ import { Web3Auth } from "@web3auth/modal";
 import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from "@web3auth/base";
 import { useEffect, useState } from "react";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
-import { TorusWalletAdapter } from "@web3auth/torus-evm-adapter";
 import { TorusWalletConnectorPlugin } from "@web3auth/torus-wallet-connector-plugin";
 
 //Store the value of web3auth client ID
@@ -65,10 +64,10 @@ function MyApp({ Component, pageProps }) {
         });
 
         const torusPlugin = new TorusWalletConnectorPlugin({
-          torusWalletOpts: {},
+          torusWalletOpts: { buttonPosition: "top-right" },
           walletInitOptions: {
             whiteLabel: {
-              theme: { isDark: true, colors: { primary: "#00a8ff" } },
+              theme: { isDark: true, colors: { primary: "#70EFCF" } },
               logoDark: "https://web3auth.io/images/w3a-L-Favicon-1.svg",
               logoLight: "https://web3auth.io/images/w3a-D-Favicon-1.svg",
             },
@@ -79,24 +78,6 @@ function MyApp({ Component, pageProps }) {
 
         await web3auth.addPlugin(torusPlugin);
 
-        // const torusWalletAdapter = new TorusWalletAdapter({
-        //   initParams: {
-        //     // type WhiteLabelParams
-        //     whiteLabel: {
-        //       theme: {
-        //         isDark: true,
-        //         colors: { torusBrand1: "#FFA500" },
-        //       },
-        //       topupHide: true,
-        //       featuredBillboardHide: true,
-        //       disclaimerHide: true,
-        //       defaultLanguage: "en",
-        //     },
-        //   },
-        // });
-
-        // web3auth.configureAdapter(torusWalletAdapter);
-
         const openloginAdapter = new OpenloginAdapter({
           loginSettings: {
             mfaLevel: "default",
@@ -106,6 +87,7 @@ function MyApp({ Component, pageProps }) {
               name: "Rarement",
               defaultLanguage: "en",
               dark: true,
+              theme: { colors: { primary: "#70EFCF" } },
             },
           },
           loginConfig: {

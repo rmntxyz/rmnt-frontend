@@ -6,22 +6,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import getLoggedIn from "../../utils/getLoggedIn";
 import { Logo, MediumLogo } from "../../utils/svgs";
-import {
-  authenticateUser,
-  getAccounts,
-  getBalance,
-  getChainId,
-  getPrivateKey,
-  getUserInfo,
-  login,
-  logout,
-  sendTransaction,
-  signMessage,
-} from "../../utils/web3auth";
-import { loggedInView, unloggedInView } from "./AuthView";
+import { login } from "../../utils/web3auth";
+import { unloggedInView } from "./AuthView";
 
 export default function Header({ provider, web3auth, setProvider }) {
   //Use router to determine whether to show the back button or not & whether to display the header or not
@@ -63,22 +51,7 @@ export default function Header({ provider, web3auth, setProvider }) {
           </div> */}
         </a>
       </div>
-      {loggedIn
-        ? loggedInView(
-            authenticateUser,
-            getAccounts,
-            getBalance,
-            getChainId,
-            getPrivateKey,
-            getUserInfo,
-            logout,
-            sendTransaction,
-            signMessage,
-            web3auth,
-            provider,
-            setProvider
-          )
-        : unloggedInView(login, web3auth, setProvider)}
+      {loggedIn ? null : unloggedInView(login, web3auth, setProvider)}
       {/* <ConnectButton.Custom>
         {({
           account,
