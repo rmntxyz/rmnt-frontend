@@ -79,10 +79,10 @@ export const unloggedInView = (login, web3auth, setProvider) => (
     aria-label="Connect Wallet"
     className="py-3"
   >
-    <span className="invisible px-8 py-3 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight font-bold rounded-3xl hover:bg-navBg hover:text-white duration-200 md:visible ">
+    <span className="hidden px-8 py-3 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight font-bold rounded-3xl hover:bg-navBg hover:text-white duration-200 md:inline-block">
       Connect Wallet
     </span>
-    <span className="absolute top-6 right-8 p-2 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight rounded-full hover:bg-navBg hover:text-white duration-200 md:invisible">
+    <span className="absolute top-6 right-8 p-2 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight rounded-full hover:bg-navBg hover:text-white duration-200 md:hidden">
       <FontAwesomeIcon
         icon={faWallet}
         width="20px"
