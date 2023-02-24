@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 
 export default function getLoggedIn(web3auth) {
   const [loggedIn, setLoggedIn] = useState(web3auth?.provider ? true : false);
-  function handleChange() {
+
+  function handleChange(web3auth) {
     setLoggedIn(web3auth?.provider ? true : false);
   }
+
   useEffect(() => {
-    // window.addEventListener("mousemove", handleChange);
-    window.addEventListener("mousemove", handleChange)
-    window.addEventListener("touchstart", handleChange)
-    handleChange();
-    return () => window.removeEventListener("mousemove", handleChange);
+    const timer = setInterval(() => {
+      handleChange(web3auth);
+    }, 1000);
+    return () => clearInterval(timer);
   });
   return loggedIn;
 }
