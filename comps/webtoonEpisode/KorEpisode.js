@@ -17,6 +17,7 @@ export default function KorEpisode({ episode }) {
         objectFit="cover"
         placeholder="blur"
         blurDataURL={imageUrl}
+        loading="lazy"
       />
     </div>
   );

@@ -1,17 +1,13 @@
-import { useEffect } from "react";
-
 export default function Toggle({ lang, setLang }) {
-  useEffect(() => {
-    const toggle = document.getElementById("toggle");
-    let episodeLang;
-    function handleClick() {
-      setLang(!lang);
-      episodeLang = !lang;
-      localStorage.setItem("episodeLang", episodeLang.toString());
-    }
-    toggle.addEventListener("click", handleClick);
-    return () => toggle.removeEventListener("click", handleClick);
-  });
+  function handleEngClick() {
+    setLang(false);
+    localStorage.setItem("episodeLang", "false");
+  }
+  function handleKorClick() {
+    setLang(true);
+    localStorage.setItem("episodeLang", "true");
+  }
+
   return (
     <label
       htmlFor="toggle"
@@ -23,6 +19,7 @@ export default function Toggle({ lang, setLang }) {
         className={`rounded-full px-[18px] py-[6.5px] ${
           lang ? "bg-transparent text-white/50" : "bg-white text-navBg"
         }`}
+        onClick={handleEngClick}
       >
         Eng
       </span>
@@ -31,6 +28,7 @@ export default function Toggle({ lang, setLang }) {
         className={`rounded-full px-[18px] py-[6.5px] ${
           lang ? "bg-white text-navBg" : "bg-transparent text-white/50"
         }`}
+        onClick={handleKorClick}
       >
         Kor
       </span>
