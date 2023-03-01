@@ -9,7 +9,7 @@ export default function EngEpisode({ episode }) {
     <div>
       <Image
         id="episode"
-        alt="Rarement NFT Image"
+        alt="Rarement Webtoon Image"
         src={imageUrl}
         width={width}
         height={height}
@@ -17,7 +17,9 @@ export default function EngEpisode({ episode }) {
         objectFit="cover"
         placeholder="blur"
         blurDataURL={imageUrl}
-        loading="lazy"
+        // loading="lazy"
+        priority={true}
+        quality={100}
       />
     </div>
   );
