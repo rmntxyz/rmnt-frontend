@@ -17,9 +17,10 @@ export default function EngEpisode({ episode }) {
         objectFit="cover"
         placeholder="blur"
         blurDataURL={imageUrl}
-        // loading="lazy"
+        loading="lazy"
         priority={true}
-        quality={100}
+        // quality={100}
+        unoptimized
       />
     </div>
   );
