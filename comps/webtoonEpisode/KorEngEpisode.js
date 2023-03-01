@@ -1,15 +1,15 @@
 import Image from "next/image";
 
 export default function KorEngEpisode({ props }) {
-  const imageRatio = props.height / props.width;
+  const imageRatio = props.height/props.width;
   return (
     <div>
       <Image
         id="episode"
         alt="Rarement Webtoon Image"
         src={props.imageUrl}
-        width={props.width}
-        height={props.height}
+        width={768}
+        height={768 * imageRatio}
         layout="responsive"
         objectFit="cover"
         placeholder="blur"
