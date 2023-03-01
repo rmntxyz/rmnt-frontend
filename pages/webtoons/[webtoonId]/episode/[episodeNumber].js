@@ -4,9 +4,8 @@ import Seo from "../../../../comps/layout/SEO";
 import Nav from "../../../../comps/webtoonEpisode/Nav";
 import hideOrPaint from "../../../../utils/hideOrPaint";
 import Buttons from "../../../../comps/webtoonEpisode/Buttons";
-import EngEpisode from "../../../../comps/webtoonEpisode/EngEpisode";
 import { useEffect, useState } from "react";
-import KorEpisode from "../../../../comps/webtoonEpisode/KorEpisode";
+import KorEngEpisode from "../../../../comps/webtoonEpisode/KorEngEpisode";
 const GET_EPISODE_DATA = gql`
   query Webtoon($webtoonId: String) {
     webtoons(filters: { webtoon_id: { eq: $webtoonId } }) {
@@ -98,6 +97,18 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
     }
   }, []);
 
+  //Set props for Kor/Eng image
+  const engProps = {
+    imageUrl: episode.eng_image.data.attributes.url,
+    width: episode.eng_image.data.attributes.width,
+    height: episode.eng_image.data.attributes.height,
+  };
+  const korProps = {
+    imageUrl: episode.kor_image.data.attributes.url,
+    width: episode.kor_image.data.attributes.width,
+    height: episode.kor_image.data.attributes.height,
+  };
+
   return (
     <div className="min-h-screen">
       <Seo
@@ -111,11 +122,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
         setLang={setLang}
       />
       <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">
-        {lang === false ? (
-          <EngEpisode episode={episode} />
-        ) : (
-          <KorEpisode episode={episode} />
-        )}
+        <KorEngEpisode props={lang === false ? engProps : korProps} />
         <Buttons
           webtoon={webtoon}
           episode={episode}
