@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function KorEngEpisode({ props }) {
+  const imageRatio = props.height / props.width;
   return (
     <div>
       <Image
@@ -13,10 +14,10 @@ export default function KorEngEpisode({ props }) {
         objectFit="cover"
         placeholder="blur"
         blurDataURL={props.imageUrl}
-        // loading="lazy"
-        priority={true}
+        loading="lazy"
+        // priority={true}
         // quality={100}
-        unoptimized
+        // unoptimized
       />
     </div>
   );
