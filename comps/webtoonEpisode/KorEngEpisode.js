@@ -13,7 +13,7 @@ export default function KorEngEpisode({ props }) {
         objectFit="cover"
         placeholder="blur"
         blurDataURL={props.imageUrl}
-        loading="lazy"
+        // loading="lazy"
         // priority={true}
         // quality={100}
         unoptimized
