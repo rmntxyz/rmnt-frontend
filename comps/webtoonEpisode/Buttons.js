@@ -15,6 +15,8 @@ export default function Buttons({ allEpisodes }) {
     query: { episodeNumber, webtoonId, language },
   } = useRouter();
 
+  const episodeNo = parseInt(episodeNumber);
+
   return (
     <div id="buttons" className="fixed w-full bottom-0 duration-200">
       <div className="relative max-w-[768px] md:max-w-[630px]">
@@ -24,12 +26,12 @@ export default function Buttons({ allEpisodes }) {
               "/webtoons/" +
               webtoonId +
               "/episode/" +
-              allEpisodes[episodeNumber - 2]?.attributes.episode_number +
+              allEpisodes[episodeNo - 2]?.attributes.episode_number +
               "/" +
               language
             }
             style={{
-              display: allEpisodes[episodeNumber - 2] ? "block" : "none",
+              display: allEpisodes[episodeNo - 2] ? "block" : "none",
             }}
             className="gradientBorder py-3 px-4 "
           >
@@ -37,13 +39,13 @@ export default function Buttons({ allEpisodes }) {
             <span
               style={{
                 display:
-                  screenWidth < 768 && allEpisodes[episodeNumber]
+                  screenWidth < 768 && allEpisodes[episodeNo]
                     ? "none"
                     : "inline-block",
               }}
               className="ml-3"
             >
-              Ep.{episodeNumber - 1}
+              Ep.{episodeNo - 1}
             </span>
           </a>
           <a
@@ -51,25 +53,25 @@ export default function Buttons({ allEpisodes }) {
               "/webtoons/" +
               webtoonId +
               "/episode/" +
-              allEpisodes[episodeNumber]?.attributes.episode_number +
+              allEpisodes[episodeNo]?.attributes.episode_number +
               "/" +
               language
             }
             style={{
-              display: allEpisodes[episodeNumber] ? "block" : "none",
+              display: allEpisodes[episodeNo] ? "block" : "none",
             }}
             className="gradientBorder py-3 px-4"
           >
             <span
               style={{
                 display:
-                  screenWidth < 768 && allEpisodes[episodeNumber - 2]
+                  screenWidth < 768 && allEpisodes[episodeNo - 2]
                     ? "none"
                     : "inline-block",
               }}
               className="mr-3"
             >
-              Ep.{episodeNumber + 1}
+              Ep.{episodeNo + 1}
             </span>
             <FontAwesomeIcon icon={faArrowRight} className="text-lg" />
           </a>

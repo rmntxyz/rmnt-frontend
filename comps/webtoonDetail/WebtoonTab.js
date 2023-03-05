@@ -15,7 +15,8 @@ export default function WebtoonTab({ webtoon, episodes }) {
               "/webtoons/" +
               webtoon.attributes.webtoon_id +
               "/episode/" +
-              item.attributes.episode_number
+              item.attributes.episode_number +
+              "/eng"
             }
             className="pb-8"
           >
