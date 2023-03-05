@@ -4,11 +4,16 @@ import {
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/router";
 import getScreenSize from "../../utils/getScreenSize";
 import scrollToTop from "../../utils/scrollToTop";
 
-export default function Buttons({ webtoon, episode, allEpisodes }) {
+export default function Buttons({ allEpisodes }) {
   const { screenWidth } = getScreenSize();
+
+  const {
+    query: { episodeNumber, webtoonId, language },
+  } = useRouter();
 
   return (
     <div id="buttons" className="fixed w-full bottom-0 duration-200">
@@ -17,14 +22,14 @@ export default function Buttons({ webtoon, episode, allEpisodes }) {
           <a
             href={
               "/webtoons/" +
-              webtoon.attributes.webtoon_id +
+              webtoonId +
               "/episode/" +
-              allEpisodes[episode.episode_number - 2]?.attributes.episode_number
+              allEpisodes[episodeNumber - 2]?.attributes.episode_number +
+              "/" +
+              language
             }
             style={{
-              display: allEpisodes[episode.episode_number - 2]
-                ? "block"
-                : "none",
+              display: allEpisodes[episodeNumber - 2] ? "block" : "none",
             }}
             className="gradientBorder py-3 px-4 "
           >
@@ -32,37 +37,39 @@ export default function Buttons({ webtoon, episode, allEpisodes }) {
             <span
               style={{
                 display:
-                  screenWidth < 768 && allEpisodes[episode.episode_number]
+                  screenWidth < 768 && allEpisodes[episodeNumber]
                     ? "none"
                     : "inline-block",
               }}
               className="ml-3"
             >
-              Ep.{episode.episode_number - 1}
+              Ep.{episodeNumber - 1}
             </span>
           </a>
           <a
             href={
               "/webtoons/" +
-              webtoon.attributes.webtoon_id +
+              webtoonId +
               "/episode/" +
-              allEpisodes[episode.episode_number]?.attributes.episode_number
+              allEpisodes[episodeNumber]?.attributes.episode_number +
+              "/" +
+              language
             }
             style={{
-              display: allEpisodes[episode.episode_number] ? "block" : "none",
+              display: allEpisodes[episodeNumber] ? "block" : "none",
             }}
             className="gradientBorder py-3 px-4"
           >
             <span
               style={{
                 display:
-                  screenWidth < 768 && allEpisodes[episode.episode_number - 2]
+                  screenWidth < 768 && allEpisodes[episodeNumber - 2]
                     ? "none"
                     : "inline-block",
               }}
               className="mr-3"
             >
-              Ep.{episode.episode_number + 1}
+              Ep.{episodeNumber + 1}
             </span>
             <FontAwesomeIcon icon={faArrowRight} className="text-lg" />
           </a>

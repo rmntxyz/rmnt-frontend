@@ -111,11 +111,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
               : episode.eng_images.data
           }
         />
-        <Buttons
-          webtoon={webtoon}
-          episode={episode}
-          allEpisodes={allEpisodes}
-        />
+        <Buttons allEpisodes={allEpisodes} />
       </main>
     </div>
   );
