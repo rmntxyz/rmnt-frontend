@@ -1,24 +1,34 @@
 import Image from "next/image";
 
-export default function KorEngEpisode({ props }) {
-  const imageRatio = props.height / props.width;
+export default function KorEngEpisode({ data }) {
+  let imageUrl;
+  let imageWidth;
+  let imageHeight;
+  let imageRatio;
   return (
-    <div>
-      <Image
-        id="episode"
-        alt="Rarement Webtoon Image"
-        src={props.imageUrl}
-        width={768}
-        height={768 * imageRatio}
-        layout="responsive"
-        objectFit="cover"
-        placeholder="blur"
-        blurDataURL={props.imageUrl}
-        // loading="lazy"
-        // priority={true}
-        // quality={100}
-        unoptimized
-      />
+    <div id="episode">
+      {data.map((item) => {
+        imageUrl = item.attributes.url;
+        imageWidth = item.attributes.width;
+        imageHeight = item.attributes.height;
+        imageRatio = imageHeight / imageWidth;
+        return (
+          <Image
+            alt="Rarement Webtoon Image"
+            src={imageUrl}
+            width={768}
+            height={768 * imageRatio}
+            layout="responsive"
+            objectFit="cover"
+            placeholder="blur"
+            blurDataURL={imageUrl}
+            loading="lazy"
+            // priority={true}
+            // quality={100}
+            unoptimized
+          />
+        );
+      })}
     </div>
   );
 }

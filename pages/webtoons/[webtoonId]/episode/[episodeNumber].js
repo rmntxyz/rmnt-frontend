@@ -26,18 +26,22 @@ const GET_EPISODE_DATA = gql`
               id
               attributes {
                 episode_number
-                eng_image {
+                eng_images(pagination: { limit: 200 }, sort: "caption") {
                   data {
                     attributes {
+                      name
+                      caption
                       width
                       height
                       url
                     }
                   }
                 }
-                kor_image {
+                kor_images(pagination: { limit: 200 }, sort: "caption") {
                   data {
                     attributes {
+                      name
+                      caption
                       width
                       height
                       url
@@ -97,18 +101,6 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
     }
   }, []);
 
-  //Set props for Kor/Eng image
-  const engProps = {
-    imageUrl: episode.eng_image.data.attributes.url,
-    width: episode.eng_image.data.attributes.width,
-    height: episode.eng_image.data.attributes.height,
-  };
-  const korProps = {
-    imageUrl: episode.kor_image.data.attributes.url,
-    width: episode.kor_image.data.attributes.width,
-    height: episode.kor_image.data.attributes.height,
-  };
-
   return (
     <div className="min-h-screen">
       <Seo
@@ -122,7 +114,11 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
         setLang={setLang}
       />
       <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">
-        <KorEngEpisode props={lang === false ? engProps : korProps} />
+        <KorEngEpisode
+          data={
+            lang === false ? episode.eng_images.data : episode.kor_images.data
+          }
+        />
         <Buttons
           webtoon={webtoon}
           episode={episode}
