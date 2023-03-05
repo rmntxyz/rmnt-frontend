@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export default function KorEngEpisode({ props }) {
-  const imageRatio = props.height/props.width
+  const imageRatio = props.height / props.width;
   return (
     <div>
       <Image
