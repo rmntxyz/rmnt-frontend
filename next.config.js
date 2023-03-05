@@ -12,6 +12,11 @@ module.exports = {
         source: "/webtoons/:webtoonId/:tabName",
         destination: "/webtoons/:webtoonId?tab=:tabName",
       },
+      {
+        source: "/webtoons/:webtoonId/episode/:episodeNumber/:languageName",
+        destination:
+          "/webtoons/:webtoonId/episode/:episodeNumber?language=:languageName",
+      },
     ];
   },
 };

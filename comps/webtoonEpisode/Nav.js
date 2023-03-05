@@ -1,14 +1,10 @@
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { House } from "../../utils/svgs";
 import Toggle from "../webtoonEpisode/Toggle";
 
-export default function Nav({ episode, webtoon, prevUrl, lang, setLang }) {
-  //Use router to enable navigation
-  const router = useRouter();
-
+export default function Nav({ episode, webtoon, prevUrl }) {
   return (
     <nav
       id="navbar"
@@ -44,7 +40,7 @@ export default function Nav({ episode, webtoon, prevUrl, lang, setLang }) {
               <House />
             </a>
           </Link>
-          <Toggle lang={lang} setLang={setLang} />
+          <Toggle />
         </div>
       </div>
     </nav>

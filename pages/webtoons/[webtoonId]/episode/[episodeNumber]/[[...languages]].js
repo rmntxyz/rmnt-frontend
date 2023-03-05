@@ -1,11 +1,12 @@
 import { gql } from "@apollo/client";
-import client from "../../../../apollo";
-import Seo from "../../../../comps/layout/SEO";
-import Nav from "../../../../comps/webtoonEpisode/Nav";
-import hideOrPaint from "../../../../utils/hideOrPaint";
-import Buttons from "../../../../comps/webtoonEpisode/Buttons";
-import { useEffect, useState } from "react";
-import KorEngEpisode from "../../../../comps/webtoonEpisode/KorEngEpisode";
+import { useRouter } from "next/router";
+import client from "../../../../../apollo";
+import Seo from "../../../../../comps/layout/SEO";
+import Nav from "../../../../../comps/webtoonEpisode/Nav";
+import hideOrPaint from "../../../../../utils/hideOrPaint";
+import Buttons from "../../../../../comps/webtoonEpisode/Buttons";
+import KorEngEpisode from "../../../../../comps/webtoonEpisode/KorEngEpisode";
+
 const GET_EPISODE_DATA = gql`
   query Webtoon($webtoonId: String) {
     webtoons(filters: { webtoon_id: { eq: $webtoonId } }) {
@@ -91,32 +92,23 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   //Hide navbar and navgation buttons on scroll
   hideOrPaint();
 
-  //Set episode language
-  const [lang, setLang] = useState(false);
-
-  useEffect(() => {
-    const storedLang = localStorage.getItem("episodeLang");
-    if (storedLang === "true") {
-      setLang(true);
-    }
-  }, []);
+  //Set language for the episode
+  const {
+    query: { language },
+  } = useRouter();
 
   return (
     <div className="min-h-screen">
       <Seo
         title={`${webtoon.attributes.title} - Ep.${episode.episode_number}`}
       />
-      <Nav
-        episode={episode}
-        webtoon={webtoon}
-        prevUrl={prevUrl}
-        lang={lang}
-        setLang={setLang}
-      />
+      <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
       <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">
         <KorEngEpisode
           data={
-            lang === false ? episode.eng_images.data : episode.kor_images.data
+            language === "kor"
+              ? episode.kor_images.data
+              : episode.eng_images.data
           }
         />
         <Buttons

@@ -23,9 +23,7 @@ export default function KorEngEpisode({ data }) {
             placeholder="blur"
             blurDataURL={imageUrl}
             loading="lazy"
-            // priority={true}
-            // quality={100}
-            unoptimized
+            // unoptimized
           />
         );
       })}
