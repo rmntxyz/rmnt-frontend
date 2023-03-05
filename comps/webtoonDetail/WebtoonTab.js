@@ -21,11 +21,11 @@ export default function WebtoonTab({ webtoon, episodes }) {
             className="pb-8"
           >
             <Image
-              src={webtoon.attributes.cover_image.data.attributes.url}
+              src={item.attributes.thumbnail.data.attributes.url}
               width={768}
               height={768}
               placeholder="blur"
-              blurDataURL={webtoon.attributes.cover_image.data.attributes.url}
+              blurDataURL={item.attributes.thumbnail.data.attributes.url}
               layout="responsive"
               objectFit="cover"
               alt="Rarement Webtoon Cover Image"
