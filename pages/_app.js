@@ -174,11 +174,7 @@ function MyApp({ Component, pageProps }) {
           })}
           chains={chains}
         > */}
-        <Layout
-          provider={provider}
-          setProvider={setProvider}
-          web3auth={web3auth}
-        >
+        <Layout setProvider={setProvider} web3auth={web3auth}>
           <Component {...pageProps} />
         </Layout>
         {/* </RainbowKitProvider> */}

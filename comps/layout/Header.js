@@ -7,11 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
 import getLoggedIn from "../../utils/getLoggedIn";
+import getPrevRoute from "../../utils/getPrevRoute";
 import { Logo, MediumLogo } from "../../utils/svgs";
-import { login } from "../../utils/web3auth";
 import { unloggedInView } from "./AuthView";
 
-export default function Header({ provider, web3auth, setProvider }) {
+export default function Header({ web3auth, setProvider }) {
   //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
 
@@ -19,7 +19,8 @@ export default function Header({ provider, web3auth, setProvider }) {
   const loggedIn = getLoggedIn(web3auth);
 
   //Get current/previous routes to determine whether to show the back button or not
-  // const { prevPath } = getPrevRoute();
+  const { prevPath } = getPrevRoute();
+
   return (
     <nav
       className="bg-navBg h-20 px-8 text-2xl font-bold flex justify-between items-center"
@@ -28,19 +29,15 @@ export default function Header({ provider, web3auth, setProvider }) {
       }}
     >
       <div className="flex items-center gap-6">
-        <a
+        <FontAwesomeIcon
+          id="back"
+          icon={faArrowLeft}
           style={{
-            display: router.pathname === "/" ? "none" : "block",
+            display: router.pathname === "/" || !prevPath ? "none" : "block",
           }}
-          href="/"
-        >
-          <FontAwesomeIcon
-            id="back"
-            icon={faArrowLeft}
-            onClick={() => router.back()}
-            className="cursor-pointer"
-          />
-        </a>
+          onClick={() => router.back()}
+          className="cursor-pointer"
+        />
         <a href="/">
           <Logo />
           {/* <div className="hidden md:block">
@@ -51,7 +48,7 @@ export default function Header({ provider, web3auth, setProvider }) {
           </div> */}
         </a>
       </div>
-      {loggedIn ? null : unloggedInView(login, web3auth, setProvider)}
+      {loggedIn ? null : unloggedInView(web3auth, setProvider)}
       {/* <ConnectButton.Custom>
         {({
           account,

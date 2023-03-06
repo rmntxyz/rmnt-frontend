@@ -47,14 +47,7 @@ export default function Avatar({ avatars, exchangeRate, webtoon }) {
               <Character item={item} key={idx} />
             ))}
           </div>
-          <div>
-            <PriceAvail avatars={avatars} exchangeRate={exchangeRate} />
-            <button aria-label="Collect NFT" className="py-3 mt-8">
-              <span className="px-8 py-3 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight font-bold rounded-3xl hover:bg-navBg hover:text-white duration-200">
-                Collect
-              </span>
-            </button>
-          </div>
+          <PriceAvail avatars={avatars} exchangeRate={exchangeRate} />
         </div>
       </div>
     </div>

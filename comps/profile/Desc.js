@@ -121,7 +121,7 @@ export default function Desc({ props }) {
           </div>
           {props.attributes.description?.length > 0 ? (
             <div className="text-justify">
-              <div id="desc" className={`${show ? "" : "truncate-2"}`}>
+              <div id="desc" className={`${show ? "" : "truncate-5"}`}>
                 <ReactMarkdown children={props.attributes.description} />
               </div>
               <ShowOrClose

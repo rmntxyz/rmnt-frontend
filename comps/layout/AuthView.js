@@ -1,8 +1,9 @@
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { login } from "../../utils/web3auth";
 // import Tippy from "@tippyjs/react/headless";
 
-export const unloggedInView = (login, web3auth, setProvider) => (
+export const unloggedInView = (web3auth, setProvider) => (
   <button
     onClick={(e) => login(web3auth, setProvider)}
     type="button"

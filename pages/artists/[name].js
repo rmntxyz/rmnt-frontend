@@ -82,7 +82,7 @@ export default function Artist({ artist, webtoons }) {
       <main>
         <Desc props={artist} />
         <Line />
-        <Webtoons webtoons={webtoons} artist={artist.attributes.first_name} />
+        <Webtoons webtoons={webtoons} />
         {/* <NFT NFTs={NFTs} artist={artist} /> */}
       </main>
     </div>
