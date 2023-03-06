@@ -17,6 +17,7 @@ export default function Artists({ artists }) {
                   src={artist.attributes.profile_image.data.attributes.url}
                   width={80}
                   height={80}
+                  alt="Rarement Artist Profile Image"
                   className="rounded-full"
                 />
               </a>

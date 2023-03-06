@@ -16,6 +16,7 @@ export default function Character({ item }) {
             <Image
               src={item.attributes.image.data.attributes.url}
               layout="fill"
+              alt="Rarement Webtoon Character Image"
               className="rounded-md"
             />
           </div>
@@ -29,11 +30,12 @@ export default function Character({ item }) {
         </div>
       )}
     >
-      <button>
+      <button aria-label="Rarement Webtoon Character Image">
         <Image
           src={item.attributes.image.data.attributes.url}
           width={44}
           height={44}
+          alt="Rarement Webtoon Character Image"
           className="rounded-md"
         />
       </button>

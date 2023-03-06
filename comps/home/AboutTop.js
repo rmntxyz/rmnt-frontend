@@ -16,6 +16,7 @@ export default function AboutTop() {
         src="/레어먼트_홈피이미지001(1) 1@3x.png"
         width={336}
         height={336}
+        alt="Rarement Image"
       />
       <div className="flex flex-col gap-3">
         <div className="font-bold text-2xl">Collect & Support Your Artist</div>

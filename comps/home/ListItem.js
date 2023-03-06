@@ -44,6 +44,7 @@ export default function ListItem({ item }) {
               }
               width={33}
               height={33}
+              alt="Rarement Artist Profile Image"
               className="rounded-full"
             />
             <a

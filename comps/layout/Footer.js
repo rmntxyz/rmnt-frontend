@@ -14,9 +14,9 @@ import { useRouter } from "next/router";
 
 // "next.link" must have only one child. (e.g. <a>)
 // so, can't use a <Link> component here.
-const OutLinkWithIcon = ({ href, icon }) => {
+const OutLinkWithIcon = ({ href, icon, desc }) => {
   return (
-    <a href={href}>
+    <a href={href} aria-label={desc}>
       <FontAwesomeIcon icon={icon} />
     </a>
   );
@@ -24,9 +24,9 @@ const OutLinkWithIcon = ({ href, icon }) => {
 
 const OutLinks = [
   // { href: "/", icon: faInstagram },
-  { href: "/", icon: faTwitter },
-  { href: "/", icon: faDiscord },
-  { href: "/", icon: faEnvelope },
+  { href: "/", icon: faTwitter, desc: "Check out Rarement's Twitter feed" },
+  { href: "/", icon: faDiscord, desc: "Join Rarement on Discord" },
+  { href: "/", icon: faEnvelope, desc: "Contact Rarement by Email" },
 ].map((info) => <OutLinkWithIcon {...info} />);
 
 const InLinks = [
@@ -51,23 +51,26 @@ export default function Footer() {
     >
       <Line />
       <ul className="flex items-center gap-5 mt-14">
-        <a
-          onMouseOver={(e) => setIsHovered(true)}
-          onMouseOut={(e) => setIsHovered(false)}
-          href="/"
-          className="w-[44px] h-[44px] flex items-center justify-center border border-white/20 rounded-full bg-opaqueGray"
-        >
-          <Image
-            src={`${
-              !isHovered
-                ? "/instagram/instagram_1440_768@2x.png"
-                : "/instagram/instagram_1440_768_hover@2x.png"
-            }`}
-            width={20}
-            height={20}
-            alt="Instagram"
-          />
-        </a>
+        <li>
+          <a
+            onMouseOver={(e) => setIsHovered(true)}
+            onMouseOut={(e) => setIsHovered(false)}
+            href="/"
+            aria-label="Follow Rarement on Instagram"
+            className="w-[44px] h-[44px] flex items-center justify-center border border-white/20 rounded-full bg-opaqueGray"
+          >
+            <Image
+              src={`${
+                !isHovered
+                  ? "/instagram/instagram_1440_768@2x.png"
+                  : "/instagram/instagram_1440_768_hover@2x.png"
+              }`}
+              width={20}
+              height={20}
+              alt="Instagram"
+            />
+          </a>
+        </li>
         {OutLinks.map((link, idx) => (
           <li
             key={idx}

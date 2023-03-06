@@ -25,6 +25,7 @@ export default function Avatar({ avatars, exchangeRate, webtoon }) {
                 }
                 width={24}
                 height={24}
+                alt="Rarement Artist Profile Image"
                 className="rounded-full"
               />
               <a

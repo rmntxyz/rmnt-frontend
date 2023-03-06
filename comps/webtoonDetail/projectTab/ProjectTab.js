@@ -38,6 +38,7 @@ export default function ProjectTab({
             src="/KakaoTalk_Photo_2023-01-27-11-57-45.png"
             width={20}
             height={20}
+            alt="Pencil Image"
           />
           <span>Synopsis</span>
         </div>

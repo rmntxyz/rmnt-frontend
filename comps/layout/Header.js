@@ -38,7 +38,7 @@ export default function Header({ web3auth, setProvider }) {
           onClick={() => router.back()}
           className="cursor-pointer"
         />
-        <a href="/">
+        <a href="/" aria-label="Go to Rarement home">
           <Logo />
           {/* <div className="hidden md:block">
             <Logo />

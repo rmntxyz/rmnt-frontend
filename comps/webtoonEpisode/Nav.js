@@ -16,6 +16,7 @@ export default function Nav({ episode, webtoon, prevUrl }) {
             href={
               "/webtoons/" + webtoon.attributes.webtoon_id + "/webtoon#main"
             }
+            aria-label="Go to this webtoon's page"
           >
             <FontAwesomeIcon
               id="episodeBack"
@@ -36,7 +37,10 @@ export default function Nav({ episode, webtoon, prevUrl }) {
         </div>
         <div className="flex gap-5 items-center justify-center">
           <Link href="/" passHref>
-            <a className="p-3.5 rounded-full border border-white/20 bg-opaqueGray">
+            <a
+              className="p-3.5 rounded-full border border-white/20 bg-opaqueGray"
+              aria-label="Go to Rarement home"
+            >
               <House />
             </a>
           </Link>
