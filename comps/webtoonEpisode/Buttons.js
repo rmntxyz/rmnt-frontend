@@ -76,7 +76,7 @@ export default function Buttons({ allEpisodes }) {
             <FontAwesomeIcon icon={faArrowRight} className="text-lg" />
           </a>
         </div>
-        <button id="scrollToTop" onClick={scrollToTop} title="Scroll To Top" >
+        <button id="scrollToTop" onClick={scrollToTop} title="Scroll To Top">
           <FontAwesomeIcon
             icon={faArrowUp}
             className="absolute right-0 top-1 gradientBorder m-8 px-3.5 py-3 text-lg"
