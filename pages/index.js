@@ -30,6 +30,7 @@ const GET_HOME_DATA = gql`
           }
           title
           volume
+          released_timestamp
           cover_image {
             data {
               attributes {

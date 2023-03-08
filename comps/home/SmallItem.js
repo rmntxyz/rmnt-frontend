@@ -3,17 +3,16 @@ import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 
 export default function SmallItem({ item }) {
+  //Find the number of available avatars out of all avatars
   const allAvatars = item.attributes.avatars?.data.length;
   const availableAvatars = item.attributes.avatars?.data.filter(
     (avatar) => !avatar.attributes.owned_by.data
   ).length;
-  // const NFTs = item.attributes.webtoon_pages.data
-  //   .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-  //   .flat(1)
-  //   .filter((NFT) => !!NFT)
-  //   .sort((a, b) => a.id - b.id)
-  //   .sort((a, b) => b.attributes.drop_timestamp - a.attributes.drop_timestamp);
-  // const avatarUrl = NFTs[0].attributes.image.data[0].attributes.url;
+
+  //Find if the webtoon has been released or not
+  const released =
+    new Date().getTime() > item.attributes.released_timestamp * 1000;
+
   return (
     <div className="relative">
       <a href={"/webtoons/" + item.attributes.webtoon_id}>
@@ -28,7 +27,10 @@ export default function SmallItem({ item }) {
           alt="Rarement Webtoon Cover Image"
         />
       </a>
-      <div className="absolute p-3 h-fit bottom-0 z-10 flex items-center w-full gap-3 rounded-bl-2xl rounded-br-2xl bg-black/50">
+      <div
+        className="absolute p-3 h-fit bottom-0 z-10 items-center w-full gap-3 rounded-bl-2xl rounded-br-2xl bg-black/50"
+        style={{ display: released ? "flex" : "none" }}
+      >
         <div className="w-1/4">
           <PolyFrameImage
             href={item.attributes.avatarGIF.data.attributes.url}
@@ -67,6 +69,11 @@ export default function SmallItem({ item }) {
           </div>
         </div>
       </div>
+      {released ? null : (
+        <div className="absolute bg-navBg/50 w-full h-full top-0 z-10 flex items-center justify-center text-white/100 text-3xl font-bold">
+          Coming soon
+        </div>
+      )}
     </div>
   );
 }

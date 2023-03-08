@@ -27,6 +27,7 @@ const GET_WEBTOONS_DATA = gql`
           }
           title
           volume
+          released_timestamp
           cover_image {
             data {
               attributes {
@@ -101,7 +102,7 @@ export default function Webtoons({ webtoons }) {
   return (
     <div className="">
       <Seo title="Webtoons | Rarement" />
-      <main className="max-w-[768px] mx-auto px-4 grid grid-cols-2 gap-3 md:max-w-[630px]">
+      <main className="max-w-[768px] mx-auto px-4 py-14 grid grid-cols-2 gap-3 md:max-w-[630px]">
         {webtoons.map((item) => (
           <SmallItem key={item.id} item={item} />
         ))}

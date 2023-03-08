@@ -31,16 +31,25 @@ export default function List({ data }) {
     <div>
       {screenWidth >= 640 ? (
         <div className="grid grid-cols-1 gap-3">
-          <div className="grid grid-cols-1 gap-3">
-            {data.slice(0, 1).map((item) => (
-              <ListItem key={item.id} item={item} />
-            ))}
-          </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {data.slice(1).map((item) => (
-              <SmallItem key={item.id} item={item} />
-            ))}
-          </div>
+          {data.slice(0, 1).map((item) => (
+            <ListItem key={item.id} item={item} />
+          ))}
+          {data.slice(1)?.length % 2 === 0 ? (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {data.slice(1).map((item) => (
+                <SmallItem key={item.id} item={item} />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {data.slice(1).map((item) => (
+                <SmallItem key={item.id} item={item} />
+              ))}
+              <div className="bg-opaqueGray rounded-2xl flex items-center justify-center text-white/100 text-3xl font-bold">
+                Coming soon
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-3">

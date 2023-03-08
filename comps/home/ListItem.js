@@ -3,17 +3,12 @@ import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 
 export default function ListItem({ item }) {
+  //Find the number of available avatars out of all avatars
   const allAvatars = item.attributes.avatars?.data.length;
   const availableAvatars = item.attributes.avatars?.data.filter(
     (avatar) => !avatar.attributes.owned_by.data
   ).length;
-  // const NFTs = item.attributes.webtoon_pages.data
-  //   .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-  //   .flat(1)
-  //   .filter((NFT) => !!NFT)
-  //   .sort((a, b) => a.id - b.id)
-  //   .sort((a, b) => b.attributes.drop_timestamp - a.attributes.drop_timestamp);
-  // const avatarUrl = NFTs[0].attributes.image.data[0].attributes.url;
+
   return (
     <div className="relative">
       <a href={"/webtoons/" + item.attributes.webtoon_id}>
@@ -60,7 +55,6 @@ export default function ListItem({ item }) {
               </span>
             </a>
           </div>
-
           <Line />
           <div>
             <span className="font-bold">Availability {availableAvatars}</span>

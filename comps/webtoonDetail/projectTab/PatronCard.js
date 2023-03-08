@@ -1,13 +1,11 @@
 import Tippy from "@tippyjs/react/headless";
+import getDate from "../../../utils/getDate";
 // import "tippy.js/dist/tippy.css";
 import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 
 export default function PatronCard({ item }) {
   //Find the date of sale
-  const dateTime = new Date(item.attributes.sold_timestamp * 1000);
-  const year = dateTime.getFullYear() % 100;
-  const month = dateTime.getMonth() + 1;
-  const date = dateTime.getDate();
+  const { year, month, date } = getDate(item.attributes.sold_timestamp);
   // const fullDate = dateTime.toDateString().slice(4);
   return (
     <Tippy

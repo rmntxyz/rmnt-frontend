@@ -123,6 +123,7 @@ const GET_WEBTOON_DATA = gql`
               id
               attributes {
                 episode_number
+                released_timestamp
                 thumbnail {
                   data {
                     attributes {
