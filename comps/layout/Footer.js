@@ -68,6 +68,7 @@ export default function Footer() {
               width={20}
               height={20}
               alt="Instagram"
+              priority
             />
           </a>
         </li>

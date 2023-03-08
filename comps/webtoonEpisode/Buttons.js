@@ -16,7 +16,10 @@ export default function Buttons({ allEpisodes }) {
   } = useRouter();
 
   const episodeNo = parseInt(episodeNumber);
-
+  const prevEpisode = allEpisodes[episodeNo - 2];
+  const nextEpisode = allEpisodes[episodeNo];
+  const nextReleased =
+    nextEpisode?.attributes.released_timestamp * 1000 < new Date().getTime();
   return (
     <div id="buttons" className="fixed w-full bottom-0 duration-200">
       <div className="relative max-w-[768px] md:max-w-[630px]">
@@ -26,12 +29,12 @@ export default function Buttons({ allEpisodes }) {
               "/webtoons/" +
               webtoonId +
               "/episode/" +
-              allEpisodes[episodeNo - 2]?.attributes.episode_number +
+              prevEpisode?.attributes.episode_number +
               "/" +
               language
             }
             style={{
-              display: allEpisodes[episodeNo - 2] ? "block" : "none",
+              display: prevEpisode ? "block" : "none",
             }}
             className="gradientBorder py-3 px-4 "
           >
@@ -39,9 +42,7 @@ export default function Buttons({ allEpisodes }) {
             <span
               style={{
                 display:
-                  screenWidth < 768 && allEpisodes[episodeNo]
-                    ? "none"
-                    : "inline-block",
+                  screenWidth < 768 && nextReleased ? "none" : "inline-block",
               }}
               className="ml-3"
             >
@@ -53,21 +54,19 @@ export default function Buttons({ allEpisodes }) {
               "/webtoons/" +
               webtoonId +
               "/episode/" +
-              allEpisodes[episodeNo]?.attributes.episode_number +
+              nextEpisode?.attributes.episode_number +
               "/" +
               language
             }
             style={{
-              display: allEpisodes[episodeNo] ? "block" : "none",
+              display: nextReleased ? "block" : "none",
             }}
             className="gradientBorder py-3 px-4"
           >
             <span
               style={{
                 display:
-                  screenWidth < 768 && allEpisodes[episodeNo - 2]
-                    ? "none"
-                    : "inline-block",
+                  screenWidth < 768 && prevEpisode ? "none" : "inline-block",
               }}
               className="mr-3"
             >

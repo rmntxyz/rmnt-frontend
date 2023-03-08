@@ -27,6 +27,7 @@ const GET_EPISODE_DATA = gql`
               id
               attributes {
                 episode_number
+                released_timestamp
                 eng_images(pagination: { limit: 200 }, sort: "caption") {
                   data {
                     attributes {
