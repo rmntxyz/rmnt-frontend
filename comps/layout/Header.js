@@ -21,6 +21,13 @@ export default function Header({ web3auth, setProvider }) {
   //Get current/previous routes to determine whether to show the back button or not
   const { prevPath } = getPrevRoute();
 
+  //Handle the back button differently based on the current url
+  function handleBack() {
+    if (router.pathname.includes("/artists/")) {
+      router.back();
+    } else router.push("/");
+  }
+
   return (
     <nav
       className="bg-navBg h-20 px-8 text-2xl font-bold flex justify-between items-center"
@@ -35,7 +42,7 @@ export default function Header({ web3auth, setProvider }) {
           style={{
             display: router.pathname === "/" || !prevPath ? "none" : "block",
           }}
-          onClick={() => router.back()}
+          onClick={handleBack}
           className="cursor-pointer"
         />
         <a href="/" aria-label="Go to Rarement home">
