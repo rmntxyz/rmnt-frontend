@@ -3,7 +3,7 @@ import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 
 export default function ListItem({ item }) {
-  //Find the number of available avatars out of all avatars
+  //TODO Find the number of available avatars out of all avatars
   const allAvatars = item.attributes.avatars?.data.length;
   const availableAvatars = item.attributes.avatars?.data.filter(
     (avatar) => !avatar.attributes.owned_by.data

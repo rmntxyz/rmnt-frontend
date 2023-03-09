@@ -1,7 +1,7 @@
 import { Eth } from "../../../utils/svgs";
 
 export default function PriceAvail({ avatars, exchangeRate }) {
-  //Determine the number of all avatars and available avatars
+  //TODO Determine the number of all avatars and available avatars
   const all = avatars.length;
   const available = avatars.filter(
     (avatar) => !avatar.attributes.owned_by.data
