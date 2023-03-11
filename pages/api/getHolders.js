@@ -3,7 +3,7 @@ import { Alchemy, Network } from "alchemy-sdk";
 
 const config = {
   apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
-  network: process.env.NODE_ENV === 'production' ? Network.MATIC_MAINNET : Network.MATIC_MUMBAI, // Replace with the network your NFT contract is deployed to.
+  network: process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ? Network.MATIC_MAINNET : Network.MATIC_MUMBAI, // Replace with the network your NFT contract is deployed to.
 };
 
 const alchemy = new Alchemy(config);
