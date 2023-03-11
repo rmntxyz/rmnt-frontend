@@ -9,7 +9,7 @@ const config = {
 const alchemy = new Alchemy(config);
 
 // function to get all the minters of the NFT Collection
-export async function getHolders(nftAddress) {
+export async function getHolders(nftAddress, first = 7) {
 
   const { owners } = await alchemy.nft.getOwnersForContract(nftAddress, { withTokenBalances: true });
   const ownersMap = owners.flatMap(({ ownerAddress, tokenBalances }) =>
@@ -17,7 +17,7 @@ export async function getHolders(nftAddress) {
   ).reduce((acc, x) => Object.assign(acc, x), {});
 
   // for minting order
-  const minters = await getMinters(nftAddress);
+  const minters = await getMinters(nftAddress, first);
 
   const holders = await Promise.all(minters.map(async ordered => {
     const {tokenId} = ordered;
@@ -39,7 +39,7 @@ export async function getHolders(nftAddress) {
 /**
  * @see https://docs.alchemy.com/docs/how-to-get-minters-of-an-nft-collection#checking-if-the-minters-still-hold-the-nft
  */
-async function getMinters(nftAddress, first = 7) {
+async function getMinters(nftAddress, first) {
   const minters = [];
   let pageKey;
 
