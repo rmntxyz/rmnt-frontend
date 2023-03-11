@@ -12,32 +12,22 @@ export default function Patrons({
 
   const [holders, setHolders] = useState([]);
 
-  //Divide holders into rows and push null values when the length of the array for each row falls short of 3 or 4.
-  function firstRow() {
-    const array = holders.slice(0, 3);
+  //Populate the array of holders with null values if the length of the array falls short of 7
+  const rows = () => {
+    const array = holders;
     const length = array.length;
-    if (length === 3) {
-      return array;
-    } else {
-      for (var i = 0; i < 3 - length; i++) {
+    if (length < 7) {
+      for (var i = 0; i < 7 - length; i++) {
         array.push(null);
       }
       return array;
-    }
-  }
-  function secondRow() {
-    const array = holders.slice(3, 7);
-    const length = array.length;
-    if (length === 4) {
-      return array;
-    } else {
-      for (var i = 0; i < 4 - length; i++) {
-        array.push(null);
-      }
-      return array;
-    }
-  }
-  const finalRows = holders.slice(7);
+    } else return array;
+  };
+
+  //Divide the array of holders into rows
+  const rowOne = rows().slice(0, 3);
+  const rowTwo = rows().slice(3, 7);
+  const rowsFinal = rows().slice(7);
 
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
@@ -47,7 +37,7 @@ export default function Patrons({
 
   useEffect(() => {
     getHolders(address).then((holders) => {
-      setHolders(holders)
+      setHolders(holders);
     });
   }, []);
 
@@ -60,25 +50,25 @@ export default function Patrons({
       <div className="w-full h-px my-6 bg-white/10"></div>
       <div className="flex flex-col mb-6">
         <div className="grid grid-cols-3">
-          {firstRow().map((item, idx) =>
+          {rowOne.map((item, idx) =>
             item ? (
               <PatronCard key={item.tokenId} item={item} />
             ) : (
-              <EmptyPatronCard idx={idx} />
+              <EmptyPatronCard key={idx} idx={idx} />
             )
           )}
         </div>
         <div className="grid grid-cols-4">
-          {secondRow().map((item, idx) =>
+          {rowTwo.map((item, idx) =>
             item ? (
               <PatronCard key={item.tokenId} item={item} />
             ) : (
-              <EmptyPatronCard idx={idx + 3} />
+              <EmptyPatronCard key={idx} idx={idx + 3} />
             )
           )}
         </div>
         <div className={`grid grid-cols-5 ${show ? "visible" : "hidden"}`}>
-          {finalRows.map((item) => (
+          {rowsFinal.map((item) => (
             <PatronCard key={item.id} item={item} />
           ))}
         </div>
