@@ -62,7 +62,7 @@ export default function PatronCard({ item }) {
       //   </div>
       // }
     >
-      <button className="avatar">
+      <button className="avatar" aria-label="Rarement Avatar Image">
         <PolyFrameImage
           idx={item.id}
           href={item.attributes.image.data.attributes.url}
