@@ -52,7 +52,7 @@ export default function Patrons({
         <div className="grid grid-cols-3">
           {rowOne.map((item, idx) =>
             item ? (
-              <PatronCard key={item.tokenId} item={item} />
+              <PatronCard key={idx} item={item} />
             ) : (
               <EmptyPatronCard key={idx} idx={idx} />
             )
@@ -61,7 +61,7 @@ export default function Patrons({
         <div className="grid grid-cols-4">
           {rowTwo.map((item, idx) =>
             item ? (
-              <PatronCard key={item.tokenId} item={item} />
+              <PatronCard key={idx + 3} item={item} />
             ) : (
               <EmptyPatronCard key={idx} idx={idx + 3} />
             )

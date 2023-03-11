@@ -1,6 +1,6 @@
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { login } from "../../utils/web3auth";
+import { login, logout } from "../../utils/web3auth";
 // import Tippy from "@tippyjs/react/headless";
 
 export const unloggedInView = (web3auth, setProvider) => (
@@ -22,6 +22,16 @@ export const unloggedInView = (web3auth, setProvider) => (
     </span>
   </button>
 );
+
+export const loggedInView = (web3auth, setProvider) => {
+  return (
+    <div>
+      <button onClick={(e) => logout(web3auth, setProvider)}>
+        Log Out
+      </button>
+    </div>
+  );
+}
 
 // export const loggedInView = (
 //   authenticateUser,

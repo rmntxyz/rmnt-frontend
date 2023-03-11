@@ -4,12 +4,11 @@ import {
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
 import getLoggedIn from "../../utils/getLoggedIn";
 import getPrevRoute from "../../utils/getPrevRoute";
 import { Logo, MediumLogo } from "../../utils/svgs";
-import { unloggedInView } from "./AuthView";
+import { unloggedInView, loggedInView } from "./AuthView";
 
 export default function Header({ web3auth, setProvider }) {
   //Use router to determine whether to show the back button or not & whether to display the header or not
@@ -55,7 +54,7 @@ export default function Header({ web3auth, setProvider }) {
           </div> */}
         </a>
       </div>
-      {loggedIn ? null : unloggedInView(web3auth, setProvider)}
+      {loggedIn ? loggedInView(web3auth, setProvider) : unloggedInView(web3auth, setProvider)}
       {/* <ConnectButton.Custom>
         {({
           account,

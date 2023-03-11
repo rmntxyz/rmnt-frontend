@@ -1,50 +1,18 @@
 import Layout from "../comps/layout/Layout";
 import "../styles/globals.css";
-import "@rainbow-me/rainbowkit/styles.css";
-import {
-  getDefaultWallets,
-  RainbowKitProvider,
-  darkTheme,
-} from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, WagmiConfig, chain } from "wagmi";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
-import { polygon, polygonMumbai } from "wagmi/chains";
+import { useEffect, useState } from "react";
+
 import { Web3Auth } from "@web3auth/modal";
 import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from "@web3auth/base";
-import { useEffect, useState } from "react";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { TorusWalletConnectorPlugin } from "@web3auth/torus-wallet-connector-plugin";
+import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 
 //Store the value of web3auth client ID
 const clientId =
   "BKelpOscFHII2dWn_u4CgH6rqH8TMqNsHSqg4z8Wsg2wpKnxqP2YCDbhUyxcC2GpDE1CtdjMVxVq55dSSwSOzTU";
-
-//Configure chains & providers with the Alchemy provider
-const { chains, provider } = configureChains(
-  // [mainnet, goerli],
-  [polygon, polygonMumbai],
-  [
-    alchemyProvider({
-      apiKey: process.env.NODE_ENV === 'production' ?
-        process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY :
-        process.env.NEXT_PUBLIC_POLYGON_MAINNET_ALCHEMY_API_KEY
-    }),
-    publicProvider(),
-  ]
-);
-
-const { connectors } = getDefaultWallets({
-  appName: "rmnt-frontend",
-  chains,
-});
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors,
-  provider,
-});
 
 function MyApp({ Component, pageProps }) {
   //Initiate web3auth
@@ -60,7 +28,7 @@ function MyApp({ Component, pageProps }) {
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.EIP155,
             chainId: "0x13881",
-            rpcTarget: "https://polygon-mumbai.g.alchemy.com/v2/", // This is the public RPC we have added, please pass on your own endpoint while creating an app
+            rpcTarget: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY}`,
             displayName: "Polygon Mumbai Testnet",
             blockExplorer: "https://mumbai.polygonscan.com/",
             ticker: "MATIC",
@@ -110,7 +78,21 @@ function MyApp({ Component, pageProps }) {
           },
         });
         web3auth.configureAdapter(openloginAdapter);
+
+        const metamaskAdapter = new MetamaskAdapter({
+          clientId,
+          sessionTime: 3600, // 1 hour in seconds
+          web3AuthNetwork: "testnet",
+          chainConfig: {
+            chainNamespace: CHAIN_NAMESPACES.EIP155,
+            chainId: "0x13881",
+            rpcTarget: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY}`,
+          },
+        });
+        web3auth.configureAdapter(metamaskAdapter);
+
         setWeb3auth(web3auth);
+
         await web3auth.initModal({
           modalConfig: {
             [WALLET_ADAPTERS.OPENLOGIN]: {
@@ -172,7 +154,6 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <WagmiConfig client={wagmiClient}>
         {/* <RainbowKitProvider
           theme={darkTheme({
             accentColor: "#7b3fe4",
@@ -187,7 +168,6 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </Layout>
         {/* </RainbowKitProvider> */}
-      </WagmiConfig>
     </ApolloProvider>
   );
 }
