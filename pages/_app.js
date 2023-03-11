@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.EIP155,
             chainId: "0x13881",
-            rpcTarget: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY}`,
+            rpcTarget: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY}`,
             displayName: "Polygon Mumbai Testnet",
             blockExplorer: "https://mumbai.polygonscan.com/",
             ticker: "MATIC",
@@ -86,7 +86,7 @@ function MyApp({ Component, pageProps }) {
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.EIP155,
             chainId: "0x13881",
-            rpcTarget: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY}`,
+            rpcTarget: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY}`,
           },
         });
         web3auth.configureAdapter(metamaskAdapter);

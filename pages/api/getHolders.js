@@ -2,14 +2,9 @@
 import { Alchemy, Network } from "alchemy-sdk";
 
 const config = {
-  apiKey: process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
-  network: Network.MATIC_MUMBAI, // Replace with the network your NFT contract is deployed to.
+  apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
+  network: process.env.NODE_ENV === 'production' ? Network.MATIC_MAINNET : Network.MATIC_MUMBAI, // Replace with the network your NFT contract is deployed to.
 };
-
-if (process.env.NODE_ENV === 'production') {
-  config.apiKey = process.env.NEXT_PUBLIC_POLYGON_MAINNET_ALCHEMY_API_KEY;
-  config.network = Network.MATIC_MAINNET;
-}
 
 const alchemy = new Alchemy(config);
 
