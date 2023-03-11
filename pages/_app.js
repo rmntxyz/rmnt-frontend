@@ -11,7 +11,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
-import { mainnet, goerli } from "wagmi/chains";
+import { polygon, polygonMumbai } from "wagmi/chains";
 import { Web3Auth } from "@web3auth/modal";
 import { CHAIN_NAMESPACES, WALLET_ADAPTERS } from "@web3auth/base";
 import { useEffect, useState } from "react";
@@ -24,9 +24,14 @@ const clientId =
 
 //Configure chains & providers with the Alchemy provider
 const { chains, provider } = configureChains(
-  [mainnet, goerli],
+  // [mainnet, goerli],
+  [polygon, polygonMumbai],
   [
-    alchemyProvider({ apiKey: "Ajppi54_lVhZ8_x1KIH1-xxm4V9a3kRJ" }),
+    alchemyProvider({
+      apiKey: process.env.NODE_ENV === 'production' ?
+        process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY :
+        process.env.NEXT_PUBLIC_POLYGON_MAINNET_ALCHEMY_API_KEY
+    }),
     publicProvider(),
   ]
 );
@@ -54,8 +59,12 @@ function MyApp({ Component, pageProps }) {
           web3AuthNetwork: "testnet",
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.EIP155,
-            chainId: "0x1",
-            rpcTarget: "https://rpc.ankr.com/eth", // This is the public RPC we have added, please pass on your own endpoint while creating an app
+            chainId: "0x13881",
+            rpcTarget: "https://polygon-mumbai.g.alchemy.com/v2/", // This is the public RPC we have added, please pass on your own endpoint while creating an app
+            displayName: "Polygon Mumbai Testnet",
+            blockExplorer: "https://mumbai.polygonscan.com/",
+            ticker: "MATIC",
+            tickerName: "Matic",
           },
           uiConfig: {
             theme: "dark",

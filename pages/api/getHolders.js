@@ -2,14 +2,13 @@
 import { Alchemy, Network } from "alchemy-sdk";
 
 const config = {
-  apiKey: process.env.NEXT_PUBLIC_GOERLI_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
-  network: Network.ETH_GOERLI, // Replace with the network your NFT contract is deployed to.
+  apiKey: process.env.NEXT_PUBLIC_POLYGON_MUMBAI_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
+  network: Network.MATIC_MUMBAI, // Replace with the network your NFT contract is deployed to.
 };
-console.log(config);
 
 if (process.env.NODE_ENV === 'production') {
-  config.apiKey = process.env.NEXT_PUBLIC_MAINNET_ALCHEMY_API_KEY;
-  config.network = Network.ETH_MAINNET;
+  config.apiKey = process.env.NEXT_PUBLIC_POLYGON_MAINNET_ALCHEMY_API_KEY;
+  config.network = Network.MATIC_MAINNET;
 }
 
 const alchemy = new Alchemy(config);
@@ -22,12 +21,22 @@ export async function getHolders(nftAddress) {
     tokenBalances.map(t => ({ [Number(t.tokenId)]: ownerAddress }))
   ).reduce((acc, x) => Object.assign(acc, x), {});
 
+  // for minting order
   const minters = await getMinters(nftAddress);
 
-  const holders = minters.map(mint => Object.assign(mint, {owner: ownersMap[mint.tokenId]}))
+  const holders = await Promise.all(minters.map(async ordered => {
+    const {tokenId} = ordered;
+    const metadata = await alchemy.nft.getNftMetadata(
+      nftAddress,
+      tokenId,
+      {tokenType: 'ERC721'}
+    )
 
-  // TODO add more data to return value 
-  // const { nfts } = await alchemy.nft.getNftsForContract(nftAddress);
+    const owner = ownersMap[tokenId];
+    const imageUrl = metadata.media.find(m => m.format === 'png').thumbnail;
+
+    return { tokenId, owner, imageUrl };
+  }));
 
   return holders;
 }
@@ -35,13 +44,13 @@ export async function getHolders(nftAddress) {
 /**
  * @see https://docs.alchemy.com/docs/how-to-get-minters-of-an-nft-collection#checking-if-the-minters-still-hold-the-nft
  */
-async function getMinters(nftAddress) {
+async function getMinters(nftAddress, first = 7) {
   const minters = [];
   let pageKey;
 
   let firstCall = true;
 
-  while (firstCall || pageKey) {
+  while ((firstCall || pageKey) && minters.length < first) {
     let res;
     if (pageKey) {
       res = await alchemy.core.getAssetTransfers({
@@ -67,6 +76,9 @@ async function getMinters(nftAddress) {
     for (let i = 0; i < res.transfers.length; i++) {
       const transfer = res.transfers[i];
       minters.push({tokenId: parseInt(transfer.tokenId)}); // adding the `to` address to the `minters` array.
+      if (minters.length === first) {
+        break;
+      }
     }
 
     pageKey = res.pageKey; // Setting the pageKey from the response of the API call.

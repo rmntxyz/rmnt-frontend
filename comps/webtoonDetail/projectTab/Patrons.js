@@ -6,15 +6,15 @@ import { EmptyPatronCard } from "./EmptyPatronCard";
 
 export default function Patrons({
   avatars,
-  address = "0xC0A04721f549914B2356EE3a449c011dceA7D909",
+  address = "0x2414754f828e5c4a7613544614d87988ab5dad8f",
 }) {
   //Find the sold avatars & list them on the order of time of sale
 
-  const [minters, setMinters] = useState([]);
+  const [holders, setHolders] = useState([]);
 
-  //Divide minters into rows and push null values when the length of the array for each row falls short of 3 or 4.
+  //Divide holders into rows and push null values when the length of the array for each row falls short of 3 or 4.
   function firstRow() {
-    const array = minters.slice(0, 3);
+    const array = holders.slice(0, 3);
     const length = array.length;
     if (length === 3) {
       return array;
@@ -26,7 +26,7 @@ export default function Patrons({
     }
   }
   function secondRow() {
-    const array = minters.slice(3, 7);
+    const array = holders.slice(3, 7);
     const length = array.length;
     if (length === 4) {
       return array;
@@ -37,18 +37,17 @@ export default function Patrons({
       return array;
     }
   }
-  const finalRows = minters.slice(7);
+  const finalRows = holders.slice(7);
 
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
 
   //Find if the list is truncated & display the "more/close" button if the text is truncated
-  const [truncated, setTruncated] = useState(minters.length > 7);
+  const [truncated, setTruncated] = useState(holders.length > 7);
 
   useEffect(() => {
-    getHolders(address).then((res) => {
-      // TODO show holders
-      console.log(res);
+    getHolders(address).then((holders) => {
+      setHolders(holders)
     });
   }, []);
 
@@ -63,7 +62,7 @@ export default function Patrons({
         <div className="grid grid-cols-3">
           {firstRow().map((item, idx) =>
             item ? (
-              <PatronCard key={item.id} item={item} />
+              <PatronCard key={item.tokenId} item={item} />
             ) : (
               <EmptyPatronCard idx={idx} />
             )
@@ -72,7 +71,7 @@ export default function Patrons({
         <div className="grid grid-cols-4">
           {secondRow().map((item, idx) =>
             item ? (
-              <PatronCard key={item.id} item={item} />
+              <PatronCard key={item.tokenId} item={item} />
             ) : (
               <EmptyPatronCard idx={idx + 3} />
             )

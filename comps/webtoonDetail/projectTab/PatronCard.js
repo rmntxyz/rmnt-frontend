@@ -5,7 +5,7 @@ import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 
 export default function PatronCard({ item }) {
   //Find the date of sale
-  const { year, month, date } = getDate(item.attributes.sold_timestamp);
+  // const { year, month, date } = getDate(item.attributes.sold_timestamp);
   // const fullDate = dateTime.toDateString().slice(4);
   return (
     <Tippy
@@ -19,21 +19,16 @@ export default function PatronCard({ item }) {
         >
           <div className="w-[66px]">
             <PolyFrameImage
-              href={
-                item?.attributes.owned_by.data.attributes.profile_image?.data
-                  ? item?.attributes.owned_by.data.attributes.profile_image
-                      ?.data.attributes.url
-                  : "/profile.png"
-              }
+              href={ "/profile.png" }
               idx="tippy"
             />
           </div>
           <div>
-            <div className="text-white/70 text-sm">
+            {/* <div className="text-white/70 text-sm">
               {month}/{date}/{year}
-            </div>
+            </div> */}
             <div className="w-[99px] truncate font-normal">
-              {item.attributes.owned_by.data.attributes.wallet_address}
+              {item.owner}
             </div>
           </div>
           <div id="arrow" className="arrow" data-popper-arrow=""></div>
@@ -64,8 +59,8 @@ export default function PatronCard({ item }) {
     >
       <button className="avatar" aria-label="Rarement Avatar Image">
         <PolyFrameImage
-          idx={item.id}
-          href={item.attributes.image.data.attributes.url}
+          idx={item.tokenId}
+          href={item.imageUrl}
         />
       </button>
     </Tippy>
