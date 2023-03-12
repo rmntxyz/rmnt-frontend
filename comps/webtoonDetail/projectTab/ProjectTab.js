@@ -49,7 +49,7 @@ export default function ProjectTab({
       </div>
       <Avatar avatars={avatars} exchangeRate={exchangeRate} webtoon={webtoon} />
       <Benefits benefits={benefits} />
-      <Patrons avatars={avatars} />
+      <Patrons />
     </div>
   );
 }

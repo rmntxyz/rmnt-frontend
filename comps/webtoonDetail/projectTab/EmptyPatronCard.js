@@ -1,13 +1,13 @@
-export const EmptyPatronCard = ({ idx }) => (
+export const EmptyPatronCard = ({ idx, textOne, textTwo }) => (
   <div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
       {idx === 0 ? (
         <text x="10" y="10" fontSize="3" fill="white">
           <tspan x="10" dy="1.5em">
-            Be the first
+            {textOne}
           </tspan>
           <tspan x="12" dy="1.5em">
-            patron!
+            {textTwo}
           </tspan>
         </text>
       ) : null}
