@@ -2,14 +2,22 @@ export const EmptyPatronCard = ({ idx, textOne, textTwo }) => (
   <div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
       {idx === 0 ? (
-        <text x="10" y="10" fontSize="3" fill="white">
-          <tspan x="10" dy="1.5em">
-            {textOne}
-          </tspan>
-          <tspan x="12" dy="1.5em">
-            {textTwo}
-          </tspan>
-        </text>
+        textTwo ? (
+          <text x="10" y="10" fontSize="3" fill="white">
+            <tspan x="10" dy="1.5em">
+              {textOne}
+            </tspan>
+            <tspan x="12" dy="1.5em">
+              {textTwo}
+            </tspan>
+          </text>
+        ) : (
+          <text x="10" y="13" fontSize="3" fill="white">
+            <tspan x="10" dy="1.5em">
+              {textOne}
+            </tspan>
+          </text>
+        )
       ) : null}
       <defs>
         <linearGradient id={"gradient" + idx} x1="0%" y1="0%" x2="0%" y2="100%">
