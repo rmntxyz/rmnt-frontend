@@ -37,8 +37,6 @@ export default function WebtoonTab({ webtoon, episodes }) {
                       blurDataURL={
                         item.attributes.thumbnail.data.attributes.url
                       }
-                      layout="responsive"
-                      objectFit="cover"
                       alt="Rarement Webtoon Cover Image"
                       className="rounded relative"
                     />

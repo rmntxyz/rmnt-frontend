@@ -8,7 +8,7 @@ export default function Toggle() {
   } = useRouter();
 
   return (
-    <div className="rounded-full gradientBorder inline-flex items-center px-1.5 py-2 cursor-pointer text-base">
+    <div className="rounded-full gradientBorder inline-flex items-center px-1.5 py-2.5 cursor-pointer text-base">
       <Link
         shallow
         href={`/webtoons/${webtoonId}/episode/${episodeNumber}/eng`}

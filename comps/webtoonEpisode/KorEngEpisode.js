@@ -11,8 +11,6 @@ export default function KorEngEpisode({ data }) {
             src={item.attributes.url}
             width={768}
             height={768 * (item.attributes.height / item.attributes.width)}
-            layout="responsive"
-            objectFit="cover"
             placeholder="blur"
             blurDataURL={item.attributes.url}
             priority={idx === 0 ? true : false}
