@@ -35,12 +35,13 @@ export default function Tabs({
             href={`/webtoons/${webtoonId}`}
             isSelected={tab === "project"}
           >
-            <a
-              className={`${tab === "project" ? "font-bold" : "text-white/50"}`}
-              aria-label="View Project"
+            <div
+              className={`text-lg py-4 px-5 ${
+                tab === "project" ? "font-bold" : "text-white/50"
+              }`}
             >
-              <div className="text-lg py-4 px-5">Project</div>
-            </a>
+              Project
+            </div>
           </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
@@ -54,12 +55,13 @@ export default function Tabs({
             href={`/webtoons/${webtoonId}/webtoon`}
             isSelected={tab === "webtoon"}
           >
-            <a
-              className={`${tab === "webtoon" ? "font-bold" : "text-white/50"}`}
-              aria-label="View Webtoon"
+            <div
+              className={`text-lg py-4 px-5 ${
+                tab === "webtoon" ? "font-bold" : "text-white/50"
+              }`}
             >
-              <div className="text-lg py-4 px-5">Webtoon</div>
-            </a>
+              Webtoon
+            </div>
           </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
@@ -73,14 +75,13 @@ export default function Tabs({
             href={`/webtoons/${webtoonId}/collectibles`}
             isSelected={tab === "collectibles"}
           >
-            <a
-              className={`${
+            <div
+              className={`text-lg py-4 px-5 ${
                 tab === "collectibles" ? "font-bold" : "text-white/50"
               }`}
-              aria-label="View Collectibles"
             >
-              <div className="text-lg py-4 px-5">Collectibles</div>
-            </a>
+              Collectibles
+            </div>
           </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${

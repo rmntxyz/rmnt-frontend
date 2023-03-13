@@ -22,28 +22,37 @@ export default function hideOrPaint() {
     setImageHeight(document.getElementById("episode")?.clientHeight);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("click", handleClick, { passive: true });
+    let navTop = document.getElementById("navbar")?.style.top;
+    let navOpacity = document.getElementById("navbar")?.style.opacity;
+    let buttonOpacity = document.getElementById("buttons")?.style.opacity;
+    let buttonPointer = document.getElementById("buttons")?.style.pointerEvents;
+    let scrollTopOpacity =
+      document.getElementById("scrollToTop")?.style.opacity;
+    let scrollTopPointer =
+      document.getElementById("scrollToTop")?.style.pointerEvents;
+
     if (
       prevPos > currentPos ||
       //80 equals the navbar height
       currentPos + viewportHeight > imageHeight + 80 ||
       clicked === true
     ) {
-      document.getElementById("navbar")?.style.top = "0";
-      document.getElementById("navbar")?.style.opacity = "1";
-      document.getElementById("buttons")?.style.opacity = "1";
-      document.getElementById("buttons")?.style.pointerEvents = "auto";
+      navTop = "0";
+      navOpacity = "1";
+      buttonOpacity = "1";
+      buttonPointer = "auto";
     } else {
-      document.getElementById("navbar")?.style.top = "-80px";
-      document.getElementById("navbar")?.style.opacity = "0";
-      document.getElementById("buttons")?.style.opacity = "0";
-      document.getElementById("buttons")?.style.pointerEvents = "none";
+      navTop = "-80px";
+      navOpacity = "0";
+      buttonOpacity = "0";
+      buttonPointer = "none";
     }
     if (viewportHeight > imageHeight) {
-      document.getElementById("scrollToTop")?.style.opacity="0";
-      document.getElementById("scrollToTop")?.style.pointerEvents = "none";
+      scrollTopOpacity = "0";
+      scrollTopPointer = "none";
     } else {
-      document.getElementById("scrollToTop")?.style.opacity="1";
-      document.getElementById("scrollToTop")?.style.pointerEvents = "auto";
+      scrollTopOpacity = "1";
+      scrollTopPointer = "auto";
     }
     return () => {
       window.removeEventListener("scroll", handleScroll);

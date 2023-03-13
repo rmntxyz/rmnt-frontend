@@ -9,13 +9,14 @@ import getLoggedIn from "../../utils/getLoggedIn";
 import getPrevRoute from "../../utils/getPrevRoute";
 import { Logo, MediumLogo } from "../../utils/svgs";
 import { unloggedInView, loggedInView } from "./AuthView";
+import { ConnectButton } from "0xpass";
 
-export default function Header({ web3auth, setProvider }) {
+export default function Header() {
   //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
 
   //Get logged-in status to determine whether to show the profile button or not
-  const loggedIn = getLoggedIn(web3auth);
+  // const loggedIn = getLoggedIn(web3auth);
 
   //Get current/previous routes to determine whether to show the back button or not
   const { prevPath } = getPrevRoute();
@@ -54,8 +55,8 @@ export default function Header({ web3auth, setProvider }) {
           </div> */}
         </a>
       </div>
-      {loggedIn ? loggedInView(web3auth, setProvider) : unloggedInView(web3auth, setProvider)}
-      {/* <ConnectButton.Custom>
+      {/* {loggedIn ? loggedInView(web3auth, setProvider) : unloggedInView(web3auth, setProvider)} */}
+      <ConnectButton.Custom>
         {({
           account,
           chain,
@@ -148,7 +149,7 @@ export default function Header({ web3auth, setProvider }) {
             </div>
           );
         }}
-      </ConnectButton.Custom> */}
+      </ConnectButton.Custom>
     </nav>
   );
 }

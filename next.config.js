@@ -3,6 +3,7 @@
 module.exports = {
   optimizeFonts: false,
   reactStrictMode: true,
+  transpilePackages: ["0xpass"],
   images: {
     domains: ["storage.googleapis.com"],
   },

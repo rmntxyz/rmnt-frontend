@@ -8,7 +8,7 @@ export default function Toggle() {
   } = useRouter();
 
   return (
-    <div className="rounded-full gradientBorder inline-flex items-center p-1.5 cursor-pointer text-base">
+    <div className="rounded-full gradientBorder inline-flex items-center px-1.5 py-2 cursor-pointer text-base">
       <Link
         shallow
         href={`/webtoons/${webtoonId}/episode/${episodeNumber}/eng`}
@@ -19,7 +19,6 @@ export default function Toggle() {
               ? "bg-transparent text-white/50"
               : "bg-white text-navBg"
           }`}
-          // onClick={handlekorClick}
         >
           Eng
         </span>
@@ -34,7 +33,6 @@ export default function Toggle() {
               ? "bg-white text-navBg"
               : "bg-transparent text-white/50"
           }`}
-          // onClick={handleKorClick}
         >
           Kor
         </span>

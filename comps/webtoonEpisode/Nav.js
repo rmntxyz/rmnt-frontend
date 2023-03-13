@@ -37,12 +37,12 @@ export default function Nav({ episode, webtoon, prevUrl }) {
         </div>
         <div className="flex gap-5 items-center justify-center">
           <Link href="/" passHref>
-            <a
+            <div
               className="p-3.5 rounded-full border border-white/20 bg-opaqueGray"
               aria-label="Go to Rarement home"
             >
               <House />
-            </a>
+            </div>
           </Link>
           <Toggle />
         </div>
