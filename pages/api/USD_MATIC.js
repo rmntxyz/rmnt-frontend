@@ -1,7 +1,7 @@
-const url = "https://api.coingate.com/v2/rates/merchant/ETH/USD";
+const url = "https://api.coingate.com/v2/rates/merchant/MATIC/USD";
 
 export async function getExchangeRate() {
-  const res = await fetch(url, {mode: 'cors'});
+  const res = await fetch(url, { mode: "cors" });
   const data = await res.json();
   return data;
 }

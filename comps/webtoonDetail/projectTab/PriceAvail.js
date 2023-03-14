@@ -1,4 +1,4 @@
-import { Eth } from "../../../utils/svgs";
+import { Eth, Polygon } from "../../../utils/svgs";
 
 export default function PriceAvail({ avatars, exchangeRate }) {
   //TODO Determine the number of all avatars and available avatars
@@ -11,10 +11,10 @@ export default function PriceAvail({ avatars, exchangeRate }) {
     <div>
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-1">
-          <Eth />
+          <Polygon />
           <div className="font-bold text-sm">
             {parseFloat(avatars[0]?.attributes.price_in_wei) / Math.pow(10, 18)}{" "}
-            ETH
+            MATIC
           </div>
           <div className="text-white/50 text-sm">
             (≈{" "}

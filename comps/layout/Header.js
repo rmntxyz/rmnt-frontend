@@ -1,22 +1,13 @@
-import {
-  faArrowLeft,
-  faUser,
-  faWallet,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
-import getLoggedIn from "../../utils/getLoggedIn";
 import getPrevRoute from "../../utils/getPrevRoute";
-import { Logo, MediumLogo } from "../../utils/svgs";
-import { unloggedInView, loggedInView } from "./AuthView";
+import { Logo } from "../../utils/svgs";
 import { ConnectButton } from "0xpass";
 
 export default function Header() {
   //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
-
-  //Get logged-in status to determine whether to show the profile button or not
-  // const loggedIn = getLoggedIn(web3auth);
 
   //Get current/previous routes to determine whether to show the back button or not
   const { prevPath } = getPrevRoute();
@@ -55,7 +46,6 @@ export default function Header() {
           </div> */}
         </a>
       </div>
-      {/* {loggedIn ? loggedInView(web3auth, setProvider) : unloggedInView(web3auth, setProvider)} */}
       <ConnectButton.Custom>
         {({
           account,
@@ -108,7 +98,7 @@ export default function Header() {
                 }
 
                 return (
-                  <div style={{ display: "flex", gap: 12 }}>
+                  <div style={{ display: "flex", gap: 8 }}>
                     <button
                       onClick={openChainModal}
                       style={{ display: "flex", alignItems: "center" }}
@@ -118,8 +108,8 @@ export default function Header() {
                         <div
                           style={{
                             background: chain.iconBackground,
-                            width: 12,
-                            height: 12,
+                            width: 28,
+                            height: 28,
                             borderRadius: 999,
                             overflow: "hidden",
                             marginRight: 4,
@@ -129,19 +119,24 @@ export default function Header() {
                             <img
                               alt={chain.name ?? "Chain icon"}
                               src={chain.iconUrl}
-                              style={{ width: 12, height: 12 }}
+                              style={{ width: 28, height: 28 }}
                             />
                           )}
                         </div>
                       )}
-                      {chain.name}
+                      {/* {chain.name} */}
                     </button>
-
-                    <button onClick={openAccountModal} type="button">
-                      {account.displayName}
-                      {account.displayBalance
-                        ? ` (${account.displayBalance})`
-                        : ""}
+                    <button
+                      onClick={openAccountModal}
+                      type="button"
+                      className="flex flex-col text-sm sm:flex-row sm:gap-1 sm:text-lg"
+                    >
+                      <span>{account.displayName}</span>
+                      <span>
+                        {account.displayBalance
+                          ? ` (${account.displayBalance})`
+                          : ""}
+                      </span>
                     </button>
                   </div>
                 );
