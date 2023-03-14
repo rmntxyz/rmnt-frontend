@@ -16,8 +16,6 @@ export default function Webtoons({ webtoons }) {
               height={768}
               placeholder="blur"
               blurDataURL={item.attributes.cover_image.data.attributes.url}
-              layout="responsive"
-              objectFit="cover"
               alt="Rarement Webtoon Cover Image"
               className="rounded"
             />

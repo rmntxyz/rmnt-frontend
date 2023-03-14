@@ -8,7 +8,6 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
-import { FC } from "react";
 
 // Configure chains & providers with the Alchemy provider
 const { chains, provider } = configureChains(

@@ -30,11 +30,7 @@ export default function Tabs({
         }`}
       >
         <li className="ml-4">
-          <Link
-            shallow
-            href={`/webtoons/${webtoonId}`}
-            isSelected={tab === "project"}
-          >
+          <Link shallow href={`/webtoons/${webtoonId}`}>
             <div
               className={`text-lg py-4 px-5 ${
                 tab === "project" ? "font-bold" : "text-white/50"
@@ -50,11 +46,7 @@ export default function Tabs({
           ></div>
         </li>
         <li>
-          <Link
-            shallow
-            href={`/webtoons/${webtoonId}/webtoon`}
-            isSelected={tab === "webtoon"}
-          >
+          <Link shallow href={`/webtoons/${webtoonId}/webtoon`}>
             <div
               className={`text-lg py-4 px-5 ${
                 tab === "webtoon" ? "font-bold" : "text-white/50"
@@ -70,11 +62,7 @@ export default function Tabs({
           ></div>
         </li>
         <li>
-          <Link
-            shallow
-            href={`/webtoons/${webtoonId}/collectibles`}
-            isSelected={tab === "collectibles"}
-          >
+          <Link shallow href={`/webtoons/${webtoonId}/collectibles`}>
             <div
               className={`text-lg py-4 px-5 ${
                 tab === "collectibles" ? "font-bold" : "text-white/50"

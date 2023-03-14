@@ -46,6 +46,7 @@ export default function SmallItem({ item }) {
               width={22}
               height={22}
               className="rounded-full"
+              alt="Rarement Artist Profile Image"
             />
             <a
               href={
@@ -60,7 +61,6 @@ export default function SmallItem({ item }) {
               </span>
             </a>
           </div>
-
           <Line />
           <div>
             <span className="font-bold">Availability {availableAvatars}</span>
