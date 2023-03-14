@@ -88,15 +88,11 @@ export const Polygon = () => {
   return (
     <svg
       version="1.0"
-      id="katman_1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      width={28}
-      height={28}
-      viewBox="0 0 800 600"
-      xmlSpace="preserve"
+      width={18}
+      height={18}
+      viewBox="140 140 520 320"
     >
       <path
         class="st0"
