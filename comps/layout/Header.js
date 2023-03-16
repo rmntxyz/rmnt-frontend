@@ -53,11 +53,18 @@ export default function Header() {
           openAccountModal,
           openChainModal,
           openConnectModal,
+          authenticationStatus,
           mounted,
         }) => {
+          const ready = mounted && authenticationStatus !== "loading";
+          const connected =
+            ready &&
+            account &&
+            chain &&
+            (!authenticationStatus || authenticationStatus === "authenticated");
           return (
             <div
-              {...(!mounted && {
+              {...(!ready && {
                 "aria-hidden": true,
                 style: {
                   opacity: 0,
@@ -67,7 +74,7 @@ export default function Header() {
               })}
             >
               {(() => {
-                if (!mounted || !account || !chain) {
+                if (!connected) {
                   return (
                     <button
                       onClick={openConnectModal}
