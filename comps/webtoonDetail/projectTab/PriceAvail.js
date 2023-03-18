@@ -1,42 +1,52 @@
 import { Eth } from "../../../utils/svgs";
 
 export default function PriceAvail({ avatars, exchangeRate }) {
-  //Determine the number of all avatars and available avatars
+  //TODO Determine the number of all avatars and available avatars
   const all = avatars.length;
   const available = avatars.filter(
     (avatar) => !avatar.attributes.owned_by.data
   ).length;
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-1">
-        <Eth />
-        <div className="font-bold text-sm">
-          {parseFloat(avatars[0]?.attributes.price_in_wei) / Math.pow(10, 18)}{" "}
-          ETH
-        </div>
-        <div className="text-white/50 text-sm">
-          (≈{" "}
-          {(
-            (exchangeRate * parseFloat(avatars[0]?.attributes.price_in_wei)) /
-            Math.pow(10, 18)
-          ).toFixed(3)}{" "}
-          USD)
-        </div>
-      </div>
-      <div className="ml-4">
-        {available === 0 ? (
-          <span className="text-sm text-white/50 ml-1">(Soldout)</span>
-        ) : (
-          <div>
-            <span className="font-bold"></span>
-            <span>
-              {available}/{all}
-            </span>
-            <span className="text-sm text-white/50 ml-1">(Available)</span>
+    <div>
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center gap-1">
+          <Eth />
+          <div className="font-bold text-sm">
+            {parseFloat(avatars[0]?.attributes.price_in_wei) / Math.pow(10, 18)}{" "}
+            ETH
           </div>
-        )}
+          <div className="text-white/50 text-sm">
+            (≈{" "}
+            {(
+              (exchangeRate * parseFloat(avatars[0]?.attributes.price_in_wei)) /
+              Math.pow(10, 18)
+            ).toFixed(3)}{" "}
+            USD)
+          </div>
+        </div>
+        <div className="ml-4">
+          <div>
+            <span className="font-bold">Availability {available}</span>
+            <span>/{all}</span>
+          </div>
+        </div>
       </div>
+      <button
+        aria-label="Collect NFT"
+        className="py-3 mt-8"
+        disabled={available === 0}
+      >
+        <span
+          className={`${
+            available === 0
+              ? "bg-white/20"
+              : "border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white duration-200"
+          } px-8 py-3   text-navBg text-base leading-tight font-bold rounded-3xl`}
+        >
+          {available === 0 ? "Soldout" : "Collect"}
+        </span>
+      </button>
     </div>
   );
 }

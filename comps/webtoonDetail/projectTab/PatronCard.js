@@ -1,13 +1,11 @@
 import Tippy from "@tippyjs/react/headless";
+import getDate from "../../../utils/getDate";
 // import "tippy.js/dist/tippy.css";
 import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 
 export default function PatronCard({ item }) {
   //Find the date of sale
-  const dateTime = new Date(item.attributes.sold_timestamp * 1000);
-  const year = dateTime.getFullYear() % 100;
-  const month = dateTime.getMonth() + 1;
-  const date = dateTime.getDate();
+  // const { year, month, date } = getDate(item.attributes.sold_timestamp);
   // const fullDate = dateTime.toDateString().slice(4);
   return (
     <Tippy
@@ -21,21 +19,16 @@ export default function PatronCard({ item }) {
         >
           <div className="w-[66px]">
             <PolyFrameImage
-              href={
-                item?.attributes.owned_by.data.attributes.profile_image?.data
-                  ? item?.attributes.owned_by.data.attributes.profile_image
-                      ?.data.attributes.url
-                  : "/profile.png"
-              }
+              href={ "/profile.png" }
               idx="tippy"
             />
           </div>
           <div>
-            <div className="text-white/70 text-sm">
+            {/* <div className="text-white/70 text-sm">
               {month}/{date}/{year}
-            </div>
+            </div> */}
             <div className="w-[99px] truncate font-normal">
-              {item.attributes.owned_by.data.attributes.wallet_address}
+              {item.owner}
             </div>
           </div>
           <div id="arrow" className="arrow" data-popper-arrow=""></div>
@@ -64,10 +57,10 @@ export default function PatronCard({ item }) {
       //   </div>
       // }
     >
-      <button className="avatar">
+      <button className="avatar" aria-label="Rarement Avatar Image">
         <PolyFrameImage
-          idx={item.id}
-          href={item.attributes.image.data.attributes.url}
+          idx={item.tokenId}
+          href={item.imageUrl}
         />
       </button>
     </Tippy>

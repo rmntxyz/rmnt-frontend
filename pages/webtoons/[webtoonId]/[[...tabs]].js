@@ -1,16 +1,17 @@
-import { getExchangeRate } from "../api/USD_ETH";
-import client from "../../apollo";
+import { getExchangeRate } from "../../api/USD_ETH";
+import client from "../../../apollo";
 import { gql } from "@apollo/client";
-import Seo from "../../comps/layout/SEO";
-import Tabs from "../../comps/webtoonDetail/Tabs";
-import Cover from "../../comps/webtoonDetail/Cover";
+import Seo from "../../../comps/layout/SEO";
+import Tabs from "../../../comps/webtoonDetail/Tabs";
+import Cover from "../../../comps/webtoonDetail/Cover";
 
 const GET_WEBTOON_DATA = gql`
-  query Webtoon($id: ID) {
-    webtoon(id: $id) {
+  query Webtoon($id: String) {
+    webtoons(filters: { webtoon_id: { eq: $id } }) {
       data {
         id
         attributes {
+          webtoon_id
           title
           volume
           description
@@ -34,9 +35,9 @@ const GET_WEBTOON_DATA = gql`
               id
               attributes {
                 first_name
-                wallet_address
-                description
-                email
+                # wallet_address
+                # description
+                # email
                 # instagram
                 profile_image {
                   data {
@@ -79,65 +80,81 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
-          webtoon_pages(pagination: { limit: 200 }) {
+          collectibles {
             data {
               id
               attributes {
-                webtoon_page_id
-                page_number
-                page_image {
+                name
+                image {
                   data {
                     attributes {
                       url
                     }
                   }
                 }
-                nfts(pagination: { limit: 200 }) {
+                thumbnail {
                   data {
-                    id
                     attributes {
-                      nft_id
-                      name
-                      drop_timestamp
-                      sold_timestamp
-                      quantity
-                      edition
-                      price_in_wei
-                      # timeRemaining
-                      image {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                      thumbnail {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                      owned_by {
-                        data {
-                          id
-                          attributes {
-                            user_id
-                            first_name
-                            wallet_address
-                            profile_image {
-                              data {
-                                attributes {
-                                  url
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
+                      url
                     }
                   }
                 }
+              }
+            }
+          }
+          characters {
+            data {
+              id
+              attributes {
+                image {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                name
+                description
+              }
+            }
+          }
+          episodes(pagination: { limit: 200 }) {
+            data {
+              id
+              attributes {
+                episode_number
+                released_timestamp
+                thumbnail {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                # eng_image {
+                #   data {
+                #     attributes {
+                #       url
+                #     }
+                #   }
+                # }
+                # kor_image {
+                #   data {
+                #     attributes {
+                #       url
+                #     }
+                #   }
+                # }
+              }
+            }
+          }
+          benefits {
+            data {
+              id
+              attributes {
+                name
+                description
+                active
               }
             }
           }
@@ -150,34 +167,33 @@ const GET_WEBTOON_DATA = gql`
 export async function getServerSideProps(context) {
   const exchangeRate = await getExchangeRate();
   const { webtoonId } = context.query;
-  const { data } = await client.query({
+  const {
+    data: { webtoons },
+  } = await client.query({
     query: GET_WEBTOON_DATA,
     variables: {
       id: webtoonId,
     },
-    fetchPolicy: "network-only",
+    // fetchPolicy: "network-only",
   });
+
+  const webtoon = webtoons.data[0];
+
   return {
     props: {
       exchangeRate: exchangeRate,
-      webtoon: data.webtoon.data,
-      avatars: data.webtoon.data.attributes.avatars.data,
-      episodes: data.webtoon.data.attributes.webtoon_pages.data
+      webtoon: webtoon,
+      avatars: webtoon.attributes.avatars.data,
+      collectibles: webtoon.attributes.collectibles.data,
+      episodes: webtoon.attributes.episodes.data
         .slice()
-        .sort((a, b) => a.attributes.page_number - b.attributes.page_number),
-      NFTs: data.webtoon.data.attributes.webtoon_pages.data
-        .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-        .flat(1)
-        .filter((NFT) => !!NFT)
-        .sort((a, b) => a.id - b.id)
         .sort(
-          (a, b) => b.attributes.drop_timestamp - a.attributes.drop_timestamp
+          (a, b) => a.attributes.episode_number - b.attributes.episode_number
         ),
-      // users: data.webtoon.data.attributes.webtoon_pages.data
-      //   .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-      //   .flat(1)
-      //   .filter((NFT) => !!NFT)
-      //   .map((NFT) => NFT.attributes.owned_by.data),
+      benefits: webtoon.attributes.benefits.data
+        .slice()
+        .sort((a, b) => a.id - b.id)
+        .sort((a, b) => b.attributes.active - a.attributes.active),
     },
   };
 }
@@ -186,8 +202,9 @@ export default function WebtoonPage({
   exchangeRate,
   webtoon,
   episodes,
-  NFTs,
+  collectibles,
   avatars,
+  benefits,
 }) {
   return (
     <div>
@@ -198,10 +215,11 @@ export default function WebtoonPage({
         <Cover webtoon={webtoon} />
         <Tabs
           webtoon={webtoon}
-          NFTs={NFTs}
+          collectibles={collectibles}
           exchangeRate={exchangeRate}
           episodes={episodes}
           avatars={avatars}
+          benefits={benefits}
         />
       </main>
     </div>

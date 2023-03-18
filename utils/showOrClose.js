@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function ShowOrClose({ truncated, show, setShow }) {
   return (
     <button
-      className="text-white/50 text-sm"
+      className="show text-white/50 text-sm"
       onClick={(e) => setShow(!show)}
       style={{ display: truncated ? "block" : "none" }}
     >

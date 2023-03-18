@@ -1,16 +1,31 @@
-import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faUser,
+  faWallet,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useRouter } from "next/router";
+import getLoggedIn from "../../utils/getLoggedIn";
 import getPrevRoute from "../../utils/getPrevRoute";
-import { Logo } from "../../utils/svgs";
+import { Logo, MediumLogo } from "../../utils/svgs";
+import { unloggedInView, loggedInView } from "./AuthView";
 
-export default function Header() {
+export default function Header({ web3auth, setProvider }) {
   //Use router to determine whether to show the back button or not & whether to display the header or not
   const router = useRouter();
 
+  //Get logged-in status to determine whether to show the profile button or not
+  const loggedIn = getLoggedIn(web3auth);
+
   //Get current/previous routes to determine whether to show the back button or not
-  // const { prevPath } = getPrevRoute();
+  const { prevPath } = getPrevRoute();
+
+  //Handle the back button differently based on the current url
+  function handleBack() {
+    if (router.pathname.includes("/artists/")) {
+      router.back();
+    } else router.push("/");
+  }
 
   return (
     <nav
@@ -20,24 +35,27 @@ export default function Header() {
       }}
     >
       <div className="flex items-center gap-6">
-        <a
+        <FontAwesomeIcon
+          id="back"
+          icon={faArrowLeft}
           style={{
-            display: router.pathname === "/" ? "none" : "block",
+            display: router.pathname === "/" || !prevPath ? "none" : "block",
           }}
-          href="/"
-        >
-          <FontAwesomeIcon
-            id="back"
-            icon={faArrowLeft}
-            onClick={() => router.back()}
-            className="cursor-pointer"
-          />
-        </a>
-        <a href="/">
+          onClick={handleBack}
+          className="cursor-pointer"
+        />
+        <a href="/" aria-label="Go to Rarement home">
           <Logo />
+          {/* <div className="hidden md:block">
+            <Logo />
+          </div>
+          <div className="block md:hidden">
+            <MediumLogo />
+          </div> */}
         </a>
       </div>
-      <ConnectButton.Custom>
+      {loggedIn ? loggedInView(web3auth, setProvider) : unloggedInView(web3auth, setProvider)}
+      {/* <ConnectButton.Custom>
         {({
           account,
           chain,
@@ -130,7 +148,7 @@ export default function Header() {
             </div>
           );
         }}
-      </ConnectButton.Custom>
+      </ConnectButton.Custom> */}
     </nav>
   );
 }

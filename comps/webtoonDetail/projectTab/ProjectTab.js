@@ -6,7 +6,12 @@ import Avatar from "./Avatar";
 import Benefits from "./Benefits";
 import Patrons from "./Patrons";
 
-export default function ProjectTab({ webtoon, avatars, exchangeRate }) {
+export default function ProjectTab({
+  webtoon,
+  avatars,
+  exchangeRate,
+  benefits,
+}) {
   //Find if the text is truncated & display the "more/close" button if the text is truncated
   const [truncated, setTruncated] = useState(false);
 
@@ -33,6 +38,7 @@ export default function ProjectTab({ webtoon, avatars, exchangeRate }) {
             src="/KakaoTalk_Photo_2023-01-27-11-57-45.png"
             width={20}
             height={20}
+            alt="Pencil Image"
           />
           <span>Synopsis</span>
         </div>
@@ -42,8 +48,8 @@ export default function ProjectTab({ webtoon, avatars, exchangeRate }) {
         <ShowOrClose truncated={truncated} show={show} setShow={setShow} />
       </div>
       <Avatar avatars={avatars} exchangeRate={exchangeRate} webtoon={webtoon} />
-      <Benefits />
-      <Patrons avatars={avatars} />
+      <Benefits benefits={benefits} />
+      <Patrons />
     </div>
   );
 }

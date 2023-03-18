@@ -8,38 +8,35 @@ import WebtoonTab from "./WebtoonTab";
 export default function Tabs({
   webtoon,
   avatars,
-  NFTs,
+  collectibles,
   exchangeRate,
   episodes,
+  benefits,
 }) {
   //Get scroll position to fix the tab list
   const { scrollPosition, elementHeight } = getScrollPosition();
 
   //Enable navigation between Project, Webtoon, Collection tabs
   const { query } = useRouter();
-
-  const isTabOneSelected =
-    !!query.tabOne || (!query.tabOne && !query.tabTwo && !query.tabThree);
-  const isTabTwoSelected = !!query.tabTwo;
-  const isTabThreeSelected = !!query.tabThree;
+  const { webtoonId, tab = "project" } = query;
 
   return (
     <div>
       <ul
         className={`${
           scrollPosition > elementHeight + 80
-            ? "fixed top-0 flex w-[768px] bg-navBg z-10 shadow-md"
+            ? "fixed top-0 flex w-[768px] bg-navBg z-10 shadow-md md:w-[630px]"
             : "relative flex shadow-md"
         }`}
       >
         <li className="ml-4">
           <Link
             shallow
-            href={"/webtoons/" + webtoon.id + "?tabOne=true"}
-            isSelected={isTabOneSelected}
+            href={`/webtoons/${webtoonId}`}
+            isSelected={tab === "project"}
           >
             <a
-              className={`${isTabOneSelected ? "font-bold" : "text-white/50"}`}
+              className={`${tab === "project" ? "font-bold" : "text-white/50"}`}
               aria-label="View Project"
             >
               <div className="text-lg py-4 px-5">Project</div>
@@ -47,18 +44,18 @@ export default function Tabs({
           </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
-              isTabOneSelected ? "visible" : "invisible"
+              tab === "project" ? "visible" : "invisible"
             }`}
           ></div>
         </li>
         <li>
           <Link
             shallow
-            href={"/webtoons/" + webtoon.id + "?tabTwo=true"}
-            isSelected={isTabTwoSelected}
+            href={`/webtoons/${webtoonId}/webtoon`}
+            isSelected={tab === "webtoon"}
           >
             <a
-              className={`${isTabTwoSelected ? "font-bold" : "text-white/50"}`}
+              className={`${tab === "webtoon" ? "font-bold" : "text-white/50"}`}
               aria-label="View Webtoon"
             >
               <div className="text-lg py-4 px-5">Webtoon</div>
@@ -66,19 +63,19 @@ export default function Tabs({
           </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
-              isTabTwoSelected ? "visible" : "invisible"
+              tab === "webtoon" ? "visible" : "invisible"
             }`}
           ></div>
         </li>
         <li>
           <Link
             shallow
-            href={"/webtoons/" + webtoon.id + "?tabThree=true"}
-            isSelected={isTabThreeSelected}
+            href={`/webtoons/${webtoonId}/collectibles`}
+            isSelected={tab === "collectibles"}
           >
             <a
               className={`${
-                isTabThreeSelected ? "font-bold" : "text-white/50"
+                tab === "collectibles" ? "font-bold" : "text-white/50"
               }`}
               aria-label="View Collectibles"
             >
@@ -87,25 +84,32 @@ export default function Tabs({
           </Link>
           <div
             className={`w-full h-[3px] bg-white rounded-sm  ${
-              isTabThreeSelected ? "visible" : "invisible"
+              tab === "collectibles" ? "visible" : "invisible"
             }`}
           ></div>
         </li>
         <div className="absolute bottom-0 w-full h-px bg-white/10"></div>
       </ul>
-      <div className={`${scrollPosition > elementHeight + 80 ? "pt-16" : ""}`}>
-        <div id="tabOne" className={isTabOneSelected ? "block" : "hidden"}>
+      <div
+        id="main"
+        className={`${scrollPosition > elementHeight + 80 ? "pt-16" : ""}`}
+      >
+        <div className={tab === "project" ? "block" : "hidden"}>
           <ProjectTab
             webtoon={webtoon}
             avatars={avatars}
             exchangeRate={exchangeRate}
+            benefits={benefits}
           />
         </div>
-        <div id="tabTwo" className={isTabTwoSelected ? "block" : "hidden"}>
+        <div className={tab === "webtoon" ? "block" : "hidden"}>
           <WebtoonTab episodes={episodes} webtoon={webtoon} />
         </div>
-        <div id="tabThree" className={isTabThreeSelected ? "block" : "hidden"}>
-          <CollectiblesTab NFTs={NFTs} exchangeRate={exchangeRate} />
+        <div className={tab === "collectibles" ? "block" : "hidden"}>
+          <CollectiblesTab
+            collectibles={collectibles}
+            exchangeRate={exchangeRate}
+          />
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ export const PolyFrameCard = ({ href, idx }) => (
         width="100%"
         height="68%"
         clipPath={"url(#imageClip" + idx + ")"}
+        preserveAspectRatio="xMinYMin slice"
       />
       <path
         id={"cardPath" + idx}
@@ -33,7 +34,13 @@ export const PolyFrameCard = ({ href, idx }) => (
         <stop offset="0%" stopColor="#70efcf" />
         <stop offset="100%" stopColor="#cea671" />
       </linearGradient>
-      <linearGradient id="cardGradientHover" x1="0%" y1="0%" x2="0%" y2="100%">
+      <linearGradient
+        id={"cardGradientHover" + idx}
+        x1="0%"
+        y1="0%"
+        x2="0%"
+        y2="100%"
+      >
         <stop offset="0%" stopColor="#70efcf" />
         <stop offset="100%" stopColor="#cea671" />
       </linearGradient>

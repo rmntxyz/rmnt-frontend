@@ -1,14 +1,10 @@
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { House } from "../../utils/svgs";
 import Toggle from "../webtoonEpisode/Toggle";
 
 export default function Nav({ episode, webtoon, prevUrl }) {
-  //Use router to enable navigation
-  const router = useRouter();
-
   return (
     <nav
       id="navbar"
@@ -16,7 +12,12 @@ export default function Nav({ episode, webtoon, prevUrl }) {
     >
       <div className="flex justify-between items-center mx-auto h-full px-8 max-w-[768px] md:max-w-[630px]">
         <div className="flex gap-6 items-center justify-center">
-          <a href={"/webtoons/" + webtoon.id + "?tabTwo=true#tabTwo"}>
+          <a
+            href={
+              "/webtoons/" + webtoon.attributes.webtoon_id + "/webtoon#main"
+            }
+            aria-label="Go to this webtoon's page"
+          >
             <FontAwesomeIcon
               id="episodeBack"
               icon={faArrowLeft}
@@ -25,18 +26,21 @@ export default function Nav({ episode, webtoon, prevUrl }) {
               // style={{ display: !prevUrl ? "none" : "block" }}
             />
           </a>
-          <div className="flex gap-2">
+          <div className="hidden gap-2 items-center sm:flex">
             <span className="text-lg py-1 px-3.5 rounded-3xl bg-mainBg drop-shadow-[4px_5px_10px_rgba(0, 0, 0, 0.1)]">
-              Ep.{episode.page_number}
+              Ep.{episode.episode_number}
             </span>
             {/* <a href={"/webtoons/" + webtoon.id}> */}
-            <span>{webtoon.attributes.title}</span>
+            <span className="truncate w-56">{webtoon.attributes.title}</span>
             {/* </a> */}
           </div>
         </div>
         <div className="flex gap-5 items-center justify-center">
           <Link href="/" passHref>
-            <a className="p-3.5 rounded-full border border-white/20 bg-opaqueGray">
+            <a
+              className="p-3.5 rounded-full border border-white/20 bg-opaqueGray"
+              aria-label="Go to Rarement home"
+            >
               <House />
             </a>
           </Link>
