@@ -1,11 +1,10 @@
 import { Eth } from "../../../utils/svgs";
 
-export default function PriceAvail({ avatars, exchangeRate }) {
+export default function PriceAvail({ avatar, exchangeRate }) {
   //TODO Determine the number of all avatars and available avatars
-  const all = avatars.length;
-  const available = avatars.filter(
-    (avatar) => !avatar.attributes.owned_by.data
-  ).length;
+
+  const all = 0
+  const available = 0;
 
   return (
     <div>
@@ -13,13 +12,13 @@ export default function PriceAvail({ avatars, exchangeRate }) {
         <div className="flex items-center gap-1">
           <Eth />
           <div className="font-bold text-sm">
-            {parseFloat(avatars[0]?.attributes.price_in_wei) / Math.pow(10, 18)}{" "}
+            {parseFloat(avatar?.attributes.price_in_wei) / Math.pow(10, 18)}{" "}
             ETH
           </div>
           <div className="text-white/50 text-sm">
             (≈{" "}
             {(
-              (exchangeRate * parseFloat(avatars[0]?.attributes.price_in_wei)) /
+              (exchangeRate * parseFloat(avatar?.attributes.price_in_wei)) /
               Math.pow(10, 18)
             ).toFixed(3)}{" "}
             USD)

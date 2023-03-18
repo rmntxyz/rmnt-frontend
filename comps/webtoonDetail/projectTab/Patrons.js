@@ -4,9 +4,7 @@ import PatronCard from "./PatronCard";
 import { getHolders } from "../../../pages/api/getHolders";
 import { EmptyPatronCard } from "./EmptyPatronCard";
 
-export default function Patrons({
-  address = "0x2414754f828e5c4a7613544614d87988ab5dad8f",
-}) {
+export default function Patrons({ address }) {
   //Populate the array of holders with null values before loading
   const [holders, setHolders] = useState([
     null,

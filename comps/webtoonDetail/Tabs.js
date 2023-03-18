@@ -7,7 +7,7 @@ import WebtoonTab from "./WebtoonTab";
 
 export default function Tabs({
   webtoon,
-  avatars,
+  avatar,
   collectibles,
   exchangeRate,
   episodes,
@@ -97,7 +97,7 @@ export default function Tabs({
         <div className={tab === "project" ? "block" : "hidden"}>
           <ProjectTab
             webtoon={webtoon}
-            avatars={avatars}
+            avatar={avatar}
             exchangeRate={exchangeRate}
             benefits={benefits}
           />

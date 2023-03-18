@@ -8,7 +8,7 @@ import Patrons from "./Patrons";
 
 export default function ProjectTab({
   webtoon,
-  avatars,
+  avatar,
   exchangeRate,
   benefits,
 }) {
@@ -47,9 +47,9 @@ export default function ProjectTab({
         </div>
         <ShowOrClose truncated={truncated} show={show} setShow={setShow} />
       </div>
-      <Avatar avatars={avatars} exchangeRate={exchangeRate} webtoon={webtoon} />
+      <Avatar avatar={avatar} exchangeRate={exchangeRate} webtoon={webtoon} />
       <Benefits benefits={benefits} />
-      <Patrons />
+      <Patrons address={avatar.attributes?.rarement.data.attributes.contractAddress}/>
     </div>
   );
 }

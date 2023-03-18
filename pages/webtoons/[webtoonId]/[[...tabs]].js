@@ -77,6 +77,28 @@ const GET_WEBTOON_DATA = gql`
                     }
                   }
                 }
+                rarement {
+                  data {
+                    id
+                    attributes {
+                      contractAddress
+                      name
+                      symbol
+                      baseURI
+                      fundingRecipient
+                      royaltyBPS
+                      presalePrice
+                      presaleStartTime
+                      price
+                      startTime
+                      endTime
+                      maxSupply
+                      cutoffSupply
+                      maxMintablePerAccount
+                      flags
+                    }
+                  }
+                }
               }
             }
           }
@@ -179,11 +201,18 @@ export async function getServerSideProps(context) {
 
   const webtoon = webtoons.data[0];
 
+  const currTime = Math.floor(Date.now() / 1000);
+  const availableAvatars = webtoon.attributes.avatars.data
+    .filter(avatar => !!avatar.attributes.rarement.data)
+    .filter(avatar => avatar.attributes.rarement.data.attributes.endTime > currTime)
+    .sort((a, b) => a.attributes.rarement.data.attributes.startTime -
+                    b.attributes.rarement.data.attributes.startTime);
+
   return {
     props: {
       exchangeRate: exchangeRate,
       webtoon: webtoon,
-      avatars: webtoon.attributes.avatars.data,
+      avatar: availableAvatars[0],//: webtoon.attributes.avatars.data,
       collectibles: webtoon.attributes.collectibles.data,
       episodes: webtoon.attributes.episodes.data
         .slice()
@@ -203,7 +232,7 @@ export default function WebtoonPage({
   webtoon,
   episodes,
   collectibles,
-  avatars,
+  avatar,
   benefits,
 }) {
   return (
@@ -218,7 +247,7 @@ export default function WebtoonPage({
           collectibles={collectibles}
           exchangeRate={exchangeRate}
           episodes={episodes}
-          avatars={avatars}
+          avatar={avatar}
           benefits={benefits}
         />
       </main>

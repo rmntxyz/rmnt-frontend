@@ -4,7 +4,7 @@ import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 import Character from "./Character";
 import PriceAvail from "./PriceAvail";
 
-export default function Avatar({ avatars, exchangeRate, webtoon }) {
+export default function Avatar({ avatar, exchangeRate, webtoon }) {
   return (
     <div className="mt-7 flex flex-col gap-4">
       <div className="text-2xl font-bold">Avatar</div>
@@ -48,7 +48,7 @@ export default function Avatar({ avatars, exchangeRate, webtoon }) {
               <Character item={item} key={idx} />
             ))}
           </div>
-          <PriceAvail avatars={avatars} exchangeRate={exchangeRate} />
+          <PriceAvail avatar={avatar} exchangeRate={exchangeRate} />
         </div>
       </div>
     </div>
