@@ -183,6 +183,13 @@ const GET_WEBTOON_DATA = gql`
         }
       }
     }
+    rarementContract {
+      data {
+        attributes {
+          rarementABI
+        }
+      }
+    }
   }
 `;
 
@@ -190,7 +197,7 @@ export async function getServerSideProps(context) {
   const exchangeRate = await getExchangeRate();
   const { webtoonId } = context.query;
   const {
-    data: { webtoons },
+    data: { webtoons, rarementContract },
   } = await client.query({
     query: GET_WEBTOON_DATA,
     variables: {
@@ -200,6 +207,7 @@ export async function getServerSideProps(context) {
   });
 
   const webtoon = webtoons.data[0];
+  const rarementABI = rarementContract.data.attributes.rarementABI;
 
   const currTime = Math.floor(Date.now() / 1000);
   const availableAvatars = webtoon.attributes.avatars.data
@@ -213,6 +221,7 @@ export async function getServerSideProps(context) {
       exchangeRate: exchangeRate,
       webtoon: webtoon,
       avatar: availableAvatars[0],//: webtoon.attributes.avatars.data,
+      rarementABI,
       collectibles: webtoon.attributes.collectibles.data,
       episodes: webtoon.attributes.episodes.data
         .slice()
@@ -227,14 +236,9 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function WebtoonPage({
-  exchangeRate,
-  webtoon,
-  episodes,
-  collectibles,
-  avatar,
-  benefits,
-}) {
+export default function WebtoonPage(props) {
+  const { webtoon } = props;
+
   return (
     <div>
       <Seo
@@ -242,14 +246,7 @@ export default function WebtoonPage({
       />
       <main className="max-w-[768px] mx-auto overflow-hidden md:max-w-[630px]">
         <Cover webtoon={webtoon} />
-        <Tabs
-          webtoon={webtoon}
-          collectibles={collectibles}
-          exchangeRate={exchangeRate}
-          episodes={episodes}
-          avatar={avatar}
-          benefits={benefits}
-        />
+        <Tabs {...props} />
       </main>
     </div>
   );

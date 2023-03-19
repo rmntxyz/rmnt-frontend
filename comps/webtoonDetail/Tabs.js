@@ -5,14 +5,17 @@ import CollectiblesTab from "./CollectiblesTab";
 import ProjectTab from "./projectTab/ProjectTab";
 import WebtoonTab from "./WebtoonTab";
 
-export default function Tabs({
-  webtoon,
-  avatar,
-  collectibles,
-  exchangeRate,
-  episodes,
-  benefits,
-}) {
+export default function Tabs(props) {
+  const {
+    webtoon,
+    avatar,
+    rarementABI,
+    collectibles,
+    exchangeRate,
+    episodes,
+    benefits
+  } = props;
+
   //Get scroll position to fix the tab list
   const { scrollPosition, elementHeight } = getScrollPosition();
 
@@ -95,21 +98,13 @@ export default function Tabs({
         className={`${scrollPosition > elementHeight + 80 ? "pt-16" : ""}`}
       >
         <div className={tab === "project" ? "block" : "hidden"}>
-          <ProjectTab
-            webtoon={webtoon}
-            avatar={avatar}
-            exchangeRate={exchangeRate}
-            benefits={benefits}
-          />
+          <ProjectTab {...props} />
         </div>
         <div className={tab === "webtoon" ? "block" : "hidden"}>
-          <WebtoonTab episodes={episodes} webtoon={webtoon} />
+          <WebtoonTab { ...{episodes, webtoon} } />
         </div>
         <div className={tab === "collectibles" ? "block" : "hidden"}>
-          <CollectiblesTab
-            collectibles={collectibles}
-            exchangeRate={exchangeRate}
-          />
+          <CollectiblesTab { ...{rarementABI, collectibles, exchangeRate} } />
         </div>
       </div>
     </div>
