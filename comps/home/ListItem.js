@@ -16,7 +16,6 @@ export default function ListItem({ item }) {
           src={item.attributes.cover_image.data.attributes.url}
           width={704}
           height={704}
-          layout="responsive"
           placeholder="blur"
           blurDataURL={item.attributes.cover_image.data.attributes.url}
           className="rounded-2xl"

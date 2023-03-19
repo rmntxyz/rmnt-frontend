@@ -1,4 +1,4 @@
-import { getExchangeRate } from "../../api/USD_ETH";
+import { getExchangeRate } from "../../api/USD_MATIC";
 import client from "../../../apollo";
 import { gql } from "@apollo/client";
 import Seo from "../../../comps/layout/SEO";

@@ -12,14 +12,13 @@ export default function Character({ item }) {
           id="tooltip"
           className="tooltip p-3 flex items-center gap-2 h-fit"
         >
-          <div className="w-[68px] h-[68px] aspect-square relative">
-            <Image
-              src={item.attributes.image.data.attributes.url}
-              layout="fill"
-              alt="Rarement Webtoon Character Image"
-              className="rounded-md"
-            />
-          </div>
+          <Image
+            src={item.attributes.image.data.attributes.url}
+            width={68}
+            height={68}
+            alt="Rarement Webtoon Character Image"
+            className="rounded-md"
+          />
           <div className="flex flex-col gap-0.5">
             <div className="text-base">{item.attributes.name}</div>
             <div className="text-sm">

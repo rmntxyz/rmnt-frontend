@@ -1,11 +1,6 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-// import {
-//   faChevronDown,
-//   faChevronUp,
-//   faCopy,
-// } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import ShowOrClose from "../../utils/showOrClose";
@@ -40,7 +35,7 @@ export default function Desc({ props }) {
         ) : null}
       </div>
       <div className="relative mx-8 max-w-[630px] md:mx-auto">
-        <div className="absolute -top-24 border-2 border-ourBlack rounded-full bg-ourBlack w-32 h-32 shadow-small md:w-44 md:h-44 md:-top-36">
+        <div className="absolute -top-16 border-2 border-ourBlack rounded-full bg-ourBlack w-[100px] h-[100px] shadow-small">
           <div className="relative w-full h-full rounded-full overflow-hidden">
             <Image
               alt="Rarement Artist Profile Image"
