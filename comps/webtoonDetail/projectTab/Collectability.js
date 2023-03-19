@@ -41,7 +41,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           <Eth />
           <div className="font-bold text-sm">
             {parseFloat(rarement.price) / Math.pow(10, 18)}{" "}
-            ETH
+            MATIC
           </div>
           <div className="text-white/50 text-sm">
             (≈{" "}
