@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
-import SmallItem from "../../comps/home/SmallItem";
+import ListItem from "../../comps/home/ListItem";
 import Seo from "../../comps/layout/SEO";
 
 const GET_WEBTOONS_DATA = gql`
@@ -52,9 +52,38 @@ const GET_WEBTOONS_DATA = gql`
                     id
                   }
                 }
+                rarement {
+                  data {
+                    id
+                    attributes {
+                      contractAddress
+                      name
+                      symbol
+                      baseURI
+                      fundingRecipient
+                      royaltyBPS
+                      presalePrice
+                      presaleStartTime
+                      price
+                      startTime
+                      endTime
+                      maxSupply
+                      cutoffSupply
+                      maxMintablePerAccount
+                      flags
+                    }
+                  }
+                }
               }
             }
           }
+        }
+      }
+    }
+    rarementContract {
+      data {
+        attributes {
+          rarementABI
         }
       }
     }
@@ -69,42 +98,23 @@ export async function getServerSideProps() {
   return {
     props: {
       webtoons: data.webtoons.data.slice().sort((a, b) => b.id - a.id),
-      // webtoons: data.webtoons.data.slice().sort(
-      //   (a, b) =>
-      //     Math.min(
-      //       ...a.attributes.webtoon_pages.data
-      //         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-      //         .flat(1)
-      //         .filter(
-      //           (NFT) =>
-      //             NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
-      //             0
-      //         )
-      //         .map((NFT) => NFT.attributes.drop_timestamp)
-      //     ) -
-      //     Math.min(
-      //       ...b.attributes.webtoon_pages.data
-      //         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-      //         .flat(1)
-      //         .filter(
-      //           (NFT) =>
-      //             NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
-      //             0
-      //         )
-      //         .map((NFT) => NFT.attributes.drop_timestamp)
-      //     )
-      // ),
+      rarementABI: data.rarementContract.data.attributes.rarementABI,
     },
   };
 }
 
-export default function Webtoons({ webtoons }) {
+export default function Webtoons({ webtoons, rarementABI }) {
   return (
     <div className="">
       <Seo title="Webtoons | Rarement" />
       <main className="max-w-[768px] mx-auto px-4 py-14 grid grid-cols-2 gap-3 md:max-w-[630px]">
-        {webtoons.map((item) => (
-          <SmallItem key={item.id} item={item} />
+        {webtoons.map((item, idx) => (
+          <ListItem
+            key={item.id}
+            idx={idx + 1}
+            item={item}
+            rarementABI={rarementABI}
+          />
         ))}
       </main>
     </div>
