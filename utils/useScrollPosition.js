@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function getScrollPosition() {
+export default function useScrollPosition() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [elementHeight, setElementHeight] = useState();
   const [viewportHeight, setViewportHeight] = useState();
@@ -10,7 +10,7 @@ export default function getScrollPosition() {
     setViewportHeight(window.innerHeight);
   };
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

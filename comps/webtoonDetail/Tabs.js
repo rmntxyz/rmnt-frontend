@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import getScrollPosition from "../../utils/getScrollPoisition";
+import { useLayoutEffect, useRef, useState } from "react";
+import useScrollPosition from "../../utils/useScrollPosition";
 import CollectiblesTab from "./CollectiblesTab";
 import ProjectTab from "./projectTab/ProjectTab";
 import WebtoonTab from "./WebtoonTab";
@@ -17,17 +18,30 @@ export default function Tabs(props) {
   } = props;
 
   //Get scroll position to fix the tab list
-  const { scrollPosition, elementHeight } = getScrollPosition();
+  const [fixedTab, setFixedTab] = useState(false);
+  const stickyPosition = useRef();
+  useLayoutEffect(() => {
+    const observe = () => {
+      let fixedTop = stickyPosition.current.offsetTop
+      setFixedTab(window.pageYOffset > fixedTop);
+    }
+    window.addEventListener('scroll', observe)
+    window.addEventListener('resize', observe)
+    return () => {
+      window.addEventListener('scroll', observe)
+      window.addEventListener('resize', observe)
+    }
+  }, [])
 
   //Enable navigation between Project, Webtoon, Collection tabs
   const { query } = useRouter();
   const { webtoonId, tab = "project" } = query;
 
   return (
-    <div>
+    <div ref={stickyPosition}>
       <ul
         className={`${
-          scrollPosition > elementHeight + 80
+          fixedTab
             ? "fixed top-0 flex w-[768px] bg-navBg z-10 shadow-md md:w-[630px]"
             : "relative flex shadow-md"
         }`}
@@ -84,7 +98,7 @@ export default function Tabs(props) {
       </ul>
       <div
         id="main"
-        className={`${scrollPosition > elementHeight + 80 ? "pt-16" : ""}`}
+        className={`${fixedTab ? "pt-16" : ""}`}
       >
         <div className={tab === "project" ? "block" : "hidden"}>
           <ProjectTab {...props} />

@@ -3,7 +3,7 @@ import "../styles/globals.css";
 import "0xpass/styles.css";
 import { getDefaultWallets, darkTheme, PassProvider } from "0xpass";
 import { configureChains, WagmiConfig, createClient } from "wagmi";
-import { polygon } from "wagmi/chains";
+import { polygon, polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
@@ -11,7 +11,7 @@ import client from "../apollo";
 
 // Configure chains & providers with the Alchemy provider
 const { chains, provider } = configureChains(
-  [polygon],
+  [polygon, polygonMumbai],
   [
     alchemyProvider({
       apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY,

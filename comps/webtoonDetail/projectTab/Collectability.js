@@ -1,37 +1,37 @@
 import { useEffect, useState } from "react";
 import { Eth } from "../../../utils/svgs";
 import { ethers } from 'ethers'
+import { useAccount, usePrepareContractWrite, useContractWrite } from "wagmi";
+import { ConnectButton } from "0xpass";
 
 export default function Collectability({ avatar, rarementABI, exchangeRate }) {
   //TODO Determine the number of all avatars and available avatars
-  const [rarementContract, setRarementContract] = useState(null);
+  const [ isLoading, setIsLoading ] = useState(true);
+  const { isConnected, isConnecting } = useAccount();
 
   const rarement = avatar.attributes.rarement?.data.attributes;
   const {contractAddress} = rarement; 
-  const { ethereum } = global;
 
-  if (ethereum) {
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner();
-    const rarementContract = new ethers.Contract(
-      contractAddress,
-      rarementABI,
-      signer
-    );
+  console.log(rarementABI);
+  const { config } = usePrepareContractWrite({
+   address: contractAddress,
+   abi: rarementABI,
+   functionName: 'mint',
+   overrides: {
+    value: ethers.utils.parseEther('0.002')
+   },
+   args: [1]
+  });
 
-    rarementContract
-    //let nftTx = await nftContract.createEternalNFT()
-				//console.log('Mining....', nftTx.hash)
-				//setMiningStatus(0)
+  const { write: collect, isSuccess, data } = useContractWrite(config);
 
-				//let tx = await nftTx.wait()
-				//setLoadingState(1)
-				//console.log('Mined!', tx)
-				//let event = tx.events[0]
-				//let value = event.args[2]
-				//let tokenId = value.toNumber()
-  }
+  useEffect(() => {
+    if (isConnected) {
+      setIsLoading(false);
+    }
+  }, [isConnected])
 
+  // FIXME
   const collected = 0;
 
   return (
@@ -59,21 +59,45 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           </div>
         </div>
       </div>
-      <button
-        aria-label="Collect NFT"
-        className="py-3 mt-8"
-        disabled={collected === rarement.maxSupply}
-      >
-        <span
-          className={`${
-            collected === rarement.maxSupply 
-              ? "bg-white/20"
-              : "border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white duration-200"
-          } px-8 py-3   text-navBg text-base leading-tight font-bold rounded-3xl`}
-        >
-          {collected === rarement.maxSupply ? "Soldout" : "Collect"}
-        </span>
-      </button>
+      {
+        isConnecting ?
+          <button
+            aria-label="Collect NFT"
+            className="animate-pulse px-8 py-3 mt-8 w-32 h-12 bg-white/20 text-navBg text-base leading-tight font-bold rounded-3xl"
+          >
+          </button> :
+
+        isConnected ?
+          <button
+            onClick={() => collect?.()}
+            aria-label="Collect NFT"
+            // disabled={collected === rarement.maxSupply}
+            disabled={!collect || isLoading || isSuccess || collected === rarement.maxSupply}
+            className={`${
+                collected === rarement.maxSupply 
+                  ? "bg-white/20" :
+                    isSuccess ? "bg-mintGreen" :
+                      "border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white duration-200"
+              } px-8 py-3 mt-8 text-navBg text-base leading-tight font-bold rounded-3xl`}
+          >
+            {
+              collected === rarement.maxSupply ?
+                // "Soldout" : "Collect"
+                "Soldout" :
+                (isSuccess ? "Collected!!" : "Collect")
+            }
+          </button> :
+
+          <ConnectButton.Custom>
+            {({ openConnectModal }) => {
+              return <button
+                onClick={openConnectModal}
+                aria-label="Connect Wallet"
+                className= "border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white duration-200 px-8 py-3 mt-8 text-navBg text-base leading-tight font-bold rounded-3xl"
+              >Connect Wallet</button>
+            }}
+          </ConnectButton.Custom>
+      }
     </div>
   );
 }

@@ -2,7 +2,11 @@ import Image from "next/image";
 import Line from "../../../utils/Line";
 import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 import Character from "./Character";
-import Collectability from "./Collectability";
+import dynamic from 'next/dynamic'
+
+const DynamicCollectability = dynamic(() => import('./Collectability'), {
+  ssr: false,
+})
 
 export default function Avatar(props) {
   const { avatar, rarementABI, exchangeRate, webtoon } = props;
@@ -50,7 +54,7 @@ export default function Avatar(props) {
               <Character item={item} key={idx} />
             ))}
           </div>
-          <Collectability {...props} />
+          <DynamicCollectability {...props} />
         </div>
       </div>
     </div>
