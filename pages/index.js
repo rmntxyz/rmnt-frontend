@@ -54,6 +54,28 @@ const GET_HOME_DATA = gql`
                     id
                   }
                 }
+                rarement {
+                  data {
+                    id
+                    attributes {
+                      contractAddress
+                      name
+                      symbol
+                      baseURI
+                      fundingRecipient
+                      royaltyBPS
+                      presalePrice
+                      presaleStartTime
+                      price
+                      startTime
+                      endTime
+                      maxSupply
+                      cutoffSupply
+                      maxMintablePerAccount
+                      flags
+                    }
+                  }
+                }
               }
             }
           }
@@ -75,6 +97,13 @@ const GET_HOME_DATA = gql`
         }
       }
     }
+    rarementContract {
+      data {
+        attributes {
+          rarementABI
+        }
+      }
+    }
   }
 `;
 
@@ -86,42 +115,18 @@ export async function getServerSideProps() {
   return {
     props: {
       webtoons: data.webtoons.data.slice().sort((a, b) => b.id - a.id),
-      // webtoons: data.webtoons.data.slice().sort(
-      //   (a, b) =>
-      //     Math.min(
-      //       ...a.attributes.webtoon_pages.data
-      //         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-      //         .flat(1)
-      //         .filter(
-      //           (NFT) =>
-      //             NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
-      //             0
-      //         )
-      //         .map((NFT) => NFT.attributes.drop_timestamp)
-      //     ) -
-      //     Math.min(
-      //       ...b.attributes.webtoon_pages.data
-      //         .map((webtoon_page) => webtoon_page.attributes.nfts?.data)
-      //         .flat(1)
-      //         .filter(
-      //           (NFT) =>
-      //             NFT.attributes.drop_timestamp - new Date().getTime() / 1000 >
-      //             0
-      //         )
-      //         .map((NFT) => NFT.attributes.drop_timestamp)
-      //     )
-      // ),
       artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
+      rarementABI: data.rarementContract.data.attributes.rarementABI,
     },
   };
 }
 
-export default function Home({ webtoons, artists }) {
+export default function Home({ webtoons, artists, rarementABI }) {
   return (
     <div>
       <Seo title="Rarement" />
       <main className="max-w-[768px] mx-auto px-4 md:max-w-[630px]">
-        <List data={webtoons} />
+        <List webtoons={webtoons} rarementABI={rarementABI} />
         <AboutTop />
         <Artists artists={artists} />
         <AboutBottom />

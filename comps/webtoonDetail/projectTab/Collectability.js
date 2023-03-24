@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Eth } from "../../../utils/svgs";
 import { ethers, BigNumber } from "ethers";
 import {
   useAccount,
@@ -8,9 +7,9 @@ import {
   useContractRead,
 } from "wagmi";
 import { ConnectButton } from "0xpass";
+import { Polygon } from "../../../utils/svgs";
 
 export default function Collectability({ avatar, rarementABI, exchangeRate }) {
-  //TODO Determine the number of all avatars and available avatars
   const [isLoading, setIsLoading] = useState(true);
   const { isConnected, isConnecting } = useAccount();
 
@@ -49,7 +48,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
     <div>
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-1">
-          <Eth />
+          <Polygon />
           <div className="font-bold text-sm">
             {ethers.utils.formatEther(price)} MATIC
           </div>

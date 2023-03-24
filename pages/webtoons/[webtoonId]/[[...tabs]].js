@@ -211,16 +211,21 @@ export async function getServerSideProps(context) {
 
   const currTime = Math.floor(Date.now() / 1000);
   const availableAvatars = webtoon.attributes.avatars.data
-    .filter(avatar => !!avatar.attributes.rarement.data)
-    .filter(avatar => avatar.attributes.rarement.data.attributes.endTime > currTime)
-    .sort((a, b) => a.attributes.rarement.data.attributes.startTime -
-                    b.attributes.rarement.data.attributes.startTime);
+    .filter((avatar) => !!avatar.attributes.rarement.data)
+    .filter(
+      (avatar) => avatar.attributes.rarement.data.attributes.endTime > currTime
+    )
+    .sort(
+      (a, b) =>
+        a.attributes.rarement.data.attributes.startTime -
+        b.attributes.rarement.data.attributes.startTime
+    );
 
   return {
     props: {
       exchangeRate: exchangeRate,
       webtoon: webtoon,
-      avatar: availableAvatars[0],//: webtoon.attributes.avatars.data,
+      avatar: availableAvatars[0], //: webtoon.attributes.avatars.data,
       rarementABI,
       collectibles: webtoon.attributes.collectibles.data,
       episodes: webtoon.attributes.episodes.data

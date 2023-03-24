@@ -5,12 +5,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
-import getScreenSize from "../../utils/getScreenSize";
+import useScreenSize from "../../utils/useScreenSize";
 import scrollToTop from "../../utils/scrollToTop";
 
 export default function Buttons({ allEpisodes }) {
-  const { screenWidth } = getScreenSize();
+  //Get screen width to set the botton size
+  const { screenWidth } = useScreenSize();
 
+  //Use params to specify prev/next episodes
   const {
     query: { episodeNumber, webtoonId, language },
   } = useRouter();
