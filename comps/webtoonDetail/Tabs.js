@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useLayoutEffect, useRef, useState } from "react";
-import useScrollPosition from "../../utils/useScrollPosition";
+import { useEffect, useRef, useState } from "react";
 import CollectiblesTab from "./CollectiblesTab";
 import ProjectTab from "./projectTab/ProjectTab";
 import WebtoonTab from "./WebtoonTab";
@@ -14,24 +13,24 @@ export default function Tabs(props) {
     collectibles,
     exchangeRate,
     episodes,
-    benefits
+    benefits,
   } = props;
 
   //Get scroll position to fix the tab list
   const [fixedTab, setFixedTab] = useState(false);
   const stickyPosition = useRef();
-  useLayoutEffect(() => {
+  useEffect(() => {
     const observe = () => {
-      let fixedTop = stickyPosition.current.offsetTop
+      let fixedTop = stickyPosition.current.offsetTop;
       setFixedTab(window.pageYOffset > fixedTop);
-    }
-    window.addEventListener('scroll', observe)
-    window.addEventListener('resize', observe)
+    };
+    window.addEventListener("scroll", observe);
+    window.addEventListener("resize", observe);
     return () => {
-      window.addEventListener('scroll', observe)
-      window.addEventListener('resize', observe)
-    }
-  }, [])
+      window.addEventListener("scroll", observe);
+      window.addEventListener("resize", observe);
+    };
+  }, []);
 
   //Enable navigation between Project, Webtoon, Collection tabs
   const { query } = useRouter();
@@ -96,18 +95,15 @@ export default function Tabs(props) {
         </li>
         <div className="absolute bottom-0 w-full h-px bg-white/10"></div>
       </ul>
-      <div
-        id="main"
-        className={`${fixedTab ? "pt-16" : ""}`}
-      >
+      <div id="main" className={`${fixedTab ? "pt-16" : ""}`}>
         <div className={tab === "project" ? "block" : "hidden"}>
           <ProjectTab {...props} />
         </div>
         <div className={tab === "webtoon" ? "block" : "hidden"}>
-          <WebtoonTab { ...{episodes, webtoon} } />
+          <WebtoonTab {...{ episodes, webtoon }} />
         </div>
         <div className={tab === "collectibles" ? "block" : "hidden"}>
-          <CollectiblesTab { ...{rarementABI, collectibles, exchangeRate} } />
+          <CollectiblesTab {...{ rarementABI, collectibles, exchangeRate }} />
         </div>
       </div>
     </div>
