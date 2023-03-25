@@ -4,6 +4,7 @@ import { gql } from "@apollo/client";
 import Seo from "../../../comps/layout/SEO";
 import Tabs from "../../../comps/webtoonDetail/Tabs";
 import Cover from "../../../comps/webtoonDetail/Cover";
+import { createRef, forwardRef, useEffect, useRef, useState } from "react";
 
 const GET_WEBTOON_DATA = gql`
   query Webtoon($id: String) {
@@ -243,15 +244,17 @@ export async function getServerSideProps(context) {
 
 export default function WebtoonPage(props) {
   const { webtoon } = props;
-
+  const coverRef = useRef();
   return (
     <div>
       <Seo
         title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
       />
       <main className="max-w-[768px] mx-auto overflow-hidden md:max-w-[630px]">
-        <Cover webtoon={webtoon} />
-        <Tabs {...props} />
+        <div ref={coverRef}>
+          <Cover webtoon={webtoon} />
+        </div>
+        <Tabs {...props} coverRef={coverRef} />
       </main>
     </div>
   );

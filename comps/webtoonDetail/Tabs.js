@@ -8,17 +8,18 @@ import WebtoonTab from "./WebtoonTab";
 export default function Tabs(props) {
   const {
     webtoon,
-    avatar,
     rarementABI,
     collectibles,
     exchangeRate,
     episodes,
-    benefits,
+    coverRef,
   } = props;
 
   //Use Intersection Observer for stick header
   const [fixedTab, setFixedTab] = useState(false);
   useEffect(() => {
+    //Define the element above the tabs to track its position (although "cover" will still work without being defined)
+    const cover = coverRef.current;
     // Define configuration for the observer
     const config = {
       root: null,
@@ -30,8 +31,8 @@ export default function Tabs(props) {
         if (entry.isIntersecting) setFixedTab(false);
       });
     }, config);
-    // Observe the element above the header to see when it's in view
-    observer.observe(cover); //"cover" works without being defined!!
+    // Observe the element above the tabs to see when it's in view
+    observer.observe(cover); //"cover (as the id of the element)" will still work without being defined
   });
 
   //Enable navigation between Project, Webtoon, Collection tabs
