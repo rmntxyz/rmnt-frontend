@@ -16,28 +16,31 @@ export default function Tabs(props) {
     benefits,
   } = props;
 
-  //Get scroll position to fix the tab list
+  //Use Intersection Observer for stick header
   const [fixedTab, setFixedTab] = useState(false);
-  const stickyPosition = useRef();
   useEffect(() => {
-    const observe = () => {
-      let fixedTop = stickyPosition.current.offsetTop;
-      setFixedTab(window.pageYOffset > fixedTop);
+    const cover = document.getElementById("cover");
+    // Define configuration for the observer
+    const config = {
+      root: null,
     };
-    window.addEventListener("scroll", observe);
-    window.addEventListener("resize", observe);
-    return () => {
-      window.addEventListener("scroll", observe);
-      window.addEventListener("resize", observe);
-    };
-  }, []);
+    // Create the observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) setFixedTab(true);
+        if (entry.isIntersecting) setFixedTab(false);
+      });
+    }, config);
+    // Observe the element above the header to see when it's in view
+    observer.observe(cover);
+  });
 
   //Enable navigation between Project, Webtoon, Collection tabs
   const { query } = useRouter();
   const { webtoonId, tab = "project" } = query;
 
   return (
-    <div ref={stickyPosition} id="main">
+    <div id="main">
       <ul
         className={`${
           fixedTab

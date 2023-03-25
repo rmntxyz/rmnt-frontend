@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Cover({ webtoon }) {
   return (
-    <div id="scrollableElement" className="relative">
+    <div id="cover" className="relative">
       <Image
         src={webtoon.attributes.cover_image.data.attributes.url}
         width={768}
