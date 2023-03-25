@@ -37,7 +37,7 @@ export default function Tabs(props) {
   const { webtoonId, tab = "project" } = query;
 
   return (
-    <div ref={stickyPosition}>
+    <div ref={stickyPosition} id="main">
       <ul
         className={`${
           fixedTab
@@ -95,7 +95,7 @@ export default function Tabs(props) {
         </li>
         <div className="absolute bottom-0 w-full h-px bg-white/10"></div>
       </ul>
-      <div id="main" className={`${fixedTab ? "pt-16" : ""}`}>
+      <div className={`${fixedTab ? "pt-16" : ""}`}>
         <div className={tab === "project" ? "block" : "hidden"}>
           <ProjectTab {...props} />
         </div>

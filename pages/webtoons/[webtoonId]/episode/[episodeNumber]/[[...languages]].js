@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import client from "../../../../../apollo";
 import Seo from "../../../../../comps/layout/SEO";
 import Nav from "../../../../../comps/webtoonEpisode/Nav";
-import hideOrPaint from "../../../../../utils/hideOrPaint";
 import Buttons from "../../../../../comps/webtoonEpisode/Buttons";
 import KorEngEpisode from "../../../../../comps/webtoonEpisode/KorEngEpisode";
+import useScrollPosition from "../../../../../utils/useScrollPosition";
+import { useEffect, useState } from "react";
 
 const GET_EPISODE_DATA = gql`
   query Webtoon($webtoonId: String) {
@@ -90,8 +91,26 @@ export async function getServerSideProps(context) {
 }
 
 export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
-  //Hide navbar and navgation buttons on scroll
-  hideOrPaint();
+  //Use scroll position to determine whether to paint the navbar & buttons
+  const { scrollPosition, elementHeight, viewportHeight } = useScrollPosition();
+
+  //Listen to click/scroll events to hide or paint navbar & buttons
+  const [clicked, setClicked] = useState(false);
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
+  const handleScroll = () => {
+    setClicked(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleClick);
+    };
+  });
 
   //Set language for the episode
   const {
@@ -103,7 +122,25 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
       <Seo
         title={`${webtoon.attributes.title} - Ep.${episode.episode_number}`}
       />
-      <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
+      <div
+        style={{
+          opacity:
+            scrollPosition < 120 ||
+            scrollPosition + viewportHeight > elementHeight + 80 ||
+            clicked
+              ? "1"
+              : "0",
+          pointerEvents:
+            scrollPosition < 120 ||
+            scrollPosition + viewportHeight > elementHeight + 80 ||
+            clicked
+              ? "auto"
+              : "none",
+        }}
+        className="duration-200"
+      >
+        <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
+      </div>
       <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">
         <KorEngEpisode
           data={
@@ -112,7 +149,29 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
               : episode.eng_images.data
           }
         />
-        <Buttons allEpisodes={allEpisodes} />
+        <div
+          style={{
+            opacity:
+              scrollPosition < 120 ||
+              scrollPosition + viewportHeight > elementHeight + 80 ||
+              clicked
+                ? "1"
+                : "0",
+            pointerEvents:
+              scrollPosition < 120 ||
+              scrollPosition + viewportHeight > elementHeight + 80 ||
+              clicked
+                ? "auto"
+                : "none",
+          }}
+          className="duration-200"
+        >
+          <Buttons
+            allEpisodes={allEpisodes}
+            viewportHeight={viewportHeight}
+            elementHeight={elementHeight}
+          />
+        </div>
       </main>
     </div>
   );

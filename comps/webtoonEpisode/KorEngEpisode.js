@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function KorEngEpisode({ data }) {
   return (
-    <div id="episode">
+    <div id="scrollableElement">
       {data.map((item, idx) => {
         return (
           <Image

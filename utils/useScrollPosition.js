@@ -9,10 +9,19 @@ export default function useScrollPosition() {
     setElementHeight(document.getElementById("scrollableElement").clientHeight);
     setViewportHeight(window.innerHeight);
   };
+  const handleResize = () => {
+    setScrollPosition(window.scrollY);
+    setElementHeight(document.getElementById("scrollableElement").clientHeight);
+    setViewportHeight(window.innerHeight);
+  };
   useEffect(() => {
+    setElementHeight(document.getElementById("scrollableElement").clientHeight);
+    setViewportHeight(window.innerHeight);
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   return { scrollPosition, elementHeight, viewportHeight };

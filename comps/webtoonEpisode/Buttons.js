@@ -8,7 +8,11 @@ import { useRouter } from "next/router";
 import useScreenSize from "../../utils/useScreenSize";
 import scrollToTop from "../../utils/scrollToTop";
 
-export default function Buttons({ allEpisodes }) {
+export default function Buttons({
+  allEpisodes,
+  viewportHeight,
+  elementHeight,
+}) {
   //Get screen width to set the botton size
   const { screenWidth } = useScreenSize();
 
@@ -77,7 +81,16 @@ export default function Buttons({ allEpisodes }) {
             <FontAwesomeIcon icon={faArrowRight} className="text-lg" />
           </a>
         </div>
-        <button id="scrollToTop" onClick={scrollToTop} title="Scroll To Top">
+        <button
+          id="scrollToTop"
+          onClick={scrollToTop}
+          title="Scroll To Top"
+          style={{
+            opacity: viewportHeight > elementHeight + 80 ? "0" : "1",
+            pointerEvents:
+              viewportHeight > elementHeight + 80 ? "none" : "auto",
+          }}
+        >
           <FontAwesomeIcon
             icon={faArrowUp}
             className="absolute right-0 top-1 gradientBorder m-8 px-3.5 py-3 text-lg"

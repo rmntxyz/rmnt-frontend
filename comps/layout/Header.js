@@ -1,7 +1,7 @@
 import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
-import getPrevRoute from "../../utils/getPrevRoute";
+import usePrevRoute from "../../utils/usePrevRoute";
 import { Logo } from "../../utils/svgs";
 import { ConnectButton } from "0xpass";
 
@@ -10,7 +10,7 @@ export default function Header() {
   const router = useRouter();
 
   //Get current/previous routes to determine whether to show the back button or not
-  const { prevPath } = getPrevRoute();
+  const { prevPath } = usePrevRoute();
 
   //Handle the back button differently based on the current url
   function handleBack() {

@@ -2,7 +2,7 @@ import { global } from "@apollo/client/utilities/globals";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function getPrevRoute() {
+export default function usePrevRoute() {
   const router = useRouter();
   const [prevPath, setPrevPath] = useState();
   const [currentPath, setCurrentPath] = useState();
