@@ -96,6 +96,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
 
   //Listen to click/scroll events to hide or paint navbar & buttons
   const [clicked, setClicked] = useState(false);
+  const [show, setShow] = useState(true);
   const handleClick = () => {
     setClicked(!clicked);
   };
@@ -106,6 +107,13 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("click", handleClick);
+    setShow(
+      scrollPosition < 120 ||
+        scrollPosition + viewportHeight > elementHeight + 80 ||
+        clicked
+        ? true
+        : false
+    );
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("click", handleClick);
@@ -124,22 +132,9 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
       />
       <div
         style={{
-          // top:  scrollPosition < 120 ||
-          // scrollPosition + viewportHeight > elementHeight + 80 ||
-          // clicked
-          //   ? "0" : "-80px",
-          opacity:
-            scrollPosition < 120 ||
-            scrollPosition + viewportHeight > elementHeight + 80 ||
-            clicked
-              ? "1"
-              : "0",
-          pointerEvents:
-            scrollPosition < 120 ||
-            scrollPosition + viewportHeight > elementHeight + 80 ||
-            clicked
-              ? "auto"
-              : "none",
+          // top:  show  ? "0" : "-80px",
+          opacity: show ? "1" : "0",
+          pointerEvents: show ? "auto" : "none",
         }}
         className="duration-200"
       >
@@ -155,18 +150,8 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
         />
         <div
           style={{
-            opacity:
-              scrollPosition < 120 ||
-              scrollPosition + viewportHeight > elementHeight + 80 ||
-              clicked
-                ? "1"
-                : "0",
-            pointerEvents:
-              scrollPosition < 120 ||
-              scrollPosition + viewportHeight > elementHeight + 80 ||
-              clicked
-                ? "auto"
-                : "none",
+            opacity: show ? "1" : "0",
+            pointerEvents: show ? "auto" : "none",
           }}
           className="duration-200"
         >
