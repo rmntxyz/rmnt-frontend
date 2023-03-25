@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import Seo from "../../../comps/layout/SEO";
 import Tabs from "../../../comps/webtoonDetail/Tabs";
 import Cover from "../../../comps/webtoonDetail/Cover";
-import { createRef, forwardRef, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 const GET_WEBTOON_DATA = gql`
   query Webtoon($id: String) {
