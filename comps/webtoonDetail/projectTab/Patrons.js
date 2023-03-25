@@ -58,7 +58,7 @@ export default function Patrons({ address }) {
           {rowOne.map((item, idx) =>
             !item ? (
               <EmptyPatronCard key={idx} idx={idx} loading={loading} />
-            ) : item === "empty" ? (
+            ) : item === "next" && idx === 0 ? (
               <EmptyPatronCard
                 key={idx}
                 idx={idx}
@@ -66,7 +66,7 @@ export default function Patrons({ address }) {
                 textTwo="patron!"
                 loading={loading}
               />
-            ) : item === "next" ? (
+            ) : item === "next" && idx !== 0 ? (
               <EmptyPatronCard
                 key={idx}
                 idx={idx}
@@ -74,6 +74,8 @@ export default function Patrons({ address }) {
                 textTwo="patron!"
                 loading={loading}
               />
+            ) : item === "empty" ? (
+              <EmptyPatronCard key={idx} idx={idx} loading={loading} />
             ) : (
               <PatronCard key={idx} item={item} />
             )
