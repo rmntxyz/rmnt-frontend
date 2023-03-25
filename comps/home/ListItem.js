@@ -90,7 +90,6 @@ export default function ListItem({ item, idx, rarementABI }) {
                 rarement,
                 rarementABI
               )),
-              console.log(totalSupply, isReading),
               (
                 <div>
                   <span className="font-bold">

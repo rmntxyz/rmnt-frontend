@@ -1,16 +1,28 @@
-import { useContractRead } from "wagmi";
+import { getProvider } from "@wagmi/core";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+
+const chainId = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ? 137 : 80001;
 
 export default function useCollectibility(rarement, rarementABI) {
-  const { contractAddress, price, maxSupply } = rarement;
-  const {
-    data: totalSupply,
-    isError: isReadingError,
-    isLoading: isReading,
-  } = useContractRead({
-    address: contractAddress,
-    abi: rarementABI,
-    functionName: "totalSupply",
-  });
+  const { contractAddress, maxSupply } = rarement;
 
-  return { totalSupply, maxSupply, isReading };
+  const [totalSupply, setTotalSupply] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const provider = getProvider({ chainId });
+  const contract = new ethers.Contract(contractAddress, rarementABI, provider);
+
+  useEffect(() => {
+    const readTotalSupply = async () => {
+      const value = await contract.totalSupply();
+
+      setIsLoading(false);
+      setTotalSupply(value);
+    };
+
+    readTotalSupply();
+  }, )
+
+  return { totalSupply, maxSupply, isLoading };
 }
