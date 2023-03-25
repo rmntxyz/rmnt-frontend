@@ -124,6 +124,10 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
       />
       <div
         style={{
+          // top:  scrollPosition < 120 ||
+          // scrollPosition + viewportHeight > elementHeight + 80 ||
+          // clicked
+          //   ? "0" : "-80px",
           opacity:
             scrollPosition < 120 ||
             scrollPosition + viewportHeight > elementHeight + 80 ||

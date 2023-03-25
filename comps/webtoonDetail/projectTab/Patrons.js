@@ -5,6 +5,9 @@ import { getHolders } from "../../../pages/api/getHolders";
 import { EmptyPatronCard } from "./EmptyPatronCard";
 
 export default function Patrons({ address }) {
+  //Set loading for loading views
+  const [loading, setLoading] = useState(true);
+
   //Populate the array of holders with null values before loading
   const [holders, setHolders] = useState([
     null,
@@ -20,9 +23,11 @@ export default function Patrons({ address }) {
   useEffect(() => {
     getHolders(address).then((holders) => {
       setHolders(holders);
+      setLoading(false);
       const length = holders.length;
       if (length < 7) {
-        for (var i = 0; i < 7 - length; i++) {
+        holders.push("next");
+        for (var i = 0; i < 6 - length; i++) {
           holders.push("empty");
         }
         setHolders(holders);
@@ -52,13 +57,22 @@ export default function Patrons({ address }) {
         <div className="grid grid-cols-3">
           {rowOne.map((item, idx) =>
             !item ? (
-              <EmptyPatronCard key={idx} idx={idx} textOne="Loading..." />
+              <EmptyPatronCard key={idx} idx={idx} loading={loading} />
             ) : item === "empty" ? (
               <EmptyPatronCard
                 key={idx}
                 idx={idx}
                 textOne="Be the first"
                 textTwo="patron!"
+                loading={loading}
+              />
+            ) : item === "next" ? (
+              <EmptyPatronCard
+                key={idx}
+                idx={idx}
+                textOne="Be the next"
+                textTwo="patron!"
+                loading={loading}
               />
             ) : (
               <PatronCard key={idx} item={item} />
@@ -68,7 +82,15 @@ export default function Patrons({ address }) {
         <div className="grid grid-cols-4">
           {rowTwo.map((item, idx) =>
             !item || item === "empty" ? (
-              <EmptyPatronCard key={idx + 3} idx={idx + 3} />
+              <EmptyPatronCard key={idx + 3} idx={idx + 3} loading={loading} />
+            ) : item === "next" ? (
+              <EmptyPatronCard
+                key={idx + 3}
+                idx={idx + 3}
+                textOne="Be the next"
+                textTwo="patron!"
+                loading={loading}
+              />
             ) : (
               <PatronCard key={idx + 3} item={item} />
             )
