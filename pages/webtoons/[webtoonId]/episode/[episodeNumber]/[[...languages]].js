@@ -97,14 +97,14 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   //Listen to click/scroll events to hide or paint navbar & buttons
   const [clicked, setClicked] = useState(false);
   const [show, setShow] = useState(true);
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
-  const handleScroll = () => {
-    setClicked(false);
-  };
 
   useEffect(() => {
+    const handleClick = () => {
+      setClicked(!clicked);
+    };
+    const handleScroll = () => {
+      setClicked(false);
+    };
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("click", handleClick);
     setShow(
@@ -118,7 +118,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("click", handleClick);
     };
-  });
+  }, [scrollPosition, viewportHeight, elementHeight, clicked]);
 
   //Set language for the episode
   const {
