@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CollectiblesTab from "./CollectiblesTab";
 import ProjectTab from "./projectTab/ProjectTab";
 import WebtoonTab from "./WebtoonTab";
@@ -19,7 +19,6 @@ export default function Tabs(props) {
   //Use Intersection Observer for stick header
   const [fixedTab, setFixedTab] = useState(false);
   useEffect(() => {
-    const cover = document.getElementById("cover");
     // Define configuration for the observer
     const config = {
       root: null,
@@ -32,7 +31,7 @@ export default function Tabs(props) {
       });
     }, config);
     // Observe the element above the header to see when it's in view
-    observer.observe(cover);
+    observer.observe(cover); //"cover" works without being defined!!
   });
 
   //Enable navigation between Project, Webtoon, Collection tabs
