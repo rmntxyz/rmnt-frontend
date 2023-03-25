@@ -56,7 +56,7 @@ export default function Patrons({ address }) {
       <div className="flex flex-col mb-6">
         <div className="grid grid-cols-3">
           {rowOne.map((item, idx) =>
-            !item ? (
+            !item || item === "empty" ? (
               <EmptyPatronCard key={idx} idx={idx} loading={loading} />
             ) : item === "next" && idx === 0 ? (
               <EmptyPatronCard
@@ -64,7 +64,6 @@ export default function Patrons({ address }) {
                 idx={idx}
                 textOne="Be the first"
                 textTwo="patron!"
-                loading={loading}
               />
             ) : item === "next" && idx !== 0 ? (
               <EmptyPatronCard
@@ -72,10 +71,7 @@ export default function Patrons({ address }) {
                 idx={idx}
                 textOne="Be the next"
                 textTwo="patron!"
-                loading={loading}
               />
-            ) : item === "empty" ? (
-              <EmptyPatronCard key={idx} idx={idx} loading={loading} />
             ) : (
               <PatronCard key={idx} item={item} />
             )
@@ -91,7 +87,6 @@ export default function Patrons({ address }) {
                 idx={idx + 3}
                 textOne="Be the next"
                 textTwo="patron!"
-                loading={loading}
               />
             ) : (
               <PatronCard key={idx + 3} item={item} />
