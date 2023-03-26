@@ -4,7 +4,6 @@ import { gql } from "@apollo/client";
 import Seo from "../../../comps/layout/SEO";
 import Tabs from "../../../comps/webtoonDetail/Tabs";
 import Cover from "../../../comps/webtoonDetail/Cover";
-import { useRef } from "react";
 
 const GET_WEBTOON_DATA = gql`
   query Webtoon($id: String) {
@@ -36,10 +35,6 @@ const GET_WEBTOON_DATA = gql`
               id
               attributes {
                 first_name
-                # wallet_address
-                # description
-                # email
-                # instagram
                 profile_image {
                   data {
                     attributes {
@@ -154,20 +149,6 @@ const GET_WEBTOON_DATA = gql`
                     }
                   }
                 }
-                # eng_image {
-                #   data {
-                #     attributes {
-                #       url
-                #     }
-                #   }
-                # }
-                # kor_image {
-                #   data {
-                #     attributes {
-                #       url
-                #     }
-                #   }
-                # }
               }
             }
           }
@@ -244,18 +225,14 @@ export async function getServerSideProps(context) {
 
 export default function WebtoonPage(props) {
   const { webtoon } = props;
-  //Use ref for the cover image to fix the tab list using intersection observer
-  const coverRef = useRef();
   return (
     <div>
       <Seo
         title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
       />
-      <main className="max-w-[768px] mx-auto overflow-hidden md:max-w-[630px]">
-        <div ref={coverRef}>
-          <Cover webtoon={webtoon} />
-        </div>
-        <Tabs {...props} coverRef={coverRef} />
+      <main className="max-w-[768px] mx-auto md:max-w-[630px]">
+        <Cover webtoon={webtoon} />
+        <Tabs {...props} />
       </main>
     </div>
   );
