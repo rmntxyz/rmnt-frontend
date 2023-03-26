@@ -92,16 +92,24 @@ export default function ListItem({ item, idx, rarementABI }) {
                 rarementABI
               )),
               (
-                <div className="flex gap-1.5">
-                  <span className="font-bold">Availability</span>
-                  <div className="flex items-center">
-                    {isLoading ? (
-                      <Loading />
-                    ) : (
-                      <span className="font-bold">
-                        {maxSupply - totalSupply}
-                      </span>
-                    )}
+                <div className="flex gap-1.5 items-center">
+                  <span
+                    className={`${
+                      isLoading
+                        ? "animate-pulse text-transparent bg-lightGray/50 rounded-full h-3 sm:h-4"
+                        : "font-bold"
+                    }`}
+                  >
+                    Availability
+                  </span>
+                  <div
+                    className={`flex items-center ${
+                      isLoading
+                        ? "animate-pulse text-transparent bg-lightGray/50 rounded-full h-3 sm:h-4"
+                        : ""
+                    }`}
+                  >
+                    <span className="font-bold">{maxSupply - totalSupply}</span>
                     <span>/{maxSupply}</span>
                   </div>
                 </div>

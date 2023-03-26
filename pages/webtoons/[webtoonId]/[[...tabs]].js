@@ -244,6 +244,7 @@ export async function getServerSideProps(context) {
 
 export default function WebtoonPage(props) {
   const { webtoon } = props;
+  //Use ref for the cover image to fix the tab list using intersection observer
   const coverRef = useRef();
   return (
     <div>

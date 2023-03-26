@@ -33,7 +33,7 @@ export const EmptyPatronCard = ({ idx, textOne, textTwo, loading }) => (
     </svg>
     {loading ? (
       <div className="animate-pulse absolute top-0 left-0 w-full h-full flex items-center justify-center">
-        <div className="bg-opaqueGray w-1/3 h-1/3 rounded-full"></div>
+        <div className="bg-lightGray/20 w-1/3 h-1/3 rounded-full"></div>
       </div>
     ) : null}
   </div>
