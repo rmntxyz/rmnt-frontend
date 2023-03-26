@@ -2,6 +2,7 @@ import Image from "next/image";
 import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 import useCollectibility from "../../utils/useCollectibility";
+import { Loading } from "../../utils/svgs";
 
 export default function ListItem({ item, idx, rarementABI }) {
   //Find available avatars
@@ -24,7 +25,7 @@ export default function ListItem({ item, idx, rarementABI }) {
   //Declare variables to be used for the first avatar
   let totalSupply;
   let maxSupply;
-  let isReading;
+  let isLoading;
 
   //Find if the webtoon is released
   const released =
@@ -86,16 +87,23 @@ export default function ListItem({ item, idx, rarementABI }) {
           </div>
           <Line />
           {rarement
-            ? (({ totalSupply, maxSupply, isReading } = useCollectibility(
+            ? (({ totalSupply, maxSupply, isLoading } = useCollectibility(
                 rarement,
                 rarementABI
               )),
               (
-                <div>
-                  <span className="font-bold">
-                    Availability {maxSupply - totalSupply}
-                  </span>
-                  <span>/{maxSupply}</span>
+                <div className="flex gap-1.5">
+                  <span className="font-bold">Availability</span>
+                  <div className="flex items-center">
+                    {isLoading ? (
+                      <Loading />
+                    ) : (
+                      <span className="font-bold">
+                        {maxSupply - totalSupply}
+                      </span>
+                    )}
+                    <span>/{maxSupply}</span>
+                  </div>
                 </div>
               ))
             : null}
