@@ -123,7 +123,7 @@ export async function getServerSideProps() {
 
 export default function Home({ webtoons, artists, rarementABI }) {
   return (
-    <div>
+    <div className="overflow-hidden">
       <Seo title="Rarement" />
       <main className="max-w-[768px] mx-auto px-4 md:max-w-[630px]">
         <List webtoons={webtoons} rarementABI={rarementABI} />

@@ -2,14 +2,15 @@ import Image from "next/image";
 
 export default function AboutTop() {
   return (
-    <div className="max-w-[336px] py-14 mx-auto text-center flex flex-col gap-14">
+    <div className="relative max-w-[336px] py-14 mx-auto text-center flex flex-col gap-14">
       <div className="flex flex-col gap-3">
-        <div className="font-bold text-2xl">
-          Introducing Rarement, the webtoon universe
+        <div className="font-bold text-2xl flex flex-col">
+          <span>Introducing Rarement,</span>
+          <span>the webtoon universe</span>
         </div>
         <div>
-          We built Rarement to provide a limitless space for webtoonists and
-          their fans through the blockchain technology.
+          We are building Rarement, a space for you to immerse in webtoon world
+          and expand the possibilities together.
         </div>
       </div>
       <Image
@@ -21,11 +22,13 @@ export default function AboutTop() {
       <div className="flex flex-col gap-3">
         <div className="font-bold text-2xl">Collect & Support Your Artist</div>
         <div>
-          Fall in love with webtoon and collect avatars from webtoon characters
-          you love. Enjoy webtoon and other exclusive benefits soon to be
-          revealed.
+          Showing your love for webtoon goes beyond just reading them with
+          Rarement&#8212;collect avatars of webtoon characters you love and
+          enjoy other exclusive benefits that connect you closer to the webtoon.
         </div>
       </div>
+      <div className="absolute top-[13%] left-1/2 w-[137%] aspect-square rounded-full bg-mintGreen/[.13] blur-[137px]"></div>
+      <div className="absolute bottom-[6%] -left-[58%] w-[75%] aspect-square rounded-full bg-mintGreen/[.06] blur-[77px]"></div>
     </div>
   );
 }

@@ -38,7 +38,7 @@ export default function List({ webtoons, rarementABI }) {
                   rarementABI={rarementABI}
                 />
               ))}
-              <div className="bg-opaqueGray rounded-2xl flex items-center justify-center text-white/100 text-3xl font-bold">
+              <div className="bg-opaqueGray rounded-2xl flex items-center justify-center aspect-square text-white/100 text-3xl font-bold">
                 Coming soon
               </div>
             </div>
