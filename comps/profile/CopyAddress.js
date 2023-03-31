@@ -19,9 +19,9 @@ export default function CopyAddress({ walletAddress }) {
     copyTextToClipboard(textRef.current.innerText)
       .then(() => {
         setIsCopied(true);
-        // setTimeout(() => {
-        //   setIsCopied(false);
-        // }, 1500);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 5000);
       })
       .catch((err) => {
         console.log(err);
