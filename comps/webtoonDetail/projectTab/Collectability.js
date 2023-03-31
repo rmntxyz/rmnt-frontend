@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
-import { ethers, BigNumber } from "ethers";
-import {
-  useAccount,
-  usePrepareContractWrite,
-  useContractWrite,
-  useWaitForTransaction,
-  useSigner,
-} from "wagmi";
+import { ethers } from "ethers";
+import { useAccount, useSigner } from "wagmi";
 import {
   prepareWriteContract,
   writeContract,
   waitForTransaction,
-  fetchBalance,
-  fetchSigner,
 } from "@wagmi/core";
 import { ConnectButton } from "0xpass";
 import { Polygon } from "../../../utils/svgs";
@@ -54,7 +46,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
       }
       setIsButtonReady(false);
 
-      const address = signer.getAddress(); 
+      const address = signer.getAddress();
       const count = await contract.balanceOf(address);
       setHoldingCount(count.toNumber());
 
@@ -79,18 +71,16 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           });
 
           const { hash } = await writeContract(config);
-          
+
           const txReceipt = await waitForTransaction({
-            hash: hash
+            hash: hash,
           });
 
           setIsCollected(true);
           setReceipt(txReceipt);
-
         } catch (e) {
           console.log(e);
           setIsCollectError(true);
-
         } finally {
           setIsCollecting(false);
 
@@ -114,11 +104,14 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-1">
             <Polygon />
-              <div className="font-bold text-sm">{weiToEther(rarementInfo.price.toNumber(), 3)} MATIC</div>
-              <div className="text-white/50 text-sm">
-                ≈ {weiToEther(rarementInfo.price.toNumber() * exchangeRate, 2)} USD
-              </div>
-              <div></div>
+            <div className="font-bold text-sm">
+              {weiToEther(rarementInfo.price.toNumber(), 3)} MATIC
+            </div>
+            <div className="text-white/50 text-sm">
+              ≈ {weiToEther(rarementInfo.price.toNumber() * exchangeRate, 2)}{" "}
+              USD
+            </div>
+            <div></div>
           </div>
           <div className="ml-4">
             <div>
@@ -129,9 +122,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
         </div>
       ) : (
         <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-1">
-            Loading...
-          </div>
+          <div className="flex items-center gap-1">Loading...</div>
         </div>
       )}
       {isConnected ? (
@@ -143,7 +134,9 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           isCollectError={isCollectError}
           // notEnoughBalance={balance.lt(estimatedCost)}
           supplyLimitReached={rarementInfo?.maxSupply === totalSupply}
-          holdingLimitReached={rarementInfo?.maxMintablePerAccount === holdingCount}
+          holdingLimitReached={
+            rarementInfo?.maxMintablePerAccount === holdingCount
+          }
         ></CollectButton>
       ) : (
         <ConnectButton.Custom>
