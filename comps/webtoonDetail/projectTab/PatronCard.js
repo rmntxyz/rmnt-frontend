@@ -1,4 +1,5 @@
 import Tippy from "@tippyjs/react/headless";
+import Image from "next/image";
 import getDate from "../../../utils/getDate";
 // import "tippy.js/dist/tippy.css";
 import { PolyFrameImage } from "../../../utils/PolyFrameImage";
@@ -14,54 +15,29 @@ export default function PatronCard({ item }) {
         <div
           {...attrs}
           id="tooltip"
-          className="tooltip flex p-3 gap-2"
+          className="tooltip flex p-3 gap-2 items-center"
           role="tooltip"
         >
-          <div className="w-[66px]">
-            <PolyFrameImage
-              href={ "/profile.png" }
-              idx="tippy"
+          <div className="w-[44px] aspect-square bg-opaqueGray rounded-full flex items-end justify-center overflow-hidden">
+            <Image
+              src="/profile/profile.png"
+              width={28}
+              height={39}
+              alt="Rarement Patron Image"
             />
           </div>
           <div>
             {/* <div className="text-white/70 text-sm">
               {month}/{date}/{year}
             </div> */}
-            <div className="w-[99px] truncate font-normal">
-              {item.owner}
-            </div>
+            <div className="w-[99px] truncate font-normal">{item.owner}</div>
           </div>
           <div id="arrow" className="arrow" data-popper-arrow=""></div>
         </div>
       )}
-      // content={
-      //   <div className="flex p-3 gap-2">
-      //     <div className="w-[66px]">
-      //       <PatronSVG
-      //         href={
-      //           item?.attributes.owned_by.data.attributes.profile_image?.data
-      //             ? item?.attributes.owned_by.data.attributes.profile_image
-      //                 ?.data.attributes.url
-      //             : "/profile.png"
-      //         }
-      //       />
-      //     </div>
-      //     <div>
-      //       <div className="text-white/70 text-sm">
-      //         {month}/{date}/{year}
-      //       </div>
-      //       <div className="w-[99px] truncate font-normal">
-      //         {item.attributes.owned_by.data.attributes.wallet_address}
-      //       </div>
-      //     </div>
-      //   </div>
-      // }
     >
       <button className="avatar" aria-label="Rarement Avatar Image">
-        <PolyFrameImage
-          idx={item.tokenId}
-          href={item.imageUrl}
-        />
+        <PolyFrameImage idx={item.tokenId} href={item.imageUrl} />
       </button>
     </Tippy>
   );
