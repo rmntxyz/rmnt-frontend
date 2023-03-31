@@ -14,6 +14,7 @@ module.exports = {
         navBg: "#1D1D1D",
         mainBg: "#333333",
         mintGreen: "#70EFCF",
+        mintRed: "rgb(207, 112, 146)"
       },
       screens: {
         "3xl": "1920px",

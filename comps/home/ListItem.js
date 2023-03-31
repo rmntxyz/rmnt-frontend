@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
-import useCollectibility from "../../utils/useCollectibility";
+import useRarementData from "../../utils/useCollectibility";
 import { Loading } from "../../utils/svgs";
 
 export default function ListItem({ item, idx, rarementABI }) {
@@ -22,11 +22,15 @@ export default function ListItem({ item, idx, rarementABI }) {
   const avatar = availableAvatars[0];
   const rarement = avatar?.attributes.rarement?.data.attributes;
 
-  //Declare variables to be used for the first avatar
-  let totalSupply;
-  let maxSupply;
-  let isLoading;
-
+  //const { totalSupply, maxSupply, isLoading } = useCollectibility(
+  //  rarement,
+  //  rarementABI
+  //);
+  const { totalSupply, rarementInfo, isLoading } = useRarementData(
+    rarement?.contractAddress,
+    rarementABI
+  );
+  
   //Find if the webtoon is released
   const released =
     new Date().getTime() > item.attributes.released_timestamp * 1000;
@@ -86,35 +90,19 @@ export default function ListItem({ item, idx, rarementABI }) {
             </a>
           </div>
           <Line />
-          {rarement
-            ? (({ totalSupply, maxSupply, isLoading } = useCollectibility(
-                rarement,
-                rarementABI
-              )),
-              (
-                <div className="flex gap-1.5 items-center">
-                  <span
-                    className={`${
-                      isLoading
-                        ? "animate-pulse text-transparent bg-lightGray/50 rounded-full h-3 sm:h-4"
-                        : "font-bold"
-                    }`}
-                  >
-                    Availability
-                  </span>
-                  <div
-                    className={`flex items-center ${
-                      isLoading
-                        ? "animate-pulse text-transparent bg-lightGray/50 rounded-full h-3 sm:h-4"
-                        : ""
-                    }`}
-                  >
-                    <span className="font-bold">{maxSupply - totalSupply}</span>
-                    <span>/{maxSupply}</span>
-                  </div>
-                </div>
-              ))
-            : null}
+          {isLoading ? (
+            <div className="animate-pulse  bg-lightGray/50 rounded-full items-center w-1/2 h-7"></div>
+          ) : (
+            <div className="flex gap-1.5 items-center">
+              <span className="font-bold">
+                Availability
+              </span>
+              <div className="flex items-center" >
+                <span className="font-bold">{rarementInfo?.maxSupply - totalSupply}</span>
+                <span>/{rarementInfo?.maxSupply}</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       {released ? null : (
