@@ -53,8 +53,8 @@ export default function Patrons({ address }) {
         The order of the patrons' list is determined by time of support.
       </div>
       <div className="w-full h-px my-6 bg-white/10"></div>
-      <div className="flex flex-col mb-6">
-        <div className="grid grid-cols-3">
+      <div className="flex flex-col gap-3 mb-6">
+        <div className="grid grid-cols-3 gap-3">
           {rowOne.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard key={idx} idx={idx} loading={loading} />
@@ -77,7 +77,7 @@ export default function Patrons({ address }) {
             )
           )}
         </div>
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-4 gap-3">
           {rowTwo.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard key={idx + 3} idx={idx + 3} loading={loading} />
@@ -93,7 +93,9 @@ export default function Patrons({ address }) {
             )
           )}
         </div>
-        <div className={`grid grid-cols-5 ${show ? "visible" : "hidden"}`}>
+        <div
+          className={`grid grid-cols-5 gap-3 ${show ? "visible" : "hidden"}`}
+        >
           {rowsFinal.map((item) => (
             <PatronCard key={item.id} item={item} />
           ))}

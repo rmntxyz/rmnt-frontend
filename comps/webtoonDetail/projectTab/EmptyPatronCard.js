@@ -1,6 +1,6 @@
 export const EmptyPatronCard = ({ idx, textOne, textTwo, loading }) => (
   <div className="relative">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
+    <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
       <text x="10" y="10" fontSize="3" fill="white">
         <tspan x="10" dy="1.5em">
           {textOne}
@@ -9,27 +9,26 @@ export const EmptyPatronCard = ({ idx, textOne, textTwo, loading }) => (
           {textTwo}
         </tspan>
       </text>
-      <defs>
-        <linearGradient id={"gradient" + idx} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#70efcf" />
-          <stop offset="100%" stopColor="#cea671" />
-        </linearGradient>
-        <linearGradient id="gradientHover" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#70efcf" />
-          <stop offset="100%" stopColor="#cea671" />
-        </linearGradient>
-        <path
-          id={"path" + idx}
-          d="M 1 2 L 1 32 Q 1 33 2 33 L 23 33 C 24 33 24 33 30 29 C 33 27 33 27 33 26 L 33 2 Q 33 1 32 1 L 2 1 Q 1 1 1 2"
-        />
-      </defs>
-      <use
-        href={"#path" + idx}
+      <path
+        id={"path" + idx}
+        d="M168 0.5C174.351 0.5 179.5 5.64873 179.5 12V143.569C179.5 147.262 177.726 150.731 174.731 152.893L140.888 177.324C138.929 178.739 136.574 179.5 134.157 179.5H12C5.64874 179.5 0.5 174.351 0.5 168V12C0.5 5.64872 5.64873 0.5 12 0.5H168Z"
         stroke={"url(#gradient" + idx + ")"}
-        strokeWidth="0.5"
         strokeOpacity="0.2"
         fill="rgba(255, 255, 255, 0.04)"
       />
+      <defs>
+        <linearGradient
+          id={"gradient" + idx}
+          x1="19.8"
+          y1="16.9438"
+          x2="122.153"
+          y2="210.577"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#70EFCF" />
+          <stop offset="1" stop-color="#CEA671" />
+        </linearGradient>
+      </defs>
     </svg>
     {loading ? (
       <div className="animate-pulse absolute top-0 left-0 w-full h-full flex items-center justify-center">
