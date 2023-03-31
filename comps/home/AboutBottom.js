@@ -6,9 +6,9 @@ export default function AboutBottom() {
       </div>
       <div className="text-lg">
         <span>
-          Rarement's mission is to build a community of webtoon
-          lovers, where the creators and the fans can collectively build a new
-          webtoon community.
+          Rarement's mission is to build a community of webtoon lovers, where
+          the creators and the fans can collectively build a new webtoon
+          community.
         </span>
         {/* {" "}<span className="text-mintGreen">
           Join us in building the new webtoon community!

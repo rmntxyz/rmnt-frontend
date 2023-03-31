@@ -2,7 +2,7 @@ import { faArrowLeft, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import usePrevRoute from "../../utils/usePrevRoute";
-import { Logo } from "../../utils/svgs";
+import { Beta, Logo } from "../../utils/svgs";
 import { ConnectButton } from "0xpass";
 
 export default function Header() {
@@ -36,8 +36,13 @@ export default function Header() {
           onClick={handleBack}
           className="cursor-pointer"
         />
-        <a href="/" aria-label="Go to Rarement home">
+        <a
+          href="/"
+          className="flex items-center gap-1.5"
+          aria-label="Go to Rarement home"
+        >
           <Logo />
+          <Beta />
           {/* <div className="hidden md:block">
             <Logo />
           </div>
