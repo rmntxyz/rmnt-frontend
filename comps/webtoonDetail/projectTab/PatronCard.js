@@ -18,14 +18,13 @@ export default function PatronCard({ item }) {
           className="tooltip flex p-3 gap-2 items-center"
           role="tooltip"
         >
-          <div className="w-[44px] aspect-square bg-opaqueGray rounded-full flex items-end justify-center overflow-hidden">
-            <Image
-              src="/profile/profile.png"
-              width={28}
-              height={39}
-              alt="Rarement Patron Image"
-            />
-          </div>
+          <Image
+            src="/profile/popup_profile.png"
+            width={44}
+            height={44}
+            alt="Rarement Patron Image"
+          />
+
           <div>
             {/* <div className="text-white/70 text-sm">
               {month}/{date}/{year}
