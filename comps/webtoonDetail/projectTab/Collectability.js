@@ -29,22 +29,23 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
   const { isConnected, address } = useAccount();
   const { data: signer } = useSigner();
 
-  const rarement = avatar.attributes.rarement?.data.attributes;
-
-  const { contract, rarementInfo, totalSupply, isLoaded } = useRarementData(
-    rarement.contractAddress,
-    rarementABI
-  );
-
   const [onCollect, setOnCollect] = useState(null);
   // const [balance, setBalance] = useState(BigNumber.from(0));
   // const [estimatedCost, setEstimatedCost] = useState(BigNumber.from(0));
+  const [receipt, setReceipt] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [holdingCount, setHoldingCount] = useState(0);
   const [isCollected, setIsCollected] = useState(false);
   const [isCollecting, setIsCollecting] = useState(false);
   const [isCollectError, setIsCollectError] = useState(false);
   const [isButtonReady, setIsButtonReady] = useState(false);
+
+  const rarement = avatar.attributes.rarement?.data.attributes;
+  const { contract, rarementInfo, totalSupply, isLoaded } = useRarementData(
+    rarement.contractAddress,
+    rarementABI,
+    [receipt]
+  );
 
   useEffect(() => {
     const prepareCollect = async () => {
@@ -79,14 +80,15 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
 
           const { hash } = await writeContract(config);
           
-          const receipt = await waitForTransaction({
-            hash: hash,
-            timeout: 2_000,
+          const txReceipt = await waitForTransaction({
+            hash: hash
           });
 
           setIsCollected(true);
+          setReceipt(txReceipt);
 
         } catch (e) {
+          console.log(e);
           setIsCollectError(true);
 
         } finally {
@@ -104,7 +106,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
     };
 
     prepareCollect();
-  }, [isLoaded, signer, quantity]);
+  }, [isLoaded, signer, quantity, receipt]);
 
   return (
     <div>

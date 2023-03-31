@@ -74,7 +74,7 @@ export default function CollectButton({
             }
           />
         </svg>
-        {isCollected ? "Success!!" : "Failed"}
+        {isCollected ? "Success!" : "Failed"}
       </button>
     );
   }
@@ -99,7 +99,7 @@ export default function CollectButton({
           ` px-8 py-3 mt-8 text-gray-300 text-base font-bold rounded-3xl border-2 bg-mintGreen bg-opacity-10 border-mintGreen`
         }
       >
-        {supplyLimitReached ? "Sold out" : "Maxed out"}
+        {supplyLimitReached ? "Sold Out" : "Maxed Out"}
       </button>
     );
   }

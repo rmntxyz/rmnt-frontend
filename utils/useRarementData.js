@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export const chainId =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ? 137 : 80001;
 
-export default function useRarementData(rarementAddress, rarementABI) {
+export default function useRarementData(rarementAddress, rarementABI, scopes = []) {
   const [contract, setContract] = useState(null);
   const [rarementInfo, setRarementInfo] = useState(null);
   const [totalSupply, setTotalSupply] = useState(null);
@@ -38,7 +38,7 @@ export default function useRarementData(rarementAddress, rarementABI) {
     };
 
     readRarementInfo();
-  }, [rarementAddress]);
+  }, [...scopes]);
 
   return { contract, rarementInfo, totalSupply, isError, isLoading, isLoaded };
 }
