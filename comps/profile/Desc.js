@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import ShowOrClose from "../../utils/showOrClose";
 import { Email, Instagram, ProfileCheck, SmallOpenSea } from "../../utils/svgs";
+import CopyAddress from "./CopyAddress";
 
 export default function Desc({ props }) {
   //Find if the text is truncated & display the "more/close" button if the text is truncated
@@ -66,13 +67,7 @@ export default function Desc({ props }) {
                 <ProfileCheck />
               </div>
               {props.attributes.wallet_address?.length > 0 ? (
-                <div
-                  id="to be copied"
-                  className="px-3 py-1 max-w-[120px] bg-mainBg text-white text-sm rounded-full truncate md:text-base"
-                  aria-label="Copy Wallet Address"
-                >
-                  {props.attributes.wallet_address}
-                </div>
+                <CopyAddress walletAddress={props.attributes.wallet_address} />
               ) : null}
             </div>
             <div className="flex gap-5">

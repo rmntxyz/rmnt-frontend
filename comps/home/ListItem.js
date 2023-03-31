@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Line from "../../utils/Line";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
-import useRarementData from "../../utils/useCollectibility";
-import { Loading } from "../../utils/svgs";
+import useRarementData from "../../utils/useRarementData";
 
 export default function ListItem({ item, idx, rarementABI }) {
   //Find available avatars
@@ -30,7 +29,7 @@ export default function ListItem({ item, idx, rarementABI }) {
     rarement?.contractAddress,
     rarementABI
   );
-  
+
   //Find if the webtoon is released
   const released =
     new Date().getTime() > item.attributes.released_timestamp * 1000;
@@ -94,11 +93,9 @@ export default function ListItem({ item, idx, rarementABI }) {
             <div className="animate-pulse  bg-lightGray/50 rounded-full items-center w-1/2 h-7"></div>
           ) : (
             <div className="flex gap-1.5 items-center">
-              <span className="font-bold">
-                Availability
-              </span>
-              <div className="flex items-center" >
-                <span className="font-bold">{rarementInfo?.maxSupply - totalSupply}</span>
+              <span className="font-bold">Collected</span>
+              <div className="flex items-center">
+                <span className="font-bold">{totalSupply}</span>
                 <span>/{rarementInfo?.maxSupply}</span>
               </div>
             </div>
