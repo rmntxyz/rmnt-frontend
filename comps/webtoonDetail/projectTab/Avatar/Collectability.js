@@ -133,6 +133,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           // notEnoughBalance={balance.lt(estimatedCost)}
           supplyLimitReached={rarementInfo?.maxSupply === totalSupply}
           holdingCount={holdingCount}
+          holdingLimit={rarementInfo?.maxMintablePerAccount}
           holdingLimitReached={
             rarementInfo?.maxMintablePerAccount === holdingCount
           }
