@@ -15,7 +15,7 @@ export default function Avatar(props) {
     <div className="mt-7 flex flex-col gap-4">
       <div className="text-2xl font-bold">Avatar</div>
       <div className="flex flex-col gap-8 items-center sm:flex-row">
-        <div className="w-full aspect-square">
+        <div className="w-full aspect-square sm:w-[105%]">
           <PolyFrameImage
             href={webtoon.attributes.avatarGIF.data.attributes.url}
             idx="gif"
