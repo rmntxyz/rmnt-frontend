@@ -1,13 +1,14 @@
-import { faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Line from "../../../../utils/Line";
-import CollectButtonOnModal from "./CollectButtonOnModal";
+import { Info } from "../../../../utils/svgs";
 
 export default function Modal(props) {
-  const { matic, holdingCount, setOpen } = props;
+  const { matic, holdingCount, onCollect, setOpen } = props;
   const [counter, setCounter] = useState(1);
   const [show, setShow] = useState(false);
+
   return (
     <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 min-[296px] bg-[#343434] rounded-2xl">
       <div className="">
@@ -45,7 +46,7 @@ export default function Modal(props) {
             </button>
           </div>
         </div>
-        <div className="flex items-center justify-end gap-1 text-white/80 text-[13px] px-4 pt-2">
+        <div className="flex items-center justify-end gap-1.5 text-white/80 text-[13px] px-4 pt-2">
           <div
             className="relative"
             style={{ display: show ? "block" : "none" }}
@@ -87,13 +88,24 @@ export default function Modal(props) {
               </button>
             </div>
           </div>
-          <button onClick={() => setShow(true)}>
-            <FontAwesomeIcon icon={faInfoCircle} />
-          </button>
-          <span>Max : {3 - holdingCount}</span>
+          <div className="flex gap-1 items-center">
+            <button onClick={() => setShow(!show)}>
+              <Info />
+            </button>
+            <span>Max : {3 - holdingCount}</span>{" "}
+          </div>
         </div>
         <div className="flex items-center justify-center p-4">
-          <CollectButtonOnModal {...props} />
+          <button
+            onClick={() => {
+              onCollect?.();
+              setOpen(false);
+            }}
+            aria-label="Collect NFT"
+            className="transition-all w-full py-3 text-navBg text-base font-bold rounded-full border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white"
+          >
+            Collect
+          </button>
         </div>
       </div>
     </div>
