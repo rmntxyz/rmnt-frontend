@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Line from "../../../utils/Line";
-import { PolyFrameImage } from "../../../utils/PolyFrameImage";
+import Line from "../../../../utils/Line";
+import { PolyFrameImage } from "../../../../utils/PolyFrameImage";
 import Character from "./Character";
 import dynamic from "next/dynamic";
 

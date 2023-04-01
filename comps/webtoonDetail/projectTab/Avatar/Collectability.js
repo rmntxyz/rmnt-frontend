@@ -7,11 +7,9 @@ import {
   waitForTransaction,
 } from "@wagmi/core";
 import { ConnectButton } from "0xpass";
-import { Polygon } from "../../../utils/svgs";
-import useRarementData from "../../../utils/useRarementData";
-
-import CollectButton from "./CollectButton";
-import AskQuantity from "./AskQuantity";
+import { Polygon } from "../../../../utils/svgs";
+import useRarementData from "../../../../utils/useRarementData";
+import PreModalButton from "./PreModalButton";
 
 function weiToEther(wei, precision = 2) {
   wei = Math.floor(wei);
@@ -98,7 +96,6 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
 
     prepareCollect();
   }, [isLoaded, signer, quantity, receipt]);
-
   return (
     <div>
       {rarementInfo ? (
@@ -127,19 +124,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
         </div>
       )}
       {isConnected && rarementInfo ? (
-        // <CollectButton
-        //   onCollect={onCollect}
-        //   isReady={isButtonReady}
-        //   isCollecting={isCollecting}
-        //   isCollected={isCollected}
-        //   isCollectError={isCollectError}
-        //   // notEnoughBalance={balance.lt(estimatedCost)}
-        //   supplyLimitReached={rarementInfo?.maxSupply === totalSupply}
-        //   holdingLimitReached={
-        //     rarementInfo?.maxMintablePerAccount === holdingCount
-        //   }
-        // ></CollectButton>
-        <AskQuantity
+        <PreModalButton
           onCollect={onCollect}
           isReady={isButtonReady}
           isCollecting={isCollecting}
@@ -147,11 +132,12 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           isCollectError={isCollectError}
           // notEnoughBalance={balance.lt(estimatedCost)}
           supplyLimitReached={rarementInfo?.maxSupply === totalSupply}
+          holdingCount={holdingCount}
           holdingLimitReached={
             rarementInfo?.maxMintablePerAccount === holdingCount
           }
           matic={weiToEther(rarementInfo?.price.toNumber(), 3)}
-        />
+        ></PreModalButton>
       ) : isConnected && !rarementInfo ? (
         <button
           aria-label="Collect NFT"
