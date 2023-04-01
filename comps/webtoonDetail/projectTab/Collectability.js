@@ -126,7 +126,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           <div className="flex items-center gap-1">Loading...</div>
         </div>
       )}
-      {isConnected ? (
+      {isConnected && rarementInfo ? (
         // <CollectButton
         //   onCollect={onCollect}
         //   isReady={isButtonReady}
@@ -152,6 +152,12 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           }
           matic={weiToEther(rarementInfo?.price.toNumber(), 3)}
         />
+      ) : isConnected && !rarementInfo ? (
+        <button
+          aria-label="Collect NFT"
+          disabled
+          className="animate-pulse px-11 py-3 mt-8 w-32 h-12 bg-white/20 text-navBg text-base font-bold rounded-full"
+        ></button>
       ) : (
         <ConnectButton.Custom>
           {({ openConnectModal }) => {
