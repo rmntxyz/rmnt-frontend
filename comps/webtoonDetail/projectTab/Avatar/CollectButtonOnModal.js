@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./CollectButton.module.css";
 
-export default function PostModalButton(props) {
+export default function CollectButtonOnModal(props) {
   const {
     onCollect,
     isReady,

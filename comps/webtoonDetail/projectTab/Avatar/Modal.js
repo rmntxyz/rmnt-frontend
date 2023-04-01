@@ -2,7 +2,7 @@ import { faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Line from "../../../../utils/Line";
-import PostModalButton from "./PostModalButton";
+import CollectButtonOnModal from "./CollectButtonOnModal";
 
 export default function Modal(props) {
   const { matic, holdingCount, setOpen } = props;
@@ -93,7 +93,7 @@ export default function Modal(props) {
           <span>Max : {3 - holdingCount}</span>
         </div>
         <div className="flex items-center justify-center p-4">
-          <PostModalButton {...props} />
+          <CollectButtonOnModal {...props} />
         </div>
       </div>
     </div>

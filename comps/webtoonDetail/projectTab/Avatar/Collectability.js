@@ -9,7 +9,7 @@ import {
 import { ConnectButton } from "0xpass";
 import { Polygon } from "../../../../utils/svgs";
 import useRarementData from "../../../../utils/useRarementData";
-import PreModalButton from "./PreModalButton";
+import CollectButton from "./CollectButton";
 
 function weiToEther(wei, precision = 2) {
   wei = Math.floor(wei);
@@ -124,7 +124,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
         </div>
       )}
       {isConnected && rarementInfo ? (
-        <PreModalButton
+        <CollectButton
           onCollect={onCollect}
           isReady={isButtonReady}
           isCollecting={isCollecting}
@@ -137,7 +137,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
             rarementInfo?.maxMintablePerAccount === holdingCount
           }
           matic={weiToEther(rarementInfo?.price.toNumber(), 3)}
-        ></PreModalButton>
+        ></CollectButton>
       ) : isConnected && !rarementInfo ? (
         <button
           aria-label="Collect NFT"

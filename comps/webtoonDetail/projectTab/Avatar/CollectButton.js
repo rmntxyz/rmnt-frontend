@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./CollectButton.module.css";
 import Modal from "./Modal";
 
-export default function PreModalButton(props) {
+export default function CollectButton(props) {
   const { isReady, supplyLimitReached, holdingLimitReached } = props;
   const [open, setOpen] = useState(false);
   const [shake, setShake] = useState(false);
