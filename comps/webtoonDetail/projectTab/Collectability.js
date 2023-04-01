@@ -11,6 +11,7 @@ import { Polygon } from "../../../utils/svgs";
 import useRarementData from "../../../utils/useRarementData";
 
 import CollectButton from "./CollectButton";
+import AskQuantity from "./AskQuantity";
 
 function weiToEther(wei, precision = 2) {
   wei = Math.floor(wei);
@@ -101,7 +102,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
   return (
     <div>
       {rarementInfo ? (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-1">
             <Polygon />
             <div className="font-bold text-sm">
@@ -126,7 +127,19 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
         </div>
       )}
       {isConnected ? (
-        <CollectButton
+        // <CollectButton
+        //   onCollect={onCollect}
+        //   isReady={isButtonReady}
+        //   isCollecting={isCollecting}
+        //   isCollected={isCollected}
+        //   isCollectError={isCollectError}
+        //   // notEnoughBalance={balance.lt(estimatedCost)}
+        //   supplyLimitReached={rarementInfo?.maxSupply === totalSupply}
+        //   holdingLimitReached={
+        //     rarementInfo?.maxMintablePerAccount === holdingCount
+        //   }
+        // ></CollectButton>
+        <AskQuantity
           onCollect={onCollect}
           isReady={isButtonReady}
           isCollecting={isCollecting}
@@ -137,7 +150,8 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           holdingLimitReached={
             rarementInfo?.maxMintablePerAccount === holdingCount
           }
-        ></CollectButton>
+          matic={weiToEther(rarementInfo?.price.toNumber(), 3)}
+        />
       ) : (
         <ConnectButton.Custom>
           {({ openConnectModal }) => {
@@ -145,7 +159,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
               <button
                 onClick={openConnectModal}
                 aria-label="Connect Wallet"
-                className="border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white duration-200 px-8 py-3 mt-8 text-navBg text-base leading-tight font-bold rounded-3xl"
+                className="border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white duration-200 px-6 py-3 mt-8 text-navBg text-base leading-tight font-bold rounded-full"
               >
                 Connect Wallet
               </button>

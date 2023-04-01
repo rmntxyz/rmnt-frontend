@@ -22,7 +22,7 @@ export default function CollectButton({
       <button
         aria-label="Collect NFT"
         disabled
-        className="inline-flex px-8 py-3 mt-8 text-base font-bold rounded-3xl border-2 bg-navBg border-mintGreen text-white"
+        className="inline-flex px-11 py-3 mt-8 text-base font-bold rounded-full border-2 bg-navBg border-mintGreen text-white"
       >
         <svg className="animate-spin -ml-1 mr-3 h-6 w-6" viewBox="0 0 24 24">
           <circle
@@ -49,7 +49,7 @@ export default function CollectButton({
       <button
         aria-label="Collect NFT"
         disabled
-        className={` transition-all inline-flex px-8 py-3 mt-8 text-base font-bold rounded-3xl border-2 bg-navBg ${
+        className={` transition-all inline-flex px-11 py-3 mt-8 text-base font-bold rounded-full border-2 bg-navBg ${
           isCollected ? "border-mintGreen" : "border-mintRed"
         } text-white`}
       >
@@ -84,7 +84,7 @@ export default function CollectButton({
       <button
         aria-label="Collect NFT"
         disabled
-        className="animate-pulse px-8 py-3 mt-8 w-32 h-12 bg-white/20 text-navBg text-base font-bold rounded-3xl"
+        className="animate-pulse px-11 py-3 mt-8 w-32 h-12 bg-white/20 text-navBg text-base font-bold rounded-full"
       ></button>
     );
   }
@@ -96,7 +96,7 @@ export default function CollectButton({
         onClick={shakeHandler}
         className={
           (shake ? styles.shake : "") +
-          ` px-8 py-3 mt-8 text-gray-300 text-base font-bold rounded-3xl border-2 bg-mintGreen bg-opacity-10 border-mintGreen`
+          ` px-11 py-3 mt-8 text-gray-300 text-base font-bold rounded-full border-2 bg-mintGreen bg-opacity-10 border-mintGreen`
         }
       >
         {supplyLimitReached ? "Sold Out" : "Maxed Out"}
@@ -109,7 +109,7 @@ export default function CollectButton({
       <button
         onClick={() => onCollect?.()}
         aria-label="Collect NFT"
-        className="transition-all px-8 py-3 mt-8 text-navBg text-base font-bold rounded-3xl border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white"
+        className="transition-all px-11 py-3 mt-8 text-navBg text-base font-bold rounded-full border-2 bg-mintGreen border-mintGreen hover:bg-navBg hover:text-white"
       >
         Collect
       </button>

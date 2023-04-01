@@ -2,11 +2,11 @@ import Image from "next/image";
 import Line from "../../../utils/Line";
 import { PolyFrameImage } from "../../../utils/PolyFrameImage";
 import Character from "./Character";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
-const DynamicCollectability = dynamic(() => import('./Collectability'), {
+const DynamicCollectability = dynamic(() => import("./Collectability"), {
   ssr: false,
-})
+});
 
 export default function Avatar(props) {
   const { avatar, rarementABI, exchangeRate, webtoon } = props;
@@ -21,7 +21,7 @@ export default function Avatar(props) {
             idx="gif"
           />
         </div>
-        <div className="w-full flex flex-col gap-6">
+        <div className="w-full flex flex-col gap-4">
           <div className="flex flex-col gap-px">
             <div className="flex gap-1.5 items-center">
               <Image
@@ -49,7 +49,7 @@ export default function Avatar(props) {
             </div>
           </div>
           <Line />
-          <div className="characters flex gap-2">
+          <div className="characters py-2 flex gap-2">
             {webtoon.attributes.characters?.data.map((item, idx) => (
               <Character item={item} key={idx} />
             ))}

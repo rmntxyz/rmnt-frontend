@@ -20,8 +20,8 @@ export const PolyFrameImage = ({ href, idx }) => (
         y2="210.577"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#70EFCF" />
-        <stop offset="1" stop-color="#CEA671" />
+        <stop stopColor="#70EFCF" />
+        <stop offset="1" stopColor="#CEA671" />
       </linearGradient>
       <linearGradient id="gradientHover" x1="0%" y1="0%" x2="0%" y2="100%">
         <stop offset="0%" stopColor="#70efcf" />

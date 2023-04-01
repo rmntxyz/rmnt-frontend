@@ -51,6 +51,7 @@ export default function CopyAddress({ walletAddress }) {
               role="tooltip"
             >
               <span className="mx-2 my-1 text-sm">Address Copied</span>
+              <div id="arrow" className="arrow" data-popper-arrow=""></div>
             </div>
           )}
         >
@@ -68,6 +69,7 @@ export default function CopyAddress({ walletAddress }) {
               role="tooltip"
             >
               <span className="mx-2 my-1 text-sm">Copy Address</span>
+              <div id="arrow" className="arrow" data-popper-arrow=""></div>
             </div>
           )}
         >

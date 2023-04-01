@@ -25,8 +25,8 @@ export const EmptyPatronCard = ({ idx, textOne, textTwo, loading }) => (
           y2="210.577"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#70EFCF" />
-          <stop offset="1" stop-color="#CEA671" />
+          <stop stopColor="#70EFCF" />
+          <stop offset="1" stopColor="#CEA671" />
         </linearGradient>
       </defs>
     </svg>
