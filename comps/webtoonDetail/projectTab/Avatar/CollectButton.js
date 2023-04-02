@@ -1,3 +1,4 @@
+import Tippy from "@tippyjs/react/headless";
 import { useState } from "react";
 import styles from "./CollectButton.module.css";
 import Modal from "./Modal";
@@ -90,7 +91,7 @@ export default function CollectButton(props) {
     );
   }
 
-  if (supplyLimitReached || holdingLimitReached) {
+  if (supplyLimitReached) {
     return (
       <button
         aria-label="Collect NFT"
@@ -100,8 +101,39 @@ export default function CollectButton(props) {
           ` px-11 py-3 mt-8 text-gray-300 text-base font-bold rounded-full border-2 bg-mintGreen bg-opacity-10 border-mintGreen`
         }
       >
-        {supplyLimitReached ? "Sold Out" : "Maxed Out"}
+        Sold Out
       </button>
+    );
+  }
+
+  if (holdingLimitReached) {
+    return (
+      <Tippy
+        render={(attrs) => (
+          <div
+            {...attrs}
+            id="tooltip"
+            className="tooltip flex items-center justify-center"
+            role="tooltip"
+          >
+            <span className="mx-2 my-1 text-sm">
+              You have reached the maximum number of avatars you can collect.
+            </span>
+            <div id="arrow" className="arrow" data-popper-arrow=""></div>
+          </div>
+        )}
+      >
+        <button
+          aria-label="Collect NFT"
+          onClick={shakeHandler}
+          className={
+            (shake ? styles.shake : "") +
+            ` px-11 py-3 mt-8 text-gray-300 text-base font-bold rounded-full border-2 bg-mintGreen bg-opacity-10 border-mintGreen`
+          }
+        >
+          Maxed Out
+        </button>
+      </Tippy>
     );
   }
 

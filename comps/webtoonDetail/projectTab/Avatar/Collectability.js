@@ -135,7 +135,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           holdingCount={holdingCount}
           holdingLimit={rarementInfo?.maxMintablePerAccount}
           holdingLimitReached={
-            rarementInfo?.maxMintablePerAccount === holdingCount
+            rarementInfo?.maxMintablePerAccount <= holdingCount
           }
           matic={
             rarementInfo ? weiToEther(rarementInfo?.price.toNumber(), 3) : null

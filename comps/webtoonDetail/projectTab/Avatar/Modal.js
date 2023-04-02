@@ -92,7 +92,10 @@ export default function Modal(props) {
             <button onClick={() => setShow(!show)}>
               <Info />
             </button>
-            <span>Max : {holdingLimit - holdingCount}</span>{" "}
+            <span>
+              Max :{" "}
+              {holdingLimit > holdingCount ? holdingLimit - holdingCount : "0"}
+            </span>
           </div>
         </div>
         <div className="flex items-center justify-center p-4">
