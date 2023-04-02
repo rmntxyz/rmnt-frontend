@@ -32,7 +32,10 @@ const OutLinks = [
 const InLinks = [
   { href: "/", text: "FAQ" },
   { href: "/", text: "terms of services" },
-  { href: "/", text: "privacy policy" },
+  {
+    href: "https://azure-dormouse-716.notion.site/Privacy-Policy-143c909a8fe943b6b8d379ca3b3b3f3a",
+    text: "privacy policy",
+  },
 ].map(({ href, text }) => <Link href={href}>{text}</Link>);
 
 export default function Footer() {
