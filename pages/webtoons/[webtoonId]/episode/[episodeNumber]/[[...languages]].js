@@ -6,7 +6,7 @@ import Nav from "../../../../../comps/webtoonEpisode/Nav";
 import Buttons from "../../../../../comps/webtoonEpisode/Buttons";
 import KorEngEpisode from "../../../../../comps/webtoonEpisode/KorEngEpisode";
 import useScrollPosition from "../../../../../utils/useScrollPosition";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const GET_EPISODE_DATA = gql`
   query Webtoon($webtoonId: String) {
@@ -97,6 +97,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   //Listen to click/scroll events to hide or paint navbar & buttons
   const [clicked, setClicked] = useState(false);
   const [show, setShow] = useState(true);
+  const imageRef = useRef();
 
   useEffect(() => {
     const handleClick = () => {
@@ -106,7 +107,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
       setClicked(false);
     };
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("click", handleClick);
+    imageRef.current.addEventListener("click", handleClick);
     setShow(
       scrollPosition < 120 ||
         scrollPosition + viewportHeight > elementHeight + 80 ||
@@ -116,7 +117,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
     );
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("click", handleClick);
+      imageRef.current.removeEventListener("click", handleClick);
     };
   }, [scrollPosition, viewportHeight, elementHeight, clicked]);
 
@@ -140,7 +141,10 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
       >
         <Nav episode={episode} webtoon={webtoon} prevUrl={prevUrl} />
       </div>
-      <main className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]">
+      <main
+        ref={imageRef}
+        className="max-w-[768px] mx-auto pt-20 pb-40 md:max-w-[630px]"
+      >
         <KorEngEpisode
           data={
             language === "kor"
