@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function Artists({ artists }) {
+  const artistNumber = artists.length;
   return (
     <div className="artists bg-opaqueGray">
       <div className="w-fit flex items-center gap-14 mx-auto">
@@ -23,7 +24,17 @@ export default function Artists({ artists }) {
               </a>
             ) : null
           )}
-        </div>{" "}
+          {artistNumber < 6 && artistNumber % 3 !== 0 ? (
+            <div className="relative">
+              <div className="gradientBorder-3 w-[92px] h-[92px] rounded-full p-1.5 flex items-center justify-center opacity-20">
+                <div className="w-20 h-20 rounded-full bg-white flex justify-center items-center"></div>
+              </div>
+              <span className="absolute max-w-[46px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center">
+                Who's next?
+              </span>
+            </div>
+          ) : null}
+        </div>
         <div className="w-24 h-0.5 gradientBorder-straightRight hidden sm:block"></div>
       </div>
     </div>
