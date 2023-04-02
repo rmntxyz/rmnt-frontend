@@ -39,6 +39,7 @@ const GET_ARTIST_DATA = gql`
                 webtoon_id
                 title
                 volume
+                released_timestamp
                 cover_image {
                   data {
                     attributes {
