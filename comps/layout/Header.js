@@ -14,7 +14,11 @@ export default function Header() {
 
   //Handle the back button differently based on the current url
   function handleBack() {
-    if (router.pathname.includes("/artists/")) {
+    if (
+      router.pathname.includes("/artists/") ||
+      prevPath.includes("/artists/") ||
+      prevPath.includes("/episode/")
+    ) {
       router.back();
     } else router.push("/");
   }
