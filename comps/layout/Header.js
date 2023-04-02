@@ -21,12 +21,12 @@ export default function Header() {
 
   return (
     <nav
-      className="bg-navBg h-20 px-5 text-2xl font-bold flex gap-1 justify-between items-center sm:px-8"
+      className="bg-navBg h-20 px-3 text-2xl font-bold flex gap-1 justify-between items-center sm:px-8"
       style={{
         display: router.pathname.includes("/episode/") ? "none" : "flex",
       }}
     >
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-1 sm:gap-6">
         <FontAwesomeIcon
           id="back"
           icon={faArrowLeft}
