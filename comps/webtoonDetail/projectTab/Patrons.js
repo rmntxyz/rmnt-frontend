@@ -1,52 +1,45 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import ShowOrClose from "../../../utils/showOrClose";
 import PatronCard from "./PatronCard";
-import { getHolders } from "../../../pages/api/getHolders";
+import { useHolders } from "../../../utils/useHolders";
 import { EmptyPatronCard } from "./EmptyPatronCard";
 
 export default function Patrons({ address }) {
   //Set loading for loading views
   const [loading, setLoading] = useState(true);
 
-  //Populate the array of holders with null values before loading
-  const [holders, setHolders] = useState([
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]);
-
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
 
-  //Find if the list is truncated & display the "more/close" button if the text is truncated
-  const [truncated, setTruncated] = useState(holders.length > 7);
+  const { holders, noMore, next } = useHolders(address, 100, 7);
 
-  //Get holders and fill the array of holders with "empty" if the length of the array falls short of 7
+  const [firstRow, setFirstRow] = useState(['empty', 'empty', 'empty']);
+  const [secondRow, setSecondRow] = useState(['empty', 'empty', 'empty', 'empty']);
+  const [restRow, setRestRow] = useState([]);
+
   useEffect(() => {
-    getHolders(address, 7, 100).then((holders) => {
-      setHolders(holders);
-      setTruncated(holders.length > 7);
-      setLoading(false);
-      const length = holders.length;
-      if (length < 7) {
-        holders.push("next");
-        for (var i = 0; i < 6 - length; i++) {
-          holders.push("empty");
-        }
-        setHolders(holders);
-        setTruncated(holders.length > 7);
+    for (let i = 0; i < holders.length; i++) {
+      if (i < 3) {
+        setFirstRow((prev) => {
+          const newArr = [...prev];
+          newArr[i] = holders[i];
+          return newArr;
+        });
+      } else if (i < 7) {
+        setSecondRow((prev) => {
+          const newArr = [...prev];
+          newArr[i - 3] = holders[i];
+          return newArr;
+        });
+      } else {
+        setRestRow((prev) => {
+          const newArr = [...prev];
+          newArr[i - 7] = holders[i];
+          return newArr;
+        });
       }
-    });
-  }, []);
-
-  //Divide the array of holders into rows
-  const rowOne = holders.slice(0, 3);
-  const rowTwo = holders.slice(3, 7);
-  const rowsFinal = holders.slice(7);
+    }
+  }, [holders]);
 
   return (
     <div className="mt-7 flex flex-col">
@@ -57,7 +50,7 @@ export default function Patrons({ address }) {
       <div className="w-full h-px my-6 bg-white/10"></div>
       <div className="flex flex-col gap-3 mb-6">
         <div className="grid grid-cols-3 gap-3">
-          {rowOne.map((item, idx) =>
+          {firstRow.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard key={idx} idx={idx} loading={loading} />
             ) : item === "next" && idx === 0 ? (
@@ -80,7 +73,7 @@ export default function Patrons({ address }) {
           )}
         </div>
         <div className="grid grid-cols-4 gap-3">
-          {rowTwo.map((item, idx) =>
+          {secondRow.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard key={idx + 3} idx={idx + 3} loading={loading} />
             ) : item === "next" ? (
@@ -98,12 +91,12 @@ export default function Patrons({ address }) {
         <div
           className={`grid grid-cols-5 gap-3 ${show ? "visible" : "hidden"}`}
         >
-          {rowsFinal.map((item, idx) => (
-            <PatronCard key={idx} item={item} />
+          {restRow.map((item, idx) => (
+            <PatronCard key={idx + 7} item={item} />
           ))}
         </div>
       </div>
-      <ShowOrClose truncated={truncated} show={show} setShow={setShow} />
+      <ShowOrClose noMore={noMore} show={show} setShow={setShow} next={next} />
     </div>
   );
 }
