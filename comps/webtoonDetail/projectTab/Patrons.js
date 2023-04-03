@@ -43,9 +43,6 @@ export default function Patrons({ address }) {
     });
   }, []);
 
-  console.log(holders);
-  console.log(truncated);
-
   //Divide the array of holders into rows
   const rowOne = holders.slice(0, 3);
   const rowTwo = holders.slice(3, 7);

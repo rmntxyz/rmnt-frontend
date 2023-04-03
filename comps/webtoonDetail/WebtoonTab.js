@@ -1,5 +1,6 @@
 import Image from "next/image";
-import getDate from "../../utils/getDate";
+import useDate from "../../utils/useDate";
+
 
 export default function WebtoonTab({ webtoon, episodes }) {
   let released;
@@ -13,7 +14,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
       <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3">
         {episodes.map(
           (item, idx) => (
-            (releasedAt = getDate(item.attributes.released_timestamp)),
+            (releasedAt = useDate(item.attributes.released_timestamp)),
             (released =
               new Date().getTime() > item.attributes.released_timestamp * 1000),
             (
@@ -51,7 +52,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
                       Ep.{item.attributes.episode_number}
                     </div>
                     <div>
-                      {releasedAt.month}/{releasedAt.date}/20{releasedAt.year}
+                      {releasedAt.month}/{releasedAt.date}/{releasedAt.year}
                     </div>
                   </div>
                 ) : (
