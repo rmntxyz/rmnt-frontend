@@ -83,33 +83,20 @@ export const Beta = () => {
 
 export const Loading = () => {
   return (
-    <svg
-      version="1.1"
-      id="L9"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      width={20}
-      height={20}
-      viewBox="15 15 65 65"
-      enableBackground="new 0 0 0 0"
-      xmlSpace="preserve"
-    >
+    <svg className="animate-spin -ml-1 mr-3 h-6 w-6" viewBox="0 0 24 24">
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
       <path
-        fill="#fff"
-        d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
-      >
-        <animateTransform
-          attributeName="transform"
-          attributeType="XML"
-          type="rotate"
-          dur="1s"
-          from="0 50 50"
-          to="360 50 50"
-          repeatCount="indefinite"
-        />
-      </path>
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
     </svg>
   );
 };
@@ -346,7 +333,11 @@ export const House = () => {
   );
 };
 
-export const LoadingRarement = ({ width = "100%", height = "100%", duration = 2}) => {
+export const LoadingRarement = ({
+  width = "100%",
+  height = "100%",
+  duration = 2,
+}) => {
   const step = duration / 5;
 
   return (
@@ -356,10 +347,7 @@ export const LoadingRarement = ({ width = "100%", height = "100%", duration = 2}
       viewBox="0 24 24 25"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M22.5 38.9775L14.4917 36.8317V26H22.5V38.9775Z"
-        fill="white"
-      >
+      <path d="M22.5 38.9775L14.4917 36.8317V26H22.5V38.9775Z" fill="white">
         <animate
           attributeName="opacity"
           values="1;0.2;1"
@@ -380,10 +368,7 @@ export const LoadingRarement = ({ width = "100%", height = "100%", duration = 2}
           begin={`${step * 1}s`}
         />
       </path>
-      <path
-        d="M8.85938 47L8.85938 42.078L1.5 42.078V47H8.85938Z"
-        fill="white"
-      >
+      <path d="M8.85938 47L8.85938 42.078L1.5 42.078V47H8.85938Z" fill="white">
         <animate
           attributeName="opacity"
           values="1;0.2;1"
@@ -404,10 +389,7 @@ export const LoadingRarement = ({ width = "100%", height = "100%", duration = 2}
           begin={`${step * 3}s`}
         />
       </path>
-      <path
-        d="M1.5 33.4286L13.1792 36.558V26H1.5V33.4286Z"
-        fill="white"
-      >
+      <path d="M1.5 33.4286L13.1792 36.558V26H1.5V33.4286Z" fill="white">
         <animate
           attributeName="opacity"
           values="1;0.2;1"

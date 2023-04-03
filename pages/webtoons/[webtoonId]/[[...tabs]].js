@@ -207,7 +207,7 @@ export async function getServerSideProps(context) {
     props: {
       exchangeRate: exchangeRate,
       webtoon: webtoon,
-      avatar: availableAvatars[0], //: webtoon.attributes.avatars.data,
+      avatar: availableAvatars.length > 0 ? availableAvatars[0] : null, //: webtoon.attributes.avatars.data,
       rarementABI,
       collectibles: webtoon.attributes.collectibles.data,
       episodes: webtoon.attributes.episodes.data

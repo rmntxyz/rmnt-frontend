@@ -36,11 +36,10 @@ export function useHolders(nftAddress, max = 100, first = 7) {
       // for minting order
       const minters = await getMinters(nftAddress, max);
       setOrderInfo({ minters, ownersMap });
-    }
+    };
 
     fetchMinters();
   }, []);
-
 
   useEffect(() => {
     const { minters, ownersMap } = orderInfo;
@@ -54,9 +53,13 @@ export function useHolders(nftAddress, max = 100, first = 7) {
       const result = await Promise.all(
         minters.slice(start, end).map(async (ordered) => {
           const { tokenId } = ordered;
-          const metadata = await alchemy.nft.getNftMetadata(nftAddress, tokenId, {
-            tokenType: "ERC721",
-          });
+          const metadata = await alchemy.nft.getNftMetadata(
+            nftAddress,
+            tokenId,
+            {
+              tokenType: "ERC721",
+            }
+          );
 
           const owner = ownersMap[tokenId];
           const imageUrl = metadata.media.find(
@@ -69,49 +72,53 @@ export function useHolders(nftAddress, max = 100, first = 7) {
       );
       setHolders([...holders, ...result]);
       setIsLoading(false);
-    }
+    };
 
     fetchHolders(0, first);
   }, [orderInfo]);
 
   useEffect(() => {
-      const { minters, ownersMap } = orderInfo;
+    const { minters, ownersMap } = orderInfo;
 
-      if (minters.length === 0) {
+    if (minters.length === 0) {
+      return;
+    }
+
+    const next = () => async (more) => {
+      if (noMore || isLoading) {
         return;
       }
 
-      const next = () => async (more) => {
-        if (noMore || isLoading) {
-          return;
-        }
+      const start = holders.length;
+      const end = holders.length + more;
 
-        const start = holders.length;
-        const end  = holders.length + more;
-
-        setIsLoading(true);
-        const result = await Promise.all(
-          minters.slice(start, end).map(async (ordered) => {
-            const { tokenId } = ordered;
-            const metadata = await alchemy.nft.getNftMetadata(nftAddress, tokenId, {
+      setIsLoading(true);
+      const result = await Promise.all(
+        minters.slice(start, end).map(async (ordered) => {
+          const { tokenId } = ordered;
+          const metadata = await alchemy.nft.getNftMetadata(
+            nftAddress,
+            tokenId,
+            {
               tokenType: "ERC721",
-            });
+            }
+          );
 
-            const owner = ownersMap[tokenId];
-            const imageUrl = metadata.media.find(
-              (m) => m.format === "png"
-            )?.thumbnail;
-            const { timeLastUpdated } = metadata;
+          const owner = ownersMap[tokenId];
+          const imageUrl = metadata.media.find(
+            (m) => m.format === "png"
+          )?.thumbnail;
+          const { timeLastUpdated } = metadata;
 
-            return { tokenId, owner, imageUrl, timeLastUpdated };
-          })
-        );
-        setHolders([...holders, ...result]);
-        setIsLoading(false);
-      };
+          return { tokenId, owner, imageUrl, timeLastUpdated };
+        })
+      );
+      setHolders([...holders, ...result]);
+      setIsLoading(false);
+    };
 
-      setNoMore(holders.length >= minters.length); 
-      setLoadingNext(next);
+    setNoMore(holders.length >= minters.length);
+    setLoadingNext(next);
   }, [holders]);
 
   return { holders, isLoading, noMore, next };

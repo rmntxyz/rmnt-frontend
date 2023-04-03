@@ -54,7 +54,13 @@ export default function Avatar(props) {
               <Character item={item} key={idx} />
             ))}
           </div>
-          <DynamicCollectability {...props} />
+          <div>
+            {!avatar ? (
+              <span>Don't miss out&#8212;new avatars are coming soon!</span>
+            ) : (
+              <DynamicCollectability {...props} />
+            )}
+          </div>
         </div>
       </div>
     </div>

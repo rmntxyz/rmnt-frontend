@@ -7,11 +7,7 @@ import Benefits from "./Benefits";
 import Patrons from "./Patrons";
 
 export default function ProjectTab(props) {
-  const {
-    webtoon,
-    avatar,
-    benefits,
-  } = props;
+  const { webtoon, avatar, benefits } = props;
   //Find if the text is truncated & display the "more/close" button if the text is truncated
   const [truncated, setTruncated] = useState(false);
 
@@ -24,7 +20,7 @@ export default function ProjectTab(props) {
 
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
-  const {contractAddress} = avatar.attributes?.rarement.data.attributes;
+  const rarement = avatar?.attributes?.rarement.data.attributes;
   return (
     <div className="mx-8 my-8 flex flex-col gap-8">
       <div className="relative w-fit">
@@ -49,7 +45,7 @@ export default function ProjectTab(props) {
       </div>
       <Avatar {...props} />
       <Benefits benefits={benefits} />
-      <Patrons address={contractAddress}/>
+      <Patrons address={rarement?.contractAddress} />
     </div>
   );
 }

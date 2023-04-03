@@ -3,20 +3,22 @@ import ShowOrClose from "../../../utils/showOrClose";
 import PatronCard from "./PatronCard";
 import { useHolders } from "../../../utils/useHolders";
 import { EmptyPatronCard } from "./EmptyPatronCard";
+import { Loading } from "../../../utils/svgs";
 
 export default function Patrons({ address }) {
-  //Set loading for loading views
-  const [loading, setLoading] = useState(true);
-
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
 
-  const { holders, noMore, next } = useHolders(address, 100, 7);
+  const { holders, noMore, next, isLoading } = useHolders(address, 100, 7);
 
-  const [firstRow, setFirstRow] = useState(['empty', 'empty', 'empty']);
-  const [secondRow, setSecondRow] = useState(['empty', 'empty', 'empty', 'empty']);
+  const [firstRow, setFirstRow] = useState(["first", "empty", "empty"]);
+  const [secondRow, setSecondRow] = useState([
+    "empty",
+    "empty",
+    "empty",
+    "empty",
+  ]);
   const [restRow, setRestRow] = useState([]);
-
   useEffect(() => {
     for (let i = 0; i < holders.length; i++) {
       if (i < 3) {
@@ -52,20 +54,14 @@ export default function Patrons({ address }) {
         <div className="grid grid-cols-3 gap-3">
           {firstRow.map((item, idx) =>
             !item || item === "empty" ? (
-              <EmptyPatronCard key={idx} idx={idx} loading={loading} />
-            ) : item === "next" && idx === 0 ? (
+              <EmptyPatronCard key={idx} idx={idx} loading={isLoading} />
+            ) : item === "first" && idx === 0 ? (
               <EmptyPatronCard
                 key={idx}
                 idx={idx}
                 textOne="Be the first"
                 textTwo="patron!"
-              />
-            ) : item === "next" && idx !== 0 ? (
-              <EmptyPatronCard
-                key={idx}
-                idx={idx}
-                textOne="Be the next"
-                textTwo="patron!"
+                loading={isLoading}
               />
             ) : (
               <PatronCard key={idx} item={item} />
@@ -75,28 +71,53 @@ export default function Patrons({ address }) {
         <div className="grid grid-cols-4 gap-3">
           {secondRow.map((item, idx) =>
             !item || item === "empty" ? (
-              <EmptyPatronCard key={idx + 3} idx={idx + 3} loading={loading} />
-            ) : item === "next" ? (
               <EmptyPatronCard
                 key={idx + 3}
                 idx={idx + 3}
-                textOne="Be the next"
-                textTwo="patron!"
+                loading={isLoading}
               />
             ) : (
               <PatronCard key={idx + 3} item={item} />
             )
           )}
         </div>
+
         <div
           className={`grid grid-cols-5 gap-3 ${show ? "visible" : "hidden"}`}
         >
-          {restRow.map((item, idx) => (
-            <PatronCard key={idx + 7} item={item} />
-          ))}
+          {restRow.map((item, idx) =>
+            !item && show ? (
+              <EmptyPatronCard
+                key={idx + 3}
+                idx={idx + 3}
+                loading={isLoading}
+              />
+            ) : (
+              <PatronCard key={idx + 7} item={item} />
+            )
+          )}
         </div>
+        {isLoading && show && (
+          <div className="flex items-center justify-center mt-6">
+            <Loading />
+            Loading more...
+          </div>
+        )}
       </div>
-      <ShowOrClose noMore={noMore} show={show} setShow={setShow} next={next} />
+      <div
+        className={`${
+          (noMore && restRow.length === 0) || !address
+            ? "hidden"
+            : "flex items-center justify-center"
+        }`}
+      >
+        <ShowOrClose
+          noMore={noMore}
+          show={show}
+          setShow={setShow}
+          next={next}
+        />
+      </div>
     </div>
   );
 }
