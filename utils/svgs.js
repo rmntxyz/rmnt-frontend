@@ -345,3 +345,77 @@ export const House = () => {
     </svg>
   );
 };
+
+export const LoadingRarement = ({ width = "100%", height = "100%", duration = 2}) => {
+  const step = duration / 5;
+
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 24 24 25"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M22.5 38.9775L14.4917 36.8317V26H22.5V38.9775Z"
+        fill="white"
+      >
+        <animate
+          attributeName="opacity"
+          values="1;0.2;1"
+          dur={`${duration}s`}
+          repeatCount="indefinite"
+          begin={`${step * 0}s`}
+        />
+      </path>
+      <path
+        d="M22.5 40.3363L10.1719 37.033L10.1719 47H22.5V40.3363Z"
+        fill="white"
+      >
+        <animate
+          attributeName="opacity"
+          values="1;0.2;1"
+          dur={`${duration}s`}
+          repeatCount="indefinite"
+          begin={`${step * 1}s`}
+        />
+      </path>
+      <path
+        d="M8.85938 47L8.85938 42.078L1.5 42.078V47H8.85938Z"
+        fill="white"
+      >
+        <animate
+          attributeName="opacity"
+          values="1;0.2;1"
+          dur={`${duration}s`}
+          repeatCount="indefinite"
+          begin={`${step * 2}s`}
+        />
+      </path>
+      <path
+        d="M1.5 40.8435L8.85938 40.8435V36.7593L1.5 34.7874V40.8435Z"
+        fill="white"
+      >
+        <animate
+          attributeName="opacity"
+          values="1;0.2;1"
+          dur={`${duration}s`}
+          repeatCount="indefinite"
+          begin={`${step * 3}s`}
+        />
+      </path>
+      <path
+        d="M1.5 33.4286L13.1792 36.558V26H1.5V33.4286Z"
+        fill="white"
+      >
+        <animate
+          attributeName="opacity"
+          values="1;0.2;1"
+          dur={`${duration}s`}
+          repeatCount="indefinite"
+          begin={`${step * 4}s`}
+        />
+      </path>
+    </svg>
+  );
+};
