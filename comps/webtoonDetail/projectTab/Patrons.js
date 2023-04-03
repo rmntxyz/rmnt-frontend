@@ -6,6 +6,9 @@ import { EmptyPatronCard } from "./EmptyPatronCard";
 import { Loading } from "../../../utils/svgs";
 
 export default function Patrons({ address }) {
+  //Set loading for patron cards
+  const [loading, setLoading] = useState(true);
+
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
 
@@ -41,6 +44,9 @@ export default function Patrons({ address }) {
         });
       }
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, [holders]);
 
   return (
@@ -54,14 +60,18 @@ export default function Patrons({ address }) {
         <div className="grid grid-cols-3 gap-3">
           {firstRow.map((item, idx) =>
             !item || item === "empty" ? (
-              <EmptyPatronCard key={idx} idx={idx} loading={isLoading} />
+              <EmptyPatronCard
+                key={idx}
+                idx={idx}
+                loading={isLoading || loading}
+              />
             ) : item === "first" && idx === 0 ? (
               <EmptyPatronCard
                 key={idx}
                 idx={idx}
                 textOne="Be the first"
                 textTwo="patron!"
-                loading={isLoading}
+                loading={isLoading || loading}
               />
             ) : (
               <PatronCard key={idx} item={item} />
@@ -74,7 +84,7 @@ export default function Patrons({ address }) {
               <EmptyPatronCard
                 key={idx + 3}
                 idx={idx + 3}
-                loading={isLoading}
+                loading={isLoading || loading}
               />
             ) : (
               <PatronCard key={idx + 3} item={item} />
@@ -90,7 +100,7 @@ export default function Patrons({ address }) {
               <EmptyPatronCard
                 key={idx + 3}
                 idx={idx + 3}
-                loading={isLoading}
+                loading={isLoading || loading}
               />
             ) : (
               <PatronCard key={idx + 7} item={item} />
@@ -99,7 +109,24 @@ export default function Patrons({ address }) {
         </div>
         {isLoading && show && (
           <div className="flex items-center justify-center mt-6">
-            <Loading />
+            <svg
+              className="animate-spin -ml-1 mr-3 h-6 w-6"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
             Loading more...
           </div>
         )}
