@@ -57,7 +57,6 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
       const handler = () => async () => {
         try {
           setIsCollecting(true);
-
           const config = await prepareWriteContract({
             signer,
             address: rarement.contractAddress,
@@ -82,7 +81,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           setIsCollectError(true);
         } finally {
           setIsCollecting(false);
-
+          setQuantity(1);
           setTimeout(() => {
             setIsCollectError(false);
             setIsCollected(false);
@@ -140,6 +139,8 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           matic={
             rarementInfo ? weiToEther(rarementInfo?.price.toNumber(), 3) : null
           }
+          setQuantity={setQuantity}
+          quantity={quantity}
         ></CollectButton>
       ) : (
         <ConnectButton.Custom>

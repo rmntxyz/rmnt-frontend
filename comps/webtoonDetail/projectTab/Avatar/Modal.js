@@ -5,8 +5,15 @@ import Line from "../../../../utils/Line";
 import { Info } from "../../../../utils/svgs";
 
 export default function Modal(props) {
-  const { matic, holdingLimit, holdingCount, onCollect, setOpen } = props;
-  const [counter, setCounter] = useState(1);
+  const {
+    matic,
+    holdingLimit,
+    holdingCount,
+    onCollect,
+    quantity,
+    setQuantity,
+    setOpen,
+  } = props;
   const [show, setShow] = useState(false);
 
   return (
@@ -25,21 +32,21 @@ export default function Modal(props) {
         </div>
         <Line />
         <div className="flex items-center justify-between gap-20 p-4 text-[15px]">
-          <div>{matic * counter} MATIC</div>
+          <div>{matic * quantity} MATIC</div>
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setCounter(counter - 1)}
-              disabled={counter === 1}
+              onClick={() => setQuantity(quantity - 1)}
+              disabled={quantity === 1}
               className="flex items-center justify-center w-[34px] h-[34px] rounded-full bg-opaqueGray text-mintGreen border border-mintGreen/20  disabled:text-mintGreen/20 disabled:border-none"
             >
               <span>−</span>
             </button>
             <div className="">
-              <span>{counter}</span>
+              <span>{quantity}</span>
             </div>
             <button
-              onClick={() => setCounter(counter + 1)}
-              disabled={counter === holdingLimit - holdingCount}
+              onClick={() => setQuantity(quantity + 1)}
+              disabled={quantity === holdingLimit - holdingCount}
               className="flex items-center justify-center w-[34px] h-[34px] rounded-full bg-opaqueGray text-mintGreen border border-mintGreen/20 disabled:text-mintGreen/20 disabled:border-none"
             >
               <span className="">+</span>
