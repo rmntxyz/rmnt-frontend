@@ -8,7 +8,7 @@ import { LoadingRarement } from "../../../utils/svgs";
 export default function PatronCard({ item }) {
   //Find the date of sale
   const date = new Date(item.timeLastUpdated);
-  const year = date.getFullYear();
+  const year = date.getFullYear().toString().slice(2);
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return (
