@@ -19,10 +19,17 @@ export default function Patrons({ address }) {
     null,
   ]);
 
+  //Toggle the "more/close" button
+  const [show, setShow] = useState(false);
+
+  //Find if the list is truncated & display the "more/close" button if the text is truncated
+  const [truncated, setTruncated] = useState(holders.length > 7);
+
   //Get holders and fill the array of holders with "empty" if the length of the array falls short of 7
   useEffect(() => {
     getHolders(address, 7, 100).then((holders) => {
       setHolders(holders);
+      setTruncated(holders.length > 7);
       setLoading(false);
       const length = holders.length;
       if (length < 7) {
@@ -31,20 +38,18 @@ export default function Patrons({ address }) {
           holders.push("empty");
         }
         setHolders(holders);
+        setTruncated(holders.length > 7);
       }
     });
   }, []);
+
+  console.log(holders);
+  console.log(truncated);
 
   //Divide the array of holders into rows
   const rowOne = holders.slice(0, 3);
   const rowTwo = holders.slice(3, 7);
   const rowsFinal = holders.slice(7);
-
-  //Toggle the "more/close" button
-  const [show, setShow] = useState(false);
-
-  //Find if the list is truncated & display the "more/close" button if the text is truncated
-  const [truncated, setTruncated] = useState(holders.length > 7);
 
   return (
     <div className="mt-7 flex flex-col">
@@ -96,8 +101,8 @@ export default function Patrons({ address }) {
         <div
           className={`grid grid-cols-5 gap-3 ${show ? "visible" : "hidden"}`}
         >
-          {rowsFinal.map((item) => (
-            <PatronCard key={item.id} item={item} />
+          {rowsFinal.map((item, idx) => (
+            <PatronCard key={idx} item={item} />
           ))}
         </div>
       </div>
