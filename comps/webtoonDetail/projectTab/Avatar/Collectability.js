@@ -24,7 +24,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
   // const [balance, setBalance] = useState(BigNumber.from(0));
   // const [estimatedCost, setEstimatedCost] = useState(BigNumber.from(0));
   const [receipt, setReceipt] = useState(null);
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
   const [holdingCount, setHoldingCount] = useState(0);
   const [isCollected, setIsCollected] = useState(false);
   const [isCollecting, setIsCollecting] = useState(false);
@@ -44,7 +44,6 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
         return;
       }
       setIsButtonReady(false);
-
       const address = signer.getAddress();
       const count = await contract.balanceOf(address);
       setHoldingCount(count.toNumber());
@@ -54,7 +53,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
 
       // this is function returning a function...
       // because to pass arg to setOnCollect() as function
-      const handler = () => async () => {
+      const handler = () => async (quantity) => {
         try {
           setIsCollecting(true);
           const config = await prepareWriteContract({
@@ -81,7 +80,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           setIsCollectError(true);
         } finally {
           setIsCollecting(false);
-          setQuantity(1);
+          // setQuantity(1);
           setTimeout(() => {
             setIsCollectError(false);
             setIsCollected(false);
@@ -94,7 +93,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
     };
 
     prepareCollect();
-  }, [isLoaded, signer, quantity, receipt]);
+  }, [isLoaded, signer, receipt]);
   return (
     <div>
       {rarementInfo ? (
@@ -139,8 +138,6 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           matic={
             rarementInfo ? weiToEther(rarementInfo?.price.toNumber(), 3) : null
           }
-          setQuantity={setQuantity}
-          quantity={quantity}
         ></CollectButton>
       ) : (
         <ConnectButton.Custom>

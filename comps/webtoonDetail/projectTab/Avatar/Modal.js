@@ -5,16 +5,9 @@ import Line from "../../../../utils/Line";
 import { Info } from "../../../../utils/svgs";
 
 export default function Modal(props) {
-  const {
-    matic,
-    holdingLimit,
-    holdingCount,
-    onCollect,
-    quantity,
-    setQuantity,
-    setOpen,
-  } = props;
+  const { matic, holdingLimit, holdingCount, onCollect, setOpen } = props;
   const [show, setShow] = useState(false);
+  const [counter, setCounter] = useState(1);
 
   return (
     <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 min-[296px] bg-[#343434] rounded-2xl">
@@ -32,21 +25,21 @@ export default function Modal(props) {
         </div>
         <Line />
         <div className="flex items-center justify-between gap-20 p-4 text-[15px]">
-          <div>{matic * quantity} MATIC</div>
+          <div>{matic * counter} MATIC</div>
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setQuantity(quantity - 1)}
-              disabled={quantity === 1}
+              onClick={() => setCounter(counter - 1)}
+              disabled={counter === 1}
               className="flex items-center justify-center w-[34px] h-[34px] rounded-full bg-opaqueGray text-mintGreen border border-mintGreen/20  disabled:text-mintGreen/20 disabled:border-none"
             >
               <span>−</span>
             </button>
             <div className="">
-              <span>{quantity}</span>
+              <span>{counter}</span>
             </div>
             <button
-              onClick={() => setQuantity(quantity + 1)}
-              disabled={quantity === holdingLimit - holdingCount}
+              onClick={() => setCounter(counter + 1)}
+              disabled={counter === holdingLimit - holdingCount}
               className="flex items-center justify-center w-[34px] h-[34px] rounded-full bg-opaqueGray text-mintGreen border border-mintGreen/20 disabled:text-mintGreen/20 disabled:border-none"
             >
               <span className="">+</span>
@@ -108,7 +101,7 @@ export default function Modal(props) {
         <div className="flex items-center justify-center p-4">
           <button
             onClick={() => {
-              onCollect?.();
+              onCollect?.(counter);
               setOpen(false);
             }}
             aria-label="Collect NFT"
