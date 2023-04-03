@@ -3,11 +3,14 @@ import Image from "next/image";
 import getDate from "../../../utils/getDate";
 // import "tippy.js/dist/tippy.css";
 import { PolyFrameImage } from "../../../utils/PolyFrameImage";
+import { LoadingRarement } from "../../../utils/svgs";
 
 export default function PatronCard({ item }) {
   //Find the date of sale
-  // const { year, month, date } = getDate(item.attributes.sold_timestamp);
-  // const fullDate = dateTime.toDateString().slice(4);
+  const date = new Date(item.timeLastUpdated);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
   return (
     <Tippy
       interactive="true"
@@ -26,9 +29,9 @@ export default function PatronCard({ item }) {
           />
 
           <div>
-            {/* <div className="text-white/70 text-sm">
-              {month}/{date}/{year}
-            </div> */}
+            <div className="text-white/70 text-sm">
+              {month}/{day}/{year}
+            </div>
             <div className="w-[99px] truncate font-normal">{item.owner}</div>
           </div>
           <div id="arrow" className="arrow" data-popper-arrow=""></div>

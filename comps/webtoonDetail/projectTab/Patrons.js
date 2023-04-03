@@ -21,7 +21,7 @@ export default function Patrons({ address }) {
 
   //Get holders and fill the array of holders with "empty" if the length of the array falls short of 7
   useEffect(() => {
-    getHolders(address).then((holders) => {
+    getHolders(address, 7, 100).then((holders) => {
       setHolders(holders);
       setLoading(false);
       const length = holders.length;
