@@ -117,8 +117,14 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-1">Loading...</div>
+        <div className="animate-pulse flex flex-col gap-2">
+          <div className="flex items-center gap-1">
+            <div className="h-6 w-6 rounded-full bg-white/20"></div>
+            <div className="h-5 w-1/2 rounded-full bg-white/20"></div>
+          </div>
+          <div className="ml-4">
+            <div className="h-5 w-1/2 rounded-full bg-white/20"></div>
+          </div>
         </div>
       )}
       {isConnected ? (
