@@ -50,7 +50,7 @@ export default function Modal(props) {
           <div className="flex items-center justify-end gap-1.5 text-white/80 text-[13px] px-4 pt-2">
             <div
               className="relative"
-              style={{ display: show ? "block" : "none" }}
+              style={{ visibility: show ? "visible" : "hidden" }}
             >
               <svg
                 width="137"

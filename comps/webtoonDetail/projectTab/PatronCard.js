@@ -6,7 +6,7 @@ import useDate from "../../../utils/useDate";
 
 export default function PatronCard({ item }) {
   //Find the date of sale
-  const {month, date, year} = useDate(item.timeLastUpdated);
+  const { month, date, year } = useDate(item.timeLastUpdated);
 
   return (
     <Tippy

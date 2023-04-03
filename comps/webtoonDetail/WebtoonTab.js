@@ -1,7 +1,6 @@
 import Image from "next/image";
 import useDate from "../../utils/useDate";
 
-
 export default function WebtoonTab({ webtoon, episodes }) {
   let released;
   let releasedAt;
