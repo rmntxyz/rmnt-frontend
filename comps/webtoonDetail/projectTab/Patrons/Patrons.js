@@ -134,8 +134,8 @@ export default function Patrons({ address }) {
       </div>
       <div
         className={`${
-          (noMore && restRow.length === 0) || !address
-            ? "hidden"
+          (noMore && restRow.length === 0) || !address || (show && isLoading)
+            ? "invisible"
             : "flex items-center justify-center"
         }`}
       >
