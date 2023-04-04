@@ -24,9 +24,11 @@ export default function CollectiblesTab({ collectibles, exchangeRate }) {
   return (
     <div className="mx-8 my-8">
       {collectibles.length === 0 ? (
-        <span className="text-lg">
-          New collectibles are on the way—stay tuned!
-        </span>
+        <div className="h-60 flex items-center justify-center">
+          <span className="text-lg">
+            New collectibles are on the way—stay tuned!
+          </span>
+        </div>
       ) : (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {collectibles.map(

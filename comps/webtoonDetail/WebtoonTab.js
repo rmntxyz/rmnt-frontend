@@ -67,6 +67,11 @@ export default function WebtoonTab({ webtoon, episodes }) {
           )
         )}
       </div>
+      {episodes.length === 0 && (
+        <div className="text-lg mb-8">
+          Hold up&#8212;the first episode is right around the corner.
+        </div>
+      )}
     </div>
   );
 }

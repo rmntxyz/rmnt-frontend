@@ -38,6 +38,9 @@ export default function Benefits({ benefits }) {
           </div>
         ))}
       </div>
+      {benefits.length === 0 && (
+        <div>Be on the lookout for exclusive benefits!</div>
+      )}
     </div>
   );
 }
