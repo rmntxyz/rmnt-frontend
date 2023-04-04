@@ -1,6 +1,5 @@
 import Tippy from "@tippyjs/react/headless";
 import { useState } from "react";
-import { Loading } from "../../../../utils/svgs";
 import styles from "./CollectButton.module.css";
 import Modal from "./Modal";
 

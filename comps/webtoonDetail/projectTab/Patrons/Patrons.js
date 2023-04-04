@@ -1,9 +1,8 @@
-import { use, useEffect, useState } from "react";
-import ShowOrClose from "../../../utils/showOrClose";
+import { useEffect, useState } from "react";
 import PatronCard from "./PatronCard";
-import { useHolders } from "../../../utils/useHolders";
+import { useHolders } from "../../../../utils/useHolders";
 import { EmptyPatronCard } from "./EmptyPatronCard";
-import { Loading } from "../../../utils/svgs";
+import MoreOrClose from "./MoreOrClose";
 
 export default function Patrons({ address }) {
   //Set loading for patron cards
@@ -93,7 +92,9 @@ export default function Patrons({ address }) {
         </div>
 
         <div
-          className={`grid grid-cols-5 gap-3 ${show ? "visible" : "hidden"}`}
+          className={`grid grid-cols-5 gap-3 transition-[max-height] ease-in-out duration-300 overflow-hidden ${
+            show ? "max-h-[5000px]" : "max-h-0"
+          }`}
         >
           {restRow.map((item, idx) =>
             !item && show ? (
@@ -138,7 +139,7 @@ export default function Patrons({ address }) {
             : "flex items-center justify-center"
         }`}
       >
-        <ShowOrClose
+        <MoreOrClose
           noMore={noMore}
           show={show}
           setShow={setShow}

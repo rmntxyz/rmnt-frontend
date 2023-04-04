@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import ShowOrClose from "../../../utils/showOrClose";
 import Avatar from "./Avatar/Avatar";
 import Benefits from "./Benefits";
-import Patrons from "./Patrons";
+import Patrons from "./Patrons/Patrons";
 
 export default function ProjectTab(props) {
   const { webtoon, avatar, benefits } = props;
