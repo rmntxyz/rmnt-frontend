@@ -55,8 +55,8 @@ export default function Patrons({ address }) {
         The order of the patrons' list is determined by time of support.
       </div>
       <div className="w-full h-px my-6 bg-white/10"></div>
-      <div className="flex flex-col gap-3 mb-6">
-        <div className="grid grid-cols-3 gap-3">
+      <div className="flex flex-col gap-2 mb-6 sm:gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {firstRow.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard
@@ -77,7 +77,7 @@ export default function Patrons({ address }) {
             )
           )}
         </div>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-4 gap-2 sm:gap-3">
           {secondRow.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard
@@ -92,7 +92,7 @@ export default function Patrons({ address }) {
         </div>
 
         <div
-          className={`grid grid-cols-5 gap-3 transition-[max-height] ease-in-out duration-300 overflow-hidden ${
+          className={`grid grid-cols-5 gap-2 transition-[max-height] ease-in-out duration-300 overflow-hidden sm:gap-3 ${
             show ? "max-h-[5000px]" : "max-h-0"
           }`}
         >
@@ -109,9 +109,9 @@ export default function Patrons({ address }) {
           )}
         </div>
         {isLoading && show && (
-          <div className="flex items-center justify-center mt-6">
+          <div className="flex items-center justify-center mt-6 text-sm">
             <svg
-              className="animate-spin -ml-1 mr-3 h-6 w-6"
+              className="animate-spin -ml-1 mr-2 h-4 w-4"
               viewBox="0 0 24 24"
             >
               <circle

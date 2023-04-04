@@ -1,5 +1,5 @@
 export const PolyFrameImage = ({ href, idx }) => (
-  <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="-1 -1 183 183" fill="none" xmlns="http://www.w3.org/2000/svg">
     <image
       width="100%"
       height="100%"
