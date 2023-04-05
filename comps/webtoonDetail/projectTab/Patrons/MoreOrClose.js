@@ -17,8 +17,8 @@ export default function MoreOrClose({
           ? "hidden"
           : (!noMore && restRow.length === 0) ||
             (noMore && restRow.length > 0 && !show)
-          ? "flex items-center justify-center mt-2 sm:mt-3"
-          : "flex items-center justify-center mt-4 sm:mt-6"
+          ? "mt-3"
+          : "mt-5 sm:mt-6"
       }`}
       onClick={(e) => {
         if (noMore) {
