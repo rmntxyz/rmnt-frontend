@@ -55,12 +55,8 @@ export default function Patrons({ address }) {
         The order of the patrons' list is determined by time of support.
       </div>
       <div className="w-full h-px my-6 bg-white/10"></div>
-      <div
-        className={`transition-all duration-300 flex flex-col gap-2 sm:gap-3 ${
-          show ? "mb-6" : "mb-3"
-        }`}
-      >
-        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+      <div className={`flex flex-col`}>
+        <div className="grid grid-cols-3 gap-2 mb-2 sm:gap-3 sm:mb-3">
           {firstRow.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard
@@ -81,7 +77,7 @@ export default function Patrons({ address }) {
             )
           )}
         </div>
-        <div className="grid grid-cols-4 gap-2 sm:gap-3">
+        <div className={`grid grid-cols-4 gap-2 mb-2 sm:gap-3 sm:mb-3`}>
           {secondRow.map((item, idx) =>
             !item || item === "empty" ? (
               <EmptyPatronCard
@@ -94,9 +90,8 @@ export default function Patrons({ address }) {
             )
           )}
         </div>
-
         <div
-          className={`grid grid-cols-5 gap-2 transition-[max-height] ease-in-out duration-300 overflow-hidden sm:gap-3 ${
+          className={`grid grid-cols-5 gap-2 transition-all ease-in-out duration-300 overflow-hidden sm:gap-3 ${
             show ? "max-h-[5000px]" : "max-h-0"
           }`}
         >
@@ -112,44 +107,16 @@ export default function Patrons({ address }) {
             )
           )}
         </div>
-        {isLoading && show && (
-          <div className="flex items-center justify-center mt-6 text-sm">
-            <svg
-              className="animate-spin -ml-1 mr-2 h-4 w-4"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
-            Loading more...
-          </div>
-        )}
       </div>
-      <div
-        className={`${
-          (noMore && restRow.length === 0) || !address || (show && isLoading)
-            ? "invisible"
-            : "flex items-center justify-center"
-        }`}
-      >
-        <MoreOrClose
-          noMore={noMore}
-          show={show}
-          setShow={setShow}
-          next={next}
-        />
-      </div>
+      <MoreOrClose
+        noMore={noMore}
+        show={show}
+        setShow={setShow}
+        next={next}
+        isLoading={isLoading}
+        restRow={restRow}
+        address={address}
+      />
     </div>
   );
 }
