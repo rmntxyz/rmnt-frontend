@@ -38,7 +38,12 @@ export default function ProjectTab(props) {
           />
           <span>Synopsis</span>
         </div>
-        <div id="desc" className={`${show ? "" : "truncate-5"}`}>
+        <div
+          id="desc"
+          className={`transition-[max-height] duration-300 ease-in-out ${
+            show ? "max-h-[5000px]" : "max-h-[120px] overflow-y-hidden"
+          }`}
+        >
           <ReactMarkdown children={webtoon.attributes.description} />
         </div>
         <ShowOrClose truncated={truncated} show={show} setShow={setShow} />

@@ -111,7 +111,12 @@ export default function Desc({ props }) {
           </div>
           {props.attributes.description?.length > 0 ? (
             <div className="text-justify flex flex-col items-start gap-3">
-              <div id="desc" className={`${show ? "" : "truncate-5"}`}>
+              <div
+                id="desc"
+                className={`transition-[max-height] duration-300 ease-in-out ${
+                  show ? "max-h-[5000px]" : "max-h-[120px] overflow-y-hidden"
+                }`}
+              >
                 <ReactMarkdown children={props.attributes.description} />
               </div>
               <ShowOrClose
