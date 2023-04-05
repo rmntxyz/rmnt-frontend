@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function MoreOrClose({ noMore, show, setShow, next }) {
   return (
     <button
-      className="show text-white/50 text-sm flex gap-1 items-center justify-center"
+      className="text-white/50 text-sm flex gap-1 items-center justify-center"
       onClick={(e) => {
         if (noMore) {
           setShow((show) => !show);

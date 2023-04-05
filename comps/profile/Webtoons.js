@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Webtoons({ webtoons }) {
   let released;
   return (
-    <div className="my-14 mx-8 max-w-[630px] md:mx-auto">
+    <div className="mt-14 mb-20 mx-8 max-w-[630px] md:mx-auto">
       <div className="text-2xl font-bold mb-4">Webtoons</div>
       <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3">
         {webtoons.map(

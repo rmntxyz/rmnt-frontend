@@ -5,7 +5,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
   let released;
   let releasedAt;
   return (
-    <div className="mx-8 my-8 flex flex-col gap-8">
+    <div className="mx-8 mt-8 mb-20 flex flex-col gap-8">
       <div className="relative w-fit">
         <span className="text-3xl font-bold">{webtoon.attributes.title}</span>
         <div className="bg-mintGreen/20 absolute h-1/2 w-full bottom-0"></div>

@@ -22,7 +22,7 @@ export default function ProjectTab(props) {
   const [show, setShow] = useState(false);
   const rarement = avatar?.attributes?.rarement.data.attributes;
   return (
-    <div className="mx-8 my-8 flex flex-col gap-8">
+    <div className="mx-8 mt-8 mb-14 flex flex-col gap-8">
       <div className="relative w-fit">
         <span className="text-3xl font-bold">{webtoon.attributes.title}</span>
         <div className="bg-mintGreen/20 absolute h-1/2 w-full bottom-0"></div>

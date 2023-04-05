@@ -22,7 +22,7 @@ export default function CollectiblesTab({ collectibles, exchangeRate }) {
   }
 
   return (
-    <div className="mx-8 my-8">
+    <div className="mx-8 mt-8 mb-14">
       {collectibles.length === 0 ? (
         <div className="h-60 flex items-center justify-center">
           <span className="text-lg">

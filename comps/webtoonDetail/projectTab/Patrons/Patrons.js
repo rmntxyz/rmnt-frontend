@@ -55,7 +55,11 @@ export default function Patrons({ address }) {
         The order of the patrons' list is determined by time of support.
       </div>
       <div className="w-full h-px my-6 bg-white/10"></div>
-      <div className="flex flex-col gap-2 mb-6 sm:gap-3">
+      <div
+        className={`transition-all duration-300 flex flex-col gap-2 sm:gap-3 ${
+          show ? "mb-6" : "mb-3"
+        }`}
+      >
         <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {firstRow.map((item, idx) =>
             !item || item === "empty" ? (

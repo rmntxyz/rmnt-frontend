@@ -110,7 +110,7 @@ export default function Desc({ props }) {
             </div>
           </div>
           {props.attributes.description?.length > 0 ? (
-            <div className="text-justify">
+            <div className="text-justify flex flex-col items-start gap-3">
               <div id="desc" className={`${show ? "" : "truncate-5"}`}>
                 <ReactMarkdown children={props.attributes.description} />
               </div>
