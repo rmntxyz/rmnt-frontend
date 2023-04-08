@@ -4,34 +4,15 @@ import useRarementData from "../../utils/useRarementData";
 
 export default function ListItem({ item, idx, rarementABI }) {
   //Find available avatars
-  const currTime = Math.floor(Date.now() / 1000);
-  const availableAvatars = item.attributes.avatars.data
-    .filter((avatar) => !!avatar.attributes.rarement.data)
-    .filter(
-      (avatar) => avatar.attributes.rarement.data.attributes.endTime > currTime
-    )
-    .sort(
-      (a, b) =>
-        a.attributes.rarement.data.attributes.startTime -
-        b.attributes.rarement.data.attributes.startTime
-    );
+  const rarement = item.attributes.rarement?.data?.attributes;
 
-  //Use the first avatar from all available avatars
-  const avatar = availableAvatars[0];
-  const rarement = avatar?.attributes.rarement?.data.attributes;
-
-  //const { totalSupply, maxSupply, isLoading } = useCollectibility(
-  //  rarement,
-  //  rarementABI
-  //);
   const { totalSupply, rarementInfo, isLoading } = useRarementData(
     rarement?.contractAddress,
     rarementABI
   );
 
   //Find if the webtoon is released
-  const released =
-    new Date().getTime() > item.attributes.released_timestamp * 1000;
+  const released = rarement && (Date.now() > rarement.startTime * 1000);
 
   return (
     <div className="relative">
@@ -109,8 +90,7 @@ export default function ListItem({ item, idx, rarementABI }) {
             )}
           </div>
         </div>
-      ) : null}
-      {released ? null : (
+      ) : (
         <div className="absolute bg-navBg/50 w-full h-full top-0 z-10 flex items-center justify-center text-white/100 text-3xl font-bold">
           Coming soon
         </div>

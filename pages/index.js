@@ -45,37 +45,25 @@ const GET_HOME_DATA = gql`
               }
             }
           }
-          avatars(pagination: { limit: 200 }) {
+          rarement {
             data {
               id
               attributes {
-                owned_by {
-                  data {
-                    id
-                  }
-                }
-                rarement {
-                  data {
-                    id
-                    attributes {
-                      contractAddress
-                      name
-                      symbol
-                      baseURI
-                      fundingRecipient
-                      royaltyBPS
-                      presalePrice
-                      presaleStartTime
-                      price
-                      startTime
-                      endTime
-                      maxSupply
-                      cutoffSupply
-                      maxMintablePerAccount
-                      flags
-                    }
-                  }
-                }
+                contractAddress
+                name
+                symbol
+                baseURI
+                fundingRecipient
+                royaltyBPS
+                presalePrice
+                presaleStartTime
+                price
+                startTime
+                endTime
+                maxSupply
+                cutoffSupply
+                maxMintablePerAccount
+                flags
               }
             }
           }

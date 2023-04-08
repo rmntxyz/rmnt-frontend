@@ -45,56 +45,25 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
-          avatars(pagination: { limit: 200 }) {
+          rarement {
             data {
               id
               attributes {
-                image {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
-                price_in_wei
-                sold_timestamp
-                owned_by {
-                  data {
-                    id
-                    attributes {
-                      wallet_address
-                      profile_image {
-                        data {
-                          attributes {
-                            url
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                rarement {
-                  data {
-                    id
-                    attributes {
-                      contractAddress
-                      name
-                      symbol
-                      baseURI
-                      fundingRecipient
-                      royaltyBPS
-                      presalePrice
-                      presaleStartTime
-                      price
-                      startTime
-                      endTime
-                      maxSupply
-                      cutoffSupply
-                      maxMintablePerAccount
-                      flags
-                    }
-                  }
-                }
+                contractAddress
+                name
+                symbol
+                baseURI
+                fundingRecipient
+                royaltyBPS
+                presalePrice
+                presaleStartTime
+                price
+                startTime
+                endTime
+                maxSupply
+                cutoffSupply
+                maxMintablePerAccount
+                flags
               }
             }
           }
@@ -191,23 +160,10 @@ export async function getServerSideProps(context) {
   const webtoon = webtoons.data[0];
   const rarementABI = rarementContract.data.attributes.rarementABI;
 
-  const currTime = Math.floor(Date.now() / 1000);
-  const availableAvatars = webtoon.attributes.avatars.data
-    .filter((avatar) => !!avatar.attributes.rarement.data)
-    .filter(
-      (avatar) => avatar.attributes.rarement.data.attributes.endTime > currTime
-    )
-    .sort(
-      (a, b) =>
-        a.attributes.rarement.data.attributes.startTime -
-        b.attributes.rarement.data.attributes.startTime
-    );
-
   return {
     props: {
       exchangeRate: exchangeRate,
       webtoon: webtoon,
-      avatar: availableAvatars.length > 0 ? availableAvatars[0] : null, //: webtoon.attributes.avatars.data,
       rarementABI,
       collectibles: webtoon.attributes.collectibles.data,
       episodes: webtoon.attributes.episodes.data

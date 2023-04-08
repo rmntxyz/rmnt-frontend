@@ -11,7 +11,7 @@ const DynamicCollectability = dynamic(() => import("./Collectability"), {
 });
 
 export default function Avatar(props) {
-  const { avatar, rarementABI, exchangeRate, webtoon } = props;
+  const { webtoon } = props;
 
   return (
     <div className="mt-7 flex flex-col gap-4">
@@ -87,7 +87,7 @@ export default function Avatar(props) {
             ))}
           </div>
           <div>
-            {!avatar ? (
+            {webtoon.attributes.rarement.data === null ? (
               <span>Don't miss out&#8212;new avatars are en route!</span>
             ) : (
               <DynamicCollectability {...props} />

@@ -16,7 +16,7 @@ function weiToEther(wei, precision = 2) {
   return Number.parseFloat(ethers.utils.formatEther(wei)).toFixed(precision);
 }
 
-export default function Collectability({ avatar, rarementABI, exchangeRate }) {
+export default function Collectability({ webtoon, rarementABI, exchangeRate }) {
   const { isConnected, address } = useAccount();
   const { data: signer } = useSigner();
 
@@ -31,7 +31,7 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
   const [isCollectError, setIsCollectError] = useState(false);
   const [isButtonReady, setIsButtonReady] = useState(false);
 
-  const rarement = avatar.attributes.rarement?.data.attributes;
+  const rarement = webtoon.attributes.rarement?.data.attributes;
   const { contract, rarementInfo, totalSupply, isLoaded } = useRarementData(
     rarement.contractAddress,
     rarementABI,
@@ -76,7 +76,6 @@ export default function Collectability({ avatar, rarementABI, exchangeRate }) {
           setIsCollected(true);
           setReceipt(txReceipt);
         } catch (e) {
-          console.log(e);
           setIsCollectError(true);
         } finally {
           setIsCollecting(false);

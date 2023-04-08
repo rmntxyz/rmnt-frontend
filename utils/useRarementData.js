@@ -18,6 +18,9 @@ export default function useRarementData(
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    if (rarementAddress === null) {
+      return;
+    }
     const readRarementInfo = async () => {
       setIsError(false);
       setIsLoaded(false);

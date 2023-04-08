@@ -24,7 +24,7 @@ export default function CopyAddress({ walletAddress }) {
         }, 5000);
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
