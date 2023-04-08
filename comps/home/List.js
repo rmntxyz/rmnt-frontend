@@ -1,4 +1,3 @@
-import useScreenSize from "../../utils/useScreenSize";
 import ListItem from "./ListItem";
 
 export default function List({ webtoons, rarementABI }) {
