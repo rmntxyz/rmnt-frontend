@@ -100,6 +100,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
   const imageRef = useRef();
 
   useEffect(() => {
+    const image = imageRef.current;
     const handleClick = () => {
       setClicked(!clicked);
     };
@@ -107,7 +108,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
       setClicked(false);
     };
     window.addEventListener("scroll", handleScroll);
-    imageRef.current.addEventListener("click", handleClick);
+    image.addEventListener("click", handleClick);
     setShow(
       scrollPosition < 120 ||
         scrollPosition + viewportHeight > elementHeight + 80 ||
@@ -117,7 +118,7 @@ export default function Episode({ webtoon, episode, allEpisodes, prevUrl }) {
     );
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      imageRef.current.removeEventListener("click", handleClick);
+      image.removeEventListener("click", handleClick);
     };
   }, [scrollPosition, viewportHeight, elementHeight, clicked]);
 
