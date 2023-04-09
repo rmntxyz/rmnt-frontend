@@ -5,8 +5,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
-import useScreenSize from "../../utils/useScreenSize";
 import scrollToTop from "../../utils/scrollToTop";
+import Link from "next/link";
 
 export default function Buttons({
   allEpisodes,
@@ -27,7 +27,7 @@ export default function Buttons({
     <div id="buttons" className="fixed w-full bottom-0 duration-200">
       <div className="relative max-w-[768px] md:max-w-[630px]">
         <div className="flex items-center justify-center gap-8 py-8 font-bold">
-          <a
+          <Link
             href={
               "/webtoons/" +
               webtoonId +
@@ -49,8 +49,8 @@ export default function Buttons({
             >
               Ep.{episodeNo - 1}
             </span>
-          </a>
-          <a
+          </Link>
+          <Link
             href={
               "/webtoons/" +
               webtoonId +
@@ -72,7 +72,7 @@ export default function Buttons({
               Ep.{episodeNo + 1}
             </span>
             <FontAwesomeIcon icon={faArrowRight} className="text-lg" />
-          </a>
+          </Link>
         </div>
         <button
           id="scrollToTop"
