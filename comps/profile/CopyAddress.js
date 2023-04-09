@@ -4,6 +4,7 @@ import Tippy from "@tippyjs/react/headless";
 import { useRef, useState } from "react";
 
 export default function CopyAddress({ walletAddress }) {
+  const [isCopied, setIsCopied] = useState(false);
   const textRef = useRef();
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
@@ -12,8 +13,6 @@ export default function CopyAddress({ walletAddress }) {
       return document.execCommand("copy", true, text);
     }
   }
-
-  const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyClick = () => {
     copyTextToClipboard(textRef.current.innerText)

@@ -3,7 +3,7 @@ import { PolyFrameImage } from "../../utils/PolyFrameImage";
 import useRarementData from "../../utils/useRarementData";
 
 export default function ListItem({ item, idx, rarementABI }) {
-  //Find available avatars
+  //Fetch rarement data
   const rarement = item.attributes.rarement?.data?.attributes;
 
   const { totalSupply, rarementInfo, isLoading } = useRarementData(
@@ -12,7 +12,7 @@ export default function ListItem({ item, idx, rarementABI }) {
   );
 
   //Find if the webtoon is released
-  const released = rarement && (Date.now() > rarement.startTime * 1000);
+  const released = rarement && Date.now() > rarement.startTime * 1000;
 
   return (
     <div className="relative">
