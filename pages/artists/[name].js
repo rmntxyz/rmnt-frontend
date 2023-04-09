@@ -47,6 +47,14 @@ const GET_ARTIST_DATA = gql`
                     }
                   }
                 }
+                rarement {
+                  data {
+                    id
+                    attributes {
+                      startTime
+                    }
+                  }
+                }
               }
             }
           }

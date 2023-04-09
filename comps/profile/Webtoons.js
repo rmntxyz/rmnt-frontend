@@ -9,7 +9,9 @@ export default function Webtoons({ webtoons }) {
         {webtoons.map(
           (item, idx) => (
             (released =
-              new Date().getTime() > item.attributes.released_timestamp * 1000),
+              item.attributes.rarement?.data?.attributes &&
+              Date.now() >
+                item.attributes.rarement.data.attributes.startTime * 1000),
             (
               <div key={idx} className="relative">
                 <a
