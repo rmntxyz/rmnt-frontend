@@ -10,10 +10,11 @@ export default function MoreOrClose({
   restRow,
   address,
 }) {
+  console.log(address, restRow, noMore, next);
   return (
     <button
       className={`text-white/50 text-sm flex gap-1 items-center justify-center transition-all duration-300 ease-in-out ${
-        (noMore && restRow.length === 0) || !address
+        (!next && restRow.length === 0) || !address
           ? "hidden"
           : (!noMore && restRow.length === 0) ||
             (noMore && restRow.length > 0 && !show)
