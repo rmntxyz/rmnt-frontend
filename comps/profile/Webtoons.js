@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Webtoons({ webtoons }) {
   let released;
@@ -14,7 +15,7 @@ export default function Webtoons({ webtoons }) {
                 item.attributes.rarement.data.attributes.startTime * 1000),
             (
               <div key={idx} className="relative">
-                <a
+                <Link
                   href={
                     "/webtoons/" + item.attributes.webtoon_id + "/webtoon#main"
                   }
@@ -30,7 +31,7 @@ export default function Webtoons({ webtoons }) {
                     alt="Rarement Webtoon Cover Image"
                     className="rounded"
                   />
-                </a>
+                </Link>
                 {released ? null : (
                   <div className="absolute bg-navBg/50 w-full h-full top-0 z-10 flex items-center justify-center text-white/100 text-xl font-bold">
                     Coming soon

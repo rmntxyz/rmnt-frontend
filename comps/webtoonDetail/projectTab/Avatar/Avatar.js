@@ -5,6 +5,7 @@ import Character from "./Character";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const DynamicCollectability = dynamic(() => import("./Collectability"), {
   ssr: false,
@@ -66,7 +67,7 @@ export default function Avatar(props) {
                 alt="Rarement Artist Profile Image"
                 className="rounded-full"
               />
-              <a
+              <Link
                 href={
                   "/artists/" +
                   webtoon.attributes.artist_id.data.attributes.first_name
@@ -77,7 +78,7 @@ export default function Avatar(props) {
                 <span className="font-bold">
                   {webtoon.attributes.artist_id.data.attributes.first_name}
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
           <Line />

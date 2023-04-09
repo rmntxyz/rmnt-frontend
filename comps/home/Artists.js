@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Artists({ artists }) {
   const artistNumber = artists.length;
@@ -9,7 +10,7 @@ export default function Artists({ artists }) {
         <div className="grid grid-cols-3 gap-2 mx-auto max-w-[292px] py-12">
           {artists.map((artist, idx) =>
             artist.attributes.profile_image.data ? (
-              <a
+              <Link
                 key={idx}
                 href={"/artists/" + artist.attributes.first_name}
                 className="gradientBorder-3 w-[92px] h-[92px] rounded-full p-1.5"
@@ -21,7 +22,7 @@ export default function Artists({ artists }) {
                   alt="Rarement Artist Profile Image"
                   className="rounded-full"
                 />
-              </a>
+              </Link>
             ) : null
           )}
           {artistNumber < 6 && artistNumber % 3 !== 0 ? (

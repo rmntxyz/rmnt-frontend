@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import useDate from "../../utils/useDate";
 
 export default function WebtoonTab({ webtoon, episodes }) {
@@ -19,7 +20,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
             (
               <div key={idx} className="pb-8">
                 <div className="relative">
-                  <a
+                  <Link
                     href={
                       "/webtoons/" +
                       webtoon.attributes.webtoon_id +
@@ -40,7 +41,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
                       alt="Rarement Webtoon Cover Image"
                       className="rounded relative"
                     />
-                  </a>{" "}
+                  </Link>{" "}
                   {released ? null : (
                     <div className="absolute bg-navBg/50 w-full h-full top-0 z-10"></div>
                   )}

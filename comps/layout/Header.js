@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import usePrevRoute from "../../utils/usePrevRoute";
 import { Beta, Logo } from "../../utils/svgs";
 import { ConnectButton } from "0xpass";
+import Link from "next/link";
 
 export default function Header() {
   //Use router to determine whether to show the back button or not & whether to display the header or not
@@ -40,7 +41,7 @@ export default function Header() {
           onClick={handleBack}
           className="cursor-pointer"
         />
-        <a
+        <Link
           href="/"
           className="flex items-center gap-1 sm:gap-1.5"
           aria-label="Go to Rarement home"
@@ -53,7 +54,7 @@ export default function Header() {
           <div className="block md:hidden">
             <MediumLogo />
           </div> */}
-        </a>
+        </Link>
       </div>
       <ConnectButton.Custom>
         {({

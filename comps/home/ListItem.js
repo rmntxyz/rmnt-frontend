@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PolyFrameImage } from "../../utils/PolyFrameImage";
 import useRarementData from "../../utils/useRarementData";
 
@@ -16,7 +17,7 @@ export default function ListItem({ item, idx, rarementABI }) {
 
   return (
     <div className="relative">
-      <a href={"/webtoons/" + item.attributes.webtoon_id}>
+      <Link href={"/webtoons/" + item.attributes.webtoon_id}>
         <Image
           src={item.attributes.cover_image.data.attributes.url}
           width={704}
@@ -26,7 +27,7 @@ export default function ListItem({ item, idx, rarementABI }) {
           className="rounded-2xl"
           alt="Rarement Webtoon Cover Image"
         />
-      </a>
+      </Link>
       {released ? (
         <div
           className={`absolute flex h-fit bottom-0 z-10 items-center w-full grounded-bl-2xl rounded-br-2xl bg-black/50 ${
@@ -62,7 +63,7 @@ export default function ListItem({ item, idx, rarementABI }) {
                 className="relative w-full"
                 style={{ height: idx === 0 ? 44 : 33 }}
               >
-                <a
+                <Link
                   href={
                     "/artists/" +
                     item.attributes.artist_id.data.attributes.first_name
@@ -73,7 +74,7 @@ export default function ListItem({ item, idx, rarementABI }) {
                   <span className="font-bold truncate">
                     {item.attributes.artist_id.data.attributes.first_name}
                   </span>
-                </a>
+                </Link>
                 <div className="absolute bottom-0 w-full h-px bg-white/50 rounded-sm"></div>
               </div>
             </div>
