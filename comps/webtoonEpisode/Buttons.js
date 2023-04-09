@@ -13,9 +13,6 @@ export default function Buttons({
   viewportHeight,
   elementHeight,
 }) {
-  //Get screen width to set the botton size
-  const { screenWidth } = useScreenSize();
-
   //Use params to specify prev/next episodes
   const {
     query: { episodeNumber, webtoonId, language },
@@ -46,11 +43,9 @@ export default function Buttons({
           >
             <FontAwesomeIcon icon={faArrowLeft} className="text-lg" />
             <span
-              style={{
-                display:
-                  screenWidth < 768 && nextReleased ? "none" : "inline-block",
-              }}
-              className="ml-3"
+              className={`ml-3 ${
+                nextReleased ? "hidden md:inline-block" : "inline-block"
+              }`}
             >
               Ep.{episodeNo - 1}
             </span>
@@ -70,11 +65,9 @@ export default function Buttons({
             className="gradientBorder py-3 px-4"
           >
             <span
-              style={{
-                display:
-                  screenWidth < 768 && prevEpisode ? "none" : "inline-block",
-              }}
-              className="mr-3"
+              className={`mr-3 ${
+                prevEpisode ? "hidden md:inline-block" : "inline-block"
+              }`}
             >
               Ep.{episodeNo + 1}
             </span>
