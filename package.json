@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "0xpass": "^0.0.27",
+    "0xpass": "^0.0.28",
     "@apollo/client": "^3.6.8",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
