@@ -102,7 +102,20 @@ export async function getServerSideProps() {
   });
   return {
     props: {
-      webtoons: data.webtoons.data.slice().sort((a, b) => b.id - a.id),
+      webtoons: data.webtoons.data.slice().sort((a, b) => {
+        if (b.attributes.rarement.data === null) return -1;
+        if (b.attributes.rarement.data.endTime < Date.now()) return -1;
+        if (
+          a.attributes.rarement.data.attributes.endTime <
+          b.attributes.rarement.data.attributes.endTime
+        )
+          return -1;
+        if (
+          a.attributes.rarement.data.attributes.endTime >
+          b.attributes.rarement.data.attributes.endTime
+        )
+          return 1;
+      }),
       artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
       rarementABI: data.rarementContract.data.attributes.rarementABI,
     },
