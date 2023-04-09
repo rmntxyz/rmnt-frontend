@@ -1,7 +1,7 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/legacy/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import ShowOrClose from "../../utils/showOrClose";
 import { Email, Instagram, ProfileCheck, SmallOpenSea } from "../../utils/svgs";
@@ -10,10 +10,11 @@ import CopyAddress from "./CopyAddress";
 export default function Desc({ props }) {
   //Find if the text is truncated & display the "more/close" button if the text is truncated
   const [truncated, setTruncated] = useState(false);
+  const descRef = useRef();
 
   useEffect(() => {
-    const element = document.getElementById("desc");
-    if (element.offsetHeight < element.scrollHeight) {
+    const desc = descRef.current;
+    if (desc?.offsetHeight < desc?.scrollHeight) {
       setTruncated(true);
     }
   });
@@ -113,6 +114,7 @@ export default function Desc({ props }) {
             <div className="text-justify flex flex-col items-start gap-3">
               <div
                 id="desc"
+                ref={descRef}
                 className={`transition-[max-height] duration-300 ease-in-out ${
                   show ? "max-h-[5000px]" : "max-h-[120px] overflow-y-hidden"
                 }`}
