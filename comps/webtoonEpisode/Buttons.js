@@ -8,11 +8,7 @@ import { useRouter } from "next/router";
 import scrollToTop from "../../utils/scrollToTop";
 import Link from "next/link";
 
-export default function Buttons({
-  allEpisodes,
-  viewportHeight,
-  elementHeight,
-}) {
+export default function Buttons({ allEpisodes, showToTop }) {
   //Use params to specify prev/next episodes
   const {
     query: { episodeNumber, webtoonId, language },
@@ -23,9 +19,10 @@ export default function Buttons({
   const nextEpisode = allEpisodes[episodeNo];
   const nextReleased =
     nextEpisode?.attributes.released_timestamp * 1000 < new Date().getTime();
+
   return (
-    <div id="buttons" className="fixed w-full bottom-0 duration-200">
-      <div className="relative max-w-[768px] md:max-w-[630px]">
+    <div id="buttons" className="fixed bottom-0 w-full">
+      <div className="relative mx-auto max-w-[768px] md:max-w-[630px]">
         <div className="flex items-center justify-center gap-8 py-8 font-bold">
           <Link
             href={
@@ -79,9 +76,8 @@ export default function Buttons({
           onClick={scrollToTop}
           title="Scroll To Top"
           style={{
-            opacity: viewportHeight > elementHeight + 80 ? "0" : "1",
-            pointerEvents:
-              viewportHeight > elementHeight + 80 ? "none" : "auto",
+            opacity: !showToTop ? "0" : "1",
+            pointerEvents: !showToTop ? "none" : "auto",
           }}
         >
           <FontAwesomeIcon

@@ -24,7 +24,6 @@ export default function PatronCard({ item }) {
             height={44}
             alt="Rarement Patron Image"
           />
-
           <div>
             <div className="text-white/70 text-sm">
               {month}/{date}/{year}
