@@ -56,7 +56,7 @@ export default function ProjectTab(props) {
       </div>
       <Avatar {...props} />
       <Benefits benefits={benefits} />
-      <Patrons address={rarement?.contractAddress} />
+      <Patrons rarement={rarement} />
     </div>
   );
 }

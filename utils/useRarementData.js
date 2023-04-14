@@ -2,11 +2,9 @@ import { getProvider } from "@wagmi/core";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 
-export const chainId =
-  process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ? 137 : 80001;
-
 export default function useRarementData(
   rarementAddress,
+  chainId,
   rarementABI,
   scopes = []
 ) {
@@ -33,6 +31,7 @@ export default function useRarementData(
           rarementABI,
           provider
         );
+        console.log(rarementContract);
         const info = await rarementContract.rarementInfo();
         const supply = await rarementContract.totalSupply();
 

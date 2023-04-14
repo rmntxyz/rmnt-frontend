@@ -2,23 +2,25 @@
 import { Alchemy, Network } from "alchemy-sdk";
 import { useEffect, useState } from "react";
 
-const config = {
-  apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
-  network:
-    process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-      ? Network.MATIC_MAINNET
-      : Network.MATIC_MUMBAI, // Replace with the network your NFT contract is deployed to.
-};
-
-const alchemy = new Alchemy(config);
+const networkMap = {
+  137: Network.MATIC_MAINNET,
+  80001: Network.MATIC_MUMBAI
+}
 
 // function to get all the minters of the NFT Collection
-export function useHolders(nftAddress, max = 100, first = 7) {
+export function useHolders(nftAddress, chainId, max = 100, first = 7) {
   const [holders, setHolders] = useState([]);
   const [orderInfo, setOrderInfo] = useState({ minters: [], ownersMap: {} });
   const [noMore, setNoMore] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [next, setLoadingNext] = useState(null);
+
+  const config = {
+    apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
+    network: networkMap[chainId] // Replace with the network your NFT contract is deployed to.
+  };
+
+  const alchemy = new Alchemy(config);
 
   useEffect(() => {
     // setIsLoading(true);
@@ -34,7 +36,7 @@ export function useHolders(nftAddress, max = 100, first = 7) {
         .reduce((acc, x) => Object.assign(acc, x), {});
 
       // for minting order
-      const minters = await getMinters(nftAddress, max);
+      const minters = await getMinters(alchemy, nftAddress, max);
       setOrderInfo({ minters, ownersMap });
     };
 
@@ -80,7 +82,7 @@ export function useHolders(nftAddress, max = 100, first = 7) {
   useEffect(() => {
     const { minters, ownersMap } = orderInfo;
 
-    if (minters.length === 0) {
+    if (holders.length === 0 || minters.length === 0) {
       return;
     }
 
@@ -127,7 +129,7 @@ export function useHolders(nftAddress, max = 100, first = 7) {
 /**
  * @see https://docs.alchemy.com/docs/how-to-get-minters-of-an-nft-collection#checking-if-the-minters-still-hold-the-nft
  */
-async function getMinters(nftAddress, quantity) {
+async function getMinters(alchemy, nftAddress, quantity) {
   const minters = [];
 
   let pageKey;

@@ -9,6 +9,7 @@ export default function ListItem({ item, idx, rarementABI }) {
 
   const { totalSupply, rarementInfo, isLoading } = useRarementData(
     rarement?.contractAddress,
+    rarement?.chainId,
     rarementABI
   );
 

@@ -34,9 +34,13 @@ export default function Collectability({ webtoon, rarementABI, exchangeRate }) {
   const rarement = webtoon.attributes.rarement?.data.attributes;
   const { contract, rarementInfo, totalSupply, isLoaded } = useRarementData(
     rarement.contractAddress,
+    rarement.chainId,
     rarementABI,
     [receipt]
   );
+
+  //console.log(rarement.contractAddress, rarement.chainId, rarementABI, receipt)
+  //console.log(contract, rarementInfo, totalSupply, isLoaded)
 
   useEffect(() => {
     const prepareCollect = async () => {

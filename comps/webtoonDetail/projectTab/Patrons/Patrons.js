@@ -4,14 +4,16 @@ import { useHolders } from "../../../../utils/useHolders";
 import { EmptyPatronCard } from "./EmptyPatronCard";
 import MoreOrClose from "./MoreOrClose";
 
-export default function Patrons({ address }) {
+export default function Patrons({ rarement }) {
   //Set loading for patron cards
   const [loading, setLoading] = useState(true);
 
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
 
-  const { holders, noMore, next, isLoading } = useHolders(address, 100, 7);
+  const { contractAddress, chainId } = rarement ? rarement : {};
+
+  const { holders, noMore, next, isLoading } = useHolders(contractAddress, chainId, 100, 7);
 
   const [firstRow, setFirstRow] = useState(["first", "empty", "empty"]);
   const [secondRow, setSecondRow] = useState([
@@ -115,7 +117,7 @@ export default function Patrons({ address }) {
         next={next}
         isLoading={isLoading}
         restRow={restRow}
-        address={address}
+        address={contractAddress}
       />
     </div>
   );

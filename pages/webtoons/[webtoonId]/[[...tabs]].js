@@ -50,6 +50,7 @@ const GET_WEBTOON_DATA = gql`
               id
               attributes {
                 contractAddress
+                chainId
                 name
                 symbol
                 baseURI

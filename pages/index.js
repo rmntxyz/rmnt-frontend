@@ -50,6 +50,7 @@ const GET_HOME_DATA = gql`
               id
               attributes {
                 contractAddress
+                chainId
                 name
                 symbol
                 baseURI
@@ -104,15 +105,15 @@ export async function getServerSideProps() {
     props: {
       webtoons: data.webtoons.data.slice().sort((a, b) => {
         if (b.attributes.rarement.data === null) return -1;
-        if (b.attributes.rarement.data.endTime < Date.now()) return -1;
+        if (b.attributes.rarement.data?.endTime < Date.now()) return -1;
         if (
-          a.attributes.rarement.data.attributes.endTime <
-          b.attributes.rarement.data.attributes.endTime
+          a.attributes.rarement.data?.attributes.endTime <
+          b.attributes.rarement.data?.attributes.endTime
         )
           return -1;
         if (
-          a.attributes.rarement.data.attributes.endTime >
-          b.attributes.rarement.data.attributes.endTime
+          a.attributes.rarement.data?.attributes.endTime >
+          b.attributes.rarement.data?.attributes.endTime
         )
           return 1;
       }),
