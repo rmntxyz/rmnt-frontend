@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }) {
       <WagmiConfig client={passClient}>
         <PassProvider
           wagmiClientConfig={{ autoConnect: true }}
-          apiKey="fa73399c-1ccd-4b68-9634-10ea59b6931f"
+          apiKey="3961a6ca-ac0b-4b06-9b15-95c5ccc7f502"
           enabledConnectors={["google", "metamask"]}
           theme={darkTheme({
             accentColor: "#70EFCF",
