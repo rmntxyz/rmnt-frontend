@@ -10,8 +10,14 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 
 // Configure chains & providers with the Alchemy provider
+const networks = [ polygon ];
+
+if (process.env.VERCEL_ENV === "development") {
+  networks.push(polygonMumbai);
+}
+
 const { chains } = configureChains(
-  [polygon, polygonMumbai],
+  networks,
   [
     alchemyProvider({
       apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY,

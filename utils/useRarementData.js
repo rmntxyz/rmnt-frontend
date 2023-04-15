@@ -31,7 +31,6 @@ export default function useRarementData(
           rarementABI,
           provider
         );
-        console.log(rarementContract);
         const info = await rarementContract.rarementInfo();
         const supply = await rarementContract.totalSupply();
 
