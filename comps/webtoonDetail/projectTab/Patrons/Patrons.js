@@ -13,7 +13,9 @@ export default function Patrons({ rarement }) {
 
   const { contractAddress, chainId } = rarement ? rarement : {};
 
-  const { holders, noMore, next, isLoading } = useHolders(contractAddress, chainId, 100, 7);
+  const { holders, noMore, next, isLoading } = rarement
+    ? useHolders(contractAddress, chainId, 100, 7)
+    : { holders: [], noMore: true, next: null, isLoading: false };
 
   const [firstRow, setFirstRow] = useState(["first", "empty", "empty"]);
   const [secondRow, setSecondRow] = useState([

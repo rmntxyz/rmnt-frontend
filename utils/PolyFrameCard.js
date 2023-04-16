@@ -1,5 +1,5 @@
 import Image from "next/legacy/image";
-import { isImage } from "./mediaType";
+import { isVideo } from "./mediaType";
 
 export const PolyFrameCard = ({ href, idx }) => (
   <svg viewBox="0 0 238 340" xmlns="http://www.w3.org/2000/svg">
@@ -14,18 +14,8 @@ export const PolyFrameCard = ({ href, idx }) => (
         width="100%"
         height="68%"
         clipPath={"url(#imageClip" + idx + ")"}
-        preserveAspectRatio="xMinYMin slice"
       >
-        {isImage.includes(href.split(".").pop()) ? (
-          <Image
-            layout="fill"
-            objectFit="cover"
-            src={href}
-            alt="Rarement Image"
-            placeholder="blur"
-            blurDataURL={href}
-          />
-        ) : (
+        {isVideo.includes(href.split(".").pop()) ? (
           <video
             width="100%"
             height="100%"
@@ -33,6 +23,13 @@ export const PolyFrameCard = ({ href, idx }) => (
             autoPlay="autoplay"
             muted
             loop
+          ></video>
+        ) : (
+          <Image
+            layout="fill"
+            objectFit="cover"
+            src={href}
+            alt="Rarement Image"
           />
         )}
       </foreignObject>

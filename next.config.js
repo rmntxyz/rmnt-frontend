@@ -5,7 +5,7 @@ module.exports = {
   // reactStrictMode: true,
   transpilePackages: ["0xpass"],
   images: {
-    domains: ["storage.googleapis.com"],
+    domains: ["storage.googleapis.com", "res.cloudinary.com"],
   },
   async rewrites() {
     return [
