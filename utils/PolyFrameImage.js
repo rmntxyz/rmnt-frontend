@@ -23,6 +23,8 @@ export const PolyFrameImage = ({ href, idx }) => (
           objectFit="cover"
           src={href}
           alt="Rarement Image"
+          placeholder="blur"
+          blurDataURL={href}
         />
       )}
     </foreignObject>

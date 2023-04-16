@@ -29,7 +29,9 @@ export const PolyFrameCard = ({ href, idx }) => (
             layout="fill"
             objectFit="cover"
             src={href}
-            alt="Rarement Image"
+            alt="Rarement Collectible Image"
+            placeholder="blur"
+            blurDataURL={href}
           />
         )}
       </foreignObject>
