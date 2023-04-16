@@ -13,8 +13,8 @@ export default function Tabs(props) {
 
   return (
     <div id="main">
-      <ul className="sticky top-0 flex bg-navBg z-10 shadow-md">
-        <li className="ml-4">
+      <div className="sticky top-0 flex bg-navBg z-10 shadow-md">
+        <div className="ml-4">
           <Link shallow href={`/webtoons/${webtoonId}`}>
             <div
               className={`text-lg py-4 px-5 ${
@@ -29,8 +29,8 @@ export default function Tabs(props) {
               tab === "project" ? "visible" : "invisible"
             }`}
           ></div>
-        </li>
-        <li>
+        </div>
+        <div>
           <Link shallow href={`/webtoons/${webtoonId}/webtoon`}>
             <div
               className={`text-lg py-4 px-5 ${
@@ -45,8 +45,8 @@ export default function Tabs(props) {
               tab === "webtoon" ? "visible" : "invisible"
             }`}
           ></div>
-        </li>
-        <li>
+        </div>
+        <div>
           <Link shallow href={`/webtoons/${webtoonId}/collectibles`}>
             <div
               className={`text-lg py-4 px-5 ${
@@ -61,9 +61,9 @@ export default function Tabs(props) {
               tab === "collectibles" ? "visible" : "invisible"
             }`}
           ></div>
-        </li>
+        </div>
         <div className="absolute bottom-0 w-full h-px bg-white/10"></div>
-      </ul>
+      </div>
       <div>
         <div className={tab === "project" ? "block" : "hidden"}>
           <ProjectTab {...props} />

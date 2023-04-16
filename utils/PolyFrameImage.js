@@ -9,13 +9,19 @@ export const PolyFrameImage = ({ href, idx }) => (
       clipPath={"url(#clip" + idx + ")"}
     >
       {isImage.includes(href.split(".").pop()) ? (
-        <Image layout="fill" src={href} />
+        <Image
+          layout="fill"
+          src={href}
+          alt="Rarement Image"
+          placeholder="blur"
+          blurDataURL={href}
+        />
       ) : (
         <video
           width="100%"
           height="100%"
           src={href}
-          autoplay="autoplay"
+          autoPlay="autoplay"
           muted
           loop
         ></video>

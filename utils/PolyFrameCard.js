@@ -17,13 +17,20 @@ export const PolyFrameCard = ({ href, idx }) => (
         preserveAspectRatio="xMinYMin slice"
       >
         {isImage.includes(href.split(".").pop()) ? (
-          <Image layout="fill" objectFit="cover" src={href} />
+          <Image
+            layout="fill"
+            objectFit="cover"
+            src={href}
+            alt="Rarement Image"
+            placeholder="blur"
+            blurDataURL={href}
+          />
         ) : (
           <video
             width="100%"
             height="100%"
             src={href}
-            autoplay="autoplay"
+            autoPlay="autoplay"
             muted
             loop
           />

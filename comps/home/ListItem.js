@@ -21,17 +21,18 @@ export default function ListItem({ item, idx, rarementABI }) {
       <Link href={"/webtoons/" + item.attributes.webtoon_id}>
         <Image
           src={item.attributes.cover_image.data.attributes.url}
-          width={704}
-          height={704}
+          width={idx === 0 ? 566 : 300}
+          height={idx === 0 ? 566 : 300}
           placeholder="blur"
           blurDataURL={item.attributes.cover_image.data.attributes.url}
           className="rounded-2xl"
           alt="Rarement Webtoon Cover Image"
+          loading={idx === 0 ? "eager" : "lazy"}
         />
       </Link>
       {released ? (
         <div
-          className={`absolute flex h-fit bottom-0 z-10 items-center w-full grounded-bl-2xl rounded-br-2xl bg-black/50 ${
+          className={`absolute flex h-fit bottom-0 z-10 items-center w-full rounded-bl-2xl rounded-br-2xl bg-black/50 ${
             idx === 0 ? "p-4 gap-4" : "p-3 gap-3"
           }`}
         >
