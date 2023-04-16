@@ -1,3 +1,6 @@
+import Image from "next/legacy/image";
+import { isImage } from "./mediaType";
+
 export const PolyFrameCard = ({ href, idx }) => (
   <svg viewBox="0 0 238 340" xmlns="http://www.w3.org/2000/svg">
     <g
@@ -7,13 +10,25 @@ export const PolyFrameCard = ({ href, idx }) => (
       fill="white"
       fillOpacity="0.04"
     >
-      <image
-        xlinkHref={href}
+      <foreignObject
         width="100%"
         height="68%"
         clipPath={"url(#imageClip" + idx + ")"}
         preserveAspectRatio="xMinYMin slice"
-      />
+      >
+        {isImage.includes(href.split(".").pop()) ? (
+          <Image layout="fill" objectFit="cover" src={href} />
+        ) : (
+          <video
+            width="100%"
+            height="100%"
+            src={href}
+            autoplay="autoplay"
+            muted
+            loop
+          />
+        )}
+      </foreignObject>
       <path
         id={"cardPath" + idx}
         d="M232 13C232 8.58172 228.418 5 224 5H14C9.58172 5 6 8.58173 6 13V328C6 332.418 9.58173 336 14 336H176.726C178.407 336 180.045 335.47 181.408 334.486L228.683 300.359C230.766 298.855 232 296.442 232 293.873V13Z"

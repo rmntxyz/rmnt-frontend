@@ -1,20 +1,16 @@
+import Image from "next/legacy/image";
 import { isImage } from "./mediaType";
 
 export const PolyFrameImage = ({ href, idx }) => (
   <svg viewBox="-1 -1 183 183" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {isImage.includes(href.split(".").pop()) ? (
-      <image
-        width="100%"
-        height="100%"
-        clipPath={"url(#clip" + idx + ")"}
-        xlinkHref={href}
-      />
-    ) : (
-      <foreignObject
-        width="100%"
-        height="100%"
-        clipPath={"url(#clip" + idx + ")"}
-      >
+    <foreignObject
+      width="100%"
+      height="100%"
+      clipPath={"url(#clip" + idx + ")"}
+    >
+      {isImage.includes(href.split(".").pop()) ? (
+        <Image layout="fill" src={href} />
+      ) : (
         <video
           width="100%"
           height="100%"
@@ -23,8 +19,8 @@ export const PolyFrameImage = ({ href, idx }) => (
           muted
           loop
         ></video>
-      </foreignObject>
-    )}
+      )}
+    </foreignObject>
 
     <path
       id={"path" + idx}
