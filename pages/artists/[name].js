@@ -76,6 +76,10 @@ export async function getServerSideProps(context) {
   });
   const artist = artists.data[0];
 
+  if (!artist) {
+    return { notFound: true };
+  }
+
   return {
     props: {
       artist: artist,

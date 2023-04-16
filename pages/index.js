@@ -101,6 +101,9 @@ export async function getServerSideProps() {
     query: GET_HOME_DATA,
     // fetchPolicy: "network-only",
   });
+  if (!data) {
+    return { notFound: true };
+  }
   return {
     props: {
       webtoons: data.webtoons.data.slice().sort((a, b) => {

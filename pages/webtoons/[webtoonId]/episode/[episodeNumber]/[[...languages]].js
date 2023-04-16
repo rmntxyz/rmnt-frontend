@@ -74,6 +74,10 @@ export async function getServerSideProps(context) {
   const episode = episodes.find(
     (item) => item.attributes.episode_number === parseInt(episodeNumber)
   );
+
+  if (!episode) {
+    return { notFound: true };
+  }
   // const prevUrl = context.req.headers.referer;
   return {
     props: {

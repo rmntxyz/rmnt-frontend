@@ -84,6 +84,9 @@ export async function getServerSideProps() {
     query: GET_WEBTOONS_DATA,
     // fetchPolicy: "network-only",
   });
+  if (!data) {
+    return { notFound: true };
+  }
   return {
     props: {
       webtoons: data.webtoons.data.slice().sort((a, b) => b.id - a.id),

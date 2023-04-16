@@ -159,6 +159,9 @@ export async function getServerSideProps(context) {
   });
 
   const webtoon = webtoons.data[0];
+  if (!webtoon) {
+    return { notFound: true };
+  }
   const rarementABI = rarementContract.data.attributes.rarementABI;
 
   return {
