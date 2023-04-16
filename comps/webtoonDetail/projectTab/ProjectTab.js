@@ -24,7 +24,7 @@ export default function ProjectTab(props) {
   const [show, setShow] = useState(false);
 
   //Store the rarement data and pass it to the Patrons component
-  const rarement = webtoon.attributes?.rarement.data.attributes;
+  const rarement = webtoon.attributes?.rarement.data?.attributes;
 
   return (
     <div className="mx-8 mt-8 mb-14 flex flex-col gap-8">
