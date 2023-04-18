@@ -37,10 +37,10 @@ export default function ListItem({ item, idx, rarementABI }) {
           }`}
         >
           <div className={`${idx === 0 ? "w-[32%] sm:w-[23%]" : "w-[32%]"}`}>
-            {/* <PolyFrameImage
+            <PolyFrameImage
               href={item.attributes.avatarGIF.data.attributes.url}
               idx={item.attributes.avatarGIF.data.id}
-            /> */}
+            />
           </div>
           <div
             className={`flex flex-col -translate-y-[5%] ${
