@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function AboutTop() {
   return (
@@ -17,6 +17,8 @@ export default function AboutTop() {
         src="/레어먼트_홈피이미지001(1) 1@3x.png"
         width={336}
         height={336}
+        placeholder="blur"
+        blurDataURL="/레어먼트_홈피이미지001(1) 1@3x.png"
         alt="Rarement Image"
       />
       <div className="flex flex-col gap-3">
