@@ -22,11 +22,11 @@ export default function List({ webtoons, rarementABI }) {
               rarementABI={rarementABI}
             />
           ))}
-          {restItems.length % 2 === 1 &&
+          {restItems.length % 2 === 1 && (
             <div className="bg-opaqueGray rounded-2xl hidden sm:flex items-center justify-center aspect-square text-white/100 text-3xl font-bold">
               Coming soon
             </div>
-          }
+          )}
         </div>
       </div>
     </div>

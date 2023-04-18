@@ -21,8 +21,8 @@ export default function ListItem({ item, idx, rarementABI }) {
       <Link href={"/webtoons/" + item.attributes.webtoon_id}>
         <Image
           src={item.attributes.cover_image.data.attributes.url}
-          width={idx === 0 ? 566 : 300}
-          height={idx === 0 ? 566 : 300}
+          width={566}
+          height={566}
           placeholder="blur"
           blurDataURL={item.attributes.cover_image.data.attributes.url}
           className="rounded-2xl"
@@ -33,37 +33,48 @@ export default function ListItem({ item, idx, rarementABI }) {
       {released ? (
         <div
           className={`absolute flex h-fit bottom-0 z-10 items-center w-full rounded-bl-2xl rounded-br-2xl bg-black/50 ${
-            idx === 0 ? "p-4 gap-4" : "p-3 gap-3"
+            idx === 0 ? "p-3 gap-3 sm:p-4 sm:gap-4" : "p-3 gap-3"
           }`}
         >
-          <div className={`${idx === 0 ? "w-[23%]" : "w-[32%]"}`}>
-            <PolyFrameImage
+          <div className={`${idx === 0 ? "w-[32%] sm:w-[23%]" : "w-[32%]"}`}>
+            {/* <PolyFrameImage
               href={item.attributes.avatarGIF.data.attributes.url}
               idx={item.attributes.avatarGIF.data.id}
-            />
+            /> */}
           </div>
           <div
             className={`flex flex-col -translate-y-[5%] ${
-              idx === 0 ? "w-[75%] gap-3 text-lg" : "w-[68%] gap-2 text-sm"
+              idx === 0
+                ? "w-[68%] gap-2 text-sm sm:w-[75%] sm:gap-3 sm:text-lg"
+                : "w-[68%] gap-2 text-sm"
             }`}
           >
             <div className="flex gap-1.5 items-center">
-              <div className="relative" style={{ height: idx === 0 ? 44 : 33 }}>
+              <div
+                className={`relative min-w-fit ${
+                  idx === 0 ? "h-[33px] sm:h-[44px]" : "h-[33px]"
+                }`}
+              >
                 <Image
                   src={
                     item.attributes.artist_id.data.attributes.profile_image.data
                       .attributes.url
                   }
-                  width={idx === 0 ? 33 : 22}
-                  height={idx === 0 ? 33 : 22}
+                  width={33}
+                  height={33}
                   alt="Rarement Artist Profile Image"
-                  className="rounded-full"
+                  className={`rounded-full aspect-square ${
+                    idx === 0
+                      ? "w-[22px] h-[22px] sm:w-[33px] sm:h-[33px] sm:aspect-square"
+                      : "w-[22px] h-[22px]"
+                  }}`}
                 />
                 <div className="absolute bottom-0 w-full h-px bg-white/50 rounded-sm"></div>
               </div>
               <div
-                className="relative w-full"
-                style={{ height: idx === 0 ? 44 : 33 }}
+                className={`relative w-full ${
+                  idx === 0 ? "h-[33px] sm:h-[44px]" : "h-[33px]"
+                }`}
               >
                 <Link
                   href={
