@@ -23,7 +23,7 @@ export default function AboutTop() {
         <div className="font-bold text-2xl">Collect & Support Your Artist</div>
         <div>
           Showing your love for webtoon goes beyond just reading them with
-          Rarement&#8212;collect avatars of webtoon characters you love and
+          Rarement&#8212;collect avatars of the webtoon characters you love and
           enjoy other exclusive benefits that connect you closer to the webtoon.
         </div>
       </div>
