@@ -32,7 +32,7 @@ const GET_ARTIST_DATA = gql`
               }
             }
           }
-          webtoon_ids {
+          webtoon_ids(filters: { publishedAt: { ne: null } }) {
             data {
               id
               attributes {
@@ -40,6 +40,7 @@ const GET_ARTIST_DATA = gql`
                 title
                 volume
                 released_timestamp
+                publishedAt
                 cover_image {
                   data {
                     attributes {
@@ -96,7 +97,6 @@ export default function Artist({ artist, webtoons }) {
         <Desc props={artist} />
         <Line />
         <Webtoons webtoons={webtoons} />
-        {/* <NFT NFTs={NFTs} artist={artist} /> */}
       </main>
     </div>
   );

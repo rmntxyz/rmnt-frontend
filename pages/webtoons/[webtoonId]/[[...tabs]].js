@@ -68,7 +68,7 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
-          collectibles {
+          collectibles(filters: { publishedAt: { ne: null } }) {
             data {
               id
               attributes {
@@ -106,12 +106,16 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
-          episodes(pagination: { limit: 200 }) {
+          episodes(
+            pagination: { limit: 200 }
+            filters: { publishedAt: { ne: null } }
+          ) {
             data {
               id
               attributes {
                 episode_number
                 released_timestamp
+                publishedAt
                 thumbnail {
                   data {
                     attributes {
@@ -160,7 +164,7 @@ export async function getServerSideProps(context) {
 
   const webtoon = webtoons.data[0];
   if (!webtoon) {
-    return { notFound: true };
+    return { redirect: { destination: "/404/", permanent: false } };
   }
   const rarementABI = rarementContract.data.attributes.rarementABI;
 

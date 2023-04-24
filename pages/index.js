@@ -31,6 +31,7 @@ const GET_HOME_DATA = gql`
           title
           volume
           released_timestamp
+          publishedAt
           cover_image {
             data {
               attributes {
@@ -102,7 +103,7 @@ export async function getServerSideProps() {
     // fetchPolicy: "network-only",
   });
   if (!data) {
-    return { notFound: true };
+    return { redirect: { destination: "/404/", permanent: false } };
   }
   return {
     props: {

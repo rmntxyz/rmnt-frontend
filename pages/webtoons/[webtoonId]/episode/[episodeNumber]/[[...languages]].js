@@ -76,7 +76,7 @@ export async function getServerSideProps(context) {
   );
 
   if (!episode) {
-    return { notFound: true };
+    return { redirect: { destination: "/404/", permanent: false } };
   }
   // const prevUrl = context.req.headers.referer;
   return {
