@@ -164,7 +164,10 @@ export async function getServerSideProps(context) {
 
   const webtoon = webtoons.data[0];
   if (!webtoon) {
-    return { redirect: { destination: "/404/", permanent: false } };
+    return {
+      notFound: true,
+      redirect: { destination: "/404", permanent: false },
+    };
   }
   const rarementABI = rarementContract.data.attributes.rarementABI;
 

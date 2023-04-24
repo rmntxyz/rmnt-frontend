@@ -86,7 +86,10 @@ export async function getServerSideProps() {
     // fetchPolicy: "network-only",
   });
   if (!data) {
-    return { redirect: { destination: "/404/", permanent: false } };
+    return {
+      notFound: true,
+      redirect: { destination: "/404", permanent: false },
+    };
   }
   return {
     props: {
