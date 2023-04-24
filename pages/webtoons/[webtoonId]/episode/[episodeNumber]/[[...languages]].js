@@ -28,7 +28,7 @@ const GET_EPISODE_DATA = gql`
               attributes {
                 episode_number
                 released_timestamp
-                eng_images(pagination: { limit: 200 }, sort: "caption") {
+                eng_images(pagination: { limit: 200 }) {
                   data {
                     attributes {
                       name
@@ -39,7 +39,7 @@ const GET_EPISODE_DATA = gql`
                     }
                   }
                 }
-                kor_images(pagination: { limit: 200 }, sort: "caption") {
+                kor_images(pagination: { limit: 200 }) {
                   data {
                     attributes {
                       name
@@ -76,7 +76,10 @@ export async function getServerSideProps(context) {
   );
 
   if (!episode) {
-    return { redirect: { destination: "/404/", permanent: false } };
+    return {
+      notFound: true,
+      redirect: { destination: "/404", permanent: false },
+    };
   }
   // const prevUrl = context.req.headers.referer;
   return {
@@ -84,6 +87,12 @@ export async function getServerSideProps(context) {
       // prevUrl: prevUrl || null,
       webtoon: webtoon,
       episode: episode.attributes,
+      eng_images: episode.attributes.eng_images.data
+        .slice()
+        .sort((a, b) => a.attributes.caption - b.attributes.caption),
+      kor_images: episode.attributes.kor_images.data
+        .slice()
+        .sort((a, b) => a.attributes.caption - b.attributes.caption),
       allEpisodes: episodes
         .slice()
         .sort(
@@ -93,7 +102,13 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Episode({ webtoon, episode, allEpisodes }) {
+export default function Episode({
+  webtoon,
+  episode,
+  eng_images,
+  kor_images,
+  allEpisodes,
+}) {
   //Listen to click/scroll events to hide or paint navbar & buttons
   const [clicked, setClicked] = useState(false);
   const [show, setShow] = useState(false);
@@ -164,13 +179,7 @@ export default function Episode({ webtoon, episode, allEpisodes }) {
       </div>
       <main ref={imageRef} className="max-w-[768px] mx-auto md:max-w-[630px]">
         <div ref={topRef} className="h-20"></div>
-        <KorEngEpisode
-          data={
-            language === "kor"
-              ? episode.kor_images.data
-              : episode.eng_images.data
-          }
-        />
+        <KorEngEpisode data={language === "kor" ? kor_images : eng_images} />
         <div ref={bottomRef} className="h-40"></div>
       </main>
     </div>
