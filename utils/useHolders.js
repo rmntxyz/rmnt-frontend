@@ -25,6 +25,10 @@ export function useHolders(nftAddress, chainId, max = 100, first = 7) {
   useEffect(() => {
     // setIsLoading(true);
 
+    if (!nftAddress) {
+      return;
+    }
+
     const fetchMinters = async () => {
       const { owners } = await alchemy.nft.getOwnersForContract(nftAddress, {
         withTokenBalances: true,

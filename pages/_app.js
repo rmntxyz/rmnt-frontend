@@ -10,10 +10,12 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 
 // Configure chains & providers with the Alchemy provider
-const networks = [ polygon ];
+const networks = [];
 
-if (process.env.VERCEL_ENV === "development") {
+if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
   networks.push(polygonMumbai);
+} else {
+  networks.push(polygon);
 }
 
 const { chains } = configureChains(
@@ -43,7 +45,7 @@ function MyApp({ Component, pageProps }) {
       <WagmiConfig client={passClient}>
         <PassProvider
           wagmiClientConfig={{ autoConnect: true }}
-          apiKey="3961a6ca-ac0b-4b06-9b15-95c5ccc7f502"
+          apiKey={process.env.NEXT_PUBLIC_0XPASS_API_KEY}
           enabledConnectors={["google", "metamask"]}
           theme={darkTheme({
             accentColor: "#70EFCF",

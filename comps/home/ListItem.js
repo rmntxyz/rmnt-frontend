@@ -92,7 +92,7 @@ export default function ListItem({ item, idx, rarementABI }) {
               </div>
             </div>
             {isLoading ? (
-              <div className="animate-pulse  bg-lightGray/50 rounded-full items-center w-1/2 h-7"></div>
+              <div className={`animate-pulse  bg-lightGray/50 rounded-full items-center  ${idx === 0 ? "w-1/2 h-7" : "w-4/5 h-5" }`}></div>
             ) : (
               <div className="flex gap-1.5 items-center">
                 <span>Collected</span>

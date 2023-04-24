@@ -8,7 +8,13 @@ import Seo from "../comps/layout/SEO";
 
 const GET_HOME_DATA = gql`
   query Home_data {
-    webtoons {
+    webtoons(
+      filters: {
+        priority: { notNull: true }
+        rarement: { id: { notNull: true } }
+      }
+      sort: "priority"
+    ) {
       data {
         id
         attributes {
@@ -30,6 +36,7 @@ const GET_HOME_DATA = gql`
           }
           title
           volume
+          priority
           released_timestamp
           publishedAt
           cover_image {
@@ -100,30 +107,26 @@ const GET_HOME_DATA = gql`
 export async function getServerSideProps() {
   const { data } = await client.query({
     query: GET_HOME_DATA,
-    // fetchPolicy: "network-only",
+    fetchPolicy: "network-only",
   });
+
   if (!data) {
     return {
       notFound: true,
       redirect: { destination: "/404", permanent: false },
     };
   }
+
+  const byChainId = (webtoon) => {
+    const { chainId } = webtoon.attributes.rarement.data.attributes;
+    return process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
+      ? chainId === 137
+      : chainId === 80001;
+  };
+
   return {
     props: {
-      webtoons: data.webtoons.data.slice().sort((a, b) => {
-        if (b.attributes.rarement.data === null) return -1;
-        if (b.attributes.rarement.data?.endTime < Date.now()) return -1;
-        if (
-          a.attributes.rarement.data?.attributes.endTime <
-          b.attributes.rarement.data?.attributes.endTime
-        )
-          return -1;
-        if (
-          a.attributes.rarement.data?.attributes.endTime >
-          b.attributes.rarement.data?.attributes.endTime
-        )
-          return 1;
-      }),
+      webtoons: data.webtoons.data.filter(byChainId),
       artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
       rarementABI: data.rarementContract.data.attributes.rarementABI,
     },
