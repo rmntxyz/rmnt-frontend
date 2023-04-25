@@ -8,6 +8,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 // Configure chains & providers with the Alchemy provider
 const networks = [];
@@ -18,15 +19,12 @@ if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
   networks.push(polygon);
 }
 
-const { chains } = configureChains(
-  networks,
-  [
-    alchemyProvider({
-      apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY,
-    }),
-    publicProvider(),
-  ]
-);
+const { chains } = configureChains(networks, [
+  alchemyProvider({
+    apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY,
+  }),
+  publicProvider(),
+]);
 
 // const { connectors } = getDefaultWallets({
 //   appName: "rmnt-frontend",
@@ -56,9 +54,11 @@ function MyApp({ Component, pageProps }) {
           })}
           chains={chains}
         >
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <ParallaxProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ParallaxProvider>
         </PassProvider>
       </WagmiConfig>
     </ApolloProvider>

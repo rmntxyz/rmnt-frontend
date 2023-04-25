@@ -1,6 +1,6 @@
 export default function AboutBottom() {
   return (
-    <div className="relative max-w-[336px] py-14 mx-auto text-center flex flex-col gap-3">
+    <div className="max-w-[336px] py-14 mx-auto text-center flex flex-col gap-3">
       <div className="text-3xl text-mintGreen font-bold">
         Build a webtoon community TOGETHER!
       </div>
@@ -14,7 +14,6 @@ export default function AboutBottom() {
           Join us in building the new webtoon community!
         </span> */}
       </div>
-      <div className="absolute -top-[12%] -left-[15%] w-[75%] aspect-square bg-mintGreen/[.17] blur-[137px]"></div>
     </div>
   );
 }

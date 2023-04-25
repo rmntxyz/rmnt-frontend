@@ -5,6 +5,7 @@ import AboutTop from "../comps/home/AboutTop";
 import Artists from "../comps/home/Artists";
 import List from "../comps/home/List";
 import Seo from "../comps/layout/SEO";
+import Circle from "../utils/Circle";
 
 const GET_HOME_DATA = gql`
   query Home_data {
@@ -136,13 +137,25 @@ export async function getServerSideProps() {
 
 export default function Home({ webtoons, artists, rarementABI }) {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-x-clip">
       <Seo title="Rarement" />
-      <main className="max-w-[768px] mx-auto px-4 md:max-w-[630px]">
+      <main className="relative max-w-[768px] mx-auto px-4 md:max-w-[630px]">
         <List webtoons={webtoons} rarementABI={rarementABI} />
         <AboutTop />
         <Artists artists={artists} />
         <AboutBottom />
+        <Circle
+          css="top-[40%] left-1/2 w-[80%] bg-mintGreen/[.13] blur-[137px]"
+          speed={-20}
+        />
+        <Circle
+          css="bottom-[30%] -left-[15%] w-[40%] bg-mintGreen/[.06] blur-[77px]"
+          speed={-5}
+        />
+        <Circle
+          css="bottom-[5%] -left-[5%] w-[40%] bg-mintGreen/[.17] blur-[137px]"
+          speed={-15}
+        />
       </main>
     </div>
   );
