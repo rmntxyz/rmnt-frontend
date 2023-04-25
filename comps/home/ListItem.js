@@ -21,8 +21,8 @@ export default function ListItem({ item, idx, rarementABI }) {
       <Link href={"/webtoons/" + item.attributes.webtoon_id}>
         <Image
           src={item.attributes.cover_image.data.attributes.url}
-          width={566}
-          height={566}
+          width={735}
+          height={735}
           placeholder="blur"
           blurDataURL={item.attributes.cover_image.data.attributes.url}
           className="rounded-2xl"
