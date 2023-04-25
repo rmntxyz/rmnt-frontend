@@ -54,9 +54,9 @@ export default function Patrons({ rarement }) {
 
   return (
     <div className="mt-7 flex flex-col">
-      <div className="text-2xl font-bold">Patrons</div>
+      <div className="text-2xl font-bold">Collectors</div>
       <div className="mt-3">
-        The order of the patrons' list is determined by time of support.
+        Claim your permanent spot to the gallery of greats.
       </div>
       <div className="w-full h-px my-6 bg-white/10"></div>
       <div className={`flex flex-col`}>
@@ -73,7 +73,7 @@ export default function Patrons({ rarement }) {
                 key={idx}
                 idx={idx}
                 textOne="Be the first"
-                textTwo="patron!"
+                textTwo="collector!"
                 loading={isLoading || loading}
               />
             ) : (

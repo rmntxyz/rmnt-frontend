@@ -41,7 +41,7 @@ export default function ProjectTab(props) {
             height={20}
             alt="Pencil Image"
           />
-          <span>Synopsis</span>
+          <span>About webtoon</span>
         </div>
         <div
           id="desc"

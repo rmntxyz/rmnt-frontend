@@ -6,6 +6,8 @@ import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { Info } from "../../../../utils/svgs";
+import Tippy from "@tippyjs/react/headless";
 
 const DynamicCollectability = dynamic(() => import("./Collectability"), {
   ssr: false,
@@ -16,7 +18,29 @@ export default function Avatar(props) {
 
   return (
     <div className="mt-7 flex flex-col gap-4">
-      <div className="text-2xl font-bold">Avatar</div>
+      <div className="text-2xl font-bold flex gap-1 items-center">
+        <span>Collectible Avatars</span>
+        <Tippy
+          render={(attrs) => (
+            <div
+              {...attrs}
+              id="tooltip"
+              className="tooltip p-3 flex items-center justify-center"
+              role="tooltip"
+            >
+              <span className="text-sm">
+                When you collect, you will receive a random edition avatar from
+                the series.
+              </span>
+              <div id="arrow" className="arrow" data-popper-arrow=""></div>
+            </div>
+          )}
+        >
+          <button aria-label="Open tooltip">
+            <Info />
+          </button>
+        </Tippy>
+      </div>
       <div className="flex flex-col gap-8 items-center sm:flex-row">
         <div className="w-full aspect-square sm:w-[105%]">
           {webtoon.attributes.avatarGIF.data ? (

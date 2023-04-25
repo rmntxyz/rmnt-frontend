@@ -26,7 +26,7 @@ export default function Benefits({ benefits }) {
                     a: (props) => (
                       <a
                         href={props.href}
-                        className="underline hover:text-mintGreen"
+                        className="text-mintGreen hover:underline"
                       >
                         {props.children}
                       </a>
