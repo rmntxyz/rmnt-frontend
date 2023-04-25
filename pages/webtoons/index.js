@@ -5,7 +5,13 @@ import Seo from "../../comps/layout/SEO";
 
 const GET_WEBTOONS_DATA = gql`
   query Home_data {
-    webtoons {
+    webtoons(
+      filters: {
+        priority: { notNull: true }
+        rarement: { id: { notNull: true } }
+      }
+      sort: "priority"
+    ) {
       data {
         id
         attributes {
@@ -29,6 +35,7 @@ const GET_WEBTOONS_DATA = gql`
           volume
           released_timestamp
           publishedAt
+          priority
           cover_image {
             data {
               attributes {
@@ -83,7 +90,7 @@ const GET_WEBTOONS_DATA = gql`
 export async function getServerSideProps() {
   const { data } = await client.query({
     query: GET_WEBTOONS_DATA,
-    // fetchPolicy: "network-only",
+    fetchPolicy: "network-only",
   });
   if (!data) {
     return {
@@ -91,10 +98,17 @@ export async function getServerSideProps() {
       redirect: { destination: "/404", permanent: false },
     };
   }
+
+  const byChainId = (webtoon) => {
+    const { chainId } = webtoon.attributes.rarement.data.attributes;
+    return process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
+      ? chainId === 137
+      : chainId === 80001;
+  };
+
   return {
     props: {
-      webtoons: data.webtoons.data.slice().sort((a, b) => b.id - a.id),
-      rarementABI: data.rarementContract.data.attributes.rarementABI,
+      webtoons: data.webtoons.data.filter(byChainId),
     },
   };
 }

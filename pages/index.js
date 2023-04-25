@@ -39,6 +39,7 @@ const GET_HOME_DATA = gql`
           priority
           released_timestamp
           publishedAt
+          priority
           cover_image {
             data {
               attributes {
