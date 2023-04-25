@@ -1,10 +1,12 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import Progress from "./Progress";
 
-export default function Layout({ web3auth, setProvider, children }) {
+export default function Layout({ children }) {
   return (
     <div className="bg-navBg">
-      <Header web3auth={web3auth} setProvider={setProvider} />
+      <Progress />
+      <Header />
       {children}
       <Footer />
     </div>
