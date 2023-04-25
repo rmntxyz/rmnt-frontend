@@ -6,6 +6,7 @@ import Nav from "../../../../../comps/webtoonEpisode/Nav";
 import Buttons from "../../../../../comps/webtoonEpisode/Buttons";
 import KorEngEpisode from "../../../../../comps/webtoonEpisode/KorEngEpisode";
 import { useEffect, useRef, useState } from "react";
+import Progress from "../../../../../comps/webtoonEpisode/Progress";
 
 const GET_EPISODE_DATA = gql`
   query Webtoon($webtoonId: String) {
@@ -22,12 +23,16 @@ const GET_EPISODE_DATA = gql`
               }
             }
           }
-          episodes(pagination: { limit: 200 }) {
+          episodes(
+            pagination: { limit: 200 }
+            filters: { publishedAt: { notNull: true } }
+          ) {
             data {
               id
               attributes {
                 episode_number
                 released_timestamp
+                publishedAt
                 eng_images(pagination: { limit: 200 }) {
                   data {
                     attributes {
@@ -167,6 +172,7 @@ export default function Episode({
       <Seo
         title={`${webtoon.attributes.title} - Ep.${episode.episode_number}`}
       />
+      <Progress />
       <div
         style={{
           opacity: show ? "1" : "0",
