@@ -1,11 +1,11 @@
 import Footer from "./Footer";
 import Header from "./Header";
-import Progress from "./Progress";
+import NextNProgress from "nextjs-progressbar";
 
 export default function Layout({ children }) {
   return (
     <div className="bg-navBg">
-      <Progress />
+      <NextNProgress color="#70EFCF" options={{ showSpinner: false }} />
       <Header />
       {children}
       <Footer />
