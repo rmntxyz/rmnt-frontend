@@ -21,9 +21,9 @@ export default function Buttons({ allEpisodes, showToTop }) {
     nextEpisode?.attributes.released_timestamp * 1000 < new Date().getTime();
 
   return (
-    <div id="buttons" className="fixed bottom-0 w-full">
-      <div className="relative mx-auto max-w-[768px] md:max-w-[630px]">
-        <div className="flex items-center justify-center gap-8 py-8 font-bold">
+    <div id="buttons" className="fixed bottom-0 w-full h-32">
+      <div className="relative py-8 mx-auto max-w-[768px] md:max-w-[630px]">
+        <div className="flex items-center justify-center gap-8 font-bold">
           <Link
             href={
               "/webtoons/" +
