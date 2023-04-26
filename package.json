@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "0xpass": "^0.0.28",
     "@apollo/client": "^3.6.8",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
@@ -17,7 +16,8 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@tippyjs/react": "^4.2.6",
     "@web3modal/standalone": "^2.2.1",
-    "alchemy-sdk": "^2.4.3",
+    "0xpass": "^0.0.28",
+    "alchemy-sdk": "2.8.0",
     "ethers": "^5.7.2",
     "graphql": "^16.5.0",
     "next": "^13.2.4",
@@ -27,13 +27,13 @@
     "react-markdown": "^8.0.3",
     "react-scroll-parallax": "^3.4.2",
     "sharp": "^0.30.4",
+    "tailwindcss": "^3.0.24",
     "wagmi": "^0.12.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.5",
     "eslint": "8.14.0",
     "eslint-config-next": "^13.2.4",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.24"
+    "postcss": "^8.4.12"
   }
 }
