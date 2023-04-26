@@ -138,9 +138,9 @@ export async function getServerSideProps() {
 }
 
 const CIRCLES_INIT = [
-  { speed: 45, top: '40%', left:  '50%', width: '80%', opacity: '.13', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
+  { speed: 45, top: '40%', left:  '50%', width: '80%', opacity: '.09', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
   { speed:  5, top: '60%', left: '-15%', width: '30%', opacity: '.06', blur: 40, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
-  { speed: 30, top: '95%', left:  '-5%', width: '40%', opacity: '.17', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) }
+  { speed: 30, top: '95%', left:  '-5%', width: '40%', opacity: '.08', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) }
 ];
 
 const NOISE_SPEED = 0.002;
