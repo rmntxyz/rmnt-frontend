@@ -6,6 +6,8 @@ import Artists from "../comps/home/Artists";
 import List from "../comps/home/List";
 import Seo from "../comps/layout/SEO";
 import Circle from "../utils/Circle";
+import { Noise } from 'noisejs';
+import { useEffect, useRef, useState } from "react";
 
 const GET_HOME_DATA = gql`
   query Home_data {
@@ -135,27 +137,81 @@ export async function getServerSideProps() {
   };
 }
 
+const CIRCLES_INIT = [
+  { speed: 45, top: '40%', left:  '50%', width: '80%', opacity: '.13', blur: 137, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
+  { speed:  5, top: '60%', left: '-15%', width: '30%', opacity: '.06', blur:  77, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
+  { speed: 30, top: '95%', left:  '-5%', width: '40%', opacity: '.17', blur: 137, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) }
+];
+
+const NOISE_SPEED = 0.002;
+const NOISE_AMOUNT = 0.5;
+
 export default function Home({ webtoons, artists, rarementABI }) {
+  const animationRef = useRef();
+  const [circles, setCircles] = useState(CIRCLES_INIT);
+  const noise = new Noise();
+
+  useEffect(() => {
+    // animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  function animate() {
+    setCircles((circles) => {
+      return circles.map((circle, index) => {
+        const nsx = circle.sx + NOISE_SPEED;
+        const nsy = circle.sy + NOISE_SPEED;
+
+        const rx = noise.simplex2(nsx, 0);
+        const ry = noise.simplex2(nsy, 0);
+
+        const ndx = circle.dx + rx * NOISE_AMOUNT;
+        const ndy = circle.dy + ry * NOISE_AMOUNT;
+
+        const el = document.getElementById(`circle-${index}`);
+
+        if (el) {
+          el.style.marginTop = `${ndy}px`;
+          el.style.marginLeft = `${ndx}px`;
+        }
+
+        return {
+          ...circle,
+          dx: ndx,
+          dy: ndy,
+          sx: nsx,
+          sy: nsy,
+        }
+      })
+    });
+
+    animationRef.current = requestAnimationFrame(animate);
+  }
+
   return (
     <div className="overflow-x-clip">
       <Seo title="Rarement" />
       <main className="relative max-w-[768px] mx-auto px-4 md:max-w-[630px]">
+        {
+        circles.map((circle, i) => (
+            <Circle key={i} speed={circle.speed} >
+              <div
+                id={`circle-${i}`}
+                style={{top: circle.top, left: circle.left, width: circle.width, marginTop: circle.mx, marginLeft: circle.my }}
+                className={`absolute aspect-square rounded-full bg-mintGreen/[${circle.opacity}] blur-[${circle.blur}px]`}
+              ></div>
+            </Circle>
+          ))
+        }
         <List webtoons={webtoons} rarementABI={rarementABI} />
         <AboutTop />
         <Artists artists={artists} />
         <AboutBottom />
-        <Circle
-          css="top-[40%] left-1/2 w-[80%] bg-mintGreen/[.13] blur-[137px]"
-          speed={30}
-        />
-        <Circle
-          css="bottom-[30%] -left-[15%] w-[40%] bg-mintGreen/[.06] blur-[77px]"
-          speed={10}
-        />
-        <Circle
-          css="bottom-[5%] -left-[5%] w-[40%] bg-mintGreen/[.17] blur-[137px]"
-          speed={15}
-        />
       </main>
     </div>
   );

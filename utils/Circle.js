@@ -1,12 +1,12 @@
 import { Parallax } from "react-scroll-parallax";
 
-export default function Circle({ css, speed }) {
+export default function Circle({ speed, children }) {
   return (
     <Parallax
       speed={speed}
-      className={"absolute aspect-square rounded-full " + css}
+      className={"absolute top-0 w-full h-full"}
     >
-      <div></div>
+      {children}
     </Parallax>
   );
 }
