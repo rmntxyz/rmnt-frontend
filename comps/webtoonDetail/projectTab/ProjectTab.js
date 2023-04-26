@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import ShowOrClose from "../../../utils/showOrClose";
 import Avatar from "./Avatar/Avatar";
 import Benefits from "./Benefits";
-import Patrons from "./Patrons/Patrons";
+// import Patrons from "./Patrons/Patrons";
 
 export default function ProjectTab(props) {
   const { webtoon, benefits } = props;
@@ -56,7 +56,7 @@ export default function ProjectTab(props) {
       </div>
       <Avatar {...props} />
       <Benefits benefits={benefits} />
-      <Patrons rarement={rarement} />
+      {/* <Patrons rarement={rarement} /> */}
     </div>
   );
 }
