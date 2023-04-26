@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export default function Benefits({ benefits }) {
@@ -24,12 +25,14 @@ export default function Benefits({ benefits }) {
                   children={item.attributes.description}
                   components={{
                     a: (props) => (
-                      <a
+                      <Link
+                        target="_blank"
+                        rel="noopener noreferrer"
                         href={props.href}
                         className="text-mintGreen hover:underline"
                       >
                         {props.children}
-                      </a>
+                      </Link>
                     ),
                   }}
                 />
