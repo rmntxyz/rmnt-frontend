@@ -13,6 +13,9 @@ export default function ProjectTab(props) {
   const [truncated, setTruncated] = useState(false);
   const descRef = useRef();
 
+  // Avatar의 Collectability에서 collect를 성공했을 때 patron을 갱신할 수 있도록 하기 위해 state를 만들어 전달하기.
+  const [refreshPatron, setRefresh] = useState(null);
+
   useEffect(() => {
     const desc = descRef?.current;
     if (desc.offsetHeight < desc.scrollHeight) {
@@ -54,9 +57,9 @@ export default function ProjectTab(props) {
         </div>
         <ShowOrClose truncated={truncated} show={show} setShow={setShow} />
       </div>
-      <Avatar {...props} />
+      <Avatar {...props} setRefresh={setRefresh} />
       <Benefits benefits={benefits} />
-      <Patrons rarement={rarement} />
+      <Patrons rarement={rarement} refresh={refreshPatron} />
     </div>
   );
 }

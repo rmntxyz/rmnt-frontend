@@ -12,7 +12,7 @@ export default function MoreOrClose({
 }) {
   return (
     <button
-      className={`text-white/50 text-sm flex gap-1 items-center justify-center transition-all duration-300 ease-in-out ${
+      className={`text-white/50 text-sm flex gap-1 items-center justify-center transition-all duration-300 ${
         (restRow.length === 0 && noMore) || !next || !address
           ? "hidden"
           : (!noMore && restRow.length === 0) ||

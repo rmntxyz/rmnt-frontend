@@ -19,19 +19,6 @@ export default function CollectButton(props) {
     setShake(true);
     setTimeout(() => setShake(false), 200);
   };
-  if (!isReady) {
-    return (
-      <div>
-        <button
-          aria-label="Collect NFT"
-          disabled
-          className="animate-pulse px-11 py-3 mt-8 w-32 h-12 bg-white/20 text-navBg text-base font-bold rounded-full"
-        ></button>
-        {/* {open ? <Modal {...props} setOpen={setOpen} /> : null} */}
-      </div>
-    );
-  }
-
   if (isCollecting) {
     return (
       <button
@@ -91,6 +78,19 @@ export default function CollectButton(props) {
         </svg>
         {isCollected ? "Success!" : "Failed"}
       </button>
+    );
+  }
+
+  if (!isReady) {
+    return (
+      <div>
+        <button
+          aria-label="Collect NFT"
+          disabled
+          className="animate-pulse px-11 py-3 mt-8 w-32 h-12 bg-white/20 text-navBg text-base font-bold rounded-full"
+        ></button>
+        {/* {open ? <Modal {...props} setOpen={setOpen} /> : null} */}
+      </div>
     );
   }
 

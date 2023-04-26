@@ -4,7 +4,7 @@ import { useHolders } from "../../../../utils/useHolders";
 import { EmptyPatronCard } from "./EmptyPatronCard";
 import MoreOrClose from "./MoreOrClose";
 
-export default function Patrons({ rarement }) {
+export default function Patrons({ rarement, refresh }) {
   //Set loading for patron cards
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +14,7 @@ export default function Patrons({ rarement }) {
   const { contractAddress, chainId } = rarement ? rarement : {};
 
   const { holders, noMore, next, isLoading } = rarement
-    ? useHolders(contractAddress, chainId, 100, 7)
+    ? useHolders(contractAddress, chainId, 100, 7, [refresh])
     : { holders: [], noMore: true, next: null, isLoading: false };
 
   const [firstRow, setFirstRow] = useState(["first", "empty", "empty"]);
@@ -24,7 +24,9 @@ export default function Patrons({ rarement }) {
     "empty",
     "empty",
   ]);
+
   const [restRow, setRestRow] = useState([]);
+
   useEffect(() => {
     for (let i = 0; i < holders.length; i++) {
       if (i < 3) {
@@ -95,15 +97,15 @@ export default function Patrons({ rarement }) {
           )}
         </div>
         <div
-          className={`grid grid-cols-5 gap-2 transition-all ease-in-out duration-300 overflow-hidden sm:gap-3 ${
-            show ? "max-h-[5000px]" : "max-h-0"
+          className={`grid grid-cols-5 gap-2 transition-all duration-1000 overflow-hidden sm:gap-3 ${
+            show ? "h-auto" : "h-0"
           }`}
         >
           {restRow.map((item, idx) =>
             !item && show ? (
               <EmptyPatronCard
-                key={idx + 3}
-                idx={idx + 3}
+                key={idx + 7}
+                idx={idx + 7}
                 loading={isLoading || loading}
               />
             ) : (

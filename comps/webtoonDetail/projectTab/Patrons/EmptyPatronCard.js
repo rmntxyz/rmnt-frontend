@@ -1,3 +1,5 @@
+import styles from "./EmptyPatronCard.module.css";
+
 export const EmptyPatronCard = ({ idx, textOne, textTwo, loading }) => (
   <div className="relative">
     <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +29,9 @@ export const EmptyPatronCard = ({ idx, textOne, textTwo, loading }) => (
         <div className="bg-white/20 w-1/3 h-1/3 rounded-full"></div>
       </div>
     ) : (
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+      <div
+        className={`${styles.blink} absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center`}
+        >
         <div>{textOne}</div>
         <div>{textTwo}</div>
       </div>

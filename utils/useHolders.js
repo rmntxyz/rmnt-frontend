@@ -8,12 +8,13 @@ const networkMap = {
 };
 
 // function to get all the minters of the NFT Collection
-export function useHolders(nftAddress, chainId, max = 100, first = 7) {
+export function useHolders(nftAddress, chainId, max = 100, first = 7, scopes = []) {
   const [holders, setHolders] = useState([]);
   const [orderInfo, setOrderInfo] = useState({ minters: [], ownersMap: {} });
   const [noMore, setNoMore] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [next, setLoadingNext] = useState(null);
+  const [range, setRange] = useState(first);
 
   const config = {
     apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
@@ -45,7 +46,7 @@ export function useHolders(nftAddress, chainId, max = 100, first = 7) {
     };
 
     fetchMinters();
-  }, []);
+  }, scopes);
 
   useEffect(() => {
     const { minters, ownersMap } = orderInfo;
@@ -68,9 +69,10 @@ export function useHolders(nftAddress, chainId, max = 100, first = 7) {
           );
 
           const owner = ownersMap[tokenId];
-          const imageUrl = metadata.media.find(
-            (m) => m.format === "png"
-          )?.thumbnail;
+          const imageUrl = metadata.rawMetadata.image?.replace('ipfs://', 'https://storage.googleapis.com/rmnt/thumbnail/') || '';
+          //const imageUrl = metadata.media.find(
+          //  (m) => m.format === "png"
+          //)?.thumbnail;
           const { timeLastUpdated } = metadata;
 
           return { tokenId, owner, imageUrl, timeLastUpdated };
@@ -80,7 +82,8 @@ export function useHolders(nftAddress, chainId, max = 100, first = 7) {
       setIsLoading(false);
     };
 
-    fetchHolders(0, first);
+    const start = holders.length;
+    fetchHolders(start, range);
   }, [orderInfo]);
 
   useEffect(() => {
@@ -96,8 +99,9 @@ export function useHolders(nftAddress, chainId, max = 100, first = 7) {
       }
 
       const start = holders.length;
-      const end = holders.length + more;
+      const end = range + more;
 
+      setRange(end);
       setIsLoading(true);
       const result = await Promise.all(
         minters.slice(start, end).map(async (ordered) => {
@@ -111,9 +115,10 @@ export function useHolders(nftAddress, chainId, max = 100, first = 7) {
           );
 
           const owner = ownersMap[tokenId];
-          const imageUrl = metadata.media.find(
-            (m) => m.format === "png"
-          )?.thumbnail;
+          const imageUrl = metadata.rawMetadata.image?.replace('ipfs://', 'https://storage.googleapis.com/rmnt/thumbnail/') || '';
+          //const imageUrl = metadata.media.find(
+          //  (m) => m.format === "png"
+          //)?.thumbnail;
           const { timeLastUpdated } = metadata;
 
           return { tokenId, owner, imageUrl, timeLastUpdated };

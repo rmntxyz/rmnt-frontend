@@ -16,7 +16,7 @@ function weiToEther(wei, precision = 2) {
   return Number.parseFloat(ethers.utils.formatEther(wei)).toFixed(precision);
 }
 
-export default function Collectability({ webtoon, rarementABI, exchangeRate }) {
+export default function Collectability({ webtoon, rarementABI, exchangeRate, setRefresh }) {
   const { isConnected, address } = useAccount();
   const { data: signer } = useSigner();
 
@@ -87,7 +87,8 @@ export default function Collectability({ webtoon, rarementABI, exchangeRate }) {
           setTimeout(() => {
             setIsCollectError(false);
             setIsCollected(false);
-          }, 3000);
+            setRefresh(Symbol());
+          }, 5000);
         }
       };
 
