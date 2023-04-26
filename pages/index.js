@@ -146,15 +146,15 @@ export default function Home({ webtoons, artists, rarementABI }) {
         <AboutBottom />
         <Circle
           css="top-[40%] left-1/2 w-[80%] bg-mintGreen/[.13] blur-[137px]"
-          speed={-20}
+          speed={30}
         />
         <Circle
           css="bottom-[30%] -left-[15%] w-[40%] bg-mintGreen/[.06] blur-[77px]"
-          speed={-5}
+          speed={10}
         />
         <Circle
           css="bottom-[5%] -left-[5%] w-[40%] bg-mintGreen/[.17] blur-[137px]"
-          speed={-15}
+          speed={15}
         />
       </main>
     </div>
