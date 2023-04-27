@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "./Buttons.module.css";
 
 export default function Toggle() {
   //Enable navigation between Eng and Kor
@@ -8,7 +9,9 @@ export default function Toggle() {
   } = useRouter();
 
   return (
-    <div className="rounded-full gradientBorder inline-flex items-center px-1.5 py-3 cursor-pointer text-base">
+    <div
+      className={`rounded-full ${styles.gradientBorder} inline-flex items-center px-1.5 py-3 cursor-pointer text-base`}
+    >
       <Link
         shallow
         href={`/webtoons/${webtoonId}/episode/${episodeNumber}/eng`}
