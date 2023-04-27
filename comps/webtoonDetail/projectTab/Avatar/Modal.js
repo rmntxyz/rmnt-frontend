@@ -90,7 +90,7 @@ export default function Modal(props) {
               </div>
             </div>
             <div className="flex gap-1 items-center">
-              <button onClick={() => setShow(!show)}>
+              <button className="w-4 h-4" onClick={() => setShow(!show)}>
                 <Info />
               </button>
               <span>

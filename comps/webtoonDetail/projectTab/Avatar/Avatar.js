@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Line from "../../../../utils/Line";
 import { PolyFrameImage } from "../../../../utils/PolyFrameImage";
-import Character from "./Characters";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +18,7 @@ export default function Avatar(props) {
 
   return (
     <div className="mt-7 flex flex-col gap-4">
-      <div className="text-2xl font-bold flex gap-1 items-center">
+      <div className="text-2xl font-bold flex gap-1.5 items-center">
         <span>Collectible Avatars</span>
         <Tippy
           render={(attrs) => (
@@ -37,7 +36,7 @@ export default function Avatar(props) {
             </div>
           )}
         >
-          <button aria-label="Open tooltip">
+          <button className="w-6 h-6" aria-label="Open tooltip">
             <Info />
           </button>
         </Tippy>
