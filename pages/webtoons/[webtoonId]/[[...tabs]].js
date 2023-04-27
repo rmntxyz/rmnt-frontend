@@ -90,7 +90,7 @@ const GET_WEBTOON_DATA = gql`
               }
             }
           }
-          characters {
+          characters(filters: { publishedAt: { ne: null } }) {
             data {
               id
               attributes {
