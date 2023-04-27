@@ -5,7 +5,7 @@ import styles from "./Characters.module.css";
 
 export default function Characters({ characters }) {
   return (
-    <div className={`${styles.characters} py-2 flex gap-2`}>
+    <div className={`${styles.characters} py-2 flex gap-2 w-fit`}>
       {characters?.map((item, idx) => (
         <Character key={idx} item={item} />
       ))}
