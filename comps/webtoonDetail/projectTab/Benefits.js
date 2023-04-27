@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import styles from "./Benefits.module.css";
 
 export default function Benefits({ benefits }) {
   return (
@@ -14,11 +15,14 @@ export default function Benefits({ benefits }) {
             key={idx}
             className={`h-fit ${
               idx % 2 === 0
-                ? "gradientBorder-right sm:mb-11 sm:mr-2.5"
-                : "gradientBorder-left sm:translate-y-14 sm:mt-11 sm:ml-2.5"
+                ? styles.gradientBorderRight + " sm:mb-11 sm:mr-2.5"
+                : styles.gradientBorderLeft +
+                  " sm:translate-y-14 sm:mt-11 sm:ml-2.5"
             } ${item.attributes.active ? "opacity-100" : "opacity-20"}`}
           >
-            <div className="m-1.5 p-4 gradientBorder-2 flex flex-col gap-2 items-center justify-center text-center">
+            <div
+              className={`m-1.5 p-4 ${styles.gradientBorder} flex flex-col gap-2 items-center justify-center text-center`}
+            >
               <div className="font-bold">{item.attributes.name}</div>
               <div className="text-sm">
                 <ReactMarkdown

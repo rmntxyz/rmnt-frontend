@@ -4,6 +4,7 @@ import { isImage } from "../../utils/mediaType";
 import { OpenSea } from "../../utils/svgs";
 import Line from "../../utils/Line";
 import { PolyFrameCard } from "../../utils/PolyFrameCard";
+import styles from "./CollectiblesTab.module.css";
 
 export default function CollectiblesTab({ collectibles, exchangeRate }) {
   let NFTUrl = "";
@@ -37,7 +38,7 @@ export default function CollectiblesTab({ collectibles, exchangeRate }) {
               (
                 <div
                   key={idx}
-                  className="card relative overflow-hidden min-w-fit min-h-fit"
+                  className={`${styles.card} relative overflow-hidden min-w-fit min-h-fit`}
                   onMouseEnter={(e) => switchStroke(e, idx)}
                   onMouseLeave={(e) => switchBackStroke(e, idx)}
                 >
