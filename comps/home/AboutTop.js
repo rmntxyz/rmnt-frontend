@@ -14,11 +14,11 @@ export default function AboutTop() {
         </div>
       </div>
       <Image
-        src="/레어먼트_홈피이미지001(1) 1@3x.png"
+        src="/about.png"
         width={336}
         height={336}
         placeholder="blur"
-        blurDataURL="/레어먼트_홈피이미지001(1) 1@3x.png"
+        blurDataURL="/aboutImage.png"
         alt="Rarement Image"
       />
       <div className="flex flex-col gap-3">

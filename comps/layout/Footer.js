@@ -1,16 +1,11 @@
-import {
-  // faInstagram,
-  faTwitter,
-  faDiscord,
-} from "@fortawesome/free-brands-svg-icons";
+import { faTwitter, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useState } from "react";
-import Image from "next/image";
 import Line from "../../utils/Line";
 import { useRouter } from "next/router";
+import { Instagram } from "../../utils/svgs";
 
 // "next.link" must have only one child. (e.g. <a>)
 // so, can't use a <Link> component here.
@@ -43,15 +38,12 @@ const InLinks = [
 ));
 
 export default function Footer() {
-  //Footer icons turn white on hover
-  const [isHovered, setIsHovered] = useState(false);
-
   //Use router to determine whether to show the footer or not
   const router = useRouter();
 
   return (
     <footer
-      className="pb-14 bg-navBg flex flex-col items-center justify-center gap-6 text-lightGray"
+      className="pb-14 bg-navBg flex flex-col items-center justify-center gap-6 text-white/80"
       style={{
         display: router.pathname.includes("/episode/") ? "none" : "flex",
       }}
@@ -60,25 +52,13 @@ export default function Footer() {
       <ul className="flex items-center gap-5 mt-14">
         <li>
           <a
-            onMouseOver={(e) => setIsHovered(true)}
-            onMouseOut={(e) => setIsHovered(false)}
             href="/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow Rarement on Instagram"
-            className="w-[44px] h-[44px] flex items-center justify-center border border-white/20 rounded-full bg-opaqueGray"
+            className="w-[44px] h-[44px] flex items-center justify-center duration-200 border border-white/20 rounded-full bg-opaqueGray hover:text-[#F3F3F3]"
           >
-            <Image
-              src={`${
-                !isHovered
-                  ? "/instagram/instagram_1440_768@2x.png"
-                  : "/instagram/instagram_1440_768_hover@2x.png"
-              }`}
-              width={20}
-              height={20}
-              alt="Instagram"
-              priority
-            />
+            <Instagram />
           </a>
         </li>
         {OutLinks.map((link, idx) => (
