@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 // so, can't use a <Link> component here.
 const OutLinkWithIcon = ({ href, icon, desc }) => {
   return (
-    <a href={href} aria-label={desc}>
+    <a href={href} aria-label={desc} target="_blank" rel="noopener noreferrer">
       <FontAwesomeIcon icon={icon} />
     </a>
   );
@@ -36,7 +36,11 @@ const InLinks = [
     href: "https://azure-dormouse-716.notion.site/Privacy-Policy-143c909a8fe943b6b8d379ca3b3b3f3a",
     text: "privacy policy",
   },
-].map(({ href, text }) => <Link href={href}>{text}</Link>);
+].map(({ href, text }) => (
+  <Link href={href} target="_blank" rel="noopener noreferrer">
+    {text}
+  </Link>
+));
 
 export default function Footer() {
   //Footer icons turn white on hover
@@ -59,6 +63,8 @@ export default function Footer() {
             onMouseOver={(e) => setIsHovered(true)}
             onMouseOut={(e) => setIsHovered(false)}
             href="/"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Follow Rarement on Instagram"
             className="w-[44px] h-[44px] flex items-center justify-center border border-white/20 rounded-full bg-opaqueGray"
           >
