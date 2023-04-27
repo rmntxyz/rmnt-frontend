@@ -1,0 +1,8 @@
+/* change opacity for unhovered characters */
+.characters:hover button {
+  opacity: 0.5;
+}
+
+.characters button:hover {
+  opacity: 1;
+}

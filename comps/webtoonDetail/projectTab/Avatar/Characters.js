@@ -1,8 +1,19 @@
 import Tippy from "@tippyjs/react/headless";
 import Image from "next/image";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import styles from "./Characters.module.css";
 
-export default function Character({ item }) {
+export default function Characters({ characters }) {
+  return (
+    <div className={`${styles.characters} py-2 flex gap-2`}>
+      {characters?.map((item, idx) => (
+        <Character key={idx} item={item} />
+      ))}
+    </div>
+  );
+}
+
+function Character({ item }) {
   return (
     <Tippy
       render={(attrs) => (

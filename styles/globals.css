@@ -34,7 +34,7 @@
     }
   }
 
-  /* for collectibles's border animation */
+  /* for collectibles' border animation */
   [id^="cardGradientHover"] stop:first-child {
     animation-name: upperStopColor;
     animation-duration: 2s;
@@ -88,15 +88,6 @@
 
 #tooltip[data-placement^="right"] > #arrow {
   left: -4px;
-}
-
-/* change opacity for unhovered characters */
-.characters:hover button {
-  opacity: 0.5;
-}
-
-.characters button:hover {
-  opacity: 1;
 }
 
 /* to truncate long text */

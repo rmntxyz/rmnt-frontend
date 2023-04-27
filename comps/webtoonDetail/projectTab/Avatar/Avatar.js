@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Line from "../../../../utils/Line";
 import { PolyFrameImage } from "../../../../utils/PolyFrameImage";
-import Character from "./Character";
+import Character from "./Characters";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { Info } from "../../../../utils/svgs";
 import Tippy from "@tippyjs/react/headless";
+import Characters from "./Characters";
 
 const DynamicCollectability = dynamic(() => import("./Collectability"), {
   ssr: false,
@@ -106,11 +107,7 @@ export default function Avatar(props) {
             </div>
           </div>
           <Line />
-          <div className="characters py-2 flex gap-2">
-            {webtoon.attributes.characters?.data.map((item, idx) => (
-              <Character item={item} key={idx} />
-            ))}
-          </div>
+          <Characters characters={webtoon.attributes.characters?.data} />
           <div>
             {webtoon.attributes.rarement.data === null ? (
               <span>Don't miss out&#8212;new avatars are en route!</span>
