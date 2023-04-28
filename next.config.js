@@ -1,6 +1,23 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
 
-module.exports = nextConfig
+module.exports = {
+  optimizeFonts: false,
+  // reactStrictMode: true,
+  transpilePackages: ["0xpass"],
+  images: {
+    domains: ["storage.googleapis.com", "res.cloudinary.com"],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/webtoons/:webtoonId/:tabName",
+        destination: "/webtoons/:webtoonId?tab=:tabName",
+      },
+      {
+        source: "/webtoons/:webtoonId/episode/:episodeNumber/:languageName",
+        destination:
+          "/webtoons/:webtoonId/episode/:episodeNumber?language=:languageName",
+      },
+    ];
+  },
+};

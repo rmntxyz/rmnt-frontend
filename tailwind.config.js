@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./homeComps/**/*.{js,ts,jsx,tsx}", "./detailPageComps/**/*.{js,ts,jsx,tsx}," ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./comps/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -7,27 +7,17 @@ module.exports = {
       },
       display: ["group-hover"],
       colors: {
-        'lightBeige': '#F4EADC',
-        'mediumBeige': '#DAB88B',
-        'darkBeige': '#998161', 
-        'lightGray': '#B6B6B6',
-        'darkGray': '#242424',
-        'ourBlack': '#0C0C0C',
+        ourBlack: "#0C0C0C",
+        opaqueBlack: "rgba(12, 12, 12, 0.8)",
+        lightGray: "#B6B6B6",
+        opaqueGray: "rgba(65, 65, 65, 0.4)",
+        navBg: "#1D1D1D",
+        mainBg: "#333333",
+        mintGreen: "#70EFCF",
+        mintRed: "rgb(207, 112, 146)"
       },
-      dropShadow: {
-        'small': '0px 5px 10px rgba(0, 0, 0, 0.14)',
-        'medium': '0px 6px 16px rgba(0, 0, 0, 0.18)',
-        'large': '0px 6px 18px rgba(0, 0, 0, 0.36)',
-
-      },
-      container: {
-        screens: {
-          'sm': '640px',
-          'md': '768px',
-          'lg': '1024px',
-          'xl': '1280px',
-          '2xl': '1376px',
-        }
+      screens: {
+        "3xl": "1920px",
       },
     },
   },
