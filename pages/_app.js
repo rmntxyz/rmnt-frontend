@@ -9,6 +9,7 @@ import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 import { ParallaxProvider } from "react-scroll-parallax";
+import { DefaultSeo } from "next-seo";
 
 // Configure chains & providers with the Alchemy provider
 const networks = [];
@@ -38,6 +39,10 @@ const passClient = createClient();
 // const chains = getDefaultChains();
 
 function MyApp({ Component, pageProps }) {
+  const title = "Rarement";
+  const desc = "Own the Rare Moment";
+  const canonicalUrl = "https://rmnt-frontend-git-develop-rmnt.vercel.app";
+
   return (
     <ApolloProvider client={client}>
       <WagmiConfig client={passClient}>
@@ -55,6 +60,30 @@ function MyApp({ Component, pageProps }) {
           chains={chains}
         >
           <ParallaxProvider>
+            <DefaultSeo
+              title={title}
+              description={desc}
+              canonical={canonicalUrl}
+              openGraph={{
+                url: canonicalUrl,
+                title: title,
+                description: desc,
+                images: [
+                  {
+                    url: "https://storage.googleapis.com/rmnt/thumbnail_RMNT_SYMBOL_85224726cb/thumbnail_RMNT_SYMBOL_85224726cb.png",
+                    width: 700,
+                    height: 700,
+                    alt: title,
+                    type: "image/png",
+                  },
+                ],
+              }}
+              twitter={{
+                handle: "@rmntxyz",
+                site: "@rmntxyz",
+                cardType: "summary_large_image",
+              }}
+            />
             <Layout>
               <Component {...pageProps} />
             </Layout>

@@ -213,37 +213,8 @@ export default function Home({ webtoons, artists, rarementABI }) {
     animationRef.current = requestAnimationFrame(animate);
   }
 
-  const title = "Rarement";
-  const desc = "Own the Rare Moment";
-  const canonicalUrl = "https://rmnt-frontend-git-develop-rmnt.vercel.app";
-
   return (
     <div className="overflow-x-clip">
-      <NextSeo
-        title={title}
-        description={desc}
-        canonical={canonicalUrl}
-        openGraph={{
-          url: canonicalUrl,
-          title: title,
-          description: desc,
-          images: [
-            {
-              url: "https://storage.googleapis.com/rmnt/thumbnail_RMNT_SYMBOL_85224726cb/thumbnail_RMNT_SYMBOL_85224726cb.png",
-              width: 700,
-              height: 700,
-              alt: title,
-              type: "image/png",
-            },
-          ],
-        }}
-        twitter={{
-          handle: "@rmntxyz",
-          site: "@rmntxyz",
-          cardType: "summary_large_image",
-        }}
-      />
-
       <main className="relative max-w-[768px] mx-auto px-4 md:max-w-[630px]">
         {circles.map((circle, i) => (
           <Circle key={i} speed={circle.speed}>
