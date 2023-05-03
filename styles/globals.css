@@ -48,6 +48,14 @@
   }
 }
 
+/* for pop-up navigation buttons on episode page */
+.gradientBorder {
+  background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
+    linear-gradient(to bottom, #70efcf, #cea671) border-box;
+  border-radius: 44px;
+  border: 1px solid transparent;
+}
+
 /* for tooltips */
 #tooltip {
   background-color: #333333;
