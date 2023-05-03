@@ -14,7 +14,6 @@ const GET_HOME_DATA = gql`
     webtoons(
       filters: {
         priority: { notNull: true }
-        rarement: { id: { notNull: true } }
       }
       sort: "priority"
     ) {
@@ -121,16 +120,9 @@ export async function getServerSideProps() {
     };
   }
 
-  const byChainId = (webtoon) => {
-    const { chainId } = webtoon.attributes.rarement.data.attributes;
-    return process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-      ? chainId === 137
-      : chainId === 80001;
-  };
-
   return {
     props: {
-      webtoons: data.webtoons.data.filter(byChainId),
+      webtoons: data.webtoons.data,
       artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
       rarementABI: data.rarementContract.data.attributes.rarementABI,
     },
