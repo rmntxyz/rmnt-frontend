@@ -28,7 +28,11 @@ const OutLinks = [
     icon: faDiscord,
     desc: "Join Rarement on Discord",
   },
-  { href: "/", icon: faEnvelope, desc: "Contact Rarement by Email" },
+  {
+    href: "mailto:support@rmnt.xyz",
+    icon: faEnvelope,
+    desc: "Contact Rarement by Email",
+  },
 ].map((info) => <OutLinkWithIcon {...info} />);
 
 const InLinks = [
