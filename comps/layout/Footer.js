@@ -18,8 +18,16 @@ const OutLinkWithIcon = ({ href, icon, desc }) => {
 
 const OutLinks = [
   // { href: "/", icon: faInstagram },
-  { href: "/", icon: faTwitter, desc: "Check out Rarement's Twitter feed" },
-  { href: "/", icon: faDiscord, desc: "Join Rarement on Discord" },
+  {
+    href: "https://twitter.com/rmntxyz",
+    icon: faTwitter,
+    desc: "Check out Rarement's Twitter feed",
+  },
+  {
+    href: "https://discord.gg/HecyuhkJCD",
+    icon: faDiscord,
+    desc: "Join Rarement on Discord",
+  },
   { href: "/", icon: faEnvelope, desc: "Contact Rarement by Email" },
 ].map((info) => <OutLinkWithIcon {...info} />);
 
