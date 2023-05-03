@@ -48,15 +48,16 @@ export default function Footer() {
       }}
     >
       <Line />
-      <Link
-        href="https://forms.gle/Aboi8WTLm3214KNB7"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Apply to be Rarement's artist"
-        className="text-mintGreen mt-8 mb-5"
-      >
-        Apply to be Rarement's Artist
-      </Link>
+      <div className="rounded-full border border-mintGreen px-6 py-3 cursor-pointer text-mintGreen mt-8 mb-5">
+        <Link
+          href="https://forms.gle/Aboi8WTLm3214KNB7"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Apply to be Rarement's artist"
+        >
+          Apply to be Rarement's Artist
+        </Link>
+      </div>
       <div className="flex flex-col items-center justify-center gap-6">
         <ul className="flex items-center gap-5">
           <li>
