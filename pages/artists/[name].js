@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
-import Seo from "../../comps/layout/SEO";
+import { NextSeo } from "next-seo";
 import Desc from "../../comps/profile/Desc";
 import Webtoons from "../../comps/profile/Webtoons";
 import Line from "../../utils/Line";
@@ -90,9 +90,34 @@ export async function getServerSideProps(context) {
 }
 
 export default function Artist({ artist, webtoons }) {
+  const artistName = artist.attributes.first_name;
+  const title = `Rarement - ${artistName}`;
+  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/artists/${artistName}}`;
+
   return (
     <div>
-      <Seo title={artist.attributes.first_name} />
+      <NextSeo
+        title={title}
+        canonical={canonicalUrl}
+        openGraph={{
+          url: canonicalUrl,
+          title: title,
+          images: [
+            {
+              url: artist.attributes.profile_image?.data?.attributes.url,
+              width: 700,
+              height: 700,
+              alt: title,
+              type: "image/png",
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@rmntxyz",
+          site: "@rmntxyz",
+          cardType: "summary_large_image",
+        }}
+      />
       <main>
         <Desc props={artist} />
         <Line />

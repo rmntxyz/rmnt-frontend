@@ -4,19 +4,14 @@ import AboutBottom from "../comps/home/AboutBottom";
 import AboutTop from "../comps/home/AboutTop";
 import Artists from "../comps/home/Artists";
 import List from "../comps/home/List";
-import Seo from "../comps/layout/SEO";
+import { NextSeo } from "next-seo";
 import Circle from "../utils/Circle";
-import { Noise } from 'noisejs';
+import { Noise } from "noisejs";
 import { useEffect, useRef, useState } from "react";
 
 const GET_HOME_DATA = gql`
   query Home_data {
-    webtoons(
-      filters: {
-        priority: { notNull: true }
-      }
-      sort: "priority"
-    ) {
+    webtoons(filters: { priority: { notNull: true } }, sort: "priority") {
       data {
         id
         attributes {
@@ -130,9 +125,42 @@ export async function getServerSideProps() {
 }
 
 const CIRCLES_INIT = [
-  { speed: 45, top: '40%', left:  '50%', width: '80%', opacity: '.09', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
-  { speed:  5, top: '60%', left: '-15%', width: '30%', opacity: '.06', blur: 40, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
-  { speed: 30, top: '95%', left:  '-5%', width: '40%', opacity: '.08', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) }
+  {
+    speed: 45,
+    top: "40%",
+    left: "50%",
+    width: "80%",
+    opacity: ".09",
+    blur: 45,
+    dx: 0,
+    dy: 0,
+    sx: Math.floor(Math.random() * 64000),
+    sy: Math.floor(Math.random() * 64000),
+  },
+  {
+    speed: 5,
+    top: "60%",
+    left: "-15%",
+    width: "30%",
+    opacity: ".06",
+    blur: 40,
+    dx: 0,
+    dy: 0,
+    sx: Math.floor(Math.random() * 64000),
+    sy: Math.floor(Math.random() * 64000),
+  },
+  {
+    speed: 30,
+    top: "95%",
+    left: "-5%",
+    width: "40%",
+    opacity: ".08",
+    blur: 45,
+    dx: 0,
+    dy: 0,
+    sx: Math.floor(Math.random() * 64000),
+    sy: Math.floor(Math.random() * 64000),
+  },
 ];
 
 const NOISE_SPEED = 0.002;
@@ -178,28 +206,62 @@ export default function Home({ webtoons, artists, rarementABI }) {
           dy: ndy,
           sx: nsx,
           sy: nsy,
-        }
-      })
+        };
+      });
     });
 
     animationRef.current = requestAnimationFrame(animate);
   }
 
+  const title = "Rarement";
+  const desc = "Own the Rare Moment";
+  const canonicalUrl = "https://rmnt-frontend-git-develop-rmnt.vercel.app";
+
   return (
     <div className="overflow-x-clip">
-      <Seo title="Rarement" />
+      <NextSeo
+        title={title}
+        description={desc}
+        canonical={canonicalUrl}
+        openGraph={{
+          url: canonicalUrl,
+          title: title,
+          description: desc,
+          images: [
+            {
+              url: "https://storage.googleapis.com/rmnt/thumbnail_RMNT_SYMBOL_85224726cb/thumbnail_RMNT_SYMBOL_85224726cb.png",
+              width: 700,
+              height: 700,
+              alt: title,
+              type: "image/png",
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@rmntxyz",
+          site: "@rmntxyz",
+          cardType: "summary_large_image",
+        }}
+      />
+
       <main className="relative max-w-[768px] mx-auto px-4 md:max-w-[630px]">
-        {
-        circles.map((circle, i) => (
-            <Circle key={i} speed={circle.speed} >
-              <div
-                id={`circle-${i}`}
-                style={{top: circle.top, left: circle.left, width: circle.width, marginTop: circle.mx, marginLeft: circle.my, opacity: circle.opacity, filter: `blur(${circle.blur}px)` }}
-                className={`absolute aspect-square rounded-full bg-mintGreen transform-gpu`}
-              ></div>
-            </Circle>
-          ))
-        }
+        {circles.map((circle, i) => (
+          <Circle key={i} speed={circle.speed}>
+            <div
+              id={`circle-${i}`}
+              style={{
+                top: circle.top,
+                left: circle.left,
+                width: circle.width,
+                marginTop: circle.mx,
+                marginLeft: circle.my,
+                opacity: circle.opacity,
+                filter: `blur(${circle.blur}px)`,
+              }}
+              className={`absolute aspect-square rounded-full bg-mintGreen transform-gpu`}
+            ></div>
+          </Circle>
+        ))}
         <List webtoons={webtoons} rarementABI={rarementABI} />
         <AboutTop />
         <Artists artists={artists} />

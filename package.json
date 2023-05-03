@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "0xpass": "^0.0.28",
     "@apollo/client": "^3.6.8",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
@@ -17,12 +16,15 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@tippyjs/react": "^4.2.6",
     "@web3modal/standalone": "^2.2.1",
+    "0xpass": "^0.0.28",
     "alchemy-sdk": "2.8.0",
     "ethers": "^5.7.2",
     "graphql": "^16.5.0",
     "next": "^13.2.4",
+    "next-seo": "^6.0.0",
     "nextjs-progressbar": "^0.0.16",
     "noisejs": "^2.1.0",
+    "ordinal": "^1.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
