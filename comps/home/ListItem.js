@@ -7,7 +7,7 @@ export default function ListItem({ item, idx, rarementABI }) {
   //Fetch rarement data
   const rarement = item.attributes.rarement?.data?.attributes;
 
-  const { totalSupply, rarementInfo, isLoading } = useRarementData(
+  const { totalSupply, rarementInfo } = useRarementData(
     rarement?.contractAddress,
     rarement?.chainId,
     rarementABI
@@ -91,8 +91,12 @@ export default function ListItem({ item, idx, rarementABI }) {
                 <div className="absolute bottom-0 w-full h-px bg-white/50 rounded-sm"></div>
               </div>
             </div>
-            {isLoading ? (
-              <div className={`animate-pulse  bg-lightGray/50 rounded-full items-center  ${idx === 0 ? "w-1/2 h-7" : "w-4/5 h-5" }`}></div>
+            {!rarementInfo ? (
+              <div
+                className={`animate-pulse  bg-lightGray/50 rounded-full items-center  ${
+                  idx === 0 ? "w-1/2 h-7" : "w-4/5 h-5"
+                }`}
+              ></div>
             ) : (
               <div className="flex gap-1.5 items-center">
                 <span>Collected</span>

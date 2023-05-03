@@ -1,17 +1,11 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
 import ListItem from "../../comps/home/ListItem";
-import Seo from "../../comps/layout/SEO";
+import { NextSeo } from "next-seo";
 
 const GET_WEBTOONS_DATA = gql`
   query Home_data {
-    webtoons(
-      filters: {
-        priority: { notNull: true }
-        rarement: { id: { notNull: true } }
-      }
-      sort: "priority"
-    ) {
+    webtoons(filters: { priority: { notNull: true } }, sort: "priority") {
       data {
         id
         attributes {
@@ -99,24 +93,46 @@ export async function getServerSideProps() {
     };
   }
 
-  const byChainId = (webtoon) => {
-    const { chainId } = webtoon.attributes.rarement.data.attributes;
-    return process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-      ? chainId === 137
-      : chainId === 80001;
-  };
-
   return {
     props: {
-      webtoons: data.webtoons.data.filter(byChainId),
+      webtoons: data.webtoons.data,
+      rarementABI: data.rarementContract.data.attributes.rarementABI,
     },
   };
 }
 
 export default function Webtoons({ webtoons, rarementABI }) {
+  const title = "Rarement - Webtoons";
+  const desc = "List of all webtoons on Rarement";
+  const canonicalUrl =
+    "https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons";
+
   return (
     <div className="">
-      <Seo title="Webtoons | Rarement" />
+      <NextSeo
+        title={title}
+        description={desc}
+        canonical={canonicalUrl}
+        openGraph={{
+          url: canonicalUrl,
+          title: title,
+          description: desc,
+          images: webtoons
+            .map((webtoon) => ({
+              url: webtoon.attributes.avatarGIF?.data?.attributes.url,
+              width: 300,
+              height: 300,
+              alt: webtoon.attributes.title,
+              type: "image/gif",
+            }))
+            .filter((image) => image.url),
+        }}
+        twitter={{
+          handle: "@rmntxyz",
+          site: "@rmntxyz",
+          cardType: "summary_large_image",
+        }}
+      />
       <main className="max-w-[768px] mx-auto px-4 py-14 grid grid-cols-2 gap-3 md:max-w-[630px]">
         {webtoons.map((item, idx) => (
           <ListItem

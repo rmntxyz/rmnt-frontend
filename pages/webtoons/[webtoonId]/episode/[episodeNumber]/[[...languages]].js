@@ -1,7 +1,8 @@
 import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import client from "../../../../../apollo";
-import Seo from "../../../../../comps/layout/SEO";
+import ordinal from "ordinal";
+import { NextSeo } from "next-seo";
 import Nav from "../../../../../comps/webtoonEpisode/Nav";
 import Buttons from "../../../../../comps/webtoonEpisode/Buttons";
 import KorEngEpisode from "../../../../../comps/webtoonEpisode/KorEngEpisode";
@@ -33,6 +34,13 @@ const GET_EPISODE_DATA = gql`
                 episode_number
                 released_timestamp
                 publishedAt
+                thumbnail {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
                 eng_images(pagination: { limit: 200 }) {
                   data {
                     attributes {
@@ -167,10 +175,37 @@ export default function Episode({
     query: { language },
   } = useRouter();
 
+  const episodeNumber = episode.episode_number;
+  const webtoonTitle = webtoon.attributes.title;
+  const title = `${webtoonTitle} - Ep.${episodeNumber}`;
+  const desc = `Meet the ${ordinal(episodeNumber)} episode of ${webtoonTitle}`;
+  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons/${webtoon.attributes.webtoon_id}/episode/${episodeNumber}`;
+
   return (
     <div className="min-h-screen">
-      <Seo
-        title={`${webtoon.attributes.title} - Ep.${episode.episode_number}`}
+      <NextSeo
+        title={title}
+        description={desc}
+        canonical={canonicalUrl}
+        openGraph={{
+          url: canonicalUrl,
+          title: title,
+          description: desc,
+          images: [
+            {
+              url: episode.thumbnail.data.attributes.url,
+              width: 700,
+              height: 700,
+              alt: title,
+              type: "image/png",
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@rmntxyz",
+          site: "@rmntxyz",
+          cardType: "summary_large_image",
+        }}
       />
       <Progress />
       <div

@@ -1,7 +1,7 @@
 import { getExchangeRate } from "../../api/USD_MATIC";
 import client from "../../../apollo";
 import { gql } from "@apollo/client";
-import Seo from "../../../comps/layout/SEO";
+import { NextSeo } from "next-seo";
 import Tabs from "../../../comps/webtoonDetail/Tabs";
 import Cover from "../../../comps/webtoonDetail/Cover";
 
@@ -192,10 +192,35 @@ export async function getServerSideProps(context) {
 
 export default function WebtoonPage(props) {
   const { webtoon } = props;
+  const title = `Rarement - ${webtoon.attributes?.title}`;
+  const desc = webtoon?.attributes?.description;
+  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons/${webtoon.attributes.webtoon_id}`;
+
   return (
     <div>
-      <Seo
-        title={`${webtoon.attributes.artist_id.data.attributes.first_name} - ${webtoon.attributes.title}`}
+      <NextSeo
+        title={title}
+        description={desc}
+        canonical={canonicalUrl}
+        openGraph={{
+          url: canonicalUrl,
+          title: title,
+          description: desc,
+          images: [
+            {
+              url: webtoon.attributes.avatarGIF?.data?.attributes.url,
+              width: 300,
+              height: 300,
+              alt: title,
+              type: "image/gif",
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@rmntxyz",
+          site: "@rmntxyz",
+          cardType: "summary_large_image",
+        }}
       />
       <main className="max-w-[768px] mx-auto md:max-w-[630px]">
         <Cover webtoon={webtoon} />
