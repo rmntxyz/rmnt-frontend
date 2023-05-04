@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import client from "../../apollo";
 import ListItem from "../../comps/home/ListItem";
 import { NextSeo } from "next-seo";
+import Seo from "../../comps/layout/SEO";
 
 const GET_WEBTOONS_DATA = gql`
   query Home_data {
@@ -109,7 +110,7 @@ export default function Webtoons({ webtoons, rarementABI }) {
 
   return (
     <div className="">
-      <NextSeo
+      {/* <NextSeo
         title={title}
         description={desc}
         canonical={canonicalUrl}
@@ -132,7 +133,8 @@ export default function Webtoons({ webtoons, rarementABI }) {
           site: "@rmntxyz",
           cardType: "summary_large_image",
         }}
-      />
+      /> */}
+      <Seo title={title}/>
       <main className="max-w-[768px] mx-auto px-4 py-14 grid grid-cols-2 gap-3 md:max-w-[630px]">
         {webtoons.map((item, idx) => (
           <ListItem

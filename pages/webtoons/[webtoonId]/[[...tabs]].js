@@ -2,6 +2,7 @@ import { getExchangeRate } from "../../api/USD_MATIC";
 import client from "../../../apollo";
 import { gql } from "@apollo/client";
 import { NextSeo } from "next-seo";
+import Seo from "../../../comps/layout/SEO";
 import Tabs from "../../../comps/webtoonDetail/Tabs";
 import Cover from "../../../comps/webtoonDetail/Cover";
 
@@ -198,7 +199,7 @@ export default function WebtoonPage(props) {
 
   return (
     <div>
-      <NextSeo
+      {/* <NextSeo
         title={title}
         description={desc}
         canonical={canonicalUrl}
@@ -221,7 +222,8 @@ export default function WebtoonPage(props) {
           site: "@rmntxyz",
           cardType: "summary_large_image",
         }}
-      />
+      /> */}
+      <Seo title={title} />
       <main className="max-w-[768px] mx-auto md:max-w-[630px]">
         <Cover webtoon={webtoon} />
         <Tabs {...props} />

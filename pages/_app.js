@@ -10,6 +10,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { DefaultSeo } from "next-seo";
+import Seo from "../comps/layout/SEO";
 
 //import { Sen } from 'next/font/google'
 //const sen = Sen({
@@ -64,7 +65,7 @@ function MyApp({ Component, pageProps }) {
           chains={chains}
         >
           <ParallaxProvider>
-            <DefaultSeo
+            {/* <DefaultSeo
               title={title}
               description={desc}
               canonical={canonicalUrl}
@@ -87,7 +88,8 @@ function MyApp({ Component, pageProps }) {
                 site: "@rmntxyz",
                 cardType: "summary_large_image",
               }}
-            />
+            /> */}
+            <Seo title={title}/>
             <Layout>
               <Component {...pageProps} />
             </Layout>

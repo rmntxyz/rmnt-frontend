@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
 import { NextSeo } from "next-seo";
+import Seo from "../../comps/layout/SEO";
 import Desc from "../../comps/profile/Desc";
 import Webtoons from "../../comps/profile/Webtoons";
 import Line from "../../utils/Line";
@@ -96,7 +97,7 @@ export default function Artist({ artist, webtoons }) {
 
   return (
     <div>
-      <NextSeo
+      {/* <NextSeo
         title={title}
         canonical={canonicalUrl}
         openGraph={{
@@ -117,7 +118,8 @@ export default function Artist({ artist, webtoons }) {
           site: "@rmntxyz",
           cardType: "summary_large_image",
         }}
-      />
+      /> */}
+      <Seo title={title}/>
       <main>
         <Desc props={artist} />
         <Line />
