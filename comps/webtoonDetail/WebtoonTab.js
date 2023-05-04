@@ -58,7 +58,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
                 ) : (
                   <div className="gradientBorder mt-[18px] w-fit font-bold text-sm px-2 py-0.5 rounded-xl">
                     D-
-                    {releasedAt.daysFromNow > 1
+                    {releasedAt.daysFromNow >= 1
                       ? releasedAt.daysFromNow
                       : "Day"}
                   </div>
