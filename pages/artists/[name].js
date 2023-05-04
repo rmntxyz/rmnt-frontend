@@ -92,7 +92,7 @@ export async function getServerSideProps(context) {
 export default function Artist({ artist, webtoons }) {
   const artistName = artist.attributes.first_name;
   const title = `Rarement - ${artistName}`;
-  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/artists/${artistName}}`;
+  const canonicalUrl = `https://www.rmnt.xyz/artists/${artistName}}`;
 
   return (
     <div>

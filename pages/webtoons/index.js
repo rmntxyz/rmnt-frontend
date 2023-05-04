@@ -105,7 +105,7 @@ export default function Webtoons({ webtoons, rarementABI }) {
   const title = "Rarement - Webtoons";
   const desc = "List of all webtoons on Rarement";
   const canonicalUrl =
-    "https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons";
+    "https://www.rmnt.xyz/webtoons";
 
   return (
     <div className="">

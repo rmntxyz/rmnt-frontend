@@ -194,7 +194,7 @@ export default function WebtoonPage(props) {
   const { webtoon } = props;
   const title = `Rarement - ${webtoon.attributes?.title}`;
   const desc = webtoon?.attributes?.description;
-  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons/${webtoon.attributes.webtoon_id}`;
+  const canonicalUrl = `https://www.rmnt.xyz/webtoons/${webtoon.attributes.webtoon_id}`;
 
   return (
     <div>

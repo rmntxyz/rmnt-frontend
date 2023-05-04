@@ -51,7 +51,7 @@ const passClient = createClient();
 function MyApp({ Component, pageProps }) {
   const title = "Rarement";
   const desc = "Own the Rare Moment";
-  const canonicalUrl = "https://rmnt-frontend-git-develop-rmnt.vercel.app";
+  const canonicalUrl = "https://www.rmnt.xyz";
 
   return (
     <ApolloProvider client={client}>

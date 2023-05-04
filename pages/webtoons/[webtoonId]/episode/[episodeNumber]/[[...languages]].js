@@ -179,7 +179,7 @@ export default function Episode({
   const webtoonTitle = webtoon.attributes.title;
   const title = `${webtoonTitle} - Ep.${episodeNumber}`;
   const desc = `Meet the ${ordinal(episodeNumber)} episode of ${webtoonTitle}`;
-  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons/${webtoon.attributes.webtoon_id}/episode/${episodeNumber}`;
+  const canonicalUrl = `https://www.rmnt.xyz/webtoons/${webtoon.attributes.webtoon_id}/episode/${episodeNumber}`;
 
   return (
     <div className="min-h-screen">
