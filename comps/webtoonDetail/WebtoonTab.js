@@ -41,7 +41,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
                       alt="Rarement Webtoon Cover Image"
                       className="rounded relative"
                     />
-                  </Link>{" "}
+                  </Link>
                   {released ? null : (
                     <div className="absolute bg-navBg/50 w-full h-full top-0 z-10"></div>
                   )}
@@ -58,7 +58,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
                 ) : (
                   <div className="gradientBorder mt-[18px] w-fit font-bold text-sm px-2 py-0.5 rounded-xl">
                     D-
-                    {releasedAt.daysFromNow > 1
+                    {releasedAt.daysFromNow >= 1
                       ? releasedAt.daysFromNow
                       : "Day"}
                   </div>

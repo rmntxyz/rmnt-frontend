@@ -4,20 +4,13 @@ import AboutBottom from "../comps/home/AboutBottom";
 import AboutTop from "../comps/home/AboutTop";
 import Artists from "../comps/home/Artists";
 import List from "../comps/home/List";
-import Seo from "../comps/layout/SEO";
 import Circle from "../utils/Circle";
-import { Noise } from 'noisejs';
+import { Noise } from "noisejs";
 import { useEffect, useRef, useState } from "react";
 
 const GET_HOME_DATA = gql`
   query Home_data {
-    webtoons(
-      filters: {
-        priority: { notNull: true }
-        rarement: { id: { notNull: true } }
-      }
-      sort: "priority"
-    ) {
+    webtoons(filters: { priority: { notNull: true } }, sort: "priority") {
       data {
         id
         attributes {
@@ -121,16 +114,9 @@ export async function getServerSideProps() {
     };
   }
 
-  const byChainId = (webtoon) => {
-    const { chainId } = webtoon.attributes.rarement.data.attributes;
-    return process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-      ? chainId === 137
-      : chainId === 80001;
-  };
-
   return {
     props: {
-      webtoons: data.webtoons.data.filter(byChainId),
+      webtoons: data.webtoons.data,
       artists: data.artists.data.slice().sort((a, b) => a.id - b.id),
       rarementABI: data.rarementContract.data.attributes.rarementABI,
     },
@@ -138,9 +124,42 @@ export async function getServerSideProps() {
 }
 
 const CIRCLES_INIT = [
-  { speed: 45, top: '40%', left:  '50%', width: '80%', opacity: '.09', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
-  { speed:  5, top: '60%', left: '-15%', width: '30%', opacity: '.06', blur: 40, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) },
-  { speed: 30, top: '95%', left:  '-5%', width: '40%', opacity: '.08', blur: 45, dx: 0, dy: 0, sx: Math.floor(Math.random() * 64000), sy: Math.floor(Math.random() * 64000) }
+  {
+    speed: 45,
+    top: "40%",
+    left: "50%",
+    width: "80%",
+    opacity: ".09",
+    blur: 45,
+    dx: 0,
+    dy: 0,
+    sx: Math.floor(Math.random() * 64000),
+    sy: Math.floor(Math.random() * 64000),
+  },
+  {
+    speed: 5,
+    top: "60%",
+    left: "-15%",
+    width: "30%",
+    opacity: ".06",
+    blur: 40,
+    dx: 0,
+    dy: 0,
+    sx: Math.floor(Math.random() * 64000),
+    sy: Math.floor(Math.random() * 64000),
+  },
+  {
+    speed: 30,
+    top: "95%",
+    left: "-5%",
+    width: "40%",
+    opacity: ".08",
+    blur: 45,
+    dx: 0,
+    dy: 0,
+    sx: Math.floor(Math.random() * 64000),
+    sy: Math.floor(Math.random() * 64000),
+  },
 ];
 
 const NOISE_SPEED = 0.002;
@@ -186,8 +205,8 @@ export default function Home({ webtoons, artists, rarementABI }) {
           dy: ndy,
           sx: nsx,
           sy: nsy,
-        }
-      })
+        };
+      });
     });
 
     animationRef.current = requestAnimationFrame(animate);
@@ -195,19 +214,24 @@ export default function Home({ webtoons, artists, rarementABI }) {
 
   return (
     <div className="overflow-x-clip">
-      <Seo title="Rarement" />
       <main className="relative max-w-[768px] mx-auto px-4 md:max-w-[630px]">
-        {
-        circles.map((circle, i) => (
-            <Circle key={i} speed={circle.speed} >
-              <div
-                id={`circle-${i}`}
-                style={{top: circle.top, left: circle.left, width: circle.width, marginTop: circle.mx, marginLeft: circle.my, opacity: circle.opacity, filter: `blur(${circle.blur}px)` }}
-                className={`absolute aspect-square rounded-full bg-mintGreen transform-gpu`}
-              ></div>
-            </Circle>
-          ))
-        }
+        {circles.map((circle, i) => (
+          <Circle key={i} speed={circle.speed}>
+            <div
+              id={`circle-${i}`}
+              style={{
+                top: circle.top,
+                left: circle.left,
+                width: circle.width,
+                marginTop: circle.mx,
+                marginLeft: circle.my,
+                opacity: circle.opacity,
+                filter: `blur(${circle.blur}px)`,
+              }}
+              className={`absolute aspect-square rounded-full bg-mintGreen transform-gpu`}
+            ></div>
+          </Circle>
+        ))}
         <List webtoons={webtoons} rarementABI={rarementABI} />
         <AboutTop />
         <Artists artists={artists} />

@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
+// import { NextSeo } from "next-seo";
 import Seo from "../../comps/layout/SEO";
 import Desc from "../../comps/profile/Desc";
 import Webtoons from "../../comps/profile/Webtoons";
@@ -90,9 +91,35 @@ export async function getServerSideProps(context) {
 }
 
 export default function Artist({ artist, webtoons }) {
+  const artistName = artist.attributes.first_name;
+  const title = `Rarement - ${artistName}`;
+  // const canonicalUrl = `https://www.rmnt.xyz/artists/${artistName}}`;
+
   return (
     <div>
-      <Seo title={artist.attributes.first_name} />
+      {/* <NextSeo
+        title={title}
+        canonical={canonicalUrl}
+        openGraph={{
+          url: canonicalUrl,
+          title: title,
+          images: [
+            {
+              url: artist.attributes.profile_image?.data?.attributes.url,
+              width: 700,
+              height: 700,
+              alt: title,
+              type: "image/png",
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@rmntxyz",
+          site: "@rmntxyz",
+          cardType: "summary_large_image",
+        }}
+      /> */}
+      <Seo title={title} />
       <main>
         <Desc props={artist} />
         <Line />

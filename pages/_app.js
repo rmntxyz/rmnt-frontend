@@ -9,15 +9,21 @@ import { publicProvider } from "wagmi/providers/public";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 import { ParallaxProvider } from "react-scroll-parallax";
+import { DefaultSeo } from "next-seo";
+import Seo from "../comps/layout/SEO";
+
+//import { Sen } from 'next/font/google'
+//const sen = Sen({
+//  subsets: ['latin'],
+//  weight: ['400', '700', '800'],
+//  display: 'block'
+//})
+
+// in JSX
+// <main className={sen.className}></main>
 
 // Configure chains & providers with the Alchemy provider
-const networks = [];
-
-if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
-  networks.push(polygonMumbai);
-} else {
-  networks.push(polygon);
-}
+const networks = [polygon, polygonMumbai];
 
 const { chains } = configureChains(networks, [
   alchemyProvider({
@@ -38,13 +44,17 @@ const passClient = createClient();
 // const chains = getDefaultChains();
 
 function MyApp({ Component, pageProps }) {
+  const title = "Rarement";
+  // const desc = "Own the Rare Moment";
+  // const canonicalUrl = "https://www.rmnt.xyz";
+
   return (
     <ApolloProvider client={client}>
       <WagmiConfig client={passClient}>
         <PassProvider
           wagmiClientConfig={{ autoConnect: true }}
           apiKey={process.env.NEXT_PUBLIC_0XPASS_API_KEY}
-          enabledConnectors={["google", "metamask"]}
+          enabledConnectors={["google", "metaMask", "facebook"]}
           theme={darkTheme({
             accentColor: "#70EFCF",
             accentColorForeground: "black",
@@ -55,6 +65,31 @@ function MyApp({ Component, pageProps }) {
           chains={chains}
         >
           <ParallaxProvider>
+            {/* <DefaultSeo
+              title={title}
+              description={desc}
+              canonical={canonicalUrl}
+              openGraph={{
+                url: canonicalUrl,
+                title: title,
+                description: desc,
+                images: [
+                  {
+                    url: "https://storage.googleapis.com/rmnt/thumbnail_RMNT_SYMBOL_85224726cb/thumbnail_RMNT_SYMBOL_85224726cb.png",
+                    width: 700,
+                    height: 700,
+                    alt: title,
+                    type: "image/png",
+                  },
+                ],
+              }}
+              twitter={{
+                handle: "@rmntxyz",
+                site: "@rmntxyz",
+                cardType: "summary_large_image",
+              }}
+            /> */}
+            <Seo title={title} />
             <Layout>
               <Component {...pageProps} />
             </Layout>
