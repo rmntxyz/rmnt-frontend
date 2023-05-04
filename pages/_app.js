@@ -11,13 +11,23 @@ import client from "../apollo";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { DefaultSeo } from "next-seo";
 
+//import { Sen } from 'next/font/google'
+//const sen = Sen({
+//  subsets: ['latin'],
+//  weight: ['400', '700', '800'],
+//  display: 'block'
+//})
+
+// in JSX
+// <main className={sen.className}></main>
+
 // Configure chains & providers with the Alchemy provider
 const networks = [];
 
+networks.push(polygon);
+
 if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
   networks.push(polygonMumbai);
-} else {
-  networks.push(polygon);
 }
 
 const { chains } = configureChains(networks, [
