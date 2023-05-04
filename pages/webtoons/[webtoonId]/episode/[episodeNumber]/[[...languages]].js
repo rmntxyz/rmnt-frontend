@@ -1,8 +1,9 @@
 import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import client from "../../../../../apollo";
-import ordinal from "ordinal";
-import { NextSeo } from "next-seo";
+// import ordinal from "ordinal";
+// import { NextSeo } from "next-seo";
+import Seo from "../../../../../comps/layout/SEO";
 import Nav from "../../../../../comps/webtoonEpisode/Nav";
 import Buttons from "../../../../../comps/webtoonEpisode/Buttons";
 import KorEngEpisode from "../../../../../comps/webtoonEpisode/KorEngEpisode";
@@ -178,12 +179,12 @@ export default function Episode({
   const episodeNumber = episode.episode_number;
   const webtoonTitle = webtoon.attributes.title;
   const title = `${webtoonTitle} - Ep.${episodeNumber}`;
-  const desc = `Meet the ${ordinal(episodeNumber)} episode of ${webtoonTitle}`;
-  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons/${webtoon.attributes.webtoon_id}/episode/${episodeNumber}`;
+  // const desc = `Meet the ${ordinal(episodeNumber)} episode of ${webtoonTitle}`;
+  // const canonicalUrl = `https://www.rmnt.xyz/webtoons/${webtoon.attributes.webtoon_id}/episode/${episodeNumber}`;
 
   return (
     <div className="min-h-screen">
-      <NextSeo
+      {/* <NextSeo
         title={title}
         description={desc}
         canonical={canonicalUrl}
@@ -206,7 +207,8 @@ export default function Episode({
           site: "@rmntxyz",
           cardType: "summary_large_image",
         }}
-      />
+      /> */}
+      <Seo title={title} />
       <Progress />
       <div
         style={{

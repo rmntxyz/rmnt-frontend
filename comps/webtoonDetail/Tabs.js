@@ -13,7 +13,7 @@ export default function Tabs(props) {
 
   return (
     <div id="main">
-      <div className="sticky top-0 flex bg-navBg z-10 shadow-md">
+      <div className="sticky top-0 flex bg-navBg z-20 shadow-md">
         <div className="ml-4">
           <Link shallow href={`/webtoons/${webtoonId}`}>
             <div

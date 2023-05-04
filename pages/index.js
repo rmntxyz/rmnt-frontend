@@ -4,7 +4,6 @@ import AboutBottom from "../comps/home/AboutBottom";
 import AboutTop from "../comps/home/AboutTop";
 import Artists from "../comps/home/Artists";
 import List from "../comps/home/List";
-import { NextSeo } from "next-seo";
 import Circle from "../utils/Circle";
 import { Noise } from "noisejs";
 import { useEffect, useRef, useState } from "react";

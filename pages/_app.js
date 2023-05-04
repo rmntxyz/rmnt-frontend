@@ -10,6 +10,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { DefaultSeo } from "next-seo";
+import Seo from "../comps/layout/SEO";
 
 //import { Sen } from 'next/font/google'
 //const sen = Sen({
@@ -22,13 +23,7 @@ import { DefaultSeo } from "next-seo";
 // <main className={sen.className}></main>
 
 // Configure chains & providers with the Alchemy provider
-const networks = [];
-
-networks.push(polygon);
-
-if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
-  networks.push(polygonMumbai);
-}
+const networks = [polygon, polygonMumbai];
 
 const { chains } = configureChains(networks, [
   alchemyProvider({
@@ -50,8 +45,8 @@ const passClient = createClient();
 
 function MyApp({ Component, pageProps }) {
   const title = "Rarement";
-  const desc = "Own the Rare Moment";
-  const canonicalUrl = "https://rmnt-frontend-git-develop-rmnt.vercel.app";
+  // const desc = "Own the Rare Moment";
+  // const canonicalUrl = "https://www.rmnt.xyz";
 
   return (
     <ApolloProvider client={client}>
@@ -70,7 +65,7 @@ function MyApp({ Component, pageProps }) {
           chains={chains}
         >
           <ParallaxProvider>
-            <DefaultSeo
+            {/* <DefaultSeo
               title={title}
               description={desc}
               canonical={canonicalUrl}
@@ -93,7 +88,8 @@ function MyApp({ Component, pageProps }) {
                 site: "@rmntxyz",
                 cardType: "summary_large_image",
               }}
-            />
+            /> */}
+            <Seo title={title} />
             <Layout>
               <Component {...pageProps} />
             </Layout>

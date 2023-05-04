@@ -1,7 +1,8 @@
 import { getExchangeRate } from "../../api/USD_MATIC";
 import client from "../../../apollo";
 import { gql } from "@apollo/client";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
+import Seo from "../../../comps/layout/SEO";
 import Tabs from "../../../comps/webtoonDetail/Tabs";
 import Cover from "../../../comps/webtoonDetail/Cover";
 
@@ -193,12 +194,12 @@ export async function getServerSideProps(context) {
 export default function WebtoonPage(props) {
   const { webtoon } = props;
   const title = `Rarement - ${webtoon.attributes?.title}`;
-  const desc = webtoon?.attributes?.description;
-  const canonicalUrl = `https://rmnt-frontend-git-develop-rmnt.vercel.app/webtoons/${webtoon.attributes.webtoon_id}`;
+  // const desc = webtoon?.attributes?.description;
+  // const canonicalUrl = `https://www.rmnt.xyz/webtoons/${webtoon.attributes.webtoon_id}`;
 
   return (
     <div>
-      <NextSeo
+      {/* <NextSeo
         title={title}
         description={desc}
         canonical={canonicalUrl}
@@ -221,7 +222,8 @@ export default function WebtoonPage(props) {
           site: "@rmntxyz",
           cardType: "summary_large_image",
         }}
-      />
+      /> */}
+      <Seo title={title} />
       <main className="max-w-[768px] mx-auto md:max-w-[630px]">
         <Cover webtoon={webtoon} />
         <Tabs {...props} />
