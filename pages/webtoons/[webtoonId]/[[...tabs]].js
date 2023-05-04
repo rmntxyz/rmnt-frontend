@@ -194,8 +194,8 @@ export async function getServerSideProps(context) {
 export default function WebtoonPage(props) {
   const { webtoon } = props;
   const title = `Rarement - ${webtoon.attributes?.title}`;
-  const desc = webtoon?.attributes?.description;
-  const canonicalUrl = `https://www.rmnt.xyz/webtoons/${webtoon.attributes.webtoon_id}`;
+  // const desc = webtoon?.attributes?.description;
+  // const canonicalUrl = `https://www.rmnt.xyz/webtoons/${webtoon.attributes.webtoon_id}`;
 
   return (
     <div>

@@ -93,7 +93,7 @@ export async function getServerSideProps(context) {
 export default function Artist({ artist, webtoons }) {
   const artistName = artist.attributes.first_name;
   const title = `Rarement - ${artistName}`;
-  const canonicalUrl = `https://www.rmnt.xyz/artists/${artistName}}`;
+  // const canonicalUrl = `https://www.rmnt.xyz/artists/${artistName}}`;
 
   return (
     <div>
@@ -119,7 +119,7 @@ export default function Artist({ artist, webtoons }) {
           cardType: "summary_large_image",
         }}
       /> */}
-      <Seo title={title}/>
+      <Seo title={title} />
       <main>
         <Desc props={artist} />
         <Line />

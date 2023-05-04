@@ -23,7 +23,7 @@ import Seo from "../comps/layout/SEO";
 // <main className={sen.className}></main>
 
 // Configure chains & providers with the Alchemy provider
-const networks = [ polygon, polygonMumbai ];
+const networks = [polygon, polygonMumbai];
 
 const { chains } = configureChains(networks, [
   alchemyProvider({
@@ -45,8 +45,8 @@ const passClient = createClient();
 
 function MyApp({ Component, pageProps }) {
   const title = "Rarement";
-  const desc = "Own the Rare Moment";
-  const canonicalUrl = "https://www.rmnt.xyz";
+  // const desc = "Own the Rare Moment";
+  // const canonicalUrl = "https://www.rmnt.xyz";
 
   return (
     <ApolloProvider client={client}>
@@ -89,7 +89,7 @@ function MyApp({ Component, pageProps }) {
                 cardType: "summary_large_image",
               }}
             /> */}
-            <Seo title={title}/>
+            <Seo title={title} />
             <Layout>
               <Component {...pageProps} />
             </Layout>
