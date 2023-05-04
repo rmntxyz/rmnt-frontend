@@ -48,7 +48,7 @@
   }
 }
 
-/* for pop-up navigation buttons on episode page */
+/* for pop-up navigation buttons on episode page & webtoons tabs */
 .gradientBorder {
   background: linear-gradient(#1d1d1d, #1d1d1d) padding-box,
     linear-gradient(to bottom, #70efcf, #cea671) border-box;
