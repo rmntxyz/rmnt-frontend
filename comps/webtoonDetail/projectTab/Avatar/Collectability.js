@@ -11,9 +11,9 @@ import { Polygon } from "../../../../utils/svgs";
 import useRarementData from "../../../../utils/useRarementData";
 import CollectButton from "./CollectButton";
 
-function weiToEther(wei, precision = 2) {
-  wei = Math.floor(wei);
-  return Number.parseFloat(ethers.utils.formatEther(wei)).toFixed(precision);
+function weiToEther(bigNumberishWei) {
+  const wei = ethers.BigNumber.from(bigNumberishWei);
+  return ethers.utils.formatEther(wei);
 }
 
 export default function Collectability({ webtoon, rarementABI, exchangeRate, setRefresh }) {
@@ -66,7 +66,7 @@ export default function Collectability({ webtoon, rarementABI, exchangeRate, set
             abi: rarementABI,
             functionName: "mint",
             overrides: {
-              value: rarementInfo.price.mul(quantity),
+              value: ethers.BigNumber.from(rarementInfo.price).mul(quantity),
             },
             args: [quantity],
           });
@@ -105,10 +105,10 @@ export default function Collectability({ webtoon, rarementABI, exchangeRate, set
           <div className="flex items-center gap-1">
             <Polygon />
             <div className="font-bold text-sm">
-              {weiToEther(rarementInfo.price.toNumber(), 3)} MATIC
+              {weiToEther(rarementInfo.price)} MATIC
             </div>
             <div className="text-white/50 text-sm">
-              ≈ {weiToEther(rarementInfo.price.toNumber() * exchangeRate, 2)}{" "}
+              ≈ {Number(weiToEther(rarementInfo.price) * exchangeRate).toFixed(2) + " "}
               USD
             </div>
             <div></div>
@@ -146,7 +146,7 @@ export default function Collectability({ webtoon, rarementABI, exchangeRate, set
             rarementInfo?.maxMintablePerAccount <= holdingCount
           }
           matic={
-            rarementInfo ? weiToEther(rarementInfo?.price.toNumber(), 3) : null
+            rarementInfo ? Number(weiToEther(rarementInfo.price)) : null
           }
         ></CollectButton>
       ) : (
