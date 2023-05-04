@@ -23,7 +23,7 @@ export default function Desc({ props }) {
 
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
-  console.log(props);
+  
   return (
     <div className="mb-14 text-white/80">
       <div className="relative bg-mainBg w-full h-[224px]">
