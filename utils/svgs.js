@@ -232,7 +232,7 @@ export const Instagram = () => {
   );
 };
 
-export const Email = () => {
+export const Homepage = () => {
   return (
     <svg
       width="24"

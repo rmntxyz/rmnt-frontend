@@ -18,9 +18,21 @@ const OutLinkWithIcon = ({ href, icon, desc }) => {
 
 const OutLinks = [
   // { href: "/", icon: faInstagram },
-  { href: "/", icon: faTwitter, desc: "Check out Rarement's Twitter feed" },
-  { href: "/", icon: faDiscord, desc: "Join Rarement on Discord" },
-  { href: "/", icon: faEnvelope, desc: "Contact Rarement by Email" },
+  {
+    href: "https://twitter.com/rmntxyz",
+    icon: faTwitter,
+    desc: "Check out Rarement's Twitter feed",
+  },
+  {
+    href: "https://discord.gg/HecyuhkJCD",
+    icon: faDiscord,
+    desc: "Join Rarement on Discord",
+  },
+  {
+    href: "mailto:support@rmnt.xyz",
+    icon: faEnvelope,
+    desc: "Contact Rarement by Email",
+  },
 ].map((info) => <OutLinkWithIcon {...info} />);
 
 const InLinks = [
@@ -48,37 +60,49 @@ export default function Footer() {
       }}
     >
       <Line />
-      <ul className="flex items-center gap-5 mt-14">
-        <li>
-          <a
-            href="/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Follow Rarement on Instagram"
-            className="w-[44px] h-[44px] flex items-center justify-center duration-200 border border-white/20 rounded-full bg-opaqueGray hover:text-[#F3F3F3]"
-          >
-            <Instagram />
-          </a>
-        </li>
-        {OutLinks.map((link, idx) => (
-          <li
-            key={idx}
-            className="w-[44px] h-[44px] flex items-center justify-center duration-200 border border-white/20 rounded-full bg-opaqueGray hover:text-[#F3F3F3]"
-          >
-            {link}
+      <div className="rounded-full border border-mintGreen px-6 py-3 cursor-pointer text-mintGreen mt-8 mb-5">
+        <Link
+          href="https://forms.gle/Aboi8WTLm3214KNB7"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Apply to be Rarement's artist"
+        >
+          Apply to be Rarement's Artist
+        </Link>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-6">
+        <ul className="flex items-center gap-5">
+          <li>
+            <a
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow Rarement on Instagram"
+              className="w-[44px] h-[44px] flex items-center justify-center duration-200 border border-white/20 rounded-full bg-opaqueGray hover:text-[#F3F3F3]"
+            >
+              <Instagram />
+            </a>
           </li>
-        ))}
-      </ul>
-      <ul className="flex items-center gap-6 text-sm">
-        {InLinks.map((link, idx) => (
-          <li
-            key={idx}
-            className="cursor-pointer text-center duration-200 hover:text-[#F3F3F3]"
-          >
-            {link}
-          </li>
-        ))}
-      </ul>
+          {OutLinks.map((link, idx) => (
+            <li
+              key={idx}
+              className="w-[44px] h-[44px] flex items-center justify-center duration-200 border border-white/20 rounded-full bg-opaqueGray hover:text-[#F3F3F3]"
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
+        <ul className="flex items-center gap-6 text-sm">
+          {InLinks.map((link, idx) => (
+            <li
+              key={idx}
+              className="cursor-pointer text-center duration-200 hover:text-[#F3F3F3]"
+            >
+              {link}
+            </li>
+          ))}
+        </ul>
+      </div>
     </footer>
   );
 }

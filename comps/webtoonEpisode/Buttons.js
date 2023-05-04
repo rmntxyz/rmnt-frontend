@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import scrollToTop from "../../utils/scrollToTop";
 import Link from "next/link";
-import styles from "./Buttons.module.css";
 
 export default function Buttons({ allEpisodes, showToTop }) {
   //Use params to specify prev/next episodes
@@ -37,7 +36,7 @@ export default function Buttons({ allEpisodes, showToTop }) {
             style={{
               display: prevEpisode ? "block" : "none",
             }}
-            className={`${styles.gradientBorder} py-3 px-4`}
+            className={`gradientBorder py-3 px-4`}
           >
             <FontAwesomeIcon icon={faArrowLeft} className="text-lg" />
             <span
@@ -60,7 +59,7 @@ export default function Buttons({ allEpisodes, showToTop }) {
             style={{
               display: nextReleased ? "block" : "none",
             }}
-            className={`${styles.gradientBorder} py-3 px-4`}
+            className={`gradientBorder py-3 px-4`}
           >
             <span
               className={`mr-3 ${
@@ -83,7 +82,7 @@ export default function Buttons({ allEpisodes, showToTop }) {
         >
           <FontAwesomeIcon
             icon={faArrowUp}
-            className={`absolute right-0 top-1 ${styles.gradientBorder} m-8 px-3.5 py-3 text-lg`}
+            className={`absolute right-0 top-1 gradientBorder m-8 px-3.5 py-3 text-lg`}
           />
         </button>
       </div>

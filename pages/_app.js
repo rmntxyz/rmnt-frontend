@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }) {
         <PassProvider
           wagmiClientConfig={{ autoConnect: true }}
           apiKey={process.env.NEXT_PUBLIC_0XPASS_API_KEY}
-          enabledConnectors={["google", "metamask"]}
+          enabledConnectors={["google", "metaMask", "facebook"]}
           theme={darkTheme({
             accentColor: "#70EFCF",
             accentColorForeground: "black",

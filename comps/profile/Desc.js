@@ -4,8 +4,10 @@ import Image from "next/legacy/image";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import ShowOrClose from "../../utils/showOrClose";
-import { Email, Instagram, ProfileCheck, SmallOpenSea } from "../../utils/svgs";
+import { Instagram, ProfileCheck, SmallOpenSea } from "../../utils/svgs";
 import CopyAddress from "./CopyAddress";
+import Link from "next/link";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export default function Desc({ props }) {
   //Find if the text is truncated & display the "more/close" button if the text is truncated
@@ -21,7 +23,7 @@ export default function Desc({ props }) {
 
   //Toggle the "more/close" button
   const [show, setShow] = useState(false);
-
+  console.log(props);
   return (
     <div className="mb-14 text-white/80">
       <div className="relative bg-mainBg w-full h-[224px]">
@@ -72,15 +74,18 @@ export default function Desc({ props }) {
               ) : null}
             </div>
             <div className="flex gap-5">
-              {props.attributes.instagram?.length > 0 ? (
-                <a
-                  href={`https://www.instagram.com/${props.instagram}`}
-                  target="_blank"
-                  className="w-11 h-11 flex items-center justify-center rounded-full bg-mainBg"
-                >
-                  <Instagram />
-                </a>
-              ) : null}
+              {props.attributes.instagram?.length > 0
+                ? props.attributes.instagram.split(",").map((item, index) => (
+                    <Link
+                      key={index}
+                      href={`https://www.instagram.com/${item}`}
+                      target="_blank"
+                      className="w-11 h-11 flex items-center justify-center rounded-full bg-mainBg"
+                    >
+                      <Instagram />
+                    </Link>
+                  ))
+                : null}
               {props.attributes.twitter?.length > 0 ? (
                 <a
                   href={`https://www.twitter.com/${props.attributes.twitter}`}
@@ -96,7 +101,10 @@ export default function Desc({ props }) {
                   target="_blank"
                   className="w-11 h-11 flex items-center justify-center rounded-full bg-mainBg"
                 >
-                  <Email />
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="text-white/80"
+                  />
                 </a>
               ) : null}
               {props.attributes.opensea?.length > 0 ? (
