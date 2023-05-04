@@ -1,7 +1,7 @@
 import { getExchangeRate } from "../../api/USD_MATIC";
 import client from "../../../apollo";
 import { gql } from "@apollo/client";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 import Seo from "../../../comps/layout/SEO";
 import Tabs from "../../../comps/webtoonDetail/Tabs";
 import Cover from "../../../comps/webtoonDetail/Cover";

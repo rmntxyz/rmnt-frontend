@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
 import ListItem from "../../comps/home/ListItem";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 import Seo from "../../comps/layout/SEO";
 
 const GET_WEBTOONS_DATA = gql`

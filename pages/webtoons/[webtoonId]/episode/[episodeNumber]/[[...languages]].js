@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import client from "../../../../../apollo";
-import ordinal from "ordinal";
-import { NextSeo } from "next-seo";
+// import ordinal from "ordinal";
+// import { NextSeo } from "next-seo";
 import Seo from "../../../../../comps/layout/SEO";
 import Nav from "../../../../../comps/webtoonEpisode/Nav";
 import Buttons from "../../../../../comps/webtoonEpisode/Buttons";

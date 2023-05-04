@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import client from "../../apollo";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 import Seo from "../../comps/layout/SEO";
 import Desc from "../../comps/profile/Desc";
 import Webtoons from "../../comps/profile/Webtoons";
