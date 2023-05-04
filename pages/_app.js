@@ -22,13 +22,7 @@ import { DefaultSeo } from "next-seo";
 // <main className={sen.className}></main>
 
 // Configure chains & providers with the Alchemy provider
-const networks = [];
-
-networks.push(polygon);
-
-if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
-  networks.push(polygonMumbai);
-}
+const networks = [ polygon, polygonMumbai ];
 
 const { chains } = configureChains(networks, [
   alchemyProvider({
