@@ -17,7 +17,6 @@ const OutLinkWithIcon = ({ href, icon, desc }) => {
 };
 
 const OutLinks = [
-  // { href: "/", icon: faInstagram },
   {
     href: "https://twitter.com/rmntxyz",
     icon: faTwitter,
@@ -36,7 +35,10 @@ const OutLinks = [
 ].map((info) => <OutLinkWithIcon {...info} />);
 
 const InLinks = [
-  { href: null, text: "FAQ" },
+  {
+    href: " https://azure-dormouse-716.notion.site/FAQ-4dec503e7f6c4ac5b6dff1435f3922fa",
+    text: "FAQ",
+  },
   {
     href: "https://azure-dormouse-716.notion.site/Terms-of-Service-f14f51f5252d4f24898979b787b72288",
     text: "terms of services",
@@ -46,9 +48,9 @@ const InLinks = [
     text: "privacy policy",
   },
 ].map(({ href, text }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer">
+  <Link href={href} target="_blank" rel="noopener noreferrer">
     {text}
-  </a>
+  </Link>
 ));
 
 export default function Footer() {
