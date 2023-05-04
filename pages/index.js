@@ -237,7 +237,7 @@ export default function Home({ webtoons, artists, rarementABI }) {
         <AboutTop />
         <Artists artists={artists} />
         <AboutBottom />
-      </main>
+     </main>
     </div>
   );
 }
