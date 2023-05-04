@@ -41,7 +41,7 @@ export default function WebtoonTab({ webtoon, episodes }) {
                       alt="Rarement Webtoon Cover Image"
                       className="rounded relative"
                     />
-                  </Link>{" "}
+                  </Link>
                   {released ? null : (
                     <div className="absolute bg-navBg/50 w-full h-full top-0 z-10"></div>
                   )}
