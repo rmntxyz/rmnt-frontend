@@ -9,11 +9,11 @@ class MyDocument extends Document {
           <meta property="og:title" content="Rarement" />
           <meta property="og:description" content="Own the rare moment" />
           <meta property="og:url" content="https://www.rmnt.xyz/" />
-          <meta property="og:image:url" content="https://storage.googleapis.com/rmnt/thumbnail_RMNT_SYMBOL_85224726cb/thumbnail_RMNT_SYMBOL_85224726cb.png" />
+          {/* <meta property="og:image:url" content="https://storage.googleapis.com/rmnt/thumbnail_RMNT_SYMBOL_85224726cb/thumbnail_RMNT_SYMBOL_85224726cb.png" />
           <meta property="og:image:width" content="700" />
           <meta property="og:image:height" content="700" />
           <meta property="og:image:alt" content="Rarement" />
-          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:type" content="image/png" /> */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@rmntxyz" />
           <meta name="twitter:title" content="Rarement" />
