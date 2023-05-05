@@ -11,6 +11,7 @@ import client from "../apollo";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { DefaultSeo } from "next-seo";
 import Seo from "../comps/layout/SEO";
+import { Analytics } from '@vercel/analytics/react';
 
 //import { Sen } from 'next/font/google'
 //const sen = Sen({
@@ -54,7 +55,7 @@ function MyApp({ Component, pageProps }) {
         <PassProvider
           wagmiClientConfig={{ autoConnect: true }}
           apiKey={process.env.NEXT_PUBLIC_0XPASS_API_KEY}
-          enabledConnectors={["google", "metaMask", "facebook"]}
+          enabledConnectors={["metaMask"/*, "google",  "facebook"*/]}
           theme={darkTheme({
             accentColor: "#70EFCF",
             accentColorForeground: "black",
@@ -92,6 +93,7 @@ function MyApp({ Component, pageProps }) {
             <Seo title={title} />
             <Layout>
               <Component {...pageProps} />
+              <Analytics />
             </Layout>
           </ParallaxProvider>
         </PassProvider>
