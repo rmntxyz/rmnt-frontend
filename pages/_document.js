@@ -23,7 +23,7 @@ class MyDocument extends Document {
           <meta name="twitter:description" content="Own the rare moment" />
           <meta
             name="twitter:image"
-            content="https://storage.googleapis.com/rmnt/thumbnail_RMNT_SYMBOL_85224726cb/thumbnail_RMNT_SYMBOL_85224726cb.png"
+            content="https://storage.googleapis.com/rmnt/logo_b_aefe31ad11/logo_b_aefe31ad11.png?updated_at=2023-05-05T19:27:25.913Z"
           />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
