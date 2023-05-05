@@ -1,8 +1,8 @@
 import Layout from "../comps/layout/Layout";
 import "../styles/globals.css";
 import "0xpass/styles.css";
-import { darkTheme, PassProvider, createClient } from "0xpass";
-import { configureChains, WagmiConfig } from "wagmi";
+import { darkTheme, getDefaultWallets, RainbowKitProvider } from "0xpass";
+import { configureChains, WagmiConfig, createClient } from "wagmi";
 import { polygon, polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -11,7 +11,7 @@ import client from "../apollo";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { DefaultSeo } from "next-seo";
 import Seo from "../comps/layout/SEO";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 //import { Sen } from 'next/font/google'
 //const sen = Sen({
@@ -26,22 +26,23 @@ import { Analytics } from '@vercel/analytics/react';
 // Configure chains & providers with the Alchemy provider
 const networks = [polygon, polygonMumbai];
 
-const { chains } = configureChains(networks, [
+const { chains, provider } = configureChains(networks, [
   alchemyProvider({
     apiKey: process.env.NEXT_PUBLIC_POLYGON_ALCHEMY_API_KEY,
   }),
   publicProvider(),
 ]);
 
-// const { connectors } = getDefaultWallets({
-//   appName: "rmnt-frontend",
-//   chains,
-// });
-// const wagmiClient = createClient({
-//   autoConnect: true,
-// });
+const { connectors } = getDefaultWallets({
+  appName: "rmnt-frontend",
+  chains,
+});
 
-const passClient = createClient();
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider,
+});
 // const chains = getDefaultChains();
 
 function MyApp({ Component, pageProps }) {
@@ -51,11 +52,21 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <WagmiConfig client={passClient}>
-        <PassProvider
+      <WagmiConfig client={wagmiClient}>
+        {/* <PassProvider
           wagmiClientConfig={{ autoConnect: true }}
           apiKey={process.env.NEXT_PUBLIC_0XPASS_API_KEY}
-          enabledConnectors={["metaMask"/*, "google",  "facebook"*/]}
+          enabledConnectors={["metaMask", "google",  "facebook"]}
+          theme={darkTheme({
+            accentColor: "#70EFCF",
+            accentColorForeground: "black",
+            borderRadius: "small",
+            fontStack: "system",
+            overlayBlur: "small",
+          })}
+          chains={chains}
+        > */}
+        <RainbowKitProvider
           theme={darkTheme({
             accentColor: "#70EFCF",
             accentColorForeground: "black",
@@ -96,7 +107,8 @@ function MyApp({ Component, pageProps }) {
               <Analytics />
             </Layout>
           </ParallaxProvider>
-        </PassProvider>
+        </RainbowKitProvider>
+        {/* </PassProvider> */}
       </WagmiConfig>
     </ApolloProvider>
   );
