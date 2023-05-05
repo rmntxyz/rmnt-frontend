@@ -18,7 +18,7 @@ export default function AboutTop() {
         width={336}
         height={336}
         placeholder="blur"
-        blurDataURL="/aboutImage.png"
+        blurDataURL="/about.png"
         alt="Rarement Image"
       />
       <div className="flex flex-col gap-3">
