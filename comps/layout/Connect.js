@@ -1,4 +1,4 @@
-import { ConnectButton } from "0xpass";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -36,11 +36,11 @@ export default function Connect() {
                     <span className="invisible px-8 py-3 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight font-bold rounded-3xl hover:bg-navBg hover:text-white duration-200 md:visible ">
                       Connect Wallet
                     </span>
-                    <span className="absolute top-[18px] right-8 w-12 h-12 flex items-center justify-center bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight rounded-full hover:bg-navBg hover:text-white duration-200 md:invisible">
+                    <span className="absolute top-6 right-8 p-2 bg-mintGreen border-2 border-mintGreen text-navBg text-base leading-tight rounded-full hover:bg-navBg hover:text-white duration-200 md:invisible">
                       <FontAwesomeIcon
                         icon={faWallet}
                         width="20px"
-                        height="32px"
+                        height="20px"
                       ></FontAwesomeIcon>
                     </span>
                   </button>

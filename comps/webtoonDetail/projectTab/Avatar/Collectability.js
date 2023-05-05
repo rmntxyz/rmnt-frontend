@@ -6,7 +6,7 @@ import {
   writeContract,
   waitForTransaction,
 } from "@wagmi/core";
-import { ConnectButton } from "0xpass";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Polygon } from "../../../../utils/svgs";
 import useRarementData from "../../../../utils/useRarementData";
 import CollectButton from "./CollectButton";
