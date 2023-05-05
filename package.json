@@ -15,6 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@tippyjs/react": "^4.2.6",
+    "@vercel/analytics": "^1.0.1",
     "@web3modal/standalone": "^2.2.1",
     "0xpass": "^0.0.28",
     "alchemy-sdk": "2.8.0",
