@@ -23,7 +23,7 @@ const OutLinks = [
     desc: "Check out Rarement's Twitter feed",
   },
   {
-    href: "https://discord.gg/HecyuhkJCD",
+    href: "https://discord.gg/7md4f2WSRj",
     icon: faDiscord,
     desc: "Join Rarement on Discord",
   },
