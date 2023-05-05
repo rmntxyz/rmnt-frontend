@@ -36,7 +36,7 @@ const OutLinks = [
 
 const InLinks = [
   {
-    href: " https://azure-dormouse-716.notion.site/FAQ-4dec503e7f6c4ac5b6dff1435f3922fa",
+    href: "https://azure-dormouse-716.notion.site/FAQ-4dec503e7f6c4ac5b6dff1435f3922fa",
     text: "FAQ",
   },
   {
