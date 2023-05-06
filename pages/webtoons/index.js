@@ -108,7 +108,7 @@ export default function Webtoons({ webtoons, rarementABI }) {
   // const canonicalUrl = "https://www.rmnt.xyz/webtoons";
 
   return (
-    <div className="">
+    <div>
       {/* <NextSeo
         title={title}
         description={desc}
