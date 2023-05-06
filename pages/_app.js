@@ -1,6 +1,6 @@
 import Layout from "../comps/layout/Layout";
 import "../styles/globals.css";
-import '@rainbow-me/rainbowkit/styles.css';
+import "@rainbow-me/rainbowkit/styles.css";
 import {
   darkTheme,
   getDefaultWallets,
@@ -16,6 +16,10 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { DefaultSeo } from "next-seo";
 import Seo from "../comps/layout/SEO";
 import { Analytics } from "@vercel/analytics/react";
+import { config, dom } from "@fortawesome/fontawesome-svg-core";
+import Head from "next/head";
+
+config.autoAddCss = false;
 
 //import { Sen } from 'next/font/google'
 //const sen = Sen({
@@ -38,7 +42,6 @@ const { chains, provider } = configureChains(networks, [
 ]);
 
 const projectId = process.env.NEXT_PUBLIC_WAGMI_PROJECT_ID;
-console.log(projectId)
 
 const { connectors } = getDefaultWallets({
   appName: "rmnt-frontend",
@@ -51,7 +54,6 @@ const wagmiClient = createClient({
   connectors,
   provider,
 });
-// const chains = getDefaultChains();
 
 function MyApp({ Component, pageProps }) {
   const title = "Rarement";
@@ -109,6 +111,9 @@ function MyApp({ Component, pageProps }) {
                 cardType: "summary_large_image",
               }}
             /> */}
+            <Head>
+              <style>{dom.css()}</style>
+            </Head>
             <Seo title={title} />
             <Layout>
               <Component {...pageProps} />

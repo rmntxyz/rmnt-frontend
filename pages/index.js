@@ -215,7 +215,7 @@ export default function Home({ webtoons, artists, rarementABI }) {
   return (
     <div className="overflow-x-clip">
       <main className="relative max-w-[768px] mx-auto px-4 md:max-w-[630px]">
-        {/* {circles.map((circle, i) => (
+        {circles.map((circle, i) => (
           <Circle key={i} speed={circle.speed}>
             <div
               id={`circle-${i}`}
@@ -231,12 +231,12 @@ export default function Home({ webtoons, artists, rarementABI }) {
               className={`absolute aspect-square rounded-full bg-mintGreen transform-gpu`}
             ></div>
           </Circle>
-        ))} */}
+        ))}
         <List webtoons={webtoons} rarementABI={rarementABI} />
         <AboutTop />
         <Artists artists={artists} />
         <AboutBottom />
-     </main>
+      </main>
     </div>
   );
 }
