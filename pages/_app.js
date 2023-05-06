@@ -56,7 +56,7 @@ const wagmiClient = createClient({
 });
 
 function MyApp({ Component, pageProps }) {
-  const title = "Rarement";
+  // const title = "Rarement";
   // const desc = "Own the Rare Moment";
   // const canonicalUrl = "https://www.rmnt.xyz";
 
@@ -114,7 +114,6 @@ function MyApp({ Component, pageProps }) {
             <Head>
               <style>{dom.css()}</style>
             </Head>
-            <Seo title={title} />
             <Layout>
               <Component {...pageProps} />
               <Analytics />
