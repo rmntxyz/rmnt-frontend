@@ -7,6 +7,7 @@ import List from "../comps/home/List";
 import Circle from "../utils/Circle";
 import { Noise } from "noisejs";
 import { useEffect, useRef, useState } from "react";
+import Seo from "../comps/layout/SEO";
 
 const GET_HOME_DATA = gql`
   query Home_data {
@@ -214,6 +215,7 @@ export default function Home({ webtoons, artists, rarementABI }) {
 
   return (
     <div className="overflow-x-clip">
+      <Seo title="Rarement" />
       <main className="relative max-w-[768px] mx-auto px-4 md:max-w-[630px]">
         {circles.map((circle, i) => (
           <Circle key={i} speed={circle.speed}>
@@ -236,7 +238,7 @@ export default function Home({ webtoons, artists, rarementABI }) {
         <AboutTop />
         <Artists artists={artists} />
         <AboutBottom />
-     </main>
+      </main>
     </div>
   );
 }

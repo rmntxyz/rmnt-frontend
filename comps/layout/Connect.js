@@ -1,4 +1,4 @@
-import { ConnectButton } from "0xpass";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -40,7 +40,7 @@ export default function Connect() {
                       <FontAwesomeIcon
                         icon={faWallet}
                         width="20px"
-                        height="32px"
+                        height="20px"
                       ></FontAwesomeIcon>
                     </span>
                   </button>
