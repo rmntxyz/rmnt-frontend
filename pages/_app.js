@@ -1,6 +1,11 @@
 import Layout from "../comps/layout/Layout";
 import "../styles/globals.css";
-import { darkTheme, getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import '@rainbow-me/rainbowkit/styles.css';
+import {
+  darkTheme,
+  getDefaultWallets,
+  RainbowKitProvider,
+} from "@rainbow-me/rainbowkit";
 import { configureChains, WagmiConfig, createClient } from "wagmi";
 import { polygon, polygonMumbai } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
@@ -32,9 +37,12 @@ const { chains, provider } = configureChains(networks, [
   publicProvider(),
 ]);
 
+const projectId = process.env.NEXT_PUBLIC_WAGMI_PROJECT_ID;
+console.log(projectId)
+
 const { connectors } = getDefaultWallets({
   appName: "rmnt-frontend",
-  projectId: "rmnt-frontend",
+  projectId,
   chains,
 });
 
