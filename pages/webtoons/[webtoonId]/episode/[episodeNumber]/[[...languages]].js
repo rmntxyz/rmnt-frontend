@@ -67,6 +67,7 @@ const GET_EPISODE_DATA = gql`
                 }
                 comments(pagination: { limit: 200 }, sort: "publishedAt:desc") {
                   data {
+                    id
                     attributes {
                       content
                       createdAt
