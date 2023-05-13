@@ -9,6 +9,7 @@ import Buttons from "../../../../../comps/webtoonEpisode/Buttons";
 import KorEngEpisode from "../../../../../comps/webtoonEpisode/KorEngEpisode";
 import { useEffect, useRef, useState } from "react";
 import Progress from "../../../../../comps/webtoonEpisode/Progress";
+import Comments from "../../../../../comps/webtoonEpisode/Comments";
 
 const GET_EPISODE_DATA = gql`
   query Webtoon($webtoonId: String) {
@@ -64,6 +65,20 @@ const GET_EPISODE_DATA = gql`
                     }
                   }
                 }
+                comments(pagination: { limit: 200 }) {
+                  data {
+                    attributes {
+                      content
+                      createdAt
+                      publishedAt
+                      episode {
+                        data {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -100,7 +115,7 @@ export async function getServerSideProps(context) {
     props: {
       // prevUrl: prevUrl || null,
       webtoon: webtoon,
-      episode: episode.attributes,
+      episode: episode,
       eng_images: episode.attributes.eng_images.data
         .slice()
         .sort((a, b) => a.attributes.caption - b.attributes.caption),
@@ -176,12 +191,11 @@ export default function Episode({
     query: { language },
   } = useRouter();
 
-  const episodeNumber = episode.episode_number;
+  const episodeNumber = episode.attributes.episode_number;
   const webtoonTitle = webtoon.attributes.title;
   const title = `${webtoonTitle} - Ep.${episodeNumber}`;
   // const desc = `Meet the ${ordinal(episodeNumber)} episode of ${webtoonTitle}`;
   // const canonicalUrl = `https://www.rmnt.xyz/webtoons/${webtoon.attributes.webtoon_id}/episode/${episodeNumber}`;
-
   return (
     <div className="min-h-screen">
       {/* <NextSeo
@@ -217,12 +231,16 @@ export default function Episode({
         }}
         className="duration-200 w-full"
       >
-        <Nav episode={episode} webtoon={webtoon} />
+        <Nav episode={episode.attributes} webtoon={webtoon} />
         <Buttons allEpisodes={allEpisodes} showToTop={showToTop} />
       </div>
       <main ref={imageRef} className="max-w-[768px] mx-auto md:max-w-[630px]">
         <div ref={topRef} className="h-20"></div>
         <KorEngEpisode data={language === "kor" ? kor_images : eng_images} />
+        <Comments
+          comments={episode.attributes.comments.data}
+          episodeId={episode.id}
+        />
         <div ref={bottomRef} className="h-40"></div>
       </main>
     </div>
