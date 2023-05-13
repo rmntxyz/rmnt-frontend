@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Comments({ comments, episodeId }) {
   const [allComments, setAllComments] = useState(comments);
+  const [commentCount, setCommentCount] = useState(comments.length);
 
   const CREATE_COMMENT = gql`
     mutation CreateComment(
@@ -45,6 +46,7 @@ export default function Comments({ comments, episodeId }) {
     } = result;
     if (newComment) {
       setAllComments((prev) => [newComment, ...prev]);
+      setCommentCount((prev) => prev + 1);
     }
   };
 
@@ -69,7 +71,7 @@ export default function Comments({ comments, episodeId }) {
   return (
     <div id="comments" className="py-8 mx-auto max-w-[768px] md:max-w-[630px]">
       <h2 className="mb-4 text-2xl font-bold">
-        {comments.length} {comments.length === 1 ? "Comment" : "Comments"}
+        {commentCount} {commentCount === 1 ? "Comment" : "Comments"}
       </h2>
       <form
         onSubmit={handleSubmit(onValid)}
