@@ -30,13 +30,13 @@ export default function Comment({ comment }) {
           <span className="text-sm text-gray-500">
             {minutesLapsed < 2
               ? "Just now"
-              : 2 < minutesLapsed < 60
+              : minutesLapsed < 60
               ? `${minutesLapsed.toFixed(0)} minutes ago`
-              : 1 < hoursLapsed < 2
+              : minutesLapsed < 120
               ? "1 hour ago"
-              : 2 <= hoursLapsed < 24
+              : minutesLapsed < 1440
               ? `${hoursLapsed.toFixed(0)} hours ago`
-              : 24 < hoursLapsed
+              : minutesLapsed >= 1440
               ? `${daysLapsed.toFixed(0)} days ago`
               : ""}
           </span>
