@@ -86,7 +86,12 @@ export default function Comments({ comments, episodeId }) {
       </form>
       <div className="flex flex-col gap-4">
         {allComments.map((comment, idx) => (
-          <Comment key={idx} comment={comment} />
+          <Comment
+            key={idx}
+            comment={comment}
+            setAllComments={setAllComments}
+            setCommentCount={setCommentCount}
+          />
         ))}
       </div>
     </div>
