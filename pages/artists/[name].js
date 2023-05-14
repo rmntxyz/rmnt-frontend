@@ -21,6 +21,7 @@ const GET_ARTIST_DATA = gql`
           wallet_address
           profile_image {
             data {
+              id
               attributes {
                 url
               }
@@ -28,6 +29,7 @@ const GET_ARTIST_DATA = gql`
           }
           background_image {
             data {
+              id
               attributes {
                 url
               }
@@ -44,6 +46,7 @@ const GET_ARTIST_DATA = gql`
                 publishedAt
                 cover_image {
                   data {
+                    id
                     attributes {
                       url
                     }

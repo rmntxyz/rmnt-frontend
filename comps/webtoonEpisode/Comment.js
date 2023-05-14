@@ -1,20 +1,20 @@
 import { gql, useMutation } from "@apollo/client";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useTimeLapsed from "../../utils/useTimeLapsed";
+import Reply from "./Reply";
+import { useState } from "react";
+import ReplyInput from "./ReplyInput";
 
 export default function Comment({ comment, setAllComments, setCommentCount }) {
-  const minutesLapsed =
-    (new Date().getTime() -
-      new Date(comment.attributes.publishedAt).getTime()) /
-    (1000 * 60);
-  const hoursLapsed =
-    (new Date().getTime() -
-      new Date(comment.attributes.publishedAt).getTime()) /
-    (1000 * 3600);
-  const daysLapsed =
-    (new Date().getTime() -
-      new Date(comment.attributes.publishedAt).getTime()) /
-    (1000 * 3600 * 24);
+  const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
+    publishedAt: comment.attributes.publishedAt,
+  });
+
+  const [show, setShow] = useState(false);
+  const [allReplies, setAllReplies] = useState(
+    comment.attributes.replies ? comment.attributes.replies.data : []
+  );
 
   const DELETE_COMMENT = gql`
     mutation DeleteComment($id: ID!) {
@@ -55,6 +55,10 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     });
   };
 
+  const onReplyClick = () => {
+    setShow((prev) => !prev);
+  };
+
   return (
     <div className="flex flex-col gap-1">
       <div className="flex gap-1">
@@ -77,7 +81,9 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
             ? "1 hour ago"
             : minutesLapsed < 1440
             ? `${hoursLapsed.toFixed(0)} hours ago`
-            : minutesLapsed >= 1440
+            : minutesLapsed < 2880
+            ? `Yesterday`
+            : minutesLapsed >= 2880
             ? `${daysLapsed.toFixed(0)} days ago`
             : ""}
         </span>
@@ -87,8 +93,28 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
         <button className="text-sm text-mintRed" onClick={onDeleteClick}>
           <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
         </button>
-        <button className="text-sm text-gray-500">Reply</button>
+        <button className="text-sm text-gray-500" onClick={onReplyClick}>
+          Reply
+        </button>
       </div>
+      <div
+        className={`transition-all duration-1000 gap-2 ml-2 my-4 ${
+          show ? "h-auto" : "hidden h-0"
+        }`}
+      >
+        <ReplyInput commentId={comment.id} setAllReplies={setAllReplies} />
+      </div>
+      {allReplies.length > 0 && (
+        <div className="flex flex-col gap-2 ml-4 mt-2">
+          {allReplies.map((reply) => (
+            <Reply
+              key={reply.id}
+              reply={reply}
+              setAllReplies={setAllReplies}
+            ></Reply>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -18,6 +18,7 @@ const GET_WEBTOON_DATA = gql`
           description
           cover_image {
             data {
+              id
               attributes {
                 url
               }
@@ -83,6 +84,7 @@ const GET_WEBTOON_DATA = gql`
                 }
                 thumbnail {
                   data {
+                    id
                     attributes {
                       url
                     }
@@ -119,6 +121,7 @@ const GET_WEBTOON_DATA = gql`
                 publishedAt
                 thumbnail {
                   data {
+                    id
                     attributes {
                       url
                     }
@@ -142,6 +145,7 @@ const GET_WEBTOON_DATA = gql`
     }
     rarementContract {
       data {
+        id
         attributes {
           rarementABI
         }

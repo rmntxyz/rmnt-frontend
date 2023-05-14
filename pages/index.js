@@ -23,6 +23,7 @@ const GET_HOME_DATA = gql`
                 first_name
                 profile_image {
                   data {
+                    id
                     attributes {
                       url
                     }
@@ -39,6 +40,7 @@ const GET_HOME_DATA = gql`
           priority
           cover_image {
             data {
+              id
               attributes {
                 url
               }
@@ -46,6 +48,7 @@ const GET_HOME_DATA = gql`
           }
           avatarGIF {
             data {
+              id
               attributes {
                 url
               }
@@ -94,6 +97,7 @@ const GET_HOME_DATA = gql`
     }
     rarementContract {
       data {
+        id
         attributes {
           rarementABI
         }

@@ -45,6 +45,7 @@ const GET_EPISODE_DATA = gql`
                 }
                 eng_images(pagination: { limit: 200 }) {
                   data {
+                    id
                     attributes {
                       name
                       caption
@@ -56,6 +57,7 @@ const GET_EPISODE_DATA = gql`
                 }
                 kor_images(pagination: { limit: 200 }) {
                   data {
+                    id
                     attributes {
                       name
                       caption
@@ -70,11 +72,22 @@ const GET_EPISODE_DATA = gql`
                     id
                     attributes {
                       content
-                      createdAt
                       publishedAt
                       episode {
                         data {
                           id
+                        }
+                      }
+                      replies(
+                        pagination: { limit: 200 }
+                        sort: "publishedAt:desc"
+                      ) {
+                        data {
+                          id
+                          attributes {
+                            content
+                            publishedAt
+                          }
                         }
                       }
                     }

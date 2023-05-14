@@ -18,6 +18,7 @@ const GET_WEBTOONS_DATA = gql`
                 first_name
                 profile_image {
                   data {
+                    id
                     attributes {
                       url
                     }
@@ -33,6 +34,7 @@ const GET_WEBTOONS_DATA = gql`
           priority
           cover_image {
             data {
+              id
               attributes {
                 url
               }
@@ -74,6 +76,7 @@ const GET_WEBTOONS_DATA = gql`
     }
     rarementContract {
       data {
+        id
         attributes {
           rarementABI
         }
