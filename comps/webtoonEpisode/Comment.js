@@ -5,15 +5,19 @@ import useTimeLapsed from "../../utils/useTimeLapsed";
 import Reply from "./Reply";
 import { useState } from "react";
 import ReplyInput from "./ReplyInput";
+import styles from "./Comment.module.css";
 
 export default function Comment({ comment, setAllComments, setCommentCount }) {
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
     publishedAt: comment.attributes.publishedAt,
   });
 
-  const [show, setShow] = useState(false);
+  const [repliesShow, setRepliesShow] = useState(false);
   const [allReplies, setAllReplies] = useState(
     comment.attributes.replies ? comment.attributes.replies.data : []
+  );
+  const [replyCount, setReplyCount] = useState(
+    comment.attributes.replies ? comment.attributes.replies.data.length : 0
   );
 
   const DELETE_COMMENT = gql`
@@ -56,11 +60,11 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
   };
 
   const onReplyClick = () => {
-    setShow((prev) => !prev);
+    setRepliesShow((prev) => !prev);
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2 items-start">
       <div className="flex gap-1">
         {/* <div className="flex-shrink-0">
           <img
@@ -73,48 +77,64 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
               {comment.user.data.attributes.username}
             </h3> */}
         <span className="text-sm text-gray-500">
-          {minutesLapsed < 2
+          {minutesLapsed < 1
             ? "Just now"
             : minutesLapsed < 60
-            ? `${minutesLapsed.toFixed(0)} minutes ago`
-            : minutesLapsed < 120
-            ? "1 hour ago"
+            ? `${minutesLapsed.toFixed(0)} min ago`
             : minutesLapsed < 1440
-            ? `${hoursLapsed.toFixed(0)} hours ago`
-            : minutesLapsed < 2880
-            ? `Yesterday`
-            : minutesLapsed >= 2880
-            ? `${daysLapsed.toFixed(0)} days ago`
+            ? `${hoursLapsed.toFixed(0)}h ago`
+            : minutesLapsed > 1440
+            ? `${daysLapsed.toFixed(0)}d ago`
             : ""}
         </span>
       </div>
       <div className="flex gap-2">
         <p className="text-sm">{comment.attributes.content}</p>
-        <button className="text-sm text-mintRed" onClick={onDeleteClick}>
+        <button
+          className="button z-50 text-sm text-mintRed"
+          onClick={onDeleteClick}
+        >
           <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
         </button>
-        <button className="text-sm text-gray-500" onClick={onReplyClick}>
-          Reply
-        </button>
       </div>
+      <button
+        className={`button z-50 text-xs text-gray-500 border border-gray-500 rounded-full px-2 py-0.5 transition-all duration-300 ${
+          repliesShow ? "text-white border-white" : ""
+        }`}
+        onClick={onReplyClick}
+      >
+        {replyCount > 1 ? `${replyCount} replies` : `${replyCount} reply`}
+      </button>
       <div
-        className={`transition-all duration-1000 gap-2 ml-2 my-4 ${
-          show ? "h-auto" : "hidden h-0"
+        className={`${
+          styles.replies
+        }  bg-mainBg transition-all duration-1000 overflow-hidden ${
+          repliesShow ? "h-auto" : "h-0"
         }`}
       >
-        <ReplyInput commentId={comment.id} setAllReplies={setAllReplies} />
-      </div>
-      {allReplies.length > 0 && (
-        <div className="flex flex-col gap-2 ml-4 mt-2">
-          {allReplies.map((reply) => (
-            <Reply
-              key={reply.id}
-              reply={reply}
-              setAllReplies={setAllReplies}
-            ></Reply>
-          ))}
+        <div
+          className={`flex flex-col gap-2 pl-2 py-4 mx-auto max-w-[768px] md:max-w-[630px] `}
+        >
+          {allReplies.length > 0 && (
+            <div className="flex flex-col gap-2">
+              {allReplies.map((reply) => (
+                <Reply
+                  key={reply.id}
+                  reply={reply}
+                  setAllReplies={setAllReplies}
+                  setReplyCount={setReplyCount}
+                ></Reply>
+              ))}
+            </div>
+          )}
+          <ReplyInput
+            commentId={comment.id}
+            setAllReplies={setAllReplies}
+            setReplyCount={setReplyCount}
+            setRepliesShow={setRepliesShow}
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 }

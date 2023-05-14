@@ -75,16 +75,16 @@ export default function Comments({ comments, episodeId }) {
       </h2>
       <form
         onSubmit={handleSubmit(onValid)}
-        className="my-3 border-2 border-mintGreen rounded-full"
+        className="z-50 my-3 border-2 border-mintGreen rounded-full"
       >
         <input
           {...register("content", { required: true })}
           type="text"
           placeholder="Write a comment"
-          className="w-full p-3 rounded-full bg-opaqueGray focus:outline-none"
+          className="input w-full p-3 rounded-full bg-opaqueGray focus:outline-none"
         />
       </form>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-5">
         {allComments.map((comment, idx) => (
           <Comment
             key={idx}

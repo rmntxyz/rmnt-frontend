@@ -80,7 +80,7 @@ const GET_EPISODE_DATA = gql`
                       }
                       replies(
                         pagination: { limit: 200 }
-                        sort: "publishedAt:desc"
+                        sort: "publishedAt:asc"
                       ) {
                         data {
                           id
@@ -162,7 +162,14 @@ export default function Episode({
 
   useEffect(() => {
     const image = imageRef.current;
-    const handleClick = () => {
+    const handleClick = (e) => {
+      var target = e.target;
+      if (
+        target.classList.contains("button") ||
+        target.classList.contains("input")
+      ) {
+        return;
+      }
       setClicked(!clicked);
     };
     const handleScroll = () => {
@@ -183,7 +190,8 @@ export default function Episode({
       //Hide navbar and buttons when the top and bottom of the image is not visible & not clicked
       if (
         !entries[0]?.isIntersecting &&
-        !entries[1]?.isIntersecting &&
+        (!entries[1]?.isIntersecting ||
+          entries[1]?.isIntersecting === undefined) &&
         !clicked
       ) {
         setShow(false);
@@ -246,17 +254,29 @@ export default function Episode({
         className="duration-200 w-full"
       >
         <Nav episode={episode.attributes} webtoon={webtoon} />
-        <Buttons allEpisodes={allEpisodes} showToTop={showToTop} />
       </div>
-      <main ref={imageRef} className="max-w-[768px] mx-auto md:max-w-[630px]">
-        <div ref={topRef} className="h-20"></div>
-        <KorEngEpisode data={language === "kor" ? kor_images : eng_images} />
-        <Comments
-          comments={episode.attributes.comments.data}
-          episodeId={episode.id}
-        />
-        <div ref={bottomRef} className="h-40"></div>
+      <main ref={imageRef}>
+        <div className="max-w-[768px] mx-auto md:max-w-[630px]">
+          <div ref={topRef} className="h-20"></div>
+          <KorEngEpisode data={language === "kor" ? kor_images : eng_images} />
+          <Comments
+            comments={episode.attributes.comments.data}
+            episodeId={episode.id}
+          />
+
+          <div ref={bottomRef} className="h-40"></div>
+        </div>
+        <div
+          style={{
+            opacity: show ? "1" : "0",
+            pointerEvents: show ? "auto" : "none",
+          }}
+          className="duration-200 w-full"
+        >
+          <Buttons allEpisodes={allEpisodes} showToTop={showToTop} />
+        </div>
       </main>
+      <div></div>
     </div>
   );
 }

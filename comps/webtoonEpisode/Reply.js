@@ -3,7 +3,7 @@ import useTimeLapsed from "../../utils/useTimeLapsed";
 import { faTurnUp, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { gql, useMutation } from "@apollo/client";
 
-export default function Reply({ reply, setAllReplies }) {
+export default function Reply({ reply, setAllReplies, setReplyCount }) {
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
     publishedAt: reply.attributes.publishedAt,
   });
@@ -28,6 +28,7 @@ export default function Reply({ reply, setAllReplies }) {
       setAllReplies((prev) =>
         prev.filter((reply) => reply.id !== deletedReply.id)
       );
+      setReplyCount((prev) => prev - 1);
     }
   };
 
@@ -63,21 +64,17 @@ export default function Reply({ reply, setAllReplies }) {
                   </h3> */}
         <p className="text-sm">{reply.attributes.content}</p>
         <span className="text-sm text-gray-500">
-          {minutesLapsed < 2
+          {minutesLapsed < 1
             ? "Just now"
             : minutesLapsed < 60
-            ? `${minutesLapsed.toFixed(0)} minutes ago`
-            : minutesLapsed < 120
-            ? "1 hour ago"
+            ? `${minutesLapsed.toFixed(0)} min ago`
             : minutesLapsed < 1440
-            ? `${hoursLapsed.toFixed(0)} hours ago`
-            : minutesLapsed < 2880
-            ? `Yesterday`
-            : minutesLapsed >= 2880
-            ? `${daysLapsed.toFixed(0)} days ago`
+            ? `${hoursLapsed.toFixed(0)}h ago`
+            : minutesLapsed > 1440
+            ? `${daysLapsed.toFixed(0)}d ago`
             : ""}
         </span>
-        <button className="text-sm text-mintRed">
+        <button className="button z-50 text-sm text-mintRed">
           <FontAwesomeIcon
             icon={faXmark}
             onClick={onDeleteClick}

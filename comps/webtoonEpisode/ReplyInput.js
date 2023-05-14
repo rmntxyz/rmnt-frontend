@@ -3,7 +3,12 @@ import { faTurnUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
 
-export default function ReplyInput({ commentId, setAllReplies }) {
+export default function ReplyInput({
+  commentId,
+  setAllReplies,
+  setReplyCount,
+  setRepliesShow,
+}) {
   const CREATE_REPLY = gql`
     mutation CreateReply(
       $content: String
@@ -41,7 +46,8 @@ export default function ReplyInput({ commentId, setAllReplies }) {
       },
     } = result;
     if (newReply) {
-      setAllReplies((prev) => [newReply, ...prev]);
+      setAllReplies((prev) => [...prev, newReply]);
+      setReplyCount((prev) => prev + 1);
     }
   };
 
@@ -79,7 +85,7 @@ export default function ReplyInput({ commentId, setAllReplies }) {
           {...register("content", { required: true })}
           type="text"
           placeholder="Write a comment"
-          className="w-full p-2 rounded-full bg-opaqueGray focus:outline-none"
+          className="input z-50 w-full p-2 rounded-full bg-opaqueGray focus:outline-none"
         />
       </form>
     </div>
