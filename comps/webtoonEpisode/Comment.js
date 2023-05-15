@@ -6,6 +6,7 @@ import Reply from "./Reply";
 import { useEffect, useState } from "react";
 import ReplyInput from "./ReplyInput";
 import styles from "./Comment.module.css";
+import { set } from "react-hook-form";
 
 export default function Comment({ comment, setAllComments, setCommentCount }) {
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
@@ -66,6 +67,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
         prev.filter((comment) => comment.id !== deletedComment.id)
       );
       setCommentCount((prev) => prev - 1);
+      setRepliesShow(false);
     }
   };
 
