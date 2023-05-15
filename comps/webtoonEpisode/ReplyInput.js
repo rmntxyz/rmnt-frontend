@@ -92,7 +92,7 @@ export default function ReplyInput({
           {...register("content", { required: true })}
           type="text"
           placeholder="Write a comment"
-          className="input z-50 w-full p-2 rounded-full bg-opaqueGray focus:outline-none"
+          className="input z-20 w-full p-2 rounded-full bg-opaqueGray focus:outline-none"
         />
       </form>
     </div>

@@ -19,7 +19,7 @@ export default function Progress() {
   });
 
   return (
-    <div className="fixed top-0 z-50 w-full h-0.5 bg-navBg">
+    <div className="fixed top-0 w-full h-0.5 bg-navBg">
       <div
         ref={barRef}
         className="h-full bg-white"

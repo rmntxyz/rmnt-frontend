@@ -245,15 +245,17 @@ export default function Episode({
         }}
       /> */}
       <Seo title={title} />
-      <Progress />
-      <div
-        style={{
-          opacity: show ? "1" : "0",
-          pointerEvents: show ? "auto" : "none",
-        }}
-        className="duration-200 w-full"
-      >
-        <Nav episode={episode.attributes} webtoon={webtoon} />
+      <div className="relative z-30">
+        <Progress />
+        <div
+          style={{
+            opacity: show ? "1" : "0",
+            pointerEvents: show ? "auto" : "none",
+          }}
+          className="duration-200 w-full"
+        >
+          <Nav episode={episode.attributes} webtoon={webtoon} />
+        </div>
       </div>
       <main ref={imageRef}>
         <div className="max-w-[768px] mx-auto md:max-w-[630px]">

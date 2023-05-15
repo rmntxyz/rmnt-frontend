@@ -8,7 +8,7 @@ export default function Nav({ episode, webtoon }) {
   return (
     <nav
       id="navbar"
-      className="fixed z-10 w-full bg-navBg h-20 text-2xl font-bold duration-200"
+      className="fixed w-full bg-navBg h-20 text-2xl font-bold duration-200"
     >
       <div className="flex justify-between items-center mx-auto h-full px-8 max-w-[768px] md:max-w-[630px]">
         <div className="flex gap-6 items-center justify-center">

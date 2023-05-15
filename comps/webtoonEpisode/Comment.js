@@ -144,14 +144,14 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
       <div className="flex gap-2">
         <p className="text-sm">{comment.attributes.content}</p>
         <button
-          className="button z-50 text-sm text-mintRed"
+          className="button z-20 text-sm text-mintRed"
           onClick={onDeleteClick}
         >
           <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
         </button>
       </div>
       <button
-        className={`button replyButton z-50 text-xs text-gray-500 border border-gray-500 rounded-full px-2 py-0.5 transition-all duration-300 ${
+        className={`button replyButton z-20 text-xs text-gray-500 border border-gray-500 rounded-full px-2 py-0.5 transition-all duration-300 ${
           repliesShow ? "text-white border-white" : ""
         }`}
         onClick={onReplyClick}
@@ -167,7 +167,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
         }`}
       >
         <div
-          className={`flex flex-col gap-2 pl-2 py-4 mx-auto max-w-[768px] md:max-w-[630px] `}
+          className={`flex flex-col gap-2 pl-2 py-4 mx-8 max-w-[768px] md:mx-auto md:max-w-[630px] `}
         >
           {allReplies.length > 0 && (
             <div className="flex flex-col gap-2">

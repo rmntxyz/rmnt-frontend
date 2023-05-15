@@ -78,13 +78,16 @@ export default function Comments({ comments, episodeId }) {
   });
 
   return (
-    <div id="comments" className="py-8 mx-auto max-w-[768px] md:max-w-[630px]">
+    <div
+      id="comments"
+      className="py-8 mx-8 max-w-[768px] md:mx-auto md:max-w-[630px]"
+    >
       <h2 className="mb-4 text-2xl font-bold">
         {commentCount} {commentCount === 1 ? "Comment" : "Comments"}
       </h2>
       <form
         onSubmit={handleSubmit(onValid)}
-        className="z-50 my-3 border-2 border-mintGreen rounded-full"
+        className="z-20 my-3 border-2 border-mintGreen rounded-full"
       >
         <input
           {...register("content", { required: true })}
