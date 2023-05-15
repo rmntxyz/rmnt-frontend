@@ -31,6 +31,10 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     );
 
     const handleClickOutside = (e) => {
+      var target = e.target;
+      if (target.classList.contains("replyButton")) {
+        return;
+      }
       if (repliesRef.current && !repliesRef.current.contains(e.target)) {
         setRepliesShow(false);
       }
@@ -147,7 +151,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
         </button>
       </div>
       <button
-        className={`button z-50 text-xs text-gray-500 border border-gray-500 rounded-full px-2 py-0.5 transition-all duration-300 ${
+        className={`button replyButton z-50 text-xs text-gray-500 border border-gray-500 rounded-full px-2 py-0.5 transition-all duration-300 ${
           repliesShow ? "text-white border-white" : ""
         }`}
         onClick={onReplyClick}
