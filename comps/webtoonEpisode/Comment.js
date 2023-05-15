@@ -3,15 +3,16 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useTimeLapsed from "../../utils/useTimeLapsed";
 import Reply from "./Reply";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReplyInput from "./ReplyInput";
 import styles from "./Comment.module.css";
-import { set } from "react-hook-form";
 
 export default function Comment({ comment, setAllComments, setCommentCount }) {
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
     publishedAt: comment.attributes.publishedAt,
   });
+
+  const repliesRef = useRef(null);
 
   const [repliesShow, setRepliesShow] = useState(false);
   const [allReplies, setAllReplies] = useState(
@@ -28,6 +29,16 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     setReplyCount(
       comment.attributes.replies ? comment.attributes.replies.data.length : 0
     );
+
+    const handleClickOutside = (e) => {
+      if (repliesRef.current && !repliesRef.current.contains(e.target)) {
+        setRepliesShow(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [comment]);
 
   const DELETE_COMMENT = gql`
@@ -144,6 +155,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
         {replyCount > 1 ? `${replyCount} replies` : `${replyCount} reply`}
       </button>
       <div
+        ref={repliesRef}
         className={`${
           styles.replies
         }  bg-mainBg transition-all duration-1000 overflow-hidden ${
