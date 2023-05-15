@@ -3,7 +3,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useTimeLapsed from "../../utils/useTimeLapsed";
 import Reply from "./Reply";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReplyInput from "./ReplyInput";
 import styles from "./Comment.module.css";
 
@@ -20,9 +20,28 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     comment.attributes.replies ? comment.attributes.replies.data.length : 0
   );
 
+  useEffect(() => {
+    setAllReplies(
+      comment.attributes.replies ? comment.attributes.replies.data : []
+    );
+    setReplyCount(
+      comment.attributes.replies ? comment.attributes.replies.data.length : 0
+    );
+  }, [comment]);
+
   const DELETE_COMMENT = gql`
     mutation DeleteComment($id: ID!) {
       deleteComment(id: $id) {
+        data {
+          id
+        }
+      }
+    }
+  `;
+
+  const DELETE_REPLY = gql`
+    mutation DeleteReply($id: ID!) {
+      deleteReply(id: $id) {
         data {
           id
         }
@@ -37,6 +56,12 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
       },
     } = result;
     if (deletedComment) {
+      cache.evict({ id: `CommentEntity:${deletedComment.id}` });
+      if (allReplies.length > 0) {
+        allReplies.forEach((reply) => {
+          cache.evict({ id: `ReplyEntity:${reply.id}` });
+        });
+      }
       setAllComments((prev) =>
         prev.filter((comment) => comment.id !== deletedComment.id)
       );
@@ -47,11 +72,22 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
   const [deleteComment, { loading }] = useMutation(DELETE_COMMENT, {
     update: deleteCommentUpdate,
   });
+  const [deleteReply, { loading: loadingReply }] = useMutation(DELETE_REPLY);
 
   const onDeleteClick = () => {
-    if (loading) {
+    if (loading || loadingReply) {
       return;
     }
+    if (allReplies.length > 0) {
+      allReplies.forEach((reply) => {
+        deleteReply({
+          variables: {
+            id: reply.id,
+          },
+        });
+      });
+    }
+
     deleteComment({
       variables: {
         id: comment.id,
@@ -131,7 +167,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
             commentId={comment.id}
             setAllReplies={setAllReplies}
             setReplyCount={setReplyCount}
-            setRepliesShow={setRepliesShow}
+            setAllComments={setAllComments}
           />
         </div>
       </div>

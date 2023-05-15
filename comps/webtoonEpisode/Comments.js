@@ -30,6 +30,15 @@ export default function Comments({ comments, episodeId }) {
                 id
               }
             }
+            replies {
+              data {
+                id
+                attributes {
+                  content
+                  publishedAt
+                }
+              }
+            }
           }
         }
       }

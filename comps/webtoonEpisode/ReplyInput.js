@@ -5,9 +5,8 @@ import { useForm } from "react-hook-form";
 
 export default function ReplyInput({
   commentId,
-  setAllReplies,
   setReplyCount,
-  setRepliesShow,
+  setAllComments,
 }) {
   const CREATE_REPLY = gql`
     mutation CreateReply(
@@ -46,8 +45,16 @@ export default function ReplyInput({
       },
     } = result;
     if (newReply) {
-      setAllReplies((prev) => [...prev, newReply]);
       setReplyCount((prev) => prev + 1);
+      setAllComments((prev) => {
+        const newComments = prev.map((comment) => {
+          if (comment.id === commentId) {
+            comment.attributes.replies.data.push(newReply);
+          }
+          return comment;
+        });
+        return newComments;
+      });
     }
   };
 
