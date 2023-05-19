@@ -78,6 +78,22 @@ const GET_EPISODE_DATA = gql`
                           id
                         }
                       }
+                      posted_by {
+                        data {
+                          id
+                          attributes {
+                            username
+                          }
+                        }
+                      }
+                      liked_by {
+                        data {
+                          id
+                          attributes {
+                            username
+                          }
+                        }
+                      }
                       replies(
                         pagination: { limit: 200 }
                         sort: "publishedAt:asc"
@@ -103,6 +119,7 @@ const GET_EPISODE_DATA = gql`
 `;
 
 export async function getServerSideProps(context) {
+
   const { webtoonId, episodeNumber } = context.query;
   const {
     data: { webtoons },

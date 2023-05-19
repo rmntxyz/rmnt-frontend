@@ -4,9 +4,12 @@ import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 
 export default function Comments({ comments, episodeId }) {
+  //Set state for comments for immediate display on screen
   const [allComments, setAllComments] = useState(comments);
   const [commentCount, setCommentCount] = useState(comments.length);
+  const [image, setImage] = useState(null);
 
+  //Create new comment with image upload
   const CREATE_COMMENT = gql`
     mutation CreateComment(
       $content: String
@@ -45,7 +48,24 @@ export default function Comments({ comments, episodeId }) {
     }
   `;
 
-  const { register, handleSubmit, setValue } = useForm();
+  const UPLOAD = gql`
+    mutation Upload($file: Upload!) {
+      upload(file: $file) {
+        id
+        attributes {
+          url
+        }
+      }
+    }
+  `;
+
+  const onImageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  const { register, handleSubmit, setValue, getValues } = useForm();
 
   const createCommentUpdate = (cache, result) => {
     const {
@@ -61,21 +81,52 @@ export default function Comments({ comments, episodeId }) {
 
   const onValid = (data) => {
     const { content } = data;
-    if (loading) {
+    if (loading || uploadLoading) {
       return;
     }
-    createComment({
-      variables: {
-        content,
-        episode: episodeId,
-        publishedAt: new Date().toISOString(),
-      },
-    });
+    if (error || uploadError) {
+      return;
+    }
+    if (!content && !image) {
+      return;
+    }
+    if (image) {
+      upload({
+        variables: {
+          file: image,
+        },
+        onCompleted: (data) => {
+          const {
+            upload: { id },
+          } = data;
+          createComment({
+            variables: {
+              content,
+              episode: episodeId,
+              publishedAt: new Date().toISOString(),
+              image: id,
+            },
+          });
+        },
+      });
+    }
+    if (!image) {
+      createComment({
+        variables: {
+          content,
+          episode: episodeId,
+          publishedAt: new Date().toISOString(),
+        },
+      });
+    }
+
     setValue("content", "");
   };
   const [createComment, { loading, error }] = useMutation(CREATE_COMMENT, {
     update: createCommentUpdate,
   });
+  const [upload, { loading: uploadLoading, error: uploadError }] =
+    useMutation(UPLOAD);
 
   return (
     <div
@@ -87,16 +138,17 @@ export default function Comments({ comments, episodeId }) {
       </h2>
       <form
         onSubmit={handleSubmit(onValid)}
-        className="z-20 my-3 border-2 border-mintGreen rounded-full"
+        className="z-20 flex items-center my-3 border-2 border-mintGreen rounded-full"
       >
         <input
-          {...register("content", { required: true })}
+          {...register("content", { required: false })}
           type="text"
-          placeholder="Write a comment"
-          className="input w-full p-3 rounded-full bg-opaqueGray focus:outline-none"
+          placeholder="Write a comment..."
+          className="input w-full p-3 rounded-full bg-navBg focus:outline-none"
         />
+        <input onChange={onImageChange} type="file" />
       </form>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-7 mt-8">
         {allComments.map((comment, idx) => (
           <Comment
             key={idx}

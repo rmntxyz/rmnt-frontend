@@ -2,6 +2,7 @@ import {
   faArrowLeft,
   faArrowRight,
   faArrowUp,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
@@ -74,7 +75,7 @@ export default function Buttons({ allEpisodes, showToTop }) {
         <button
           id="scrollToTop"
           onClick={scrollToTop}
-          title="Scroll To Top"
+          aria-label="Scroll To Top"
           style={{
             opacity: !showToTop ? "0" : "1",
             pointerEvents: !showToTop ? "none" : "auto",
@@ -82,9 +83,15 @@ export default function Buttons({ allEpisodes, showToTop }) {
         >
           <FontAwesomeIcon
             icon={faArrowUp}
-            className={`absolute right-0 top-1 gradientBorder m-8 px-3.5 py-3 text-lg`}
+            className={`absolute right-16 top-1 gradientBorder m-8 px-3.5 py-3 text-lg`}
           />
         </button>
+        <Link href="#comments" aria-label="Go to comments">
+          <FontAwesomeIcon
+            icon={faComment}
+            className="absolute right-0 top-1 gradientBorder m-8 px-3 py-3 text-lg"
+          />
+        </Link>
       </div>
     </div>
   );
