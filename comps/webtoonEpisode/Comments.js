@@ -22,8 +22,8 @@ export default function Comments({ comments, episodeId }) {
       username: address,
     },
   });
-
-  const userId = userData ? userData.usersPermissionsUsers.data[0].id : null;
+  const loggedInUser = userData ? userData.usersPermissionsUsers.data[0] : null;
+  const loggedInUserId = loggedInUser ? loggedInUser.id : null;
 
   //Set state for comments for immediate display on screen
   const [allComments, setAllComments] = useState(comments);
@@ -144,7 +144,7 @@ export default function Comments({ comments, episodeId }) {
               episode: episodeId,
               publishedAt: new Date().toISOString(),
               image: id,
-              posted_by: userId,
+              posted_by: loggedInUserId,
             },
           });
         },
@@ -156,7 +156,7 @@ export default function Comments({ comments, episodeId }) {
           content,
           episode: episodeId,
           publishedAt: new Date().toISOString(),
-          posted_by: userId,
+          posted_by: loggedInUserId,
         },
       });
     }
@@ -196,6 +196,8 @@ export default function Comments({ comments, episodeId }) {
             comment={comment}
             setAllComments={setAllComments}
             setCommentCount={setCommentCount}
+            loggedInUser={loggedInUser}
+            loggedInUserId={loggedInUserId}
           />
         ))}
       </div>

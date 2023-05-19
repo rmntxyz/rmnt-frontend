@@ -9,8 +9,25 @@ import { useEffect, useRef, useState } from "react";
 import ReplyInput from "./ReplyInput";
 import styles from "./Comment.module.css";
 import Image from "next/image";
+import { set } from "react-hook-form";
 
-export default function Comment({ comment, setAllComments, setCommentCount }) {
+export default function Comment({
+  comment,
+  setAllComments,
+  setCommentCount,
+  loggedInUser,
+  loggedInUserId,
+}) {
+  //See if the comment is the logged in user's (temporary)
+  const isMyComment = comment.attributes.posted_by.data?.id === loggedInUserId;
+
+  //See if the comment is liked by the logged in user (temporary)
+  const [isLikedByMe, setIsLikedByMe] = useState(
+    comment.attributes.liked_by.data
+      ?.map((user) => user.id)
+      .includes(loggedInUserId) || false
+  );
+
   //Show time lapsed after comment was published
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
     publishedAt: comment.attributes.publishedAt,
@@ -41,6 +58,11 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     setLikeCount(
       comment.attributes.liked_by ? comment.attributes.liked_by.data.length : 0
     );
+    setIsLikedByMe(
+      comment.attributes.liked_by.data
+        ?.map((user) => user.id)
+        .includes(loggedInUserId) || false
+    );
 
     const handleClickOutside = (e) => {
       var target = e.target;
@@ -55,7 +77,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [comment]);
+  });
 
   //Delete comment and replies
   const DELETE_COMMENT = gql`
@@ -129,6 +151,79 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     setRepliesShow((prev) => !prev);
   };
 
+  //Update comment likes
+  const UPDATE_COMMENT = gql`
+    mutation UpdateComment($id: ID!, $liked_by: [ID]) {
+      updateComment(id: $id, data: { liked_by: $liked_by }) {
+        data {
+          id
+          attributes {
+            liked_by {
+              data {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const updateCommentUpdate = (cache, result) => {
+    const {
+      data: {
+        updateComment: { data: updatedComment },
+      },
+    } = result;
+    if (updatedComment) {
+      console.log(updatedComment);
+      // cache.modify({
+      //   id: cache.identify(comment),
+      //   fields: {
+      //     liked_by() {
+      //       return updatedComment.attributes.liked_by;
+      //     },
+      //   },
+      // });
+
+      if (isLikedByMe) {
+        setLikeCount((prev) => prev - 1);
+        setIsLikedByMe(false);
+      } else {
+        setLikeCount((prev) => prev + 1);
+        setIsLikedByMe(true);
+      }
+    }
+  };
+
+  const [updateComment, { loading: likeLoading, error: likeError }] =
+    useMutation(UPDATE_COMMENT, {
+      update: updateCommentUpdate,
+    });
+
+  const onLikeClick = () => {
+    if (likeLoading) {
+      return;
+    }
+    if (likeError) {
+      return;
+    }
+
+    updateComment({
+      variables: {
+        id: comment.id,
+        liked_by: isLikedByMe
+          ? comment.attributes.liked_by.data.filter(
+              (user) => user.id !== loggedInUserId
+            )
+          : [
+              ...comment.attributes.liked_by.data.map((user) => user.id),
+              loggedInUserId,
+            ],
+      },
+    });
+  };
+
   return (
     <div className="flex flex-col gap-2 items-start">
       <div className="flex gap-2 items-center">
@@ -161,14 +256,28 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
       </div>
       <div className="flex gap-2 text-sm items-end">
         <p>{comment.attributes.content}</p>
-        <button className="button z-20 text-mintRed" onClick={onDeleteClick}>
+        <button
+          className="button z-20 text-mintRed"
+          onClick={onDeleteClick}
+          style={{ display: isMyComment ? "block" : "none" }}
+        >
           <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
         </button>
-        <button className="button z-20 text-mintRed">
-          <FontAwesomeIcon icon={regularHeart}></FontAwesomeIcon>
-        </button>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-3 items-center">
+        <div className="flex gap-1 items-center">
+          <button className="button z-20 text-mintRed" onClick={onLikeClick}>
+            <FontAwesomeIcon
+              icon={isLikedByMe ? solidHeart : regularHeart}
+            ></FontAwesomeIcon>
+          </button>
+          <span
+            className="text-xs text-mintRed"
+            style={{ display: likeCount > 0 ? "block" : "none" }}
+          >
+            {likeCount}
+          </span>
+        </div>
         <button
           className={`button replyButton z-20 text-xs text-gray-500 border border-gray-500 rounded-full px-2 py-0.5 transition-all duration-300 ${
             repliesShow ? "text-white border-white" : ""
@@ -177,9 +286,6 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
         >
           {replyCount > 1 ? `${replyCount} replies` : `${replyCount} reply`}
         </button>
-        <span className="text-xs text-gray-500">
-          {likeCount > 1 ? `${likeCount} likes` : `${likeCount} like`}
-        </span>
       </div>
       <div
         ref={repliesRef}
