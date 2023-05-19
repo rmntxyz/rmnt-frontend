@@ -3,9 +3,10 @@
 module.exports = {
   optimizeFonts: false,
   // reactStrictMode: true,
+  // swcMinify: false,
   transpilePackages: ["0xpass"],
   images: {
-    domains: ["storage.googleapis.com", "res.cloudinary.com"],
+    domains: ["storage.googleapis.com"],
   },
   async rewrites() {
     return [
