@@ -1,9 +1,30 @@
 import { useForm } from "react-hook-form";
 import Comment from "./Comment";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
+import { useAccount } from "wagmi";
 
 export default function Comments({ comments, episodeId }) {
+  //Get user's address & ID (temporary)
+  const { address } = useAccount();
+  const USER_ID = gql`
+    query User($username: String!) {
+      usersPermissionsUsers(filters: { username: { eq: $username } }) {
+        data {
+          id
+        }
+      }
+    }
+  `;
+
+  const { data: userData } = useQuery(USER_ID, {
+    variables: {
+      username: address,
+    },
+  });
+
+  const userId = userData ? userData.usersPermissionsUsers.data[0].id : null;
+
   //Set state for comments for immediate display on screen
   const [allComments, setAllComments] = useState(comments);
   const [commentCount, setCommentCount] = useState(comments.length);
@@ -15,12 +36,14 @@ export default function Comments({ comments, episodeId }) {
       $content: String
       $episode: ID
       $publishedAt: DateTime
+      $posted_by: ID
     ) {
       createComment(
         data: {
           content: $content
           episode: $episode
           publishedAt: $publishedAt
+          posted_by: $posted_by
         }
       ) {
         data {
@@ -39,6 +62,22 @@ export default function Comments({ comments, episodeId }) {
                 attributes {
                   content
                   publishedAt
+                }
+              }
+            }
+            posted_by {
+              data {
+                id
+                attributes {
+                  username
+                }
+              }
+            }
+            liked_by {
+              data {
+                id
+                attributes {
+                  username
                 }
               }
             }
@@ -105,6 +144,7 @@ export default function Comments({ comments, episodeId }) {
               episode: episodeId,
               publishedAt: new Date().toISOString(),
               image: id,
+              posted_by: userId,
             },
           });
         },
@@ -116,6 +156,7 @@ export default function Comments({ comments, episodeId }) {
           content,
           episode: episodeId,
           publishedAt: new Date().toISOString(),
+          posted_by: userId,
         },
       });
     }

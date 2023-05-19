@@ -28,7 +28,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
   );
 
   const [likeCount, setLikeCount] = useState(
-    comment.attributes.liked_by.data.length
+    comment.attributes.liked_by ? comment.attributes.liked_by.data.length : 0
   );
 
   useEffect(() => {
@@ -37,6 +37,9 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
     );
     setReplyCount(
       comment.attributes.replies ? comment.attributes.replies.data.length : 0
+    );
+    setLikeCount(
+      comment.attributes.liked_by ? comment.attributes.liked_by.data.length : 0
     );
 
     const handleClickOutside = (e) => {
@@ -138,7 +141,7 @@ export default function Comment({ comment, setAllComments, setCommentCount }) {
           // alt={comment.user.data.attributes.username}
           style={{ width: "auto", height: "auto" }}
         />
-        <h3 className="font-bold">
+        <h3 className="font-bold truncate max-w-[64px]">
           {comment.attributes.posted_by.data
             ? comment.attributes.posted_by.data.attributes.username
             : "User"}
