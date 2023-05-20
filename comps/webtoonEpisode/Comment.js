@@ -43,16 +43,39 @@ export default function Comment({
   const [replyCount, setReplyCount] = useState(
     comment.attributes.replies ? comment.attributes.replies.data.length : 0
   );
+
+  //Set likes for the comment
   const [allLikes, setAllLikes] = useState(
     comment.attributes.comment_likes
       ? comment.attributes.comment_likes.data
       : []
   );
 
-  //Set the number of likes for the comment
   const [likeCount, setLikeCount] = useState(
-    allLikes.length > 0 ? allLikes.length : 0
+    comment.attributes.comment_likes
+      ? comment.attributes.comment_likes.data.length
+      : 0
   );
+
+  useEffect(() => {
+    setIsLikedByMe(
+      comment.attributes.comment_likes
+        ? comment.attributes.comment_likes.data
+            .map((like) => like.attributes.users_permissions_user.data.id)
+            .includes(loggedInUserId)
+        : false
+    );
+    setAllLikes(
+      comment.attributes.comment_likes
+        ? comment.attributes.comment_likes.data
+        : []
+    );
+    setLikeCount(
+      comment.attributes.comment_likes
+        ? comment.attributes.comment_likes.data.length
+        : 0
+    );
+  }, []);
 
   useEffect(() => {
     setAllReplies(
@@ -60,21 +83,6 @@ export default function Comment({
     );
     setReplyCount(
       comment.attributes.replies ? comment.attributes.replies.data.length : 0
-    );
-
-    setAllLikes(
-      comment.attributes.comment_likes
-        ? comment.attributes.comment_likes.data
-        : []
-    );
-
-    setLikeCount(allLikes.length > 0 ? allLikes.length : 0);
-    setIsLikedByMe(
-      allLikes.length > 0
-        ? allLikes
-            .map((like) => like.attributes.users_permissions_user.data.id)
-            .includes(loggedInUserId)
-        : false
     );
 
     const handleClickOutside = (e) => {
@@ -90,7 +98,7 @@ export default function Comment({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  });
+  }, [comment]);
 
   //Create or delete comment likes
   const CREATE_COMMENT_LIKE = gql`
@@ -179,12 +187,25 @@ export default function Comment({
         },
       } = result;
       if (deletedCommentLike) {
+        console.log(deletedCommentLike);
         cache.evict({ id: `CommentLikeEntity:${deletedCommentLike.id}` });
         setLikeCount((prev) => prev - 1);
         setIsLikedByMe(false);
         setAllLikes((prev) =>
           prev.filter((commentLike) => commentLike.id !== deletedCommentLike.id)
         );
+        // setAllComments((prev) => {
+        //   const newComments = prev.map((comment) => {
+        //     if (comment.id === deletedCommentLike.attributes.comment.data.id) {
+        //       comment.attributes.comment_likes.data =
+        //         comment.attributes.comment_likes.data.filter(
+        //           (commentLike) => commentLike.id !== deletedCommentLike.id
+        //         );
+        //     }
+        //     return comment;
+        //   });
+        //   return newComments;
+        // });
       }
     },
   });
