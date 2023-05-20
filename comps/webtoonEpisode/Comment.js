@@ -59,7 +59,7 @@ export default function Comment({
       : 0
   );
 
-  //Update the states when the comment is updated
+  //Update the states all the time
   useEffect(() => {
     setAllReplies(
       comment.attributes.replies ? comment.attributes.replies.data : []
@@ -99,7 +99,7 @@ export default function Comment({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [comment]);
+  });
 
   //Create or delete comment likes
   const CREATE_COMMENT_LIKE = gql`
