@@ -2,27 +2,11 @@ import { useForm } from "react-hook-form";
 import Comment from "./Comment";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
-import { useAccount } from "wagmi";
+import useUser from "../../utils/useUser";
 
 export default function Comments({ comments, episodeId }) {
-  //Get user's address & ID (temporary)
-  const { address } = useAccount();
-  const USER_ID = gql`
-    query User($username: String!) {
-      usersPermissionsUsers(filters: { username: { eq: $username } }) {
-        data {
-          id
-        }
-      }
-    }
-  `;
-
-  const { data: userData } = useQuery(USER_ID, {
-    variables: {
-      username: address,
-    },
-  });
-  const loggedInUser = userData ? userData.usersPermissionsUsers.data[0] : null;
+  //Get logged in user's ID (temporary)
+  const loggedInUser = useUser();
   const loggedInUserId = loggedInUser ? loggedInUser.id : null;
 
   //Set state for comments for immediate display on screen
@@ -209,7 +193,6 @@ export default function Comments({ comments, episodeId }) {
             comment={comment}
             setAllComments={setAllComments}
             setCommentCount={setCommentCount}
-            loggedInUser={loggedInUser}
             loggedInUserId={loggedInUserId}
           />
         ))}
