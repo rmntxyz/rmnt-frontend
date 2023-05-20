@@ -86,11 +86,16 @@ const GET_EPISODE_DATA = gql`
                           }
                         }
                       }
-                      liked_by {
+                      comment_likes {
                         data {
                           id
                           attributes {
-                            username
+                            users_permissions_user {
+                              data {
+                                id
+                              }
+                            }
+                            publishedAt
                           }
                         }
                       }
@@ -119,7 +124,6 @@ const GET_EPISODE_DATA = gql`
 `;
 
 export async function getServerSideProps(context) {
-
   const { webtoonId, episodeNumber } = context.query;
   const {
     data: { webtoons },

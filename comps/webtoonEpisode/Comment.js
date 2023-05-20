@@ -1,7 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useTimeLapsed from "../../utils/useTimeLapsed";
 import Reply from "./Reply";
@@ -9,23 +7,25 @@ import { useEffect, useRef, useState } from "react";
 import ReplyInput from "./ReplyInput";
 import styles from "./Comment.module.css";
 import Image from "next/image";
-import { set } from "react-hook-form";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function Comment({
   comment,
   setAllComments,
   setCommentCount,
-  loggedInUser,
   loggedInUserId,
 }) {
   //See if the comment is the logged in user's (temporary)
-  const isMyComment = comment.attributes.posted_by.data?.id === loggedInUserId;
+  const isMyComment = comment.attributes.posted_by?.data?.id === loggedInUserId;
 
   //See if the comment is liked by the logged in user (temporary)
   const [isLikedByMe, setIsLikedByMe] = useState(
-    comment.attributes.liked_by.data
-      ?.map((user) => user.id)
-      .includes(loggedInUserId) || false
+    comment.attributes.comment_likes
+      ? comment.attributes.comment_likes.data
+          .map((like) => like.attributes.users_permissions_user.data.id)
+          .includes(loggedInUserId)
+      : false
   );
 
   //Show time lapsed after comment was published
@@ -43,9 +43,15 @@ export default function Comment({
   const [replyCount, setReplyCount] = useState(
     comment.attributes.replies ? comment.attributes.replies.data.length : 0
   );
+  const [allLikes, setAllLikes] = useState(
+    comment.attributes.comment_likes
+      ? comment.attributes.comment_likes.data
+      : []
+  );
 
+  //Set the number of likes for the comment
   const [likeCount, setLikeCount] = useState(
-    comment.attributes.liked_by ? comment.attributes.liked_by.data.length : 0
+    allLikes.length > 0 ? allLikes.length : 0
   );
 
   useEffect(() => {
@@ -55,13 +61,20 @@ export default function Comment({
     setReplyCount(
       comment.attributes.replies ? comment.attributes.replies.data.length : 0
     );
-    setLikeCount(
-      comment.attributes.liked_by ? comment.attributes.liked_by.data.length : 0
+
+    setAllLikes(
+      comment.attributes.comment_likes
+        ? comment.attributes.comment_likes.data
+        : []
     );
+
+    setLikeCount(allLikes.length > 0 ? allLikes.length : 0);
     setIsLikedByMe(
-      comment.attributes.liked_by.data
-        ?.map((user) => user.id)
-        .includes(loggedInUserId) || false
+      allLikes.length > 0
+        ? allLikes
+            .map((like) => like.attributes.users_permissions_user.data.id)
+            .includes(loggedInUserId)
+        : false
     );
 
     const handleClickOutside = (e) => {
@@ -78,6 +91,126 @@ export default function Comment({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   });
+
+  //Create or delete comment likes
+  const CREATE_COMMENT_LIKE = gql`
+    mutation CreateCommentLike(
+      $comment: ID
+      $users_permissions_user: ID
+      $publishedAt: DateTime
+    ) {
+      createCommentLike(
+        data: {
+          comment: $comment
+          users_permissions_user: $users_permissions_user
+          publishedAt: $publishedAt
+        }
+      ) {
+        data {
+          id
+          attributes {
+            publishedAt
+            comment {
+              data {
+                id
+              }
+            }
+            users_permissions_user {
+              data {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  const [createCommentLike] = useMutation(CREATE_COMMENT_LIKE, {
+    update: (cache, result) => {
+      const {
+        data: {
+          createCommentLike: { data: newCommentLike },
+        },
+      } = result;
+      if (newCommentLike) {
+        setLikeCount((prev) => prev + 1);
+        setIsLikedByMe(true);
+        setAllLikes((prev) => [...prev, newCommentLike]);
+        setAllComments((prev) => {
+          const newComments = prev.map((comment) => {
+            if (comment.id === newCommentLike.attributes.comment.data.id) {
+              comment.attributes.comment_likes.data.push(newCommentLike);
+            }
+            return comment;
+          });
+          return newComments;
+        });
+      }
+    },
+  });
+
+  const DELETE_COMMENT_LIKE = gql`
+    mutation DeleteCommentLike($id: ID!) {
+      deleteCommentLike(id: $id) {
+        data {
+          id
+          attributes {
+            publishedAt
+            comment {
+              data {
+                id
+              }
+            }
+            users_permissions_user {
+              data {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  const [deleteCommentLike] = useMutation(DELETE_COMMENT_LIKE, {
+    update: (cache, result) => {
+      const {
+        data: {
+          deleteCommentLike: { data: deletedCommentLike },
+        },
+      } = result;
+      if (deletedCommentLike) {
+        cache.evict({ id: `CommentLikeEntity:${deletedCommentLike.id}` });
+        setLikeCount((prev) => prev - 1);
+        setIsLikedByMe(false);
+        setAllLikes((prev) =>
+          prev.filter((commentLike) => commentLike.id !== deletedCommentLike.id)
+        );
+      }
+    },
+  });
+
+  const handleLike = () => {
+    if (isLikedByMe) {
+      const commentLikeId = comment.attributes.comment_likes.data.find(
+        (commentLike) =>
+          commentLike.attributes.users_permissions_user.data.id ===
+          loggedInUserId
+      ).id;
+      deleteCommentLike({
+        variables: {
+          id: commentLikeId,
+        },
+      });
+    } else {
+      createCommentLike({
+        variables: {
+          comment: comment.id,
+          users_permissions_user: loggedInUserId,
+          publishedAt: new Date().toISOString(),
+        },
+      });
+    }
+  };
 
   //Delete comment and replies
   const DELETE_COMMENT = gql`
@@ -113,6 +246,11 @@ export default function Comment({
           cache.evict({ id: `ReplyEntity:${reply.id}` });
         });
       }
+      if (allLikes.length > 0) {
+        allLikes.forEach((like) => {
+          cache.evict({ id: `CommentLikeEntity:${like.id}` });
+        });
+      }
       setAllComments((prev) =>
         prev.filter((comment) => comment.id !== deletedComment.id)
       );
@@ -140,6 +278,16 @@ export default function Comment({
       });
     }
 
+    if (allLikes.length > 0) {
+      allLikes.forEach((like) => {
+        deleteCommentLike({
+          variables: {
+            id: like.id,
+          },
+        });
+      });
+    }
+
     deleteComment({
       variables: {
         id: comment.id,
@@ -149,79 +297,6 @@ export default function Comment({
 
   const onReplyClick = () => {
     setRepliesShow((prev) => !prev);
-  };
-
-  //Update comment likes
-  const UPDATE_COMMENT = gql`
-    mutation UpdateComment($id: ID!, $liked_by: [ID]) {
-      updateComment(id: $id, data: { liked_by: $liked_by }) {
-        data {
-          id
-          attributes {
-            liked_by {
-              data {
-                id
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const updateCommentUpdate = (cache, result) => {
-    const {
-      data: {
-        updateComment: { data: updatedComment },
-      },
-    } = result;
-    if (updatedComment) {
-      console.log(updatedComment);
-      // cache.modify({
-      //   id: cache.identify(comment),
-      //   fields: {
-      //     liked_by() {
-      //       return updatedComment.attributes.liked_by;
-      //     },
-      //   },
-      // });
-
-      if (isLikedByMe) {
-        setLikeCount((prev) => prev - 1);
-        setIsLikedByMe(false);
-      } else {
-        setLikeCount((prev) => prev + 1);
-        setIsLikedByMe(true);
-      }
-    }
-  };
-
-  const [updateComment, { loading: likeLoading, error: likeError }] =
-    useMutation(UPDATE_COMMENT, {
-      update: updateCommentUpdate,
-    });
-
-  const onLikeClick = () => {
-    if (likeLoading) {
-      return;
-    }
-    if (likeError) {
-      return;
-    }
-
-    updateComment({
-      variables: {
-        id: comment.id,
-        liked_by: isLikedByMe
-          ? comment.attributes.liked_by.data.filter(
-              (user) => user.id !== loggedInUserId
-            )
-          : [
-              ...comment.attributes.liked_by.data.map((user) => user.id),
-              loggedInUserId,
-            ],
-      },
-    });
   };
 
   return (
@@ -237,7 +312,7 @@ export default function Comment({
           style={{ width: "auto", height: "auto" }}
         />
         <h3 className="font-bold truncate max-w-[64px]">
-          {comment.attributes.posted_by.data
+          {comment.attributes.posted_by?.data
             ? comment.attributes.posted_by.data.attributes.username
             : "User"}
         </h3>
@@ -266,7 +341,7 @@ export default function Comment({
       </div>
       <div className="flex gap-3 items-center">
         <div className="flex gap-1 items-center">
-          <button className="button z-20 text-mintRed" onClick={onLikeClick}>
+          <button className="button z-20 text-mintRed" onClick={handleLike}>
             <FontAwesomeIcon
               icon={isLikedByMe ? solidHeart : regularHeart}
             ></FontAwesomeIcon>

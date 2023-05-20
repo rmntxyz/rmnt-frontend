@@ -73,11 +73,16 @@ export default function Comments({ comments, episodeId }) {
                 }
               }
             }
-            liked_by {
+            comment_likes {
               data {
                 id
                 attributes {
-                  username
+                  publishedAt
+                  users_permissions_user {
+                    data {
+                      id
+                    }
+                  }
                 }
               }
             }
