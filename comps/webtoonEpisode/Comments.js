@@ -78,6 +78,11 @@ export default function Comments({ comments, episodeId }) {
                 id
                 attributes {
                   publishedAt
+                  comment {
+                    data {
+                      id
+                    }
+                  }
                   users_permissions_user {
                     data {
                       id

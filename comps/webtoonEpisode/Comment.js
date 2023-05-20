@@ -16,6 +16,8 @@ export default function Comment({
   setCommentCount,
   loggedInUserId,
 }) {
+  //Store the value of the comment
+  const commentId = comment.id;
   //See if the comment is the logged in user's (temporary)
   const isMyComment = comment.attributes.posted_by?.data?.id === loggedInUserId;
 
@@ -28,12 +30,12 @@ export default function Comment({
       : false
   );
 
-  //Show time lapsed after comment was published
+  //Show time lapsed after the comment was published
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
     publishedAt: comment.attributes.publishedAt,
   });
 
-  //Show replies to comments
+  //Show replies to the comment
   const repliesRef = useRef(null);
 
   const [repliesShow, setRepliesShow] = useState(false);
@@ -57,7 +59,15 @@ export default function Comment({
       : 0
   );
 
+  //Update the states when the comment is updated
   useEffect(() => {
+    setAllReplies(
+      comment.attributes.replies ? comment.attributes.replies.data : []
+    );
+    setReplyCount(
+      comment.attributes.replies ? comment.attributes.replies.data.length : 0
+    );
+
     setIsLikedByMe(
       comment.attributes.comment_likes
         ? comment.attributes.comment_likes.data
@@ -74,15 +84,6 @@ export default function Comment({
       comment.attributes.comment_likes
         ? comment.attributes.comment_likes.data.length
         : 0
-    );
-  }, []);
-
-  useEffect(() => {
-    setAllReplies(
-      comment.attributes.replies ? comment.attributes.replies.data : []
-    );
-    setReplyCount(
-      comment.attributes.replies ? comment.attributes.replies.data.length : 0
     );
 
     const handleClickOutside = (e) => {
@@ -187,25 +188,24 @@ export default function Comment({
         },
       } = result;
       if (deletedCommentLike) {
-        console.log(deletedCommentLike);
         cache.evict({ id: `CommentLikeEntity:${deletedCommentLike.id}` });
         setLikeCount((prev) => prev - 1);
         setIsLikedByMe(false);
         setAllLikes((prev) =>
           prev.filter((commentLike) => commentLike.id !== deletedCommentLike.id)
         );
-        // setAllComments((prev) => {
-        //   const newComments = prev.map((comment) => {
-        //     if (comment.id === deletedCommentLike.attributes.comment.data.id) {
-        //       comment.attributes.comment_likes.data =
-        //         comment.attributes.comment_likes.data.filter(
-        //           (commentLike) => commentLike.id !== deletedCommentLike.id
-        //         );
-        //     }
-        //     return comment;
-        //   });
-        //   return newComments;
-        // });
+        setAllComments((prev) => {
+          const newComments = prev.map((comment) => {
+            if (comment.id === commentId) {
+              comment.attributes.comment_likes.data =
+                comment.attributes.comment_likes.data.filter(
+                  (commentLike) => commentLike.id !== deletedCommentLike.id
+                );
+            }
+            return comment;
+          });
+          return newComments;
+        });
       }
     },
   });
@@ -225,7 +225,7 @@ export default function Comment({
     } else {
       createCommentLike({
         variables: {
-          comment: comment.id,
+          comment: commentId,
           users_permissions_user: loggedInUserId,
           publishedAt: new Date().toISOString(),
         },
@@ -311,7 +311,7 @@ export default function Comment({
 
     deleteComment({
       variables: {
-        id: comment.id,
+        id: commentId,
       },
     });
   };
@@ -407,7 +407,7 @@ export default function Comment({
             </div>
           )}
           <ReplyInput
-            commentId={comment.id}
+            commentId={commentId}
             setAllReplies={setAllReplies}
             setReplyCount={setReplyCount}
             setAllComments={setAllComments}
