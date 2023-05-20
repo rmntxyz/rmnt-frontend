@@ -136,6 +136,9 @@ export default function Comments({ comments, episodeId }) {
     if (error || uploadError) {
       return;
     }
+    if (!loggedInUser) {
+      return;
+    }
     if (!content && !image) {
       return;
     }

@@ -211,6 +211,9 @@ export default function Comment({
   });
 
   const handleLike = () => {
+    if (!loggedInUserId) {
+      return;
+    }
     if (isLikedByMe) {
       const commentLikeId = comment.attributes.comment_likes.data.find(
         (commentLike) =>
