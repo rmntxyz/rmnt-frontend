@@ -14,12 +14,14 @@ export default function ReplyInput({
       $content: String
       $comment: ID
       $publishedAt: DateTime
+      $posted_by: ID
     ) {
       createReply(
         data: {
           content: $content
           comment: $comment
           publishedAt: $publishedAt
+          posted_by: $posted_by
         }
       ) {
         data {
@@ -27,6 +29,14 @@ export default function ReplyInput({
           attributes {
             content
             publishedAt
+            posted_by {
+              data {
+                id
+                attributes {
+                  username
+                }
+              }
+            }
             comment {
               data {
                 id
@@ -69,6 +79,7 @@ export default function ReplyInput({
         content,
         comment: commentId,
         publishedAt: new Date().toISOString(),
+        posted_by: loggedInUserId,
       },
     });
     setValue("content", "");

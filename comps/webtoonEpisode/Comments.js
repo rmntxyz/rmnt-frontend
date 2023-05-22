@@ -67,7 +67,7 @@ export default function Comments({ comments, episodeId }) {
                       id
                     }
                   }
-                  users_permissions_user {
+                  liked_by {
                     data {
                       id
                     }

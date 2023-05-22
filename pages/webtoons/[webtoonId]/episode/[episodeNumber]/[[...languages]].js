@@ -90,7 +90,7 @@ const GET_EPISODE_DATA = gql`
                         data {
                           id
                           attributes {
-                            users_permissions_user {
+                            liked_by {
                               data {
                                 id
                               }
@@ -108,6 +108,14 @@ const GET_EPISODE_DATA = gql`
                           attributes {
                             content
                             publishedAt
+                            posted_by {
+                              data {
+                                id
+                                attributes {
+                                  username
+                                }
+                              }
+                            }
                           }
                         }
                       }

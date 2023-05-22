@@ -25,7 +25,7 @@ export default function Comment({
   const [isLikedByMe, setIsLikedByMe] = useState(
     comment.attributes.comment_likes
       ? comment.attributes.comment_likes.data
-          .map((like) => like.attributes.users_permissions_user.data.id)
+          .map((like) => like.attributes.liked_by.data.id)
           .includes(loggedInUserId)
       : false
   );
@@ -71,7 +71,7 @@ export default function Comment({
     setIsLikedByMe(
       comment.attributes.comment_likes
         ? comment.attributes.comment_likes.data
-            .map((like) => like.attributes.users_permissions_user.data.id)
+            .map((like) => like.attributes.liked_by.data.id)
             .includes(loggedInUserId)
         : false
     );
@@ -105,13 +105,13 @@ export default function Comment({
   const CREATE_COMMENT_LIKE = gql`
     mutation CreateCommentLike(
       $comment: ID
-      $users_permissions_user: ID
+      $liked_by: ID
       $publishedAt: DateTime
     ) {
       createCommentLike(
         data: {
           comment: $comment
-          users_permissions_user: $users_permissions_user
+          liked_by: $liked_by
           publishedAt: $publishedAt
         }
       ) {
@@ -124,7 +124,7 @@ export default function Comment({
                 id
               }
             }
-            users_permissions_user {
+            liked_by {
               data {
                 id
               }
@@ -170,7 +170,7 @@ export default function Comment({
                 id
               }
             }
-            users_permissions_user {
+            liked_by {
               data {
                 id
               }
@@ -217,8 +217,7 @@ export default function Comment({
     if (isLikedByMe) {
       const commentLikeId = comment.attributes.comment_likes.data.find(
         (commentLike) =>
-          commentLike.attributes.users_permissions_user.data.id ===
-          loggedInUserId
+          commentLike.attributes.liked_by.data.id === loggedInUserId
       ).id;
       deleteCommentLike({
         variables: {
@@ -229,7 +228,7 @@ export default function Comment({
       createCommentLike({
         variables: {
           comment: commentId,
-          users_permissions_user: loggedInUserId,
+          liked_by: loggedInUserId,
           publishedAt: new Date().toISOString(),
         },
       });
@@ -331,8 +330,11 @@ export default function Comment({
           src="/profile/popup_profile.png"
           width={24}
           height={24}
-          alt="RMNT user image"
-          // alt={comment.user.data.attributes.username}
+          alt={
+            comment.attributes.posted_by?.data
+              ? comment.attributes.posted_by.data.attributes.username
+              : "Rarement User Image"
+          }
           style={{ width: "auto", height: "auto" }}
         />
         <h3 className="font-bold truncate max-w-[64px]">
@@ -408,6 +410,7 @@ export default function Comment({
                   reply={reply}
                   setAllReplies={setAllReplies}
                   setReplyCount={setReplyCount}
+                  loggedInUserId={loggedInUserId}
                 ></Reply>
               ))}
             </div>

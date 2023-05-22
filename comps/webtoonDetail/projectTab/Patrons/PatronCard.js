@@ -1,7 +1,7 @@
 import Tippy from "@tippyjs/react/headless";
 import Image from "next/image";
 import { PolyFrameImage } from "../../../../utils/PolyFrameImage";
-import { LoadingRarement } from "../../../../utils/svgs";
+// import { LoadingRarement } from "../../../../utils/svgs";
 import useDate from "../../../../utils/useDate";
 
 export default function PatronCard({ item }) {
