@@ -364,7 +364,10 @@ export default function Comment({
         </button>
       </div>
       <div className="flex gap-3 items-center">
-        <div className="flex gap-1 items-center">
+        <div
+          className="flex gap-1 items-center"
+          style={{ pointerEvents: loggedInUserId ? "all" : "none" }}
+        >
           <button className="button z-20 text-mintRed" onClick={handleLike}>
             <FontAwesomeIcon
               icon={isLikedByMe ? solidHeart : regularHeart}
@@ -414,6 +417,7 @@ export default function Comment({
             setAllReplies={setAllReplies}
             setReplyCount={setReplyCount}
             setAllComments={setAllComments}
+            loggedInUserId={loggedInUserId}
           />
         </div>
       </div>

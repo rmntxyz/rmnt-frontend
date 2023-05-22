@@ -176,12 +176,15 @@ export default function Comments({ comments, episodeId }) {
       </h2>
       <form
         onSubmit={handleSubmit(onValid)}
+        style={{ pointerEvents: loggedInUserId ? "all" : "none" }}
         className="z-20 flex items-center my-3 border-2 border-mintGreen rounded-full"
       >
         <input
           {...register("content", { required: false })}
           type="text"
-          placeholder="Write a comment..."
+          placeholder={
+            loggedInUserId ? "Write a comment..." : "Log in to comment"
+          }
           className="input w-full p-3 rounded-full bg-navBg focus:outline-none"
         />
         <input onChange={onImageChange} type="file" />

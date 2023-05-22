@@ -7,6 +7,7 @@ export default function ReplyInput({
   commentId,
   setReplyCount,
   setAllComments,
+  loggedInUserId,
 }) {
   const CREATE_REPLY = gql`
     mutation CreateReply(
@@ -87,11 +88,12 @@ export default function ReplyInput({
       <form
         onSubmit={handleSubmit(onValid)}
         className="my-1 border border-mintGreen rounded-full w-full"
+        style={{ pointerEvents: loggedInUserId ? "all" : "none" }}
       >
         <input
           {...register("content", { required: true })}
           type="text"
-          placeholder="Write a comment"
+          placeholder={loggedInUserId ? "Write a reply..." : "Log in to reply"}
           className="input z-20 w-full p-2 rounded-full bg-opaqueGray focus:outline-none"
         />
       </form>
