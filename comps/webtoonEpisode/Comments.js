@@ -1,8 +1,9 @@
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import Comment from "./Comment";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import useUser from "../../utils/useUser";
+import Image from "next/image";
 
 export default function Comments({ comments, episodeId }) {
   //Get logged in user's ID (temporary)
@@ -12,7 +13,7 @@ export default function Comments({ comments, episodeId }) {
   //Set state for comments for immediate display on screen
   const [allComments, setAllComments] = useState(comments);
   const [commentCount, setCommentCount] = useState(comments.length);
-  const [image, setImage] = useState(null);
+  const [pictureUrl, setPictureUrl] = useState(null);
 
   //Create new comment with image upload
   const CREATE_COMMENT = gql`
@@ -92,9 +93,9 @@ export default function Comments({ comments, episodeId }) {
     }
   `;
 
-  const onImageChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setImage(e.target.files[0]);
+  const onPictureChange = (e) => {
+    if (e.target.files.length > 0) {
+      setPictureUrl(URL.createObjectURL(e.target.files[0]));
     }
   };
 
@@ -113,7 +114,10 @@ export default function Comments({ comments, episodeId }) {
   };
 
   const onValid = (data) => {
-    const { content } = data;
+    const { content, files } = data;
+    // console.log("files to upload?", files[0]);
+    // console.log("uploading", uploadLoading);
+    // console.log("error", uploadError);
     if (loading || uploadLoading) {
       return;
     }
@@ -123,31 +127,47 @@ export default function Comments({ comments, episodeId }) {
     if (!loggedInUser) {
       return;
     }
-    if (!content && !image) {
+    if (!content && !files) {
       return;
     }
-    if (image) {
+    if (files && !content) {
+      //https://docs.strapi.io/dev-docs/plugins/upload
+      const formData = new FormData();
+      formData.append("files", files[0]);
+      formData.append("ref", "comment");
+      formData.append("refId", episodeId);
+      formData.append("field", "image");
+      console.log("formData", [...formData.entries()]);
       upload({
         variables: {
-          file: image,
+          file: formData,
         },
-        onCompleted: (data) => {
+        update: (cache, result) => {
           const {
-            upload: { id },
-          } = data;
-          createComment({
-            variables: {
-              content,
-              episode: episodeId,
-              publishedAt: new Date().toISOString(),
-              image: id,
-              posted_by: loggedInUserId,
+            data: {
+              upload: { id },
             },
-          });
+          } = result;
+          // createComment({
+          //   variables: {
+          //     content,
+          //     episode: episodeId,
+          //     publishedAt: new Date().toISOString(),
+          //     image: id,
+          //     posted_by: loggedInUserId,
+          //   },
+          // });
+          console.log(id);
+        },
+        //https://github.com/strapi/strapi/issues/5297
+        context: {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         },
       });
     }
-    if (!image) {
+    if (!files && content) {
       createComment({
         variables: {
           content,
@@ -187,7 +207,19 @@ export default function Comments({ comments, episodeId }) {
           }
           className="input w-full p-3 rounded-full bg-navBg focus:outline-none"
         />
-        <input onChange={onImageChange} type="file" />
+        {pictureUrl && (
+          <Image
+            src={pictureUrl}
+            width={10}
+            height={10}
+            alt="Rarement Comment Upload Image"
+          />
+        )}
+        <input
+          {...register("files", { required: false })}
+          type="file"
+          onChange={onPictureChange}
+        />
       </form>
       <div className="flex flex-col gap-7 mt-8">
         {allComments.map((comment, idx) => (

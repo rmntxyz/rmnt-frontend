@@ -9,6 +9,7 @@ import styles from "./Comment.module.css";
 import Image from "next/image";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export default function Comment({
   comment,
@@ -356,7 +357,20 @@ export default function Comment({
         </span>
       </div>
       <div className="flex gap-2 text-sm items-end">
-        <p>{comment.attributes.content}</p>
+        <ReactMarkdown
+          children={comment.attributes.content}
+          components={{
+            img: (props) => (
+              <Image
+                src={props.src}
+                alt="Rarement Comment Image"
+                width={200}
+                height={200}
+              />
+            ),
+          }}
+        />
+        {/* <p>{comment.attributes.content}</p> */}
         <button
           className="button z-20 text-mintRed"
           onClick={onDeleteClick}
