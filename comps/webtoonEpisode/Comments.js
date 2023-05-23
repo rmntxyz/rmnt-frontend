@@ -1,6 +1,6 @@
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Comment from "./Comment";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import useUser from "../../utils/useUser";
 import Image from "next/image";
@@ -83,8 +83,20 @@ export default function Comments({ comments, episodeId }) {
   `;
 
   const UPLOAD = gql`
-    mutation Upload($file: Upload!) {
-      upload(file: $file) {
+    mutation Upload(
+      $file: Upload!
+      $refId: ID
+      $ref: String
+      $field: String
+      $info: FileInfoInput
+    ) {
+      upload(
+        file: $file
+        refId: $refId
+        ref: $ref
+        field: $field
+        info: $info
+      ) {
         id
         attributes {
           url
@@ -138,9 +150,18 @@ export default function Comments({ comments, episodeId }) {
       formData.append("refId", episodeId);
       formData.append("field", "image");
       console.log("formData", [...formData.entries()]);
+      console.log("file", formData.get("files"));
       upload({
         variables: {
           file: formData,
+          refId: formData.get("refId"),
+          ref: formData.get("ref"),
+          field: formData.get("field"),
+          info: {
+            alternativeText: "Rarement Comment Image",
+            caption: "Rarement Comment Image",
+            name: "Rarement Comment Image",
+          },
         },
         update: (cache, result) => {
           const {
