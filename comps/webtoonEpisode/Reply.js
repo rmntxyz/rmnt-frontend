@@ -10,7 +10,6 @@ export default function Reply({
   setReplyCount,
   loggedInUserId,
 }) {
-  console.log(reply);
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
     publishedAt: reply.attributes.publishedAt,
   });
