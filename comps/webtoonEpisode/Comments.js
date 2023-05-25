@@ -22,6 +22,8 @@ export default function Comments({ comments, episodeId }) {
       $episode: ID
       $publishedAt: DateTime
       $posted_by: ID
+      # $image: ID
+
     ) {
       createComment(
         data: {
@@ -29,6 +31,7 @@ export default function Comments({ comments, episodeId }) {
           episode: $episode
           publishedAt: $publishedAt
           posted_by: $posted_by
+          # image: $image
         }
       ) {
         data {
@@ -120,6 +123,7 @@ export default function Comments({ comments, episodeId }) {
       },
     } = result;
     if (newComment) {
+      console.log("newComment", newComment);
       setAllComments((prev) => [newComment, ...prev]);
       setCommentCount((prev) => prev + 1);
     }
@@ -127,6 +131,7 @@ export default function Comments({ comments, episodeId }) {
 
   const onValid = (data) => {
     const { content, files } = data;
+    console.log(content, files);
     // console.log("files to upload?", files[0]);
     // console.log("uploading", uploadLoading);
     // console.log("error", uploadError);
@@ -188,13 +193,14 @@ export default function Comments({ comments, episodeId }) {
         },
       });
     }
-    if (!files && content) {
+    if (files.length === 0 && content) {
       createComment({
         variables: {
           content,
           episode: episodeId,
           publishedAt: new Date().toISOString(),
           posted_by: loggedInUserId,
+          // image: null,
         },
       });
     }
