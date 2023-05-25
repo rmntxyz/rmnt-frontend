@@ -149,6 +149,7 @@ export default function Comment({
         setAllComments((prev) => {
           const newComments = prev.map((comment) => {
             if (comment.id === newCommentLike.attributes.comment.data.id) {
+              //error in dev but works in prod
               comment.attributes.comment_likes.data.push(newCommentLike);
             }
             return comment;
