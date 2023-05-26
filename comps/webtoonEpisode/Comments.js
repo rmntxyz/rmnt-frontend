@@ -131,6 +131,8 @@ export default function Comments({ comments, episodeId }) {
     }
     if (error) {
       alert("Cannot post your comment. Please try again later.");
+      console.log(error);
+      return;
     }
 
     if (!content && !files) {

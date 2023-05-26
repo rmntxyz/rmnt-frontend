@@ -76,6 +76,7 @@ export default function ReplyInput({
     }
     if (error) {
       alert("Cannot post your reply. Please try again.");
+      console.log(error);
       return;
     }
 

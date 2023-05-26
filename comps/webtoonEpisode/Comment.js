@@ -313,16 +313,22 @@ export default function Comment({
     }
     if (error) {
       alert("Cannot delete your comment. Please try again later.");
+      console.log(error);
+      return;
     }
     if (errorReply) {
       alert(
         "Cannot delete the replies to your comment. Please try again later."
       );
+      console.log(errorReply);
+      return;
     }
     if (errorImage) {
       alert(
         "Cannot delete the image attached to your comment. Please try again later."
       );
+      console.log(errorImage);
+      return;
     }
     if (allReplies.length > 0) {
       allReplies.forEach((reply) => {

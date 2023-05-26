@@ -63,6 +63,7 @@ export default function Reply({
     }
     if (error) {
       alert("Cannot delete your reply. Please try again later.");
+      console.log(error);
       return;
     }
 
