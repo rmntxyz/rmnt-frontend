@@ -9,7 +9,6 @@ import styles from "./Comment.module.css";
 import Image from "next/image";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export default function Comment({
   comment,
@@ -87,6 +86,7 @@ export default function Comment({
         : 0
     );
 
+    //Close the replies section on clicking outside
     const handleClickOutside = (e) => {
       var target = e.target;
       if (target.classList.contains("replyButton")) {
@@ -237,7 +237,7 @@ export default function Comment({
     }
   };
 
-  //Delete comment and replies
+  //Delete reploies and image before deleting comment
   const DELETE_COMMENT = gql`
     mutation DeleteComment($id: ID!) {
       deleteComment(id: $id) {
@@ -251,6 +251,16 @@ export default function Comment({
   const DELETE_REPLY = gql`
     mutation DeleteReply($id: ID!) {
       deleteReply(id: $id) {
+        data {
+          id
+        }
+      }
+    }
+  `;
+
+  const DELETE_UPLOAD_FILE = gql`
+    mutation DeleteUploadFile($id: ID!) {
+      deleteUploadFile(id: $id) {
         data {
           id
         }
@@ -276,6 +286,11 @@ export default function Comment({
           cache.evict({ id: `CommentLikeEntity:${like.id}` });
         });
       }
+      if (comment.attributes.image.data) {
+        cache.evict({
+          id: `UploadFileEntity:${comment.attributes.image.data.id}`,
+        });
+      }
       setAllComments((prev) =>
         prev.filter((comment) => comment.id !== deletedComment.id)
       );
@@ -284,14 +299,30 @@ export default function Comment({
     }
   };
 
-  const [deleteComment, { loading }] = useMutation(DELETE_COMMENT, {
+  const [deleteComment, { loading, error }] = useMutation(DELETE_COMMENT, {
     update: deleteCommentUpdate,
   });
-  const [deleteReply, { loading: loadingReply }] = useMutation(DELETE_REPLY);
+  const [deleteReply, { loading: loadingReply, error: errorReply }] =
+    useMutation(DELETE_REPLY);
+  const [deleteUploadFile, { loading: loadingImage, error: errorImage }] =
+    useMutation(DELETE_UPLOAD_FILE);
 
   const onDeleteClick = () => {
-    if (loading || loadingReply) {
+    if (loading || loadingReply || loadingImage) {
       return;
+    }
+    if (error) {
+      alert("Cannot delete your comment. Please try again later.");
+    }
+    if (errorReply) {
+      alert(
+        "Cannot delete the replies to your comment. Please try again later."
+      );
+    }
+    if (errorImage) {
+      alert(
+        "Cannot delete the image attached to your comment. Please try again later."
+      );
     }
     if (allReplies.length > 0) {
       allReplies.forEach((reply) => {
@@ -310,6 +341,14 @@ export default function Comment({
             id: like.id,
           },
         });
+      });
+    }
+
+    if (comment.attributes.image.data) {
+      deleteUploadFile({
+        variables: {
+          id: comment.attributes.image.data.id,
+        },
       });
     }
 
@@ -357,28 +396,29 @@ export default function Comment({
             : ""}
         </span>
       </div>
-      <div className="flex gap-2 text-sm items-end">
-        <ReactMarkdown
-          children={comment.attributes.content}
-          components={{
-            img: (props) => (
-              <Image
-                src={props.src}
-                alt="Rarement Comment Image"
-                width={200}
-                height={200}
-              />
-            ),
-          }}
-        />
-        {/* <p>{comment.attributes.content}</p> */}
-        <button
-          className="button z-20 text-mintRed"
-          onClick={onDeleteClick}
-          style={{ display: isMyComment ? "block" : "none" }}
-        >
-          <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-        </button>
+      <div>
+        {comment.attributes.image.data ? (
+          <Image
+            src={comment.attributes.image.data.attributes.url}
+            width={200}
+            height={200}
+            alt="Rarement Comment Image"
+            style={{ width: "auto", height: "auto" }}
+          />
+        ) : null}
+        <div className="my-1 flex gap-2 text-sm items-end">
+          <p>{comment.attributes.content}</p>
+          <button
+            className="button z-20 text-mintRed"
+            onClick={onDeleteClick}
+            style={{ display: isMyComment ? "block" : "none" }}
+          >
+            <FontAwesomeIcon
+              icon={faXmark}
+              className="button"
+            ></FontAwesomeIcon>
+          </button>
+        </div>
       </div>
       <div className="flex gap-3 items-center">
         <div
@@ -388,6 +428,7 @@ export default function Comment({
           <button className="button z-20 text-mintRed" onClick={handleLike}>
             <FontAwesomeIcon
               icon={isLikedByMe ? solidHeart : regularHeart}
+              className="button"
             ></FontAwesomeIcon>
           </button>
           <span
@@ -425,6 +466,7 @@ export default function Comment({
                   reply={reply}
                   setAllReplies={setAllReplies}
                   setReplyCount={setReplyCount}
+                  setAllComments={setAllComments}
                   loggedInUserId={loggedInUserId}
                 ></Reply>
               ))}

@@ -8,6 +8,7 @@ export default function Reply({
   reply,
   setAllReplies,
   setReplyCount,
+  setAllComments,
   loggedInUserId,
 }) {
   const { minutesLapsed, hoursLapsed, daysLapsed } = useTimeLapsed({
@@ -37,10 +38,22 @@ export default function Reply({
         prev.filter((reply) => reply.id !== deletedReply.id)
       );
       setReplyCount((prev) => prev - 1);
+      setAllComments((prev) => {
+        const commentIndex = prev.findIndex(
+          (comment) => comment.id === reply.attributes.comment.data.id
+        );
+        const newComments = [...prev];
+        newComments[commentIndex].attributes.replies.data = newComments[
+          commentIndex
+        ].attributes.replies.data.filter(
+          (reply) => reply.id !== deletedReply.id
+        );
+        return newComments;
+      });
     }
   };
 
-  const [deleteReply, { loading }] = useMutation(DELETE_REPLY, {
+  const [deleteReply, { loading, error }] = useMutation(DELETE_REPLY, {
     update: deleteReplyUpdate,
   });
 
@@ -48,6 +61,11 @@ export default function Reply({
     if (loading) {
       return;
     }
+    if (error) {
+      alert("Cannot delete your reply. Please try again later.");
+      return;
+    }
+
     deleteReply({
       variables: {
         id: reply.id,
@@ -108,6 +126,7 @@ export default function Reply({
           <FontAwesomeIcon
             icon={faXmark}
             onClick={onDeleteClick}
+            className="button"
           ></FontAwesomeIcon>
         </button>
       </div>

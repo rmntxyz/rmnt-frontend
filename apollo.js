@@ -14,7 +14,6 @@ import { createUploadLink } from "apollo-upload-client";
 
 const client = new ApolloClient({
   // uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
-  //https://gist.github.com/alexandrebodin/fedc71c8513bfbb6283cc90ae62755c5
   //https://www.apollographql.com/docs/react/data/file-uploads/
   //https://www.apollographql.com/blog/graphql/file-uploads/with-react-hooks-typescript-amazon-s3-tutorial/
   link: createUploadLink({ uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT }),

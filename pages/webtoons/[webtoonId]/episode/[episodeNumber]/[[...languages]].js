@@ -86,6 +86,14 @@ const GET_EPISODE_DATA = gql`
                           }
                         }
                       }
+                      image {
+                        data {
+                          id
+                          attributes {
+                            url
+                          }
+                        }
+                      }
                       comment_likes {
                         data {
                           id

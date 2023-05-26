@@ -93,20 +93,8 @@ export default function Comments({ comments, episodeId }) {
   `;
 
   const UPLOAD = gql`
-    mutation Upload(
-      $file: Upload!
-      $refId: ID
-      $ref: String
-      $field: String
-      $info: FileInfoInput
-    ) {
-      upload(
-        file: $file
-        refId: $refId
-        ref: $ref
-        field: $field
-        info: $info
-      ) {
+    mutation Upload($files: Upload!) {
+      upload(files: $files) {
         id
         attributes {
           url
@@ -115,6 +103,7 @@ export default function Comments({ comments, episodeId }) {
     }
   `;
 
+  //Provide image preview on file selection
   const onPictureChange = (e) => {
     if (e.target.files.length > 0) {
       setPictureUrl(URL.createObjectURL(e.target.files[0]));
@@ -135,68 +124,37 @@ export default function Comments({ comments, episodeId }) {
     }
   };
 
-  const onValid = (data) => {
+  const onValid = async (data) => {
     const { content, files } = data;
-    // console.log("files to upload?", files[0]);
-    // console.log("uploading", uploadLoading);
-    // console.log("error", uploadError);
-    if (loading || uploadLoading) {
+    if (loading || !loggedInUser) {
       return;
     }
-    if (error || uploadError) {
-      return;
+    if (error) {
+      alert("Cannot post your comment. Please try again later.");
     }
-    if (!loggedInUser) {
-      return;
-    }
+
     if (!content && !files) {
       return;
     }
-    if (files.length > 0 && !content) {
-      //https://docs.strapi.io/dev-docs/plugins/upload
+    if (files.length > 0) {
       const formData = new FormData();
       formData.append("files", files[0]);
-      formData.append("ref", "comment");
-      formData.append("refId", episodeId);
-      formData.append("field", "image");
-      console.log("formData", [...formData.entries()]);
-      console.log("file", formData.get("files"));
-      upload({
-        variables: {
-          file: formData,
-          refId: formData.get("refId"),
-          ref: formData.get("ref"),
-          field: formData.get("field"),
-          info: {
-            alternativeText: "Rarement Comment Image",
-            caption: "Rarement Comment Image",
-            name: "Rarement Comment Image",
-          },
-        },
-        update: (cache, result) => {
-          const {
-            data: {
-              upload: { id },
+      await fetch("https://rmnt-staging.herokuapp.com/api/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          createComment({
+            variables: {
+              content,
+              episode: episodeId,
+              publishedAt: new Date().toISOString(),
+              posted_by: loggedInUserId,
+              image: res[0].id,
             },
-          } = result;
-          // createComment({
-          //   variables: {
-          //     content,
-          //     episode: episodeId,
-          //     publishedAt: new Date().toISOString(),
-          //     image: id,
-          //     posted_by: loggedInUserId,
-          //   },
-          // });
-          console.log(id);
-        },
-        //https://github.com/strapi/strapi/issues/5297
-        context: {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        },
-      });
+          });
+        });
     }
     if (files.length === 0 && content) {
       createComment({
@@ -211,12 +169,12 @@ export default function Comments({ comments, episodeId }) {
     }
 
     setValue("content", "");
+    setValue("files", "");
+    setPictureUrl(null);
   };
   const [createComment, { loading, error }] = useMutation(CREATE_COMMENT, {
     update: createCommentUpdate,
   });
-  const [upload, { loading: uploadLoading, error: uploadError }] =
-    useMutation(UPLOAD);
 
   return (
     <div

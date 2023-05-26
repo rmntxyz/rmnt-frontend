@@ -74,6 +74,11 @@ export default function ReplyInput({
     if (loading) {
       return;
     }
+    if (error) {
+      alert("Cannot post your reply. Please try again.");
+      return;
+    }
+
     createReply({
       variables: {
         content,
@@ -85,7 +90,7 @@ export default function ReplyInput({
     setValue("content", "");
   };
 
-  const [createReply, { loading }] = useMutation(CREATE_REPLY, {
+  const [createReply, { loading, error }] = useMutation(CREATE_REPLY, {
     update: createReplyUpdate,
   });
 
