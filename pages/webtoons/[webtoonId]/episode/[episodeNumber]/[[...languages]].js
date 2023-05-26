@@ -203,7 +203,9 @@ export default function Episode({
       var target = e.target;
       if (
         target.classList.contains("button") ||
-        target.classList.contains("input")
+        target.classList.contains("input")  ||
+        target.tagName === "svg" ||
+        target.tagName === "path"
       ) {
         return;
       }
