@@ -4,6 +4,9 @@ import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import useUser from "../../utils/useUser";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
+import { isImage } from "../../utils/mediaType";
 
 export default function Comments({ comments, episodeId }) {
   //Get logged in user's ID (temporary)
@@ -14,6 +17,8 @@ export default function Comments({ comments, episodeId }) {
   const [allComments, setAllComments] = useState(comments);
   const [commentCount, setCommentCount] = useState(comments.length);
   const [pictureUrl, setPictureUrl] = useState(null);
+  const [picture, setPicture] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   //Create new comment with image upload
   const CREATE_COMMENT = gql`
@@ -107,10 +112,11 @@ export default function Comments({ comments, episodeId }) {
   const onPictureChange = (e) => {
     if (e.target.files.length > 0) {
       setPictureUrl(URL.createObjectURL(e.target.files[0]));
+      setPicture(e.target.files[0]);
     }
   };
 
-  const { register, handleSubmit, setValue, getValues } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
 
   const createCommentUpdate = (cache, result) => {
     const {
@@ -125,22 +131,32 @@ export default function Comments({ comments, episodeId }) {
   };
 
   const onValid = async (data) => {
-    const { content, files } = data;
-    if (loading || !loggedInUser) {
+    const { content } = data;
+    if (commentLoading || !loggedInUser) {
       return;
     }
+
     if (error) {
       alert("Cannot post your comment. Please try again later.");
       console.log(error);
       return;
     }
 
-    if (!content && !files) {
+    if (!content && !picture) {
       return;
     }
-    if (files.length > 0) {
+    if (picture) {
+      if (
+        !isImage.includes(
+          picture.name.split(".")[picture.name.split(".").length - 1]
+        )
+      ) {
+        alert("The image file should be either png, jpg, jpeg, or gif.");
+        return;
+      }
+      setLoading(true);
       const formData = new FormData();
-      formData.append("files", files[0]);
+      formData.append("files", picture);
       await fetch("https://rmnt-staging.herokuapp.com/api/upload", {
         method: "POST",
         body: formData,
@@ -156,9 +172,15 @@ export default function Comments({ comments, episodeId }) {
               image: res[0].id,
             },
           });
-        });
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Cannot post your comment. Please try again later.");
+        })
+        .finally(() => setLoading(false));
     }
-    if (files.length === 0 && content) {
+    if (!picture && content) {
+      setLoading(true);
       createComment({
         variables: {
           content,
@@ -167,16 +189,19 @@ export default function Comments({ comments, episodeId }) {
           posted_by: loggedInUserId,
           image: null,
         },
-      });
+      }).then(() => setLoading(false));
     }
 
     setValue("content", "");
-    setValue("files", "");
+    setPicture(null);
     setPictureUrl(null);
   };
-  const [createComment, { loading, error }] = useMutation(CREATE_COMMENT, {
-    update: createCommentUpdate,
-  });
+  const [createComment, { loading: commentLoading, error }] = useMutation(
+    CREATE_COMMENT,
+    {
+      update: createCommentUpdate,
+    }
+  );
 
   return (
     <div
@@ -202,16 +227,48 @@ export default function Comments({ comments, episodeId }) {
         {pictureUrl && (
           <Image
             src={pictureUrl}
-            width={10}
+            width={50}
             height={10}
             alt="Rarement Comment Upload Image"
           />
         )}
+        <label
+          htmlFor="file"
+          className="flex items-center px-3 hover:cursor-pointer"
+        >
+          <FontAwesomeIcon icon={faPhotoFilm} className="text-[24px] mx-3" />
+        </label>
         <input
-          {...register("files", { required: false })}
           type="file"
+          id="file"
           onChange={onPictureChange}
+          className="hidden input"
+          multiple={false}
         />
+        {loading ? (
+          <svg className="animate-spin -ml-1 mr-6 h-9 w-9" viewBox="0 0 24 24">
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        ) : (
+          <button
+            type="submit"
+            className="flex items-center justify-center pr-6 hover:cursor-pointer"
+          >
+            <FontAwesomeIcon icon={faPaperPlane} className="text-[24px]" />
+          </button>
+        )}
       </form>
       <div className="flex flex-col gap-7 mt-8">
         {allComments.map((comment, idx) => (
