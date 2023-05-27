@@ -6,7 +6,7 @@ import useUser from "../../utils/useUser";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
-import { isImage } from "../../utils/mediaType";
+import { isImageType } from "../../utils/mediaType";
 
 export default function Comments({ comments, episodeId }) {
   //Get logged in user's ID (temporary)
@@ -146,11 +146,7 @@ export default function Comments({ comments, episodeId }) {
       return;
     }
     if (picture) {
-      if (
-        !isImage.includes(
-          picture.name.split(".")[picture.name.split(".").length - 1]
-        )
-      ) {
+      if (!isImageType(picture)) {
         alert("The image file should be either png, jpg, jpeg, or gif.");
         return;
       }
