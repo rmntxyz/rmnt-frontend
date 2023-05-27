@@ -236,7 +236,10 @@ export default function Comments({ comments, episodeId }) {
           htmlFor="file"
           className="flex items-center px-3 hover:cursor-pointer"
         >
-          <FontAwesomeIcon icon={faPhotoFilm} className="text-[24px] mx-3" />
+          <FontAwesomeIcon
+            icon={faPhotoFilm}
+            className="text-base mx-1 md:mx-3 md:text-[24px]"
+          />
         </label>
         <input
           type="file"
@@ -246,7 +249,10 @@ export default function Comments({ comments, episodeId }) {
           multiple={false}
         />
         {loading ? (
-          <svg className="animate-spin -ml-1 mr-6 h-9 w-9" viewBox="0 0 24 24">
+          <svg
+            className="animate-spin -ml-1 mr-6 h-8 w-8 md:h-9 md:w-9"
+            viewBox="0 0 24 24"
+          >
             <circle
               className="opacity-25"
               cx="12"
@@ -266,7 +272,10 @@ export default function Comments({ comments, episodeId }) {
             type="submit"
             className="flex items-center justify-center pr-6 hover:cursor-pointer"
           >
-            <FontAwesomeIcon icon={faPaperPlane} className="text-[24px]" />
+            <FontAwesomeIcon
+              icon={faPaperPlane}
+              className="text-base md:text-[24px]"
+            />
           </button>
         )}
       </form>
