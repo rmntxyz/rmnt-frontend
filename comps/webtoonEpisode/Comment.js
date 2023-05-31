@@ -406,10 +406,16 @@ export default function Comment({
         {comment.attributes.image.data ? (
           <Image
             src={comment.attributes.image.data.attributes.url}
-            width={200}
-            height={200}
+            width={256}
+            height={256}
+            placeholder="blur"
+            blurDataURL={comment.attributes.image.data.attributes.url}
             alt="Rarement Comment Image"
-            style={{ width: "auto", height: "auto" }}
+            style={{
+              width: "auto",
+              height: "auto",
+              maxWidth: "256px",
+            }}
           />
         ) : null}
         <div className="my-1 flex gap-2 text-sm items-end">
